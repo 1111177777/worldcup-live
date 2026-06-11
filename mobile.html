@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>世界杯分析</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:16px;max-width:500px;margin:0 auto;color:#333}
+h1{font-size:20px;font-weight:600;text-align:center;margin:8px 0 2px}
+.sub{font-size:12px;color:#999;text-align:center;margin-bottom:20px}
+.sel{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.sel select{flex:1;padding:12px 8px;border:1px solid #ccc;font-size:15px;background:#fff;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%23999' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px}
+.sel .vs{font-size:13px;color:#bbb;font-weight:600}
+.btn{width:100%;padding:14px;background:#111;color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:1px}
+.btn:active{opacity:.8}
+.result{display:none;margin-top:20px}
+.section{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #eee}
+.section:last-child{border-bottom:none}
+.section h3{font-size:14px;font-weight:600;margin-bottom:4px}
+.section .why{font-size:11px;color:#999;margin-bottom:10px;line-height:1.5}
+.bar-line{display:flex;align-items:center;margin:4px 0;gap:10px}
+.bar-line .lbl{width:36px;font-size:13px;color:#666}
+.bar-line .track{flex:1;height:6px;background:#eee}
+.bar-line .track .fill{height:6px}
+.bar-line .num{width:48px;font-size:13px;text-align:right;font-weight:600}
+.scores{display:flex;flex-wrap:wrap;gap:6px}
+.scores span{padding:5px 10px;border:1px solid #e0e0e0;font-size:13px}
+.scores span b{color:#111}
+.goals{display:flex;gap:4px}
+.goals span{flex:1;text-align:center;padding:8px 2px;border:1px solid #eee;font-size:11px}
+.goals span .g{font-weight:600;font-size:15px}
+.goals span .p{color:#999;font-size:10px}
+.verdict{padding:12px;border-left:3px solid #111;background:#fafafa;font-size:13px;line-height:1.7}
+.verdict .rec{font-weight:600;font-size:15px;margin-bottom:4px}
+.loading{text-align:center;padding:30px;color:#999;font-size:14px}
+.footer{text-align:center;color:#ccc;font-size:10px;margin-top:24px;line-height:1.6}
+</style></head><body>
+
+<h1>世界杯赛事分析</h1>
+<div class="sub">ELO评分模型 · 泊松分布推演 · 数据仅供参考</div>
+
+<div class="sel">
+<select id="home"><option value="">主队</option></select>
+<span class="vs">VS</span>
+<select id="away"><option value="">客队</option></select>
+</div>
+<button class="btn" onclick="analyze()">开始分析</button>
+<div id="loading" class="loading" style="display:none">计算中...</div>
+<div id="result" class="result"></div>
+<div class="footer">ELO评分基于FIFA排名和历史战绩量化球队实力<br>泊松分布用于推演比分概率分布<br>所有数据仅供赛事分析参考</div>
+
+<script>
+const ELO={"阿根廷":1950,"法国":1930,"巴西":1920,"英格兰":1900,"西班牙":1890,"葡萄牙":1870,"德国":1860,"荷兰":1850,"意大利":1840,"乌拉圭":1820,"克罗地亚":1810,"哥伦比亚":1800,"摩洛哥":1790,"美国":1780,"墨西哥":1770,"塞内加尔":1760,"日本":1750,"韩国":1740,"伊朗":1730,"澳大利亚":1710,"埃及":1720,"尼日利亚":1710,"科特迪瓦":1700,"喀麦隆":1690,"加纳":1680,"突尼斯":1670,"阿尔及利亚":1660,"南非":1640,"加拿大":1730,"哥斯达黎加":1680,"巴拿马":1640,"牙买加":1630,"沙特阿拉伯":1670,"卡塔尔":1650,"伊拉克":1620,"阿联酋":1610,"新西兰":1600,"巴拉圭":1720,"厄瓜多尔":1740,"智利":1760,"秘鲁":1730,"委内瑞拉":1680,"玻利维亚":1620,"波黑":1690,"塞尔维亚":1750,"丹麦":1800,"瑞典":1790,"挪威":1780,"波兰":1760,"乌克兰":1740,"土耳其":1750,"比利时":1830,"威尔士":1700,"苏格兰":1690,"捷克":1720,"罗马尼亚":1680,"斯洛伐克":1670,"匈牙利":1700,"希腊":1680,"佛得角":1580,"库拉索":1560,"约旦":1590,"乌兹别克斯坦":1610};
+const FLAGS={"阿根廷":"🇦🇷","法国":"🇫🇷","巴西":"🇧🇷","英格兰":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","西班牙":"🇪🇸","葡萄牙":"🇵🇹","德国":"🇩🇪","荷兰":"🇳🇱","意大利":"🇮🇹","乌拉圭":"🇺🇾","克罗地亚":"🇭🇷","哥伦比亚":"🇨🇴","摩洛哥":"🇲🇦","美国":"🇺🇸","墨西哥":"🇲🇽","塞内加尔":"🇸🇳","日本":"🇯🇵","韩国":"🇰🇷","伊朗":"🇮🇷","澳大利亚":"🇦🇺","埃及":"🇪🇬","尼日利亚":"🇳🇬","科特迪瓦":"🇨🇮","喀麦隆":"🇨🇲","加纳":"🇬🇭","突尼斯":"🇹🇳","阿尔及利亚":"🇩🇿","南非":"🇿🇦","加拿大":"🇨🇦","巴拉圭":"🇵🇾","厄瓜多尔":"🇪🇨","智利":"🇨🇱","秘鲁":"🇵🇪","波黑":"🇧🇦","塞尔维亚":"🇷🇸","丹麦":"🇩🇰","瑞典":"🇸🇪","挪威":"🇳🇴","波兰":"🇵🇱","乌克兰":"🇺🇦","土耳其":"🇹🇷","比利时":"🇧🇪","捷克":"🇨🇿","卡塔尔":"🇶🇦","沙特阿拉伯":"🇸🇦","新西兰":"🇳🇿"};
+
+const teams=Object.keys(ELO).sort();
+const h=document.getElementById('home'),a=document.getElementById('away');
+teams.forEach(t=>{h.add(new Option(t,t));a.add(new Option(t,t))});
+h.value='墨西哥';a.value='南非';
+
+function poisson(l,k){return Math.exp(-l)*Math.pow(l,k)/fact(k)}
+function fact(n){return n<=1?1:n*fact(n-1)}
+
+function analyze(){
+  const home=h.value,away=a.value;
+  if(!home||!away||home===away)return alert('请选择两支不同的球队');
+  document.getElementById('result').style.display='none';
+  document.getElementById('loading').style.display='block';
+  setTimeout(()=>{
+    document.getElementById('loading').style.display='none';
+    document.getElementById('result').innerHTML=calc(home,away);
+    document.getElementById('result').style.display='block';
+  },100);
+}
+
+function calc(home,away){
+  const he=ELO[home]||1700,ae=ELO[away]||1700;
+  let diff=he-ae+50;
+  let gd=diff/100*0.3;
+  let hxg=Math.max(0.3,1.5+gd*0.65);
+  let axg=Math.max(0.3,1.2-gd*0.35);
+
+  let win=0,draw=0,loss=0,scores={};
+  for(let h=0;h<8;h++)for(let a=0;a<8;a++){
+    let p=poisson(hxg,h)*poisson(axg,a);
+    scores[h+':'+a]=p;
+    if(h>a)win+=p;else if(h===a)draw+=p;else loss+=p;
+  }
+  let top=Object.entries(scores).sort((a,b)=>b[1]-a[1]).slice(0,7);
+  let goals={};
+  for(let h=0;h<10;h++)for(let a=0;a<10;a++){
+    let p=poisson(hxg,h)*poisson(axg,a);
+    let t=h+a;goals[t]=(goals[t]||0)+p;
+  }
+
+  // 解释文案
+  let eloWhy=diff>100?`${home} ELO领先${Math.abs(diff)}分，属于明显优势。`:
+    diff>40?`${home} ELO略高${Math.abs(diff)}分，有主场之利。`:
+    `两队ELO差距仅${Math.abs(diff)}分，实力非常接近。`;
+  let spfWhy=win>0.5?`${home}赢面更大——模型推算主场+实力优势转化为${(win*100).toFixed(0)}%胜率。`:
+    loss>0.5?`${away}反客为主——ELO优势在下半场可能体现。`:
+    `胜平负三者接近——这种情况下平局最容易被低估。`;
+  let scoreWhy=`最可能比分是<strong>${top[0][0]}</strong>（${(top[0][1]*100).toFixed(1)}%），其次${top[1][0]}（${(top[1][1]*100).toFixed(1)}%）。模型基于双方期望进球${hxg.toFixed(1)}:${axg.toFixed(1)}推演。`;
+  let p23=(goals[2]||0)+(goals[3]||0);
+  let goalWhy=p23>0.42?`总进球集中在2-3球（${(p23*100).toFixed(0)}%），这是世界杯小组赛典型节奏——双方试探为主，不会对攻。`:
+    `总进球分布较分散，进球数可能偏多，双方都有进攻能力。`;
+
+  // 推荐
+  let rec='',risk='';
+  if(win>0.50){rec=`推荐关注<strong>${home}获胜</strong>`;risk='风险中等：主场优势+ELO领先，但揭幕战常有意外。';}
+  else if(loss>0.50){rec=`推荐关注<strong>${away}获胜</strong>`;risk='风险中高：客队ELO占优，但客场不利因素需考虑。';}
+  else{rec=`建议观望或关注<strong>平局</strong>`;risk='风险高：实力太接近，任何结果都不意外。';}
+
+  return `
+<div class="section">
+<h3>${FLAGS[home]||''} ${home} vs ${away} ${FLAGS[away]||''}</h3>
+<div class="why">ELO ${he} vs ${ae} · 期望进球 ${hxg.toFixed(2)} vs ${axg.toFixed(2)} · ${eloWhy}</div>
+
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:${win*100}%;background:#111"></div></div><span class="num">${(win*100).toFixed(1)}%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:${draw*100}%;background:#888"></div></div><span class="num">${(draw*100).toFixed(1)}%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:${loss*100}%;background:#ccc"></div></div><span class="num">${(loss*100).toFixed(1)}%</span></div>
+<div class="why" style="margin-top:8px">${spfWhy}</div>
+</div>
+
+<div class="section">
+<h3>比分分布</h3>
+<div class="why">${scoreWhy}</div>
+<div class="scores">${top.map(([s,p])=>`<span><b>${s}</b> ${(p*100).toFixed(1)}%</span>`).join('')}</div>
+</div>
+
+<div class="section">
+<h3>总进球数</h3>
+<div class="why">${goalWhy}</div>
+<div class="goals">${[0,1,2,3,4,5,6].map(g=>`<span><div class="g">${g}</div><div class="p">${((goals[g]||0)*100).toFixed(1)}%</div></span>`).join('')}<span><div class="g">7+</div><div class="p">${((1-Object.values(goals).reduce((a,b)=>a+b,0))*100).toFixed(1)}%</div></span></div>
+</div>
+
+<div class="section">
+<div class="verdict">
+<div class="rec">${rec}</div>
+<div style="color:#888;font-size:12px;margin-top:4px">${risk}</div>
+</div>
+</div>`;
+}
+</script></body></html>

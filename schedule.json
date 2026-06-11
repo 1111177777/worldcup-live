@@ -373,7 +373,8 @@
     "odds_home": "1.10",
     "odds_draw": "9.00",
     "odds_away": "21.00",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "苏格兰",
@@ -385,7 +386,8 @@
     "odds_home": "2.80",
     "odds_draw": "2.90",
     "odds_away": "2.70",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "土耳其",
@@ -397,7 +399,8 @@
     "odds_home": "2.30",
     "odds_draw": "3.10",
     "odds_away": "3.20",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "美国",
@@ -409,7 +412,8 @@
     "odds_home": "1.80",
     "odds_draw": "3.40",
     "odds_away": "4.50",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "德国",
@@ -421,7 +425,8 @@
     "odds_home": "1.35",
     "odds_draw": "4.80",
     "odds_away": "8.50",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "厄瓜多尔",
@@ -433,7 +438,8 @@
     "odds_home": "1.65",
     "odds_draw": "3.50",
     "odds_away": "5.50",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "荷兰",
@@ -445,7 +451,8 @@
     "odds_home": "1.85",
     "odds_draw": "3.30",
     "odds_away": "4.20",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "突尼斯",
@@ -457,7 +464,8 @@
     "odds_home": "3.40",
     "odds_draw": "2.90",
     "odds_away": "2.30",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "西班牙",
@@ -469,7 +477,8 @@
     "odds_home": "1.20",
     "odds_draw": "7.00",
     "odds_away": "13.00",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "乌拉圭",
@@ -481,7 +490,8 @@
     "odds_home": "1.30",
     "odds_draw": "5.00",
     "odds_away": "10.00",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "比利时",
@@ -493,7 +503,8 @@
     "odds_home": "1.70",
     "odds_draw": "3.40",
     "odds_away": "5.50",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "新西兰",
@@ -505,7 +516,8 @@
     "odds_home": "3.50",
     "odds_draw": "3.00",
     "odds_away": "2.20",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "法国",
@@ -517,7 +529,8 @@
     "odds_home": "1.25",
     "odds_draw": "6.50",
     "odds_away": "11.00",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "挪威",
@@ -529,7 +542,8 @@
     "odds_home": "2.10",
     "odds_draw": "3.20",
     "odds_away": "3.50",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "阿根廷",
@@ -541,7 +555,8 @@
     "odds_home": "1.50",
     "odds_draw": "3.80",
     "odds_away": "7.00",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "约旦",
@@ -553,7 +568,8 @@
     "odds_home": "4.00",
     "odds_draw": "3.20",
     "odds_away": "1.95",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "英格兰",
@@ -565,7 +581,8 @@
     "odds_home": "1.55",
     "odds_draw": "3.80",
     "odds_away": "6.00",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "巴拿马",
@@ -577,7 +594,8 @@
     "odds_home": "6.00",
     "odds_draw": "3.80",
     "odds_away": "1.55",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "葡萄牙",
@@ -589,7 +607,8 @@
     "odds_home": "1.30",
     "odds_draw": "5.00",
     "odds_away": "9.50",
-    "time": ""
+    "time": "",
+    "result": ""
   },
   {
     "home": "哥伦比亚",
@@ -601,6 +620,319 @@
     "odds_home": "1.75",
     "odds_draw": "3.40",
     "odds_away": "4.80",
-    "time": ""
+    "time": "",
+    "result": ""
+  },
+  {
+    "home": "苏格兰",
+    "away": "巴西",
+    "date": "6/24",
+    "group": "C",
+    "intel": "巴西锁定头名。苏格兰拼出线。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "摩洛哥",
+    "away": "海地",
+    "date": "6/24",
+    "group": "C",
+    "intel": "摩洛哥防反。海地告别战。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "瑞士",
+    "away": "加拿大",
+    "date": "6/24",
+    "group": "B",
+    "intel": "瑞士纪律出线。加拿大主场谢幕。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "波黑",
+    "away": "卡塔尔",
+    "date": "6/24",
+    "group": "B",
+    "intel": "波黑拼出线。卡塔尔求首胜。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "捷克",
+    "away": "墨西哥",
+    "date": "6/24",
+    "group": "A",
+    "intel": "墨主场锁定头名。捷克定位球威胁。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "南非",
+    "away": "韩国",
+    "date": "6/24",
+    "group": "A",
+    "intel": "韩国出线关键战。南非告别。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "土耳其",
+    "away": "美国",
+    "date": "6/25",
+    "group": "D",
+    "intel": "美国主场锁定头名。土耳其拼出线。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "巴拉圭",
+    "away": "澳大利亚",
+    "date": "6/25",
+    "group": "D",
+    "intel": "巴拉圭防守。澳洲告别战。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "厄瓜多尔",
+    "away": "德国",
+    "date": "6/25",
+    "group": "E",
+    "intel": "德国头名出线。厄瓜多尔拼次名。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "库拉索",
+    "away": "科特迪瓦",
+    "date": "6/25",
+    "group": "E",
+    "intel": "科特迪瓦拼出线。库拉索告别。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "荷兰",
+    "away": "突尼斯",
+    "date": "6/25",
+    "group": "F",
+    "intel": "荷兰头名。突尼斯拼奇迹。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "瑞典",
+    "away": "日本",
+    "date": "6/25",
+    "group": "F",
+    "intel": "日本出线关键战。瑞典身体对抗。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "挪威",
+    "away": "法国",
+    "date": "6/26",
+    "group": "I",
+    "intel": "法国头名。挪威哈兰德拼出线。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "塞内加尔",
+    "away": "伊拉克",
+    "date": "6/26",
+    "group": "I",
+    "intel": "塞内加尔拼出线。伊拉克告别。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "埃及",
+    "away": "伊朗",
+    "date": "6/26",
+    "group": "G",
+    "intel": "埃及萨拉赫关键。伊朗防守。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "新西兰",
+    "away": "比利时",
+    "date": "6/26",
+    "group": "G",
+    "intel": "比利时头名。新西兰告别。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "乌拉圭",
+    "away": "西班牙",
+    "date": "6/26",
+    "group": "H",
+    "intel": "小组头名之争。西乌强强对话。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "佛得角",
+    "away": "沙特阿拉伯",
+    "date": "6/26",
+    "group": "H",
+    "intel": "沙特技术。佛得角告别。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "哥伦比亚",
+    "away": "葡萄牙",
+    "date": "6/27",
+    "group": "K",
+    "intel": "葡萄牙头名。哥伦比亚南美劲旅。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "刚果民主共和国",
+    "away": "乌兹别克斯坦",
+    "date": "6/27",
+    "group": "K",
+    "intel": "刚果身体天赋。乌兹别克告别。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "奥地利",
+    "away": "阿根廷",
+    "date": "6/27",
+    "group": "J",
+    "intel": "阿根廷头名。奥地利拼出线。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "阿尔及利亚",
+    "away": "约旦",
+    "date": "6/27",
+    "group": "J",
+    "intel": "阿尔及利亚非洲劲旅。约旦告别。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "巴拿马",
+    "away": "英格兰",
+    "date": "6/27",
+    "group": "L",
+    "intel": "英格兰锁定头名。巴拿马告别。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
+  },
+  {
+    "home": "克罗地亚",
+    "away": "加纳",
+    "date": "6/27",
+    "group": "L",
+    "intel": "克罗地亚出线关键。加纳身体对抗。",
+    "time": "",
+    "venue": "",
+    "odds_home": "",
+    "odds_draw": "",
+    "odds_away": "",
+    "result": ""
   }
 ]

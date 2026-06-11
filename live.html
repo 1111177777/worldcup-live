@@ -57,8 +57,9 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 </div>
 <div id="main" style="display:none">
 <h1>世界杯 · 实时分析</h1>
+<div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 赔率对比</div>
-<div class="upd">更新 06/11 23:51:01 · 每5分钟自动刷新</div>
+<div class="upd">更新 06/11 23:52:49 · 每5分钟自动刷新</div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
 
 
@@ -1071,6 +1072,9 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：克罗地亚获胜</div></div>
     </div>
 <div class="ft">ELO评分基于FIFA排名和历史战绩<br>泊松分布推演比分概率 · 赔率来源于公开市场<br>所有数据仅供赛事分析参考</div>
-<script>let t=60;setInterval(()=>{t--;document.getElementById('cd').textContent=t;if(t<=0)location.reload()},1000);</script>
+<script>
+let t=60;setInterval(()=>{t--;document.getElementById('cd').textContent=t;if(t<=0)location.reload()},1000);
+function filter(){var q=document.getElementById('search').value.toLowerCase();var ms=document.querySelectorAll('.match');ms.forEach(function(m){var t=m.querySelector('.t').textContent.toLowerCase();m.style.display=t.indexOf(q)>=0?'':'none'});}
+</script>
 </div>
 </body></html>

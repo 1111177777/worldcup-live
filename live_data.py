@@ -6,9 +6,13 @@
 import json, os, math
 from datetime import datetime
 
+import hashlib
+
 DIR = os.path.dirname(__file__)
 SCHEDULE_FILE = os.path.join(DIR, "schedule.json")
 OUTPUT = os.path.join(DIR, "live.html")
+PASSWORD = "wc2026"  # 访问密码，改这里即改密码
+PASS_HASH = hashlib.sha256(PASSWORD.encode()).hexdigest()
 
 ELO = {"阿根廷":1950,"法国":1930,"巴西":1920,"英格兰":1900,"西班牙":1890,"葡萄牙":1870,"德国":1860,"荷兰":1850,"意大利":1840,"乌拉圭":1820,"克罗地亚":1810,"哥伦比亚":1800,"摩洛哥":1790,"美国":1780,"墨西哥":1770,"塞内加尔":1760,"日本":1750,"韩国":1740,"伊朗":1730,"澳大利亚":1710,"埃及":1720,"尼日利亚":1710,"科特迪瓦":1700,"喀麦隆":1690,"加纳":1680,"突尼斯":1670,"阿尔及利亚":1660,"南非":1640,"加拿大":1730,"哥斯达黎加":1680,"巴拿马":1640,"牙买加":1630,"沙特阿拉伯":1670,"卡塔尔":1650,"伊拉克":1620,"阿联酋":1610,"新西兰":1600,"巴拉圭":1720,"厄瓜多尔":1740,"智利":1760,"秘鲁":1730,"委内瑞拉":1680,"玻利维亚":1620,"波黑":1690,"塞尔维亚":1750,"丹麦":1800,"瑞典":1790,"挪威":1780,"波兰":1760,"乌克兰":1740,"土耳其":1750,"比利时":1830,"威尔士":1700,"苏格兰":1690,"捷克":1720,"罗马尼亚":1680,"斯洛伐克":1670,"匈牙利":1700,"希腊":1680,"佛得角":1580,"库拉索":1560,"约旦":1590,"乌兹别克斯坦":1610,"海地":1550,"瑞士":1830,"摩洛哥":1790,"刚果民主共和国":1650,"奥地利":1760,"古巴":1540,"苏里南":1520}
 FLAGS = dict(阿根廷="🇦🇷",法国="🇫🇷",巴西="🇧🇷",英格兰="🏴",西班牙="🇪🇸",葡萄牙="🇵🇹",德国="🇩🇪",荷兰="🇳🇱",意大利="🇮🇹",乌拉圭="🇺🇾",克罗地亚="🇭🇷",哥伦比亚="🇨🇴",摩洛哥="🇲🇦",美国="🇺🇸",墨西哥="🇲🇽",塞内加尔="🇸🇳",日本="🇯🇵",韩国="🇰🇷",伊朗="🇮🇷",澳大利亚="🇦🇺",埃及="🇪🇬",尼日利亚="🇳🇬",科特迪瓦="🇨🇮",喀麦隆="🇨🇲",加纳="🇬🇭",突尼斯="🇹🇳",南非="🇿🇦",加拿大="🇨🇦",巴拉圭="🇵🇾",厄瓜多尔="🇪🇨",智利="🇨🇱",秘鲁="🇵🇪",波黑="🇧🇦",塞尔维亚="🇷🇸",丹麦="🇩🇰",瑞典="🇸🇪",挪威="🇳🇴",波兰="🇵🇱",乌克兰="🇺🇦",土耳其="🇹🇷",比利时="🇧🇪",捷克="🇨🇿",卡塔尔="🇶🇦",新西兰="🇳🇿",海地="🇭🇹",苏格兰="🏴",瑞士="🇨🇭",奥地利="🇦🇹",约旦="🇯🇴",伊拉克="🇮🇶",库拉索="🇨🇼",巴拿马="🇵🇦",哥斯达黎加="🇨🇷",牙买加="🇯🇲",沙特阿拉伯="🇸🇦",阿联酋="🇦🇪",委内瑞拉="🇻🇪",玻利维亚="🇧🇴",威尔士="🏴",罗马尼亚="🇷🇴",斯洛伐克="🇸🇰",匈牙利="🇭🇺",希腊="🇬🇷",佛得角="🇨🇻",乌兹别克斯坦="🇺🇿",刚果民主共和国="🇨🇩",阿尔及利亚="🇩🇿")
@@ -87,6 +91,13 @@ def gen():
     </div>"""
 
     html=f"""<!DOCTYPE html><html lang="zh-CN"><head>
+<script>
+// 访问验证
+const HASH='{PASS_HASH}';
+async function sha256(m){{ const e=new TextEncoder();const d=await crypto.subtle.digest('SHA-256',e.encode(m));return [...new Uint8Array(d)].map(b=>b.toString(16).padStart(2,'0')).join(''); }}
+async function check(){{ const p=document.getElementById('pw').value; const h=await sha256(p); if(h===HASH){{ localStorage.setItem('wc_auth','1'); document.getElementById('gate').style.display='none'; document.getElementById('main').style.display='block'; }}else{{ document.getElementById('err').style.display='block'; }} }}
+function init(){{ if(localStorage.getItem('wc_auth')==='1'){{ document.getElementById('gate').style.display='none';document.getElementById('main').style.display='block'; }} }}
+</script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 <title>世界杯实时分析</title><style>
 *{{margin:0;padding:0;box-sizing:border-box}}
@@ -123,7 +134,20 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
 .nav{{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 12px;justify-content:center}}
 .nav a{{font-size:11px;padding:3px 8px;border:1px solid #ddd;text-decoration:none;color:#666}}
 .nav a.on{{background:#111;color:#fff;border-color:#111}}
-</style></head><body>
+.gate{{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}}
+.gate input{{width:200px;padding:12px;border:1px solid #ccc;font-size:16px;text-align:center;margin:12px 0}}
+.gate button{{padding:12px 40px;background:#111;color:#fff;border:none;font-size:15px;font-weight:600}}
+.err{{color:#e44;font-size:13px;display:none}}
+</style></head><body onload="init()">
+<div id="gate" class="gate">
+  <div style="font-size:16px;font-weight:600;margin-bottom:4px">🔒 世界杯实时分析</div>
+  <div style="font-size:12px;color:#999;margin-bottom:8px">请输入访问密码</div>
+  <input id="pw" type="password" placeholder="密码" onkeydown="if(event.key==='Enter')check()">
+  <button onclick="check()">验证</button>
+  <div id="err" class="err">密码错误</div>
+  <div style="font-size:10px;color:#ccc;margin-top:16px">购买后获取密码 · 一机一码永久有效</div>
+</div>
+<div id="main" style="display:none">
 <h1>世界杯 · 实时分析</h1>
 <div class="sub">ELO模型 + 泊松分布 · 赔率对比</div>
 <div class="upd">更新 {now} · 每5分钟自动刷新</div>
@@ -132,6 +156,7 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
 {cards}
 <div class="ft">ELO评分基于FIFA排名和历史战绩<br>泊松分布推演比分概率 · 赔率来源于公开市场<br>所有数据仅供赛事分析参考</div>
 <script>let t=60;setInterval(()=>{{t--;document.getElementById('cd').textContent=t;if(t<=0)location.reload()}},1000);</script>
+</div>
 </body></html>"""
 
     with open(OUTPUT,'w',encoding='utf-8') as f:f.write(html)

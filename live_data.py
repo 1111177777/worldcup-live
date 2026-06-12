@@ -67,6 +67,37 @@ def predict(h,a):
             p=poisson(xh,i)*poisson(xa,j); t=i+j; gl[t]=gl.get(t,0)+p
     return {"win":round(w*100,1),"draw":round(dr*100,1),"loss":round(lo*100,1),"xh":round(xh,2),"xa":round(xa,2),"top":[(s,round(p*100,1))for s,p in top],"gl":{str(k):round(v*100,1)for k,v in sorted(gl.items())[:8]},"he":he,"ae":ae}
 
+def auto_tags(m, p):
+    """自动生成伤停/风险/价值标签，无需手动填"""
+    h,a = m['home'], m['away']
+    he,ae = p['he'], p['ae']
+    diff = he-ae
+    injury = m.get('injury','')  # 手动填的优先
+    risk = list(m.get('risk',[]))
+    value = m.get('value','')
+
+    # 自动风险标签
+    v = m.get('venue','')
+    if '高原' in v or '墨西哥城' in v or '阿兹台克' in v:
+        if '高原' not in ' '.join(risk): risk.append('高原2200m')
+    if abs(diff)>200:
+        if '实力悬殊' not in ' '.join(risk): risk.append('实力悬殊')
+    elif abs(diff)<30:
+        if '实力接近' not in ' '.join(risk): risk.append('实力接近')
+    if m.get('date','') in ['6/24','6/25','6/26','6/27']:
+        if '小组末轮' not in ' '.join(risk): risk.append('小组末轮')
+
+    # 自动价值标签（如果没手动填）
+    if not value and m.get('odds_home'):
+        oh = float(m.get('odds_home',0) or 0)
+        if oh>0:
+            fair = round(1/max(p['win']/100,0.01),1)
+            gap = oh-fair
+            if gap>0.5: value = f'主胜市场赔率偏高，模型认为被低估'
+            elif gap<-0.3: value = f'主胜市场赔率偏低，热度可能过高'
+
+    return injury, risk, value
+
 def explain(p, m, h, a, d):
     ad=abs(d)
     if d>100:ew=f"{h} ELO领先{ad}分，明显优势。"
@@ -106,6 +137,11 @@ def gen():
     cards,results="",""
     for m in matches:
         p=predict(m['home'],m['away'])
+        # 自动补全伤停/风险/价值
+        ai,ar,av=auto_tags(m,p)
+        if not m.get('injury'): m['injury']=ai
+        if not m.get('risk') or len(m.get('risk',[]))==0: m['risk']=ar
+        if not m.get('value'): m['value']=av
         fh,fa=FLAGS.get(m['home'],''),FLAGS.get(m['away'],'')
         ew,sw,gw,rec,tags=explain(p,m,m['home'],m['away'],p['he']-p['ae']+50)
         d=f"{m['date']} {m['time']}".strip()

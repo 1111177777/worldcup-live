@@ -199,7 +199,24 @@ def explain(p, m, h, a, d):
     if up > 0 and uw:
         upset_html = f'<div class="tag-row"><span class="tag" style="background:#fff5f5;color:{upset_color};border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 {upset_type} · {uw}</span></div>'
 
-    # 比分冷热标签
+    # 胜平负冷门标注
+    upset_label = ''
+    if p['win'] > 50 and p['loss'] > 15:
+        upset_label = ' <span style="color:#e44;font-size:10px;">⚠️ ' + a + '爆冷概率' + str(round(p['loss'])) + '%</span>'
+    elif p['loss'] > 50 and p['win'] > 15:
+        upset_label = ' <span style="color:#e44;font-size:10px;">⚠️ ' + h + '爆冷概率' + str(round(p['win'])) + '%</span>'
+
+    # 冷门解释
+    fav_team = h if p['win'] > 50 else a
+    upset_detail = ''
+    if abs(d) < 60 and (p['loss'] > 20 or p['win'] > 20):
+        underdog = a if p['win'] > 50 else h
+        upset_detail = '<div class="why">💡 ' + underdog + '具备爆冷条件：ELO差距仅' + str(abs(d)) + '分，'
+        if abs(d) < 30:
+            upset_detail += '实力非常接近，任何结果都不意外。'
+        else:
+            upset_detail += underdog + '若先取得进球，' + fav_team + '压力将骤增。'
+        upset_detail += '</div>'
     score_tags = ''
     if p['top']:
         best = p['top'][0]
@@ -211,7 +228,11 @@ def explain(p, m, h, a, d):
     if m.get('result'):
         result_html = '<div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: ' + m['result'] + ' | 模型预测偏差: 待复盘</span></div>'
 
-    return ew, sw, gw, rec, tags_html + upset_html + score_tags + result_html
+    # 把冷门标注嵌入ew
+    if upset_label:
+        ew += upset_label
+
+    return ew, sw, gw, rec, tags_html + upset_html + upset_detail + score_tags + result_html
 
 def gen():
     with open(SCHEDULE_FILE,encoding='utf-8') as f: matches=json.load(f)

@@ -73,6 +73,19 @@ def auto_tags(m, p):
     he,ae = p['he'], p['ae']
     diff = he-ae
     injury = m.get('injury','')  # 手动填的优先
+    # 自动细化伤停影响
+    if not injury:
+        injury_parts = []
+        h_style = STYLE.get(h, (1,1))
+        a_style = STYLE.get(a, (1,1))
+        if h_style[0] > 1.15 and a_style[0] < 0.8:
+            injury_parts.append(f'{h}攻击线优势明显')
+        if a_style[1] > 1.1:
+            injury_parts.append(f'{a}防守韧性值得关注')
+        if h_style[0] < 0.75:
+            injury_parts.append(f'{h}攻击力有限，可关注小球')
+        injury = '；'.join(injury_parts) if injury_parts else ''
+
     risk = list(m.get('risk',[]))
     value = m.get('value','')
 
@@ -82,10 +95,19 @@ def auto_tags(m, p):
         if '高原' not in ' '.join(risk): risk.append('高原2200m')
     if abs(diff)>200:
         if '实力悬殊' not in ' '.join(risk): risk.append('实力悬殊')
+        if '轮换风险' not in ' '.join(risk): risk.append('轮换风险')  # 强队可能轮换
     elif abs(diff)<30:
         if '实力接近' not in ' '.join(risk): risk.append('实力接近')
     if m.get('date','') in ['6/24','6/25','6/26','6/27']:
         if '小组末轮' not in ' '.join(risk): risk.append('小组末轮')
+
+    # 自动冷门类型判断
+    if abs(diff) < 40:
+        if '⚡ 冷门种子' not in ' '.join(risk): risk.append('⚡ 冷门种子')
+    # 进球相关冷门
+    goals_high = sum(p['gl'].get(str(g),0) for g in range(6,13))
+    if goals_high < 5:
+        if '小球冷门预警' not in ' '.join(risk): risk.append('小球冷门预警')
 
     # 自动价值标签
     if not value and m.get('odds_home'):
@@ -161,11 +183,35 @@ def explain(p, m, h, a, d):
     up = m.get('_upset_prob', 0)
     uw = m.get('_upset_why', '')
     upset_html = ''
+    upset_type = ''
+    if up > 30:
+        upset_type = '🔴 高风险冷门'
+        upset_color = '#e44'
+    elif up > 20:
+        upset_type = '🟡 冷门预警'
+        upset_color = '#f80'
+    elif up > 10:
+        upset_type = '🟢 冷门概率低'
+        upset_color = '#999'
+    else:
+        upset_type = '无明显偏差'
+        upset_color = '#666'
     if up > 0 and uw:
-        upset_color = '#e44' if up > 25 else ('#f80' if up > 15 else '#999')
-        upset_html = f'<div class="tag-row"><span class="tag" style="background:#fff5f5;color:{upset_color};border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 爆冷概率 {up}% · {uw}</span></div>'
+        upset_html = f'<div class="tag-row"><span class="tag" style="background:#fff5f5;color:{upset_color};border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 {upset_type} · {uw}</span></div>'
 
-    return ew, sw, gw, rec, tags_html + upset_html
+    # 比分冷热标签
+    score_tags = ''
+    if p['top']:
+        best = p['top'][0]
+        worst = p['top'][-1]
+        score_tags = f'<div class="tag-row"><span class="tag tag-value">🔥 热门: {best[0]}({best[1]}%)</span><span class="tag tag-risk">❄️ 冷门: {worst[0]}({worst[1]}%)</span></div>'
+
+    # 赛后对比（如果有result）
+    result_html = ''
+    if m.get('result'):
+        result_html = '<div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: ' + m['result'] + ' | 模型预测偏差: 待复盘</span></div>'
+
+    return ew, sw, gw, rec, tags_html + upset_html + score_tags + result_html
 
 def gen():
     with open(SCHEDULE_FILE,encoding='utf-8') as f: matches=json.load(f)

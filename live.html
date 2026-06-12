@@ -25,6 +25,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .d{font-size:11px;color:#999}
 .v{font-size:11px;color:#ccc;margin:2px 0 6px}
 .live{background:#e44;color:#fff;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;margin:6px 0}
+.ft-badge{background:#111;color:#ffd700;padding:8px 12px;font-size:14px;font-weight:700;text-align:center;margin:8px 0;letter-spacing:1px}
 .int{font-size:12px;color:#666;line-height:1.5;margin:6px 0;padding:8px;background:#fafafa}
 .s{margin:10px 0}
 .st{font-size:11px;color:#999;font-weight:600;margin-bottom:4px}
@@ -64,15 +65,16 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <h1>世界杯 · 实时分析</h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 赔率对比</div>
-<div class="upd">更新 06/12 17:16:24 · 每5分钟自动刷新</div>
+<div class="upd">更新 06/12 17:18:26 · 每5分钟自动刷新</div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
-
+<div class="results"><div class="rt">⚡ 最新赛果</div><div class="res"><span>🇲🇽 墨西哥 2:0 南非 🇿🇦</span><span class="d">6/11</span></div><div class="res"><span>🇰🇷 韩国 1:2 捷克 🇨🇿</span><span class="d">6/11</span></div></div>
 
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇲🇽 墨西哥 vs 南非 🇿🇦</span><span class="d">6/11</span></div>
-      <div class="v">墨西哥城</div>
-      <div class="int">📰 墨主场阿兹台克+2200米高原。南非今年0胜。</div>
-      <div class="tag-row"><span class="tag tag-injury">🚑 墨全主力，南非前锋Foster状态不佳</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 高原2200m</span><span class="tag tag-risk">⚠️ 揭幕战压力</span></div><div class="tag-row"><span class="tag tag-value">💰 市场高估主胜，平局赔率4.50被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 墨西哥优势明显，南非爆冷概率仅8%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(10.3%)</span><span class="tag tag-risk">❄️ 冷门: 4:0(7.2%)</span></div>
+      <div class="v">墨西哥城</div><div class="live">⚡ 2:0</div>
+      <div class="ft-badge">⚡ 已结束 · 全场比分: 2:0</div>
+      <div class="int" style="opacity:0.5">📰 墨主场阿兹台克+2200米高原。南非今年0胜。</div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 墨全主力，南非前锋Foster状态不佳</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 高原2200m</span><span class="tag tag-risk">⚠️ 揭幕战压力</span></div><div class="tag-row"><span class="tag tag-value">💰 市场高估主胜，平局赔率4.50被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 墨西哥优势明显，南非爆冷概率仅8%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(10.3%)</span><span class="tag tag-risk">❄️ 冷门: 4:0(7.2%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 2:0 | 模型预测偏差: 待复盘</span></div>
       <div class="s"><div class="st">胜负 · 墨西哥 ELO领先180分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:79.5%"></i></div><span class="n">79.5%</span></div>
         <div class="b"><span>平</span><div class="t"><i style="width:12.7%;background:#888"></i></div><span class="n">12.7%</span></div>
@@ -85,9 +87,10 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     </div>
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇰🇷 韩国 vs 捷克 🇨🇿</span><span class="d">6/11</span></div>
-      <div class="v">瓜达拉哈拉</div>
-      <div class="int">📰 孙兴慜+李刚仁领衔。捷克靠点球晋级，定位球欧洲最多。</div>
-      <div class="tag-row"><span class="tag tag-injury">🚑 韩孙兴慜满血，捷定位球核心Mokoena出战</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 定位球</span><span class="tag tag-risk">⚠️ 新帅磨合</span></div><div class="tag-row"><span class="tag tag-value">💰 平局赔率3.15高于模型预期，存在低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 冷门预警 · 捷克爆冷概率22%，偏低但非零。韩国发挥失常或捷克超常可能翻盘。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:1(9.7%)</span><span class="tag tag-risk">❄️ 冷门: 3:1(6.8%)</span></div>
+      <div class="v">瓜达拉哈拉</div><div class="live">⚡ 1:2</div>
+      <div class="ft-badge">⚡ 已结束 · 全场比分: 1:2</div>
+      <div class="int" style="opacity:0.5">📰 孙兴慜+李刚仁领衔。捷克靠点球晋级，定位球欧洲最多。</div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 韩孙兴慜满血，捷定位球核心Mokoena出战</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 定位球</span><span class="tag tag-risk">⚠️ 新帅磨合</span></div><div class="tag-row"><span class="tag tag-value">💰 平局赔率3.15高于模型预期，存在低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 冷门预警 · 捷克爆冷概率22%，偏低但非零。韩国发挥失常或捷克超常可能翻盘。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:1(9.7%)</span><span class="tag tag-risk">❄️ 冷门: 3:1(6.8%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 1:2 | 模型预测偏差: 待复盘</span></div>
       <div class="s"><div class="st">胜负 · 韩国 ELO略高70分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 捷克爆冷概率22%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:57.5%"></i></div><span class="n">57.5%</span></div>
         <div class="b"><span>平</span><div class="t"><i style="width:20.8%;background:#888"></i></div><span class="n">20.8%</span></div>
@@ -101,7 +104,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇨🇦 加拿大 vs 波黑 🇧🇦</span><span class="d">6/12</span></div>
       <div class="v">多伦多</div>
-      <div class="int">📰 戴维斯伤缺。波黑哲科存疑。双方攻击核心缺席。</div>
+      
+      <div class="int" style="">📰 戴维斯伤缺。波黑哲科存疑。双方攻击核心缺席。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 加戴维斯伤缺🔴，波黑哲科存疑🟡</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 核心缺阵</span><span class="tag tag-risk">⚠️ 攻击力大减</span></div><div class="tag-row"><span class="tag tag-value">💰 双方攻击核心缺席，小球倾向被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 冷门预警 · 波黑有26%概率爆冷——不低。ELO差距小，冷门土壤肥沃。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(10.4%)</span><span class="tag tag-risk">❄️ 冷门: 1:2(6.5%)</span></div>
       <div class="s"><div class="st">胜负 · 加拿大 ELO略高90分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 波黑爆冷概率26%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:51.7%"></i></div><span class="n">51.7%</span></div>
@@ -116,7 +120,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇺🇸 美国 vs 巴拉圭 🇵🇾</span><span class="d">6/12</span></div>
       <div class="v">洛杉矶</div>
-      <div class="int">📰 美主场+普利西奇满血。巴拉圭防守硬。</div>
+      
+      <div class="int" style="">📰 美主场+普利西奇满血。巴拉圭防守硬。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 美Richards踝伤存疑🟡，巴Enciso出战成疑</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 主场压力</span><span class="tag tag-risk">⚠️ 防守漏洞</span></div><div class="tag-row"><span class="tag tag-value">💰 市场赔率与模型接近，无显著偏差</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 美国优势明显，巴拉圭爆冷概率仅16%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:0(12.1%)</span><span class="tag tag-risk">❄️ 冷门: 3:0(7.3%)</span></div>
       <div class="s"><div class="st">胜负 · 美国 ELO领先110分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 巴拉圭爆冷概率16%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:62.2%"></i></div><span class="n">62.2%</span></div>
@@ -131,7 +136,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🇧🇷 巴西 vs 摩洛哥 🇲🇦</span><span class="d">6/13</span></div>
       <div class="v">纽约</div>
-      <div class="int">📰 巴西夺冠热门。摩洛哥上届四强，防反见长。</div>
+      
+      <div class="int" style="">📰 巴西夺冠热门。摩洛哥上届四强，防反见长。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 巴全主力，摩洛哥防线完整</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力碾压</span><span class="tag tag-risk">⚠️ 非洲冠军防线</span></div><div class="tag-row"><span class="tag tag-value">💰 让球盘口偏浅，巴西穿盘概率被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 巴西优势明显，摩洛哥爆冷概率仅10%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(12.6%)</span><span class="tag tag-risk">❄️ 冷门: 1:1(7.8%)</span></div>
       <div class="s"><div class="st">胜负 · 巴西 ELO领先180分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:74.0%"></i></div><span class="n">74.0%</span></div>
@@ -146,7 +152,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🇭🇹 海地 vs 苏格兰 🏴</span><span class="d">6/13</span></div>
       <div class="v">波士顿</div>
-      <div class="int">📰 苏格兰预选赛强势。海地世界杯首秀。</div>
+      
+      <div class="int" style="">📰 苏格兰预选赛强势。海地世界杯首秀。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 海地攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 苏格兰优势明显，海地爆冷概率仅13%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 0:2(10.1%)</span><span class="tag tag-risk">❄️ 冷门: 1:1(7.9%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差90分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:13.0%"></i></div><span class="n">13.0%</span></div>
@@ -161,7 +168,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇦🇺 澳大利亚 vs 土耳其 🇹🇷</span><span class="d">6/13</span></div>
       <div class="v">温哥华</div>
-      <div class="int">📰 澳洲身体对抗强，土耳其技术流。风格迥异。</div>
+      
+      <div class="int" style="">📰 澳洲身体对抗强，土耳其技术流。风格迥异。</div>
       <div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="why">💡 澳大利亚具备爆冷条件：ELO差距仅10分，实力非常接近，任何结果都不意外。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(10.9%)</span><span class="tag tag-risk">❄️ 冷门: 1:2(7.1%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差10分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:47.2%"></i></div><span class="n">47.2%</span></div>
@@ -176,7 +184,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇶🇦 卡塔尔 vs 瑞士 🇨🇭</span><span class="d">6/13</span></div>
       <div class="v">旧金山</div>
-      <div class="int">📰 卡塔尔上届全败。瑞士纪律严明，实力差距大。</div>
+      
+      <div class="int" style="">📰 卡塔尔上届全败。瑞士纪律严明，实力差距大。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 卡塔尔攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏低，热度可能过高</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 瑞士优势明显，卡塔尔爆冷概率仅9%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 0:2(13.3%)</span><span class="tag tag-risk">❄️ 冷门: 1:1(7.5%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差130分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:8.6%"></i></div><span class="n">8.6%</span></div>
@@ -191,7 +200,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇩🇪 德国 vs 库拉索 🇨🇼</span><span class="d">6/14</span></div>
       <div class="v">休斯顿</div>
-      <div class="int">📰 德国阵容豪华。库拉索世界杯首秀。</div>
+      
+      <div class="int" style="">📰 德国阵容豪华。库拉索世界杯首秀。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 德全主力，库拉索首秀经验不足</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 最深盘口</span><span class="tag tag-risk">⚠️ 首秀怯场</span></div><div class="tag-row"><span class="tag tag-value">💰 德国穿盘概率极高，但赔率已充分反映</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 德国优势明显，库拉索爆冷概率仅0%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 6:0(11.2%)</span><span class="tag tag-risk">❄️ 冷门: 4:0(7.5%)</span></div>
       <div class="s"><div class="st">胜负 · 德国 ELO领先350分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:76.1%"></i></div><span class="n">76.1%</span></div>
@@ -206,7 +216,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇨🇮 科特迪瓦 vs 厄瓜多尔 🇪🇨</span><span class="d">6/14</span></div>
       <div class="v">费城</div>
-      <div class="int">📰 科特迪瓦身体天赋，厄瓜多尔高原适应强。</div>
+      
+      <div class="int" style="">📰 科特迪瓦身体天赋，厄瓜多尔高原适应强。</div>
       <div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 冷门预警 · 厄瓜多尔爆冷概率25%，偏低但非零。科特迪瓦发挥失常或厄瓜多尔超常可能翻盘。</span></div><div class="why">💡 厄瓜多尔具备爆冷条件：ELO差距仅10分，实力非常接近，任何结果都不意外。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(10.1%)</span><span class="tag tag-risk">❄️ 冷门: 1:2(6.3%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差10分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 厄瓜多尔爆冷概率25%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:52.8%"></i></div><span class="n">52.8%</span></div>
@@ -221,7 +232,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇳🇱 荷兰 vs 日本 🇯🇵</span><span class="d">6/14</span></div>
       <div class="v">达拉斯</div>
-      <div class="int">📰 荷兰三线均衡。日本技术流+旅欧球员。</div>
+      
+      <div class="int" style="">📰 荷兰三线均衡。日本技术流+旅欧球员。</div>
       <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 荷兰优势明显，日本爆冷概率仅11%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:1(8.5%)</span><span class="tag tag-risk">❄️ 冷门: 4:1(6.0%)</span></div>
       <div class="s"><div class="st">胜负 · 荷兰 ELO领先150分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:74.7%"></i></div><span class="n">74.7%</span></div>
@@ -236,7 +248,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇸🇪 瑞典 vs 突尼斯 🇹🇳</span><span class="d">6/14</span></div>
       <div class="v">蒙特雷</div>
-      <div class="int">📰 瑞典无伊布时代更团结。突尼斯非洲杯不俗。</div>
+      
+      <div class="int" style="">📰 瑞典无伊布时代更团结。突尼斯非洲杯不俗。</div>
       <div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 瑞典优势明显，突尼斯爆冷概率仅10%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(13.2%)</span><span class="tag tag-risk">❄️ 冷门: 1:1(8.0%)</span></div>
       <div class="s"><div class="st">胜负 · 瑞典 ELO领先170分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:73.6%"></i></div><span class="n">73.6%</span></div>
@@ -251,7 +264,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇪🇸 西班牙 vs 佛得角 🇨🇻</span><span class="d">6/15</span></div>
       <div class="v">亚特兰大</div>
-      <div class="int">📰 西班牙传控体系完整。佛得角世界杯首秀。</div>
+      
+      <div class="int" style="">📰 西班牙传控体系完整。佛得角世界杯首秀。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 西班牙优势明显，佛得角爆冷概率仅0%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 5:0(12.2%)</span><span class="tag tag-risk">❄️ 冷门: 3:0(7.4%)</span></div>
       <div class="s"><div class="st">胜负 · 西班牙 ELO领先360分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:86.2%"></i></div><span class="n">86.2%</span></div>
@@ -266,7 +280,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇸🇦 沙特阿拉伯 vs 乌拉圭 🇺🇾</span><span class="d">6/15</span></div>
       <div class="v">迈阿密</div>
-      <div class="int">📰 沙特技术细腻。乌拉圭经验丰富，防守硬。</div>
+      
+      <div class="int" style="">📰 沙特技术细腻。乌拉圭经验丰富，防守硬。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 乌拉圭防守韧性值得关注</span></div><div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 乌拉圭优势明显，沙特阿拉伯爆冷概率仅16%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 0:1(11.8%)</span><span class="tag tag-risk">❄️ 冷门: 0:3(7.4%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差100分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 沙特阿拉伯爆冷概率16%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:16.0%"></i></div><span class="n">16.0%</span></div>
@@ -281,7 +296,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇧🇪 比利时 vs 埃及 🇪🇬</span><span class="d">6/15</span></div>
       <div class="v">西雅图</div>
-      <div class="int">📰 比利时黄金一代。埃及萨拉赫领衔。</div>
+      
+      <div class="int" style="">📰 比利时黄金一代。埃及萨拉赫领衔。</div>
       <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 比利时优势明显，埃及爆冷概率仅13%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(9.5%)</span><span class="tag tag-risk">❄️ 冷门: 1:0(7.6%)</span></div>
       <div class="s"><div class="st">胜负 · 比利时 ELO领先160分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:70.1%"></i></div><span class="n">70.1%</span></div>
@@ -296,7 +312,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇮🇷 伊朗 vs 新西兰 🇳🇿</span><span class="d">6/15</span></div>
       <div class="v">洛杉矶</div>
-      <div class="int">📰 伊朗防守纪律严明。新西兰大洋洲代表。</div>
+      
+      <div class="int" style="">📰 伊朗防守纪律严明。新西兰大洋洲代表。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 伊朗攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 伊朗优势明显，新西兰爆冷概率仅6%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(14.9%)</span><span class="tag tag-risk">❄️ 冷门: 4:0(7.5%)</span></div>
       <div class="s"><div class="st">胜负 · 伊朗 ELO领先180分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:79.1%"></i></div><span class="n">79.1%</span></div>
@@ -311,7 +328,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇫🇷 法国 vs 塞内加尔 🇸🇳</span><span class="d">6/16</span></div>
       <div class="v">纽约</div>
-      <div class="int">📰 法国卫冕冠军，姆巴佩领衔。塞内加尔非洲最强之一。</div>
+      
+      <div class="int" style="">📰 法国卫冕冠军，姆巴佩领衔。塞内加尔非洲最强之一。</div>
       <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 法国优势明显，塞内加尔爆冷概率仅8%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(9.2%)</span><span class="tag tag-risk">❄️ 冷门: 4:0(7.1%)</span></div>
       <div class="s"><div class="st">胜负 · 法国 ELO领先220分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:80.1%"></i></div><span class="n">80.1%</span></div>
@@ -326,7 +344,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇮🇶 伊拉克 vs 挪威 🇳🇴</span><span class="d">6/16</span></div>
       <div class="v">波士顿</div>
-      <div class="int">📰 伊拉克亚洲杯表现不俗。挪威哈兰德领衔攻击线。</div>
+      
+      <div class="int" style="">📰 伊拉克亚洲杯表现不俗。挪威哈兰德领衔攻击线。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 伊拉克攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏低，热度可能过高</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 挪威优势明显，伊拉克爆冷概率仅12%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:2(8.5%)</span><span class="tag tag-risk">❄️ 冷门: 1:1(6.0%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差110分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:12.1%"></i></div><span class="n">12.1%</span></div>
@@ -341,7 +360,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇦🇷 阿根廷 vs 阿尔及利亚 🇩🇿</span><span class="d">6/16</span></div>
       <div class="v">堪萨斯城</div>
-      <div class="int">📰 阿根廷卫冕冠军，梅西最后一届。阿尔及利亚非洲劲旅。</div>
+      
+      <div class="int" style="">📰 阿根廷卫冕冠军，梅西最后一届。阿尔及利亚非洲劲旅。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 阿根廷优势明显，阿尔及利亚爆冷概率仅3%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(12.2%)</span><span class="tag tag-risk">❄️ 冷门: 3:1(6.8%)</span></div>
       <div class="s"><div class="st">胜负 · 阿根廷 ELO领先340分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:89.5%"></i></div><span class="n">89.5%</span></div>
@@ -356,7 +376,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇦🇹 奥地利 vs 约旦 🇯🇴</span><span class="d">6/16</span></div>
       <div class="v">旧金山</div>
-      <div class="int">📰 奥地利战术纪律强。约旦亚洲黑马。</div>
+      
+      <div class="int" style="">📰 奥地利战术纪律强。约旦亚洲黑马。</div>
       <div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 奥地利优势明显，约旦爆冷概率仅3%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(11.3%)</span><span class="tag tag-risk">❄️ 冷门: 3:1(6.9%)</span></div>
       <div class="s"><div class="st">胜负 · 奥地利 ELO领先220分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:89.2%"></i></div><span class="n">89.2%</span></div>
@@ -371,7 +392,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🏴 英格兰 vs 克罗地亚 🇭🇷</span><span class="d">6/17</span></div>
       <div class="v">达拉斯</div>
-      <div class="int">📰 英格兰青年才俊辈出。克罗地亚莫德里奇最后一届。</div>
+      
+      <div class="int" style="">📰 英格兰青年才俊辈出。克罗地亚莫德里奇最后一届。</div>
       <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 英格兰优势明显，克罗地亚爆冷概率仅15%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(11.2%)</span><span class="tag tag-risk">❄️ 冷门: 3:0(7.8%)</span></div>
       <div class="s"><div class="st">胜负 · 英格兰 ELO领先140分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:65.2%"></i></div><span class="n">65.2%</span></div>
@@ -386,7 +408,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🇬🇭 加纳 vs 巴拿马 🇵🇦</span><span class="d">6/17</span></div>
       <div class="v">多伦多</div>
-      <div class="int">📰 加纳身体对抗强。巴拿马中北美黑马。</div>
+      
+      <div class="int" style="">📰 加纳身体对抗强。巴拿马中北美黑马。</div>
       <div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 加纳优势明显，巴拿马爆冷概率仅6%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(9.2%)</span><span class="tag tag-risk">❄️ 冷门: 2:1(7.2%)</span></div>
       <div class="s"><div class="st">胜负 · 加纳 ELO略高90分，主场加权后有优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:83.0%"></i></div><span class="n">83.0%</span></div>
@@ -401,7 +424,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇵🇹 葡萄牙 vs 刚果民主共和国 🇨🇩</span><span class="d">6/17</span></div>
       <div class="v">休斯顿</div>
-      <div class="int">📰 葡萄牙C罗最后一届。刚果身体天赋出众。</div>
+      
+      <div class="int" style="">📰 葡萄牙C罗最后一届。刚果身体天赋出众。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 葡萄牙优势明显，刚果民主共和国爆冷概率仅1%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 4:0(9.7%)</span><span class="tag tag-risk">❄️ 冷门: 4:1(6.3%)</span></div>
       <div class="s"><div class="st">胜负 · 葡萄牙 ELO领先270分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:90.1%"></i></div><span class="n">90.1%</span></div>
@@ -416,7 +440,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇺🇿 乌兹别克斯坦 vs 哥伦比亚 🇨🇴</span><span class="d">6/17</span></div>
       <div class="v">墨西哥城</div>
-      <div class="int">📰 乌兹别克世界杯首秀。哥伦比亚南美劲旅。</div>
+      
+      <div class="int" style="">📰 乌兹别克世界杯首秀。哥伦比亚南美劲旅。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 乌兹别克斯坦攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 高原2200m</span></div><div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏低，热度可能过高</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 哥伦比亚优势明显，乌兹别克斯坦爆冷概率仅9%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 0:2(9.3%)</span><span class="tag tag-risk">❄️ 冷门: 0:1(6.6%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差140分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:9.3%"></i></div><span class="n">9.3%</span></div>
@@ -431,7 +456,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇨🇿 捷克 vs 南非 🇿🇦</span><span class="d">6/18</span></div>
       <div class="v">亚特兰大</div>
-      <div class="int">📰 捷克定位球优势明显。南非需取胜保留出线希望。</div>
+      
+      <div class="int" style="">📰 捷克定位球优势明显。南非需取胜保留出线希望。</div>
       <div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 捷克优势明显，南非爆冷概率仅13%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(10.9%)</span><span class="tag tag-risk">❄️ 冷门: 1:1(8.3%)</span></div>
       <div class="s"><div class="st">胜负 · 捷克 ELO领先130分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:69.7%"></i></div><span class="n">69.7%</span></div>
@@ -446,7 +472,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇲🇽 墨西哥 vs 韩国 🇰🇷</span><span class="d">6/18</span></div>
       <div class="v">瓜达拉哈拉</div>
-      <div class="int">📰 墨主场气势。韩国孙兴慜核心，速度反击威胁。</div>
+      
+      <div class="int" style="">📰 墨主场气势。韩国孙兴慜核心，速度反击威胁。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ ⚡ 冷门种子</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 韩国爆冷概率19%，偏低但非零。墨西哥发挥失常或韩国超常可能翻盘。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:1(9.4%)</span><span class="tag tag-risk">❄️ 冷门: 1:0(6.4%)</span></div>
       <div class="s"><div class="st">胜负 · 墨西哥 ELO略高80分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 韩国爆冷概率19%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:62.0%"></i></div><span class="n">62.0%</span></div>
@@ -461,7 +488,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇨🇭 瑞士 vs 波黑 🇧🇦</span><span class="d">6/18</span></div>
       <div class="v">洛杉矶</div>
-      <div class="int">📰 瑞士纪律严明。波黑需取胜才有出线机会。</div>
+      
+      <div class="int" style="">📰 瑞士纪律严明。波黑需取胜才有出线机会。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小球冷门预警</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 瑞士优势明显，波黑爆冷概率仅16%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:0(13.1%)</span><span class="tag tag-risk">❄️ 冷门: 0:0(7.2%)</span></div>
       <div class="s"><div class="st">胜负 · 瑞士 ELO领先190分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 波黑爆冷概率16%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:61.0%"></i></div><span class="n">61.0%</span></div>
@@ -476,7 +504,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇨🇦 加拿大 vs 卡塔尔 🇶🇦</span><span class="d">6/18</span></div>
       <div class="v">温哥华</div>
-      <div class="int">📰 加拿大主场优势。卡塔尔上届全败求突破。</div>
+      
+      <div class="int" style="">📰 加拿大主场优势。卡塔尔上届全败求突破。</div>
       <div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 加拿大优势明显，卡塔尔爆冷概率仅3%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(9.9%)</span><span class="tag tag-risk">❄️ 冷门: 3:1(6.9%)</span></div>
       <div class="s"><div class="st">胜负 · 加拿大 ELO领先130分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:89.0%"></i></div><span class="n">89.0%</span></div>
@@ -491,7 +520,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🇧🇷 巴西 vs 海地 🇭🇹</span><span class="d">6/19</span></div>
       <div class="v">费城</div>
-      <div class="int">📰 巴西继续碾压。海地实力悬殊。</div>
+      
+      <div class="int" style="">📰 巴西继续碾压。海地实力悬殊。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 巴西攻击线优势明显</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 巴西优势明显，海地爆冷概率仅0%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 7:0(10.8%)</span><span class="tag tag-risk">❄️ 冷门: 4:0(6.0%)</span></div>
       <div class="s"><div class="st">胜负 · 巴西 ELO领先420分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:69.7%"></i></div><span class="n">69.7%</span></div>
@@ -506,7 +536,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🏴 苏格兰 vs 摩洛哥 🇲🇦</span><span class="d">6/19</span></div>
       <div class="v">波士顿</div>
-      <div class="int">📰 苏格兰黑马成色检验。摩洛哥防反威胁。</div>
+      
+      <div class="int" style="">📰 苏格兰黑马成色检验。摩洛哥防反威胁。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 摩洛哥防守韧性值得关注</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 小球冷门预警</span></div><div class="why">💡 苏格兰具备爆冷条件：ELO差距仅50分，苏格兰若先取得进球，摩洛哥压力将骤增。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(13.2%)</span><span class="tag tag-risk">❄️ 冷门: 1:2(7.9%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差50分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:34.5%"></i></div><span class="n">34.5%</span></div>
@@ -521,7 +552,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇹🇷 土耳其 vs 巴拉圭 🇵🇾</span><span class="d">6/19</span></div>
       <div class="v">旧金山</div>
-      <div class="int">📰 土耳其技术流vs巴拉圭防守。出线关键战。</div>
+      
+      <div class="int" style="">📰 土耳其技术流vs巴拉圭防守。出线关键战。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ ⚡ 冷门种子</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 冷门预警 · 巴拉圭爆冷概率20%，偏低但非零。土耳其发挥失常或巴拉圭超常可能翻盘。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:0(11.9%)</span><span class="tag tag-risk">❄️ 冷门: 0:0(6.8%)</span></div>
       <div class="s"><div class="st">胜负 · 土耳其 ELO略高80分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 巴拉圭爆冷概率20%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:56.1%"></i></div><span class="n">56.1%</span></div>
@@ -536,7 +568,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇺🇸 美国 vs 澳大利亚 🇦🇺</span><span class="d">6/19</span></div>
       <div class="v">西雅图</div>
-      <div class="int">📰 美主场连胜机会。澳洲身体对抗。</div>
+      
+      <div class="int" style="">📰 美主场连胜机会。澳洲身体对抗。</div>
       <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 美国优势明显，澳大利亚爆冷概率仅16%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:1(9.8%)</span><span class="tag tag-risk">❄️ 冷门: 3:1(7.3%)</span></div>
       <div class="s"><div class="st">胜负 · 美国 ELO领先120分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 澳大利亚爆冷概率16%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:65.2%"></i></div><span class="n">65.2%</span></div>
@@ -551,7 +584,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇩🇪 德国 vs 科特迪瓦 🇨🇮</span><span class="d">6/20</span></div>
       <div class="v">多伦多</div>
-      <div class="int">📰 德国实力碾压。科特迪瓦速度反击。</div>
+      
+      <div class="int" style="">📰 德国实力碾压。科特迪瓦速度反击。</div>
       <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 德国优势明显，科特迪瓦爆冷概率仅6%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(9.3%)</span><span class="tag tag-risk">❄️ 冷门: 2:1(7.2%)</span></div>
       <div class="s"><div class="st">胜负 · 德国 ELO领先210分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:83.2%"></i></div><span class="n">83.2%</span></div>
@@ -566,7 +600,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇪🇨 厄瓜多尔 vs 库拉索 🇨🇼</span><span class="d">6/20</span></div>
       <div class="v">堪萨斯城</div>
-      <div class="int">📰 厄瓜多尔高原适应。库拉索首胜目标。</div>
+      
+      <div class="int" style="">📰 厄瓜多尔高原适应。库拉索首胜目标。</div>
       <div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 厄瓜多尔优势明显，库拉索爆冷概率仅2%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 4:0(12.0%)</span><span class="tag tag-risk">❄️ 冷门: 6:0(6.5%)</span></div>
       <div class="s"><div class="st">胜负 · 厄瓜多尔 ELO领先230分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:91.7%"></i></div><span class="n">91.7%</span></div>
@@ -581,7 +616,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇳🇱 荷兰 vs 瑞典 🇸🇪</span><span class="d">6/20</span></div>
       <div class="v">休斯顿</div>
-      <div class="int">📰 荷兰技术优势。瑞典身体对抗。</div>
+      
+      <div class="int" style="">📰 荷兰技术优势。瑞典身体对抗。</div>
       <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 荷兰优势明显，瑞典爆冷概率仅18%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:1(9.8%)</span><span class="tag tag-risk">❄️ 冷门: 3:1(7.2%)</span></div>
       <div class="s"><div class="st">胜负 · 荷兰 ELO领先110分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 瑞典爆冷概率18%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:62.7%"></i></div><span class="n">62.7%</span></div>
@@ -596,7 +632,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇹🇳 突尼斯 vs 日本 🇯🇵</span><span class="d">6/20</span></div>
       <div class="v">蒙特雷</div>
-      <div class="int">📰 突尼斯非洲杯经验。日本技术传控。</div>
+      
+      <div class="int" style="">📰 突尼斯非洲杯经验。日本技术传控。</div>
       <div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="why">💡 突尼斯具备爆冷条件：ELO差距仅30分，突尼斯若先取得进球，日本压力将骤增。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(11.6%)</span><span class="tag tag-risk">❄️ 冷门: 1:0(8.0%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差30分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:36.8%"></i></div><span class="n">36.8%</span></div>
@@ -611,7 +648,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇪🇸 西班牙 vs 沙特阿拉伯 🇸🇦</span><span class="d">6/21</span></div>
       <div class="v">亚特兰大</div>
-      <div class="int">📰 西班牙传控碾压。沙特技术细腻。</div>
+      
+      <div class="int" style="">📰 西班牙传控碾压。沙特技术细腻。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 西班牙优势明显，沙特阿拉伯爆冷概率仅2%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(11.7%)</span><span class="tag tag-risk">❄️ 冷门: 3:1(6.8%)</span></div>
       <div class="s"><div class="st">胜负 · 西班牙 ELO领先270分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:89.7%"></i></div><span class="n">89.7%</span></div>
@@ -626,7 +664,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇺🇾 乌拉圭 vs 佛得角 🇨🇻</span><span class="d">6/21</span></div>
       <div class="v">迈阿密</div>
-      <div class="int">📰 乌拉圭经验碾压。佛得角努力防守。</div>
+      
+      <div class="int" style="">📰 乌拉圭经验碾压。佛得角努力防守。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 乌拉圭优势明显，佛得角爆冷概率仅0%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 4:0(13.2%)</span><span class="tag tag-risk">❄️ 冷门: 7:0(7.0%)</span></div>
       <div class="s"><div class="st">胜负 · 乌拉圭 ELO领先290分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:92.0%"></i></div><span class="n">92.0%</span></div>
@@ -641,7 +680,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇧🇪 比利时 vs 伊朗 🇮🇷</span><span class="d">6/21</span></div>
       <div class="v">洛杉矶</div>
-      <div class="int">📰 比利时黄金一代。伊朗防守铁桶。</div>
+      
+      <div class="int" style="">📰 比利时黄金一代。伊朗防守铁桶。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 伊朗防守韧性值得关注</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 小球冷门预警</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 比利时优势明显，伊朗爆冷概率仅14%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:0(13.3%)</span><span class="tag tag-risk">❄️ 冷门: 3:0(8.3%)</span></div>
       <div class="s"><div class="st">胜负 · 比利时 ELO领先150分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:65.4%"></i></div><span class="n">65.4%</span></div>
@@ -656,7 +696,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇳🇿 新西兰 vs 埃及 🇪🇬</span><span class="d">6/21</span></div>
       <div class="v">温哥华</div>
-      <div class="int">📰 新西兰身体优势。埃及萨拉赫关键。</div>
+      
+      <div class="int" style="">📰 新西兰身体优势。埃及萨拉赫关键。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 新西兰攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏低，热度可能过高</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 新西兰爆冷概率19%，偏低但非零。埃及发挥失常或新西兰超常可能翻盘。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:2(9.9%)</span><span class="tag tag-risk">❄️ 冷门: 1:3(6.9%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差70分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 新西兰爆冷概率19%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:19.3%"></i></div><span class="n">19.3%</span></div>
@@ -671,7 +712,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇫🇷 法国 vs 伊拉克 🇮🇶</span><span class="d">6/22</span></div>
       <div class="v">费城</div>
-      <div class="int">📰 法国卫冕冠军实力碾压。伊拉克亚洲代表。</div>
+      
+      <div class="int" style="">📰 法国卫冕冠军实力碾压。伊拉克亚洲代表。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 法国攻击线优势明显</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 法国优势明显，伊拉克爆冷概率仅0%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 5:0(11.1%)</span><span class="tag tag-risk">❄️ 冷门: 3:0(7.5%)</span></div>
       <div class="s"><div class="st">胜负 · 法国 ELO领先360分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:88.1%"></i></div><span class="n">88.1%</span></div>
@@ -686,7 +728,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇳🇴 挪威 vs 塞内加尔 🇸🇳</span><span class="d">6/22</span></div>
       <div class="v">纽约</div>
-      <div class="int">📰 挪威哈兰德vs塞内加尔马内，巨星对决。</div>
+      
+      <div class="int" style="">📰 挪威哈兰德vs塞内加尔马内，巨星对决。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 实力接近</span><span class="tag tag-risk">⚠️ ⚡ 冷门种子</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 冷门预警 · 塞内加尔爆冷概率21%，偏低但非零。挪威发挥失常或塞内加尔超常可能翻盘。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:1(8.8%)</span><span class="tag tag-risk">❄️ 冷门: 2:0(6.2%)</span></div>
       <div class="s"><div class="st">胜负 · 挪威 ELO略高70分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 塞内加尔爆冷概率21%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:60.7%"></i></div><span class="n">60.7%</span></div>
@@ -701,7 +744,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇦🇷 阿根廷 vs 奥地利 🇦🇹</span><span class="d">6/22</span></div>
       <div class="v">达拉斯</div>
-      <div class="int">📰 阿根廷梅西最后一届。奥地利战术纪律。</div>
+      
+      <div class="int" style="">📰 阿根廷梅西最后一届。奥地利战术纪律。</div>
       <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 阿根廷优势明显，奥地利爆冷概率仅7%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(9.9%)</span><span class="tag tag-risk">❄️ 冷门: 4:0(7.5%)</span></div>
       <div class="s"><div class="st">胜负 · 阿根廷 ELO领先240分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:80.9%"></i></div><span class="n">80.9%</span></div>
@@ -716,7 +760,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇯🇴 约旦 vs 阿尔及利亚 🇩🇿</span><span class="d">6/22</span></div>
       <div class="v">旧金山</div>
-      <div class="int">📰 约旦亚洲黑马。阿尔及利亚非洲劲旅。</div>
+      
+      <div class="int" style="">📰 约旦亚洲黑马。阿尔及利亚非洲劲旅。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 约旦攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 冷门预警 · 约旦有26%概率爆冷——不低。</span></div><div class="why">💡 约旦具备爆冷条件：ELO差距仅20分，实力非常接近，任何结果都不意外。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(11.0%)</span><span class="tag tag-risk">❄️ 冷门: 2:1(6.5%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差20分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 约旦爆冷概率26%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:25.8%"></i></div><span class="n">25.8%</span></div>
@@ -731,7 +776,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🏴 英格兰 vs 加纳 🇬🇭</span><span class="d">6/23</span></div>
       <div class="v">波士顿</div>
-      <div class="int">📰 英格兰实力碾压。加纳身体对抗。</div>
+      
+      <div class="int" style="">📰 英格兰实力碾压。加纳身体对抗。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 英格兰优势明显，加纳爆冷概率仅5%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(11.2%)</span><span class="tag tag-risk">❄️ 冷门: 2:1(7.3%)</span></div>
       <div class="s"><div class="st">胜负 · 英格兰 ELO领先270分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:84.7%"></i></div><span class="n">84.7%</span></div>
@@ -746,7 +792,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🇵🇦 巴拿马 vs 克罗地亚 🇭🇷</span><span class="d">6/23</span></div>
       <div class="v">多伦多</div>
-      <div class="int">📰 巴拿马中北美代表。克罗地亚经验丰富。</div>
+      
+      <div class="int" style="">📰 巴拿马中北美代表。克罗地亚经验丰富。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 巴拿马攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏低，热度可能过高</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 克罗地亚优势明显，巴拿马爆冷概率仅10%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 0:2(11.5%)</span><span class="tag tag-risk">❄️ 冷门: 1:3(7.7%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差120分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:9.9%"></i></div><span class="n">9.9%</span></div>
@@ -761,7 +808,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇵🇹 葡萄牙 vs 乌兹别克斯坦 🇺🇿</span><span class="d">6/23</span></div>
       <div class="v">休斯顿</div>
-      <div class="int">📰 葡萄牙C罗领军。乌兹别克首秀。</div>
+      
+      <div class="int" style="">📰 葡萄牙C罗领军。乌兹别克首秀。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 葡萄牙攻击线优势明显</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 葡萄牙优势明显，乌兹别克斯坦爆冷概率仅0%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 5:0(10.7%)</span><span class="tag tag-risk">❄️ 冷门: 3:0(7.4%)</span></div>
       <div class="s"><div class="st">胜负 · 葡萄牙 ELO领先310分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:88.2%"></i></div><span class="n">88.2%</span></div>
@@ -776,7 +824,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇨🇴 哥伦比亚 vs 刚果民主共和国 🇨🇩</span><span class="d">6/23</span></div>
       <div class="v">瓜达拉哈拉</div>
-      <div class="int">📰 哥伦比亚南美劲旅。刚果身体天赋。</div>
+      
+      <div class="int" style="">📰 哥伦比亚南美劲旅。刚果身体天赋。</div>
       <div class="tag-row"><span class="tag tag-value">💰 主胜市场赔率偏高，模型认为被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 哥伦比亚优势明显，刚果民主共和国爆冷概率仅4%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(8.6%)</span><span class="tag tag-risk">❄️ 冷门: 5:0(6.8%)</span></div>
       <div class="s"><div class="st">胜负 · 哥伦比亚 ELO领先200分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:87.6%"></i></div><span class="n">87.6%</span></div>
@@ -791,7 +840,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🏴 苏格兰 vs 巴西 🇧🇷</span><span class="d">6/24</span></div>
       <div class="v"></div>
-      <div class="int">📰 巴西锁定头名。苏格兰拼出线。</div>
+      
+      <div class="int" style="">📰 巴西锁定头名。苏格兰拼出线。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 巴西优势明显，苏格兰爆冷概率仅15%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 0:2(9.9%)</span><span class="tag tag-risk">❄️ 冷门: 0:3(7.5%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差180分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:15.0%"></i></div><span class="n">15.0%</span></div>
@@ -806,7 +856,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🇲🇦 摩洛哥 vs 海地 🇭🇹</span><span class="d">6/24</span></div>
       <div class="v"></div>
-      <div class="int">📰 摩洛哥防反。海地告别战。</div>
+      
+      <div class="int" style="">📰 摩洛哥防反。海地告别战。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 摩洛哥优势明显，海地爆冷概率仅1%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(13.8%)</span><span class="tag tag-risk">❄️ 冷门: 6:0(6.6%)</span></div>
       <div class="s"><div class="st">胜负 · 摩洛哥 ELO领先290分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:92.5%"></i></div><span class="n">92.5%</span></div>
@@ -821,7 +872,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇨🇭 瑞士 vs 加拿大 🇨🇦</span><span class="d">6/24</span></div>
       <div class="v"></div>
-      <div class="int">📰 瑞士纪律出线。加拿大主场谢幕。</div>
+      
+      <div class="int" style="">📰 瑞士纪律出线。加拿大主场谢幕。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 瑞士优势明显，加拿大爆冷概率仅15%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(11.3%)</span><span class="tag tag-risk">❄️ 冷门: 3:0(7.6%)</span></div>
       <div class="s"><div class="st">胜负 · 瑞士 ELO领先150分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 加拿大爆冷概率15%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:64.0%"></i></div><span class="n">64.0%</span></div>
@@ -836,7 +888,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇧🇦 波黑 vs 卡塔尔 🇶🇦</span><span class="d">6/24</span></div>
       <div class="v"></div>
-      <div class="int">📰 波黑拼出线。卡塔尔求首胜。</div>
+      
+      <div class="int" style="">📰 波黑拼出线。卡塔尔求首胜。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 波黑优势明显，卡塔尔爆冷概率仅3%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(11.1%)</span><span class="tag tag-risk">❄️ 冷门: 3:1(7.0%)</span></div>
       <div class="s"><div class="st">胜负 · 波黑 ELO略高90分，主场加权后有优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:89.0%"></i></div><span class="n">89.0%</span></div>
@@ -851,7 +904,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇨🇿 捷克 vs 墨西哥 🇲🇽</span><span class="d">6/24</span></div>
       <div class="v"></div>
-      <div class="int">📰 墨主场锁定头名。捷克定位球威胁。</div>
+      
+      <div class="int" style="">📰 墨主场锁定头名。捷克定位球威胁。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="why">💡 捷克具备爆冷条件：ELO差距仅0分，实力非常接近，任何结果都不意外。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(10.6%)</span><span class="tag tag-risk">❄️ 冷门: 2:2(6.5%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差0分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:43.0%"></i></div><span class="n">43.0%</span></div>
@@ -866,7 +920,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇿🇦 南非 vs 韩国 🇰🇷</span><span class="d">6/24</span></div>
       <div class="v"></div>
-      <div class="int">📰 韩国出线关键战。南非告别。</div>
+      
+      <div class="int" style="">📰 韩国出线关键战。南非告别。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="why">💡 南非具备爆冷条件：ELO差距仅50分，南非若先取得进球，韩国压力将骤增。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(10.9%)</span><span class="tag tag-risk">❄️ 冷门: 0:2(6.7%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差50分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:31.5%"></i></div><span class="n">31.5%</span></div>
@@ -881,7 +936,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇹🇷 土耳其 vs 美国 🇺🇸</span><span class="d">6/25</span></div>
       <div class="v"></div>
-      <div class="int">📰 美国主场锁定头名。土耳其拼出线。</div>
+      
+      <div class="int" style="">📰 美国主场锁定头名。土耳其拼出线。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span><span class="tag tag-risk">⚠️ ⚡ 冷门种子</span></div><div class="why">💡 土耳其具备爆冷条件：ELO差距仅20分，实力非常接近，任何结果都不意外。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(9.3%)</span><span class="tag tag-risk">❄️ 冷门: 1:0(6.2%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差20分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:47.6%"></i></div><span class="n">47.6%</span></div>
@@ -896,7 +952,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇵🇾 巴拉圭 vs 澳大利亚 🇦🇺</span><span class="d">6/25</span></div>
       <div class="v"></div>
-      <div class="int">📰 巴拉圭防守。澳洲告别战。</div>
+      
+      <div class="int" style="">📰 巴拉圭防守。澳洲告别战。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 实力接近</span><span class="tag tag-risk">⚠️ 小组末轮</span><span class="tag tag-risk">⚠️ ⚡ 冷门种子</span><span class="tag tag-risk">⚠️ 小球冷门预警</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:0(14.0%)</span><span class="tag tag-risk">❄️ 冷门: 0:1(9.1%)</span></div>
       <div class="s"><div class="st">胜负 · 巴拉圭 ELO略高60分，主场加权后有优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:48.4%"></i></div><span class="n">48.4%</span></div>
@@ -911,7 +968,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇪🇨 厄瓜多尔 vs 德国 🇩🇪</span><span class="d">6/25</span></div>
       <div class="v"></div>
-      <div class="int">📰 德国头名出线。厄瓜多尔拼次名。</div>
+      
+      <div class="int" style="">📰 德国头名出线。厄瓜多尔拼次名。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 冷门预警 · 厄瓜多尔爆冷概率24%，偏低但非零。德国发挥失常或厄瓜多尔超常可能翻盘。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:2(9.7%)</span><span class="tag tag-risk">❄️ 冷门: 1:3(6.5%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差70分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 厄瓜多尔爆冷概率24%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:23.8%"></i></div><span class="n">23.8%</span></div>
@@ -926,7 +984,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇨🇼 库拉索 vs 科特迪瓦 🇨🇮</span><span class="d">6/25</span></div>
       <div class="v"></div>
-      <div class="int">📰 科特迪瓦拼出线。库拉索告别。</div>
+      
+      <div class="int" style="">📰 科特迪瓦拼出线。库拉索告别。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 库拉索攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 科特迪瓦优势明显，库拉索爆冷概率仅8%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 0:2(11.1%)</span><span class="tag tag-risk">❄️ 冷门: 1:3(7.9%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差90分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:8.5%"></i></div><span class="n">8.5%</span></div>
@@ -941,7 +1000,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇳🇱 荷兰 vs 突尼斯 🇹🇳</span><span class="d">6/25</span></div>
       <div class="v"></div>
-      <div class="int">📰 荷兰头名。突尼斯拼奇迹。</div>
+      
+      <div class="int" style="">📰 荷兰头名。突尼斯拼奇迹。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 荷兰优势明显，突尼斯爆冷概率仅6%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(12.1%)</span><span class="tag tag-risk">❄️ 冷门: 2:1(8.0%)</span></div>
       <div class="s"><div class="st">胜负 · 荷兰 ELO领先230分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:82.2%"></i></div><span class="n">82.2%</span></div>
@@ -956,7 +1016,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇸🇪 瑞典 vs 日本 🇯🇵</span><span class="d">6/25</span></div>
       <div class="v"></div>
-      <div class="int">📰 日本出线关键战。瑞典身体对抗。</div>
+      
+      <div class="int" style="">📰 日本出线关键战。瑞典身体对抗。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 瑞典优势明显，日本爆冷概率仅17%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:1(9.7%)</span><span class="tag tag-risk">❄️ 冷门: 3:1(7.5%)</span></div>
       <div class="s"><div class="st">胜负 · 瑞典 ELO略高90分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 日本爆冷概率17%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:64.3%"></i></div><span class="n">64.3%</span></div>
@@ -971,7 +1032,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇳🇴 挪威 vs 法国 🇫🇷</span><span class="d">6/26</span></div>
       <div class="v"></div>
-      <div class="int">📰 法国头名。挪威哈兰德拼出线。</div>
+      
+      <div class="int" style="">📰 法国头名。挪威哈兰德拼出线。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:2(8.5%)</span><span class="tag tag-risk">❄️ 冷门: 1:3(6.1%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差100分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:30.2%"></i></div><span class="n">30.2%</span></div>
@@ -986,7 +1048,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇸🇳 塞内加尔 vs 伊拉克 🇮🇶</span><span class="d">6/26</span></div>
       <div class="v"></div>
-      <div class="int">📰 塞内加尔拼出线。伊拉克告别。</div>
+      
+      <div class="int" style="">📰 塞内加尔拼出线。伊拉克告别。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 塞内加尔优势明显，伊拉克爆冷概率仅3%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 3:0(10.3%)</span><span class="tag tag-risk">❄️ 冷门: 5:0(7.2%)</span></div>
       <div class="s"><div class="st">胜负 · 塞内加尔 ELO领先190分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:88.3%"></i></div><span class="n">88.3%</span></div>
@@ -1001,7 +1064,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇪🇬 埃及 vs 伊朗 🇮🇷</span><span class="d">6/26</span></div>
       <div class="v"></div>
-      <div class="int">📰 埃及萨拉赫关键。伊朗防守。</div>
+      
+      <div class="int" style="">📰 埃及萨拉赫关键。伊朗防守。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 伊朗防守韧性值得关注</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力接近</span><span class="tag tag-risk">⚠️ 小组末轮</span><span class="tag tag-risk">⚠️ ⚡ 冷门种子</span><span class="tag tag-risk">⚠️ 小球冷门预警</span></div><div class="why">💡 埃及具备爆冷条件：ELO差距仅40分，埃及若先取得进球，伊朗压力将骤增。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:0(14.2%)</span><span class="tag tag-risk">❄️ 冷门: 2:1(8.9%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差40分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:49.4%"></i></div><span class="n">49.4%</span></div>
@@ -1016,7 +1080,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇳🇿 新西兰 vs 比利时 🇧🇪</span><span class="d">6/26</span></div>
       <div class="v"></div>
-      <div class="int">📰 比利时头名。新西兰告别。</div>
+      
+      <div class="int" style="">📰 比利时头名。新西兰告别。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 新西兰攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 比利时优势明显，新西兰爆冷概率仅9%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 0:2(10.4%)</span><span class="tag tag-risk">❄️ 冷门: 0:1(7.6%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差180分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:9.1%"></i></div><span class="n">9.1%</span></div>
@@ -1031,7 +1096,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇺🇾 乌拉圭 vs 西班牙 🇪🇸</span><span class="d">6/26</span></div>
       <div class="v"></div>
-      <div class="int">📰 小组头名之争。西乌强强对话。</div>
+      
+      <div class="int" style="">📰 小组头名之争。西乌强强对话。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="why">💡 乌拉圭具备爆冷条件：ELO差距仅20分，实力非常接近，任何结果都不意外。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(12.0%)</span><span class="tag tag-risk">❄️ 冷门: 0:1(7.7%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差20分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:45.7%"></i></div><span class="n">45.7%</span></div>
@@ -1046,7 +1112,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇨🇻 佛得角 vs 沙特阿拉伯 🇸🇦</span><span class="d">6/26</span></div>
       <div class="v"></div>
-      <div class="int">📰 沙特技术。佛得角告别。</div>
+      
+      <div class="int" style="">📰 沙特技术。佛得角告别。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 佛得角攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 冷门预警 · 佛得角爆冷概率21%，偏低但非零。沙特阿拉伯发挥失常或佛得角超常可能翻盘。</span></div><div class="why">💡 佛得角具备爆冷条件：ELO差距仅40分，佛得角若先取得进球，沙特阿拉伯压力将骤增。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(10.5%)</span><span class="tag tag-risk">❄️ 冷门: 1:3(6.3%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差40分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 佛得角爆冷概率21%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:20.9%"></i></div><span class="n">20.9%</span></div>
@@ -1061,7 +1128,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇨🇴 哥伦比亚 vs 葡萄牙 🇵🇹</span><span class="d">6/27</span></div>
       <div class="v"></div>
-      <div class="int">📰 葡萄牙头名。哥伦比亚南美劲旅。</div>
+      
+      <div class="int" style="">📰 葡萄牙头名。哥伦比亚南美劲旅。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="why">💡 哥伦比亚具备爆冷条件：ELO差距仅20分，实力非常接近，任何结果都不意外。</div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(9.1%)</span><span class="tag tag-risk">❄️ 冷门: 1:0(5.3%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差20分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:39.9%"></i></div><span class="n">39.9%</span></div>
@@ -1076,7 +1144,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇨🇩 刚果民主共和国 vs 乌兹别克斯坦 🇺🇿</span><span class="d">6/27</span></div>
       <div class="v"></div>
-      <div class="int">📰 刚果身体天赋。乌兹别克告别。</div>
+      
+      <div class="int" style="">📰 刚果身体天赋。乌兹别克告别。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 刚果民主共和国优势明显，乌兹别克斯坦爆冷概率仅14%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:1(8.9%)</span><span class="tag tag-risk">❄️ 冷门: 1:1(6.6%)</span></div>
       <div class="s"><div class="st">胜负 · 刚果民主共和国 ELO略高90分，主场加权后有优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:70.0%"></i></div><span class="n">70.0%</span></div>
@@ -1091,7 +1160,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇦🇹 奥地利 vs 阿根廷 🇦🇷</span><span class="d">6/27</span></div>
       <div class="v"></div>
-      <div class="int">📰 阿根廷头名。奥地利拼出线。</div>
+      
+      <div class="int" style="">📰 阿根廷头名。奥地利拼出线。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 冷门预警 · 奥地利爆冷概率24%，偏低但非零。阿根廷发挥失常或奥地利超常可能翻盘。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 1:1(10.3%)</span><span class="tag tag-risk">❄️ 冷门: 2:1(6.2%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差140分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 奥地利爆冷概率24%</span></div>
         <div class="b"><span>主</span><div class="t"><i style="width:24.1%"></i></div><span class="n">24.1%</span></div>
@@ -1106,7 +1176,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇩🇿 阿尔及利亚 vs 约旦 🇯🇴</span><span class="d">6/27</span></div>
       <div class="v"></div>
-      <div class="int">📰 阿尔及利亚非洲劲旅。约旦告别。</div>
+      
+      <div class="int" style="">📰 阿尔及利亚非洲劲旅。约旦告别。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 阿尔及利亚优势明显，约旦爆冷概率仅8%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(11.2%)</span><span class="tag tag-risk">❄️ 冷门: 3:1(7.9%)</span></div>
       <div class="s"><div class="st">胜负 · 阿尔及利亚 ELO领先120分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:78.4%"></i></div><span class="n">78.4%</span></div>
@@ -1121,7 +1192,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🇵🇦 巴拿马 vs 英格兰 🏴</span><span class="d">6/27</span></div>
       <div class="v"></div>
-      <div class="int">📰 英格兰锁定头名。巴拿马告别。</div>
+      
+      <div class="int" style="">📰 英格兰锁定头名。巴拿马告别。</div>
       <div class="tag-row"><span class="tag tag-injury">🚑 巴拿马攻击力有限，可关注小球</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span><span class="tag tag-risk">⚠️ 轮换风险</span><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 英格兰优势明显，巴拿马爆冷概率仅4%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 0:3(10.6%)</span><span class="tag tag-risk">❄️ 冷门: 1:4(6.6%)</span></div>
       <div class="s"><div class="st">胜负 · 两队仅差210分，实力非常接近。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:3.9%"></i></div><span class="n">3.9%</span></div>
@@ -1136,7 +1208,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🇭🇷 克罗地亚 vs 加纳 🇬🇭</span><span class="d">6/27</span></div>
       <div class="v"></div>
-      <div class="int">📰 克罗地亚出线关键。加纳身体对抗。</div>
+      
+      <div class="int" style="">📰 克罗地亚出线关键。加纳身体对抗。</div>
       <div class="tag-row"><span class="tag tag-risk">⚠️ 小组末轮</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 冷门概率低 · 克罗地亚优势明显，加纳爆冷概率仅11%。除非重大意外（红牌/伤病），冷门难现。</span></div><div class="tag-row"><span class="tag tag-value">🔥 热门: 2:0(12.7%)</span><span class="tag tag-risk">❄️ 冷门: 1:1(8.5%)</span></div>
       <div class="s"><div class="st">胜负 · 克罗地亚 ELO领先180分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:71.1%"></i></div><span class="n">71.1%</span></div>

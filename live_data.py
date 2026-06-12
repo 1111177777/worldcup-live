@@ -47,10 +47,19 @@ STYLE = {
     "意大利":(1.05,1.05),
 }
 
+# 近期状态修正（基于最近5场表现）：正值=状态好，负值=状态差
+FORM_BOOST = {
+    "日本": 80,    # 5连胜5零封，状态爆棚
+    "荷兰": -30,   # 输阿尔及利亚，险胜乌兹别克
+    "韩国": 30,    # 揭幕战逆转捷克
+    "墨西哥": 30,  # 揭幕战2-0南非
+}
+
 def predict(h,a):
-    he,ae=ELO.get(h,1700),ELO.get(a,1700)
+    he=ELO.get(h,1700)+FORM_BOOST.get(h,0)
+    ae=ELO.get(a,1700)+FORM_BOOST.get(a,0)
     hs=STYLE.get(h,(1.0,1.0)); as_=STYLE.get(a,(1.0,1.0))
-    d=he-ae+50; gd=d/100*0.4  # 加大ELO影响
+    d=he-ae+50; gd=d/100*0.4
     xh=max(0.3, (1.6+gd*0.7)*hs[0]/max(as_[1],0.5))
     xa=max(0.3, (1.2-gd*0.4)*as_[0]/max(hs[1],0.5))
     w=dr=lo=0; sc={}

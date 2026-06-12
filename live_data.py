@@ -87,7 +87,7 @@ def auto_tags(m, p):
     if m.get('date','') in ['6/24','6/25','6/26','6/27']:
         if '小组末轮' not in ' '.join(risk): risk.append('小组末轮')
 
-    # 自动价值标签（如果没手动填）
+    # 自动价值标签
     if not value and m.get('odds_home'):
         oh = float(m.get('odds_home',0) or 0)
         if oh>0:
@@ -96,7 +96,35 @@ def auto_tags(m, p):
             if gap>0.5: value = f'主胜市场赔率偏高，模型认为被低估'
             elif gap<-0.3: value = f'主胜市场赔率偏低，热度可能过高'
 
-    return injury, risk, value
+    # 爆冷概率
+    upset_prob = 0
+    upset_why = ''
+    if p['win'] > 50:  # 主队热门
+        upset_prob = p['loss']
+        fav, udog = h, a
+    elif p['loss'] > 50:  # 客队热门
+        upset_prob = p['win']
+        fav, udog = a, h
+    else:
+        upset_prob = 0
+        fav, udog = '', ''
+
+    if upset_prob > 25:
+        upset_why = f'{udog}有{upset_prob:.0f}%概率爆冷——不低。'
+        if upset_prob > 35:
+            upset_why += '双方实力差距不大，任何结果都可能。'
+        if '高原' in ' '.join(risk):
+            upset_why += '高原因素可能放大不确定性。'
+        if abs(diff) < 60:
+            upset_why += 'ELO差距小，冷门土壤肥沃。'
+    elif upset_prob > 18:
+        upset_why = f'{udog}爆冷概率{upset_prob:.0f}%，偏低但非零。{fav}发挥失常或{udog}超常可能翻盘。'
+    elif upset_prob > 0:
+        upset_why = f'{fav}优势明显，{udog}爆冷概率仅{upset_prob:.0f}%。除非重大意外（红牌/伤病），冷门难现。'
+    else:
+        upset_why = '双方均势，没有明确的冷门概念。'
+
+    return injury, risk, value, round(upset_prob, 1), upset_why
 
 def explain(p, m, h, a, d):
     ad=abs(d)
@@ -129,7 +157,15 @@ def explain(p, m, h, a, d):
     if m.get('value'):
         tags_html += '<div class="tag-row"><span class="tag tag-value">💰 ' + m['value'] + '</span></div>'
 
-    return ew, sw, gw, rec, tags_html
+    # 爆冷 - 从 auto_tags 获取
+    up = m.get('_upset_prob', 0)
+    uw = m.get('_upset_why', '')
+    upset_html = ''
+    if up > 0 and uw:
+        upset_color = '#e44' if up > 25 else ('#f80' if up > 15 else '#999')
+        upset_html = f'<div class="tag-row"><span class="tag" style="background:#fff5f5;color:{upset_color};border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 爆冷概率 {up}% · {uw}</span></div>'
+
+    return ew, sw, gw, rec, tags_html + upset_html
 
 def gen():
     with open(SCHEDULE_FILE,encoding='utf-8') as f: matches=json.load(f)
@@ -137,11 +173,13 @@ def gen():
     cards,results="",""
     for m in matches:
         p=predict(m['home'],m['away'])
-        # 自动补全伤停/风险/价值
-        ai,ar,av=auto_tags(m,p)
+        # 自动补全伤停/风险/价值/爆冷
+        ai,ar,av,up,uw=auto_tags(m,p)
         if not m.get('injury'): m['injury']=ai
         if not m.get('risk') or len(m.get('risk',[]))==0: m['risk']=ar
         if not m.get('value'): m['value']=av
+        m['_upset_prob']=up
+        m['_upset_why']=uw
         fh,fa=FLAGS.get(m['home'],''),FLAGS.get(m['away'],'')
         ew,sw,gw,rec,tags=explain(p,m,m['home'],m['away'],p['he']-p['ae']+50)
         d=f"{m['date']} {m['time']}".strip()

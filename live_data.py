@@ -67,7 +67,7 @@ def predict(h,a):
             p=poisson(xh,i)*poisson(xa,j); t=i+j; gl[t]=gl.get(t,0)+p
     return {"win":round(w*100,1),"draw":round(dr*100,1),"loss":round(lo*100,1),"xh":round(xh,2),"xa":round(xa,2),"top":[(s,round(p*100,1))for s,p in top],"gl":{str(k):round(v*100,1)for k,v in sorted(gl.items())[:8]},"he":he,"ae":ae}
 
-def explain(p,h,a,d):
+def explain(p, m, h, a, d):
     ad=abs(d)
     if d>100:ew=f"{h} ELO领先{ad}分，明显优势。"
     elif d>40:ew=f"{h} ELO略高{ad}分，主场加权后有优势。"
@@ -87,7 +87,18 @@ def explain(p,h,a,d):
     if p['win']>50:rec=f"倾向：{h}获胜"
     elif p['loss']>50:rec=f"倾向：{a}获胜"
     else:rec="建议观望，平局概率偏高"
-    return ew,sw,gw,rec
+
+    # 伤停+风险+价值标签
+    tags_html = ''
+    if m.get('injury'):
+        tags_html += '<div class="tag-row"><span class="tag tag-injury">🚑 ' + m['injury'] + '</span></div>'
+    if m.get('risk') and len(m['risk'])>0:
+        rt = ''.join('<span class="tag tag-risk">⚠️ ' + r + '</span>' for r in m['risk'])
+        tags_html += '<div class="tag-row">' + rt + '</div>'
+    if m.get('value'):
+        tags_html += '<div class="tag-row"><span class="tag tag-value">💰 ' + m['value'] + '</span></div>'
+
+    return ew, sw, gw, rec, tags_html
 
 def gen():
     with open(SCHEDULE_FILE,encoding='utf-8') as f: matches=json.load(f)
@@ -96,7 +107,7 @@ def gen():
     for m in matches:
         p=predict(m['home'],m['away'])
         fh,fa=FLAGS.get(m['home'],''),FLAGS.get(m['away'],'')
-        ew,sw,gw,rec=explain(p,m['home'],m['away'],p['he']-p['ae']+50)
+        ew,sw,gw,rec,tags=explain(p,m,m['home'],m['away'],p['he']-p['ae']+50)
         d=f"{m['date']} {m['time']}".strip()
 
         # 实时结果
@@ -116,6 +127,7 @@ def gen():
       <div class="mh"><span class="g">G{m['group']}</span><span class="t">{fh} {m['home']} vs {m['away']} {fa}</span><span class="d">{d}</span></div>
       <div class="v">{m['venue']}</div>{live}
       <div class="int">📰 {m['intel']}</div>
+      {tags}
       <div class="s"><div class="st">胜负 · {ew}</div>
         <div class="b"><span>主</span><div class="t"><i style="width:{p['win']}%"></i></div><span class="n">{p['win']}%</span></div>
         <div class="b"><span>平</span><div class="t"><i style="width:{p['draw']}%;background:#888"></i></div><span class="n">{p['draw']}%</span></div>
@@ -166,6 +178,11 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
 .cs{{display:flex;flex-wrap:wrap;gap:3px}}
 .c{{padding:2px 7px;border:1px solid #e0e0e0;font-size:11px}}
 .c b{{color:#111}}
+.tag-row{{margin:4px 0;display:flex;flex-wrap:wrap;gap:4px}}
+.tag{{font-size:11px;padding:3px 8px;border-radius:2px;line-height:1.4}}
+.tag-injury{{background:#fff0f0;color:#c44;border:1px solid #fcc}}
+.tag-risk{{background:#fff8e0;color:#b80;border:1px solid #fe8}}
+.tag-value{{background:#f0f8ff;color:#36c;border:1px solid #bdf}}
 .rf{{text-align:center;font-size:11px;color:#999;margin:10px 0}}
 .ft{{text-align:center;color:#ccc;font-size:10px;margin:20px 0;line-height:1.6}}
 .nav{{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 12px;justify-content:center}}

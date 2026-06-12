@@ -10,7 +10,13 @@
     "odds_draw": "4.50",
     "odds_away": "8.50",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "墨全主力，南非前锋Foster状态不佳",
+    "risk": [
+      "高原2200m",
+      "揭幕战压力"
+    ],
+    "value": "市场高估主胜，平局赔率4.50被低估"
   },
   {
     "home": "韩国",
@@ -23,7 +29,13 @@
     "odds_draw": "3.15",
     "odds_away": "2.80",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "韩孙兴慜满血，捷定位球核心Mokoena出战",
+    "risk": [
+      "定位球",
+      "新帅磨合"
+    ],
+    "value": "平局赔率3.15高于模型预期，存在低估"
   },
   {
     "home": "加拿大",
@@ -36,7 +48,13 @@
     "odds_draw": "3.10",
     "odds_away": "3.50",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "加戴维斯伤缺🔴，波黑哲科存疑🟡",
+    "risk": [
+      "核心缺阵",
+      "攻击力大减"
+    ],
+    "value": "双方攻击核心缺席，小球倾向被低估"
   },
   {
     "home": "美国",
@@ -49,7 +67,13 @@
     "odds_draw": "3.50",
     "odds_away": "5.00",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "美Richards踝伤存疑🟡，巴Enciso出战成疑",
+    "risk": [
+      "主场压力",
+      "防守漏洞"
+    ],
+    "value": "市场赔率与模型接近，无显著偏差"
   },
   {
     "home": "巴西",
@@ -62,7 +86,13 @@
     "odds_draw": "4.80",
     "odds_away": "9.00",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "巴全主力，摩洛哥防线完整",
+    "risk": [
+      "实力碾压",
+      "非洲冠军防线"
+    ],
+    "value": "让球盘口偏浅，巴西穿盘概率被低估"
   },
   {
     "home": "海地",
@@ -75,7 +105,10 @@
     "odds_draw": "4.20",
     "odds_away": "1.40",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "澳大利亚",
@@ -88,7 +121,10 @@
     "odds_draw": "3.10",
     "odds_away": "2.30",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "卡塔尔",
@@ -101,7 +137,10 @@
     "odds_draw": "4.50",
     "odds_away": "1.35",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "德国",
@@ -114,7 +153,13 @@
     "odds_draw": "11.00",
     "odds_away": "26.00",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "德全主力，库拉索首秀经验不足",
+    "risk": [
+      "最深盘口",
+      "首秀怯场"
+    ],
+    "value": "德国穿盘概率极高，但赔率已充分反映"
   },
   {
     "home": "科特迪瓦",
@@ -127,7 +172,10 @@
     "odds_draw": "2.90",
     "odds_away": "3.10",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "荷兰",
@@ -140,7 +188,10 @@
     "odds_draw": "3.90",
     "odds_away": "6.00",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "瑞典",
@@ -153,7 +204,10 @@
     "odds_draw": "3.00",
     "odds_away": "3.80",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "西班牙",
@@ -166,7 +220,10 @@
     "odds_draw": "8.50",
     "odds_away": "19.00",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "沙特阿拉伯",
@@ -179,7 +236,10 @@
     "odds_draw": "3.80",
     "odds_away": "1.50",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "比利时",
@@ -192,7 +252,10 @@
     "odds_draw": "3.60",
     "odds_away": "5.50",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "伊朗",
@@ -205,7 +268,10 @@
     "odds_draw": "2.90",
     "odds_away": "3.20",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "法国",
@@ -218,7 +284,10 @@
     "odds_draw": "4.20",
     "odds_away": "7.50",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "伊拉克",
@@ -231,7 +300,10 @@
     "odds_draw": "3.60",
     "odds_away": "1.65",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "阿根廷",
@@ -244,7 +316,10 @@
     "odds_draw": "4.50",
     "odds_away": "8.00",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "奥地利",
@@ -257,7 +332,10 @@
     "odds_draw": "3.40",
     "odds_away": "4.50",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "英格兰",
@@ -270,7 +348,10 @@
     "odds_draw": "3.30",
     "odds_away": "4.20",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "加纳",
@@ -283,7 +364,10 @@
     "odds_draw": "2.90",
     "odds_away": "3.40",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "葡萄牙",
@@ -296,7 +380,10 @@
     "odds_draw": "3.80",
     "odds_away": "6.00",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "乌兹别克斯坦",
@@ -309,7 +396,10 @@
     "odds_draw": "3.80",
     "odds_away": "1.55",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "捷克",
@@ -322,7 +412,10 @@
     "odds_draw": "3.10",
     "odds_away": "3.50",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "墨西哥",
@@ -335,7 +428,10 @@
     "odds_draw": "3.20",
     "odds_away": "4.00",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "瑞士",
@@ -348,7 +444,10 @@
     "odds_draw": "3.50",
     "odds_away": "5.00",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "加拿大",
@@ -361,7 +460,10 @@
     "odds_draw": "3.10",
     "odds_away": "3.60",
     "result": "",
-    "time": ""
+    "time": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "巴西",
@@ -374,7 +476,10 @@
     "odds_draw": "9.00",
     "odds_away": "21.00",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "苏格兰",
@@ -387,7 +492,10 @@
     "odds_draw": "2.90",
     "odds_away": "2.70",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "土耳其",
@@ -400,7 +508,10 @@
     "odds_draw": "3.10",
     "odds_away": "3.20",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "美国",
@@ -413,7 +524,10 @@
     "odds_draw": "3.40",
     "odds_away": "4.50",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "德国",
@@ -426,7 +540,10 @@
     "odds_draw": "4.80",
     "odds_away": "8.50",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "厄瓜多尔",
@@ -439,7 +556,10 @@
     "odds_draw": "3.50",
     "odds_away": "5.50",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "荷兰",
@@ -452,7 +572,10 @@
     "odds_draw": "3.30",
     "odds_away": "4.20",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "突尼斯",
@@ -465,7 +588,10 @@
     "odds_draw": "2.90",
     "odds_away": "2.30",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "西班牙",
@@ -478,7 +604,10 @@
     "odds_draw": "7.00",
     "odds_away": "13.00",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "乌拉圭",
@@ -491,7 +620,10 @@
     "odds_draw": "5.00",
     "odds_away": "10.00",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "比利时",
@@ -504,7 +636,10 @@
     "odds_draw": "3.40",
     "odds_away": "5.50",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "新西兰",
@@ -517,7 +652,10 @@
     "odds_draw": "3.00",
     "odds_away": "2.20",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "法国",
@@ -530,7 +668,10 @@
     "odds_draw": "6.50",
     "odds_away": "11.00",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "挪威",
@@ -543,7 +684,10 @@
     "odds_draw": "3.20",
     "odds_away": "3.50",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "阿根廷",
@@ -556,7 +700,10 @@
     "odds_draw": "3.80",
     "odds_away": "7.00",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "约旦",
@@ -569,7 +716,10 @@
     "odds_draw": "3.20",
     "odds_away": "1.95",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "英格兰",
@@ -582,7 +732,10 @@
     "odds_draw": "3.80",
     "odds_away": "6.00",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "巴拿马",
@@ -595,7 +748,10 @@
     "odds_draw": "3.80",
     "odds_away": "1.55",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "葡萄牙",
@@ -608,7 +764,10 @@
     "odds_draw": "5.00",
     "odds_away": "9.50",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "哥伦比亚",
@@ -621,7 +780,10 @@
     "odds_draw": "3.40",
     "odds_away": "4.80",
     "time": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "苏格兰",
@@ -634,7 +796,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "摩洛哥",
@@ -647,7 +812,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "瑞士",
@@ -660,7 +828,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "波黑",
@@ -673,7 +844,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "捷克",
@@ -686,7 +860,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "南非",
@@ -699,7 +876,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "土耳其",
@@ -712,7 +892,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "巴拉圭",
@@ -725,7 +908,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "厄瓜多尔",
@@ -738,7 +924,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "库拉索",
@@ -751,7 +940,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "荷兰",
@@ -764,7 +956,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "瑞典",
@@ -777,7 +972,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "挪威",
@@ -790,7 +988,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "塞内加尔",
@@ -803,7 +1004,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "埃及",
@@ -816,7 +1020,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "新西兰",
@@ -829,7 +1036,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "乌拉圭",
@@ -842,7 +1052,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "佛得角",
@@ -855,7 +1068,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "哥伦比亚",
@@ -868,7 +1084,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "刚果民主共和国",
@@ -881,7 +1100,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "奥地利",
@@ -894,7 +1116,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "阿尔及利亚",
@@ -907,7 +1132,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "巴拿马",
@@ -920,7 +1148,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   },
   {
     "home": "克罗地亚",
@@ -933,6 +1164,9 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": ""
+    "result": "",
+    "injury": "",
+    "risk": [],
+    "value": ""
   }
 ]

@@ -275,6 +275,8 @@ def gen():
     with open(SCHEDULE_FILE,encoding='utf-8') as f: matches=json.load(f)
     now=datetime.now().strftime("%m/%d %H:%M:%S")
     cards,results="",""
+    # 按日期排序
+    matches.sort(key=lambda x: x['date'])
     for m in matches:
         p=predict(m['home'],m['away'])
         # 自动补全伤停/风险/价值/爆冷

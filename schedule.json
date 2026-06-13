@@ -49,7 +49,7 @@
     "odds_home": "2.20",
     "odds_draw": "3.10",
     "odds_away": "3.50",
-    "result": "",
+    "result": "1:1",
     "time": "",
     "injury": "加戴维斯伤缺🔴，波黑哲科存疑🟡",
     "risk": [
@@ -57,7 +57,7 @@
       "攻击力大减"
     ],
     "value": "双方攻击核心缺席，小球倾向被低估",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "美国",
@@ -69,15 +69,15 @@
     "odds_home": "1.75",
     "odds_draw": "3.50",
     "odds_away": "5.00",
-    "result": "",
+    "result": "4:1",
     "time": "",
     "injury": "美Richards踝伤存疑🟡，巴Enciso出战成疑",
     "risk": [
       "主场压力",
       "防守漏洞"
     ],
-    "value": "市场赔率与模型接近，无显著偏差",
-    "status": ""
+    "value": "模型大幅低估美国攻击力，预期1.81球实际4球",
+    "status": "FT"
   },
   {
     "home": "巴西",

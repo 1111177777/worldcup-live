@@ -83,12 +83,82 @@ FORM_BOOST = {
     "卡塔尔": -10, # 上届全败+预选赛东道主无压力测试
 }
 
+# 主场揭幕战加成（东道主首场比赛）
+HOST_OPENER = {"美国": 1.4, "加拿大": 1.25, "墨西哥": 1.2}  # 攻击力乘数
+
+# 动态校准文件
+CALIBRATE_FILE = os.path.join(DIR, "calibrate.json")
+
+def load_calibrate():
+    """加载赛后校准数据，叠加到 FORM_BOOST 上"""
+    if os.path.exists(CALIBRATE_FILE):
+        with open(CALIBRATE_FILE, 'r', encoding='utf-8') as f:
+            cal = json.load(f)
+        # 把历史校准重新应用到 FORM_BOOST（重启后恢复）
+        for key, v in cal.items():
+            h = key.split(':')[0]
+            a = key.split(':')[1]
+            FORM_BOOST[h] = FORM_BOOST.get(h, 0) + int(v['adj_h'])
+            FORM_BOOST[a] = FORM_BOOST.get(a, 0) + int(v['adj_a'])
+        return cal
+    return {}
+
+def calibrate(matches):
+    """根据已完赛结果自动调整状态分，保存到 calibrate.json"""
+    cal = load_calibrate()
+    updated = False
+    for m in matches:
+        if not m.get('result') or m.get('status') != 'FT':
+            continue
+        h, a, r = m['home'], m['away'], m['result']
+        hg, ag = map(int, r.split(':'))
+        p = predict(h, a)
+        # 预期 vs 实际进球差
+        exp_diff = p['xh'] - p['xa']
+        act_diff = hg - ag
+        surprise = act_diff - exp_diff  # 正数=主队超预期，负数=主队低预期
+
+        # 方向是否正确
+        if hg > ag: act_winner = h
+        elif ag > hg: act_winner = a
+        else: act_winner = None
+        pred_w = 'win' if p['win'] > max(p['draw'], p['loss']) else ('draw' if p['draw'] > max(p['win'], p['loss']) else 'loss')
+        if pred_w == 'win': pred_winner = h
+        elif pred_w == 'loss': pred_winner = a
+        else: pred_winner = None
+
+        # 只有没校准过的才更新
+        key = f"{h}:{a}"
+        if key not in cal:
+            # 调整量 = 偏差球数 × 15 分，上限 60
+            adj = max(-60, min(60, surprise * 15))
+            cal[key] = {
+                'date': m['date'],
+                'result': r,
+                'expected': f"{p['xh']:.1f}-{p['xa']:.1f}",
+                'surprise': round(surprise, 1),
+                'adj_h': round(adj, 0),
+                'adj_a': round(-adj, 0),
+            }
+            # 即时更新 FORM_BOOST
+            FORM_BOOST[h] = FORM_BOOST.get(h, 0) + int(adj)
+            FORM_BOOST[a] = FORM_BOOST.get(a, 0) - int(adj)
+            updated = True
+
+    if updated:
+        with open(CALIBRATE_FILE, 'w', encoding='utf-8') as f:
+            json.dump(cal, f, ensure_ascii=False, indent=2)
+        print(f"   🔧 已校准 {len(cal)} 场比赛，状态分已更新")
+    return cal
+
 def predict(h,a):
     he=ELO.get(h,1700)+FORM_BOOST.get(h,0)
     ae=ELO.get(a,1700)+FORM_BOOST.get(a,0)
     hs=STYLE.get(h,(1.0,1.0)); as_=STYLE.get(a,(1.0,1.0))
+    # 主场揭幕战加成
+    hm_mult = HOST_OPENER.get(h, 1.0)
     d=he-ae+50; gd=d/100*0.4
-    xh=max(0.3, (1.6+gd*0.7)*hs[0]/max(as_[1],0.5))
+    xh=max(0.3, (1.6+gd*0.7)*hs[0]*hm_mult/max(as_[1],0.5))
     xa=max(0.3, (1.2-gd*0.4)*as_[0]/max(hs[1],0.5))
     w=dr=lo=0; sc={}
     for i in range(9):
@@ -273,6 +343,8 @@ def explain(p, m, h, a, d):
 
 def gen():
     with open(SCHEDULE_FILE,encoding='utf-8') as f: matches=json.load(f)
+    # 赛后校准：根据已完赛结果自动调整状态分
+    calibrate(matches)
     now=datetime.now().strftime("%m/%d %H:%M:%S")
     cards,results="",""
     # 按日期排序

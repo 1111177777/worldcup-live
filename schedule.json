@@ -89,7 +89,7 @@
     "odds_home": "1.35",
     "odds_draw": "4.80",
     "odds_away": "9.00",
-    "result": "",
+    "result": "1:1",
     "time": "",
     "injury": "巴全主力，摩洛哥防线完整",
     "risk": [
@@ -97,7 +97,7 @@
       "非洲冠军防线"
     ],
     "value": "让球盘口偏浅，巴西穿盘概率被低估",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "海地",
@@ -109,12 +109,12 @@
     "odds_home": "8.00",
     "odds_draw": "4.20",
     "odds_away": "1.40",
-    "result": "",
+    "result": "0:1",
     "time": "",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "澳大利亚",
@@ -126,12 +126,12 @@
     "odds_home": "3.20",
     "odds_draw": "3.10",
     "odds_away": "2.30",
-    "result": "",
+    "result": "2:0",
     "time": "",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "卡塔尔",
@@ -143,12 +143,12 @@
     "odds_home": "9.00",
     "odds_draw": "4.50",
     "odds_away": "1.35",
-    "result": "",
+    "result": "1:1",
     "time": "",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "德国",

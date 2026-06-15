@@ -231,12 +231,12 @@
     "odds_home": "1.12",
     "odds_draw": "8.50",
     "odds_away": "19.00",
-    "result": "",
+    "result": "0:0",
     "time": "",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "沙特阿拉伯",

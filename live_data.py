@@ -83,6 +83,7 @@ PLAY_STYLE = {
     "厄瓜多尔":"高原主场+速度型，客场表现减半",
     "塞内加尔":"身体碾压+速度反击，防守组织一般",
     "埃及":"萨拉赫单核+防守反击，其余球员平庸",
+    "乌拉圭":"南美铁血防守+苏亚雷斯经验，进攻效率偏低",
     "突尼斯":"非洲防反+纪律性好，进球效率低",
     "科特迪瓦":"身体天赋+个人能力，战术松散",
     "加纳":"身体对抗+速度型边锋，防守漏人",
@@ -160,6 +161,38 @@ FORM_BOOST = {
 # 主场揭幕战加成（东道主首场比赛）
 HOST_OPENER = {"美国": 1.4, "加拿大": 1.25, "墨西哥": 1.2}  # 攻击力乘数
 
+# 战术克制系数（基于 TEAM_NOTES 的关键词匹配）
+def tactic_matchup(h, a):
+    """返回 (主队攻击修正, 客队攻击修正)：强队传控打大巴→攻击力打折；弱队防反→有机会偷"""
+    hn, an = PLAY_STYLE.get(h, ''), PLAY_STYLE.get(a, '')
+    h_adj, a_adj = 1.0, 1.0
+
+    # 弱队标签（会蹲坑防守）
+    weak_tags = ['大巴', '蹲坑', '铁血防守', '死守', '铁桶', '首秀', '经验不足', '大赛未知']
+    # 强队传控 vs 弱队蹲坑 → 强队攻击打折
+    is_possession_strong = any(t in hn for t in ['传控', '技术流', '桑巴'])
+    is_weak_defensive = any(t in an for t in weak_tags)
+    if is_possession_strong and is_weak_defensive:
+        h_adj = 0.70  # 传控打大巴，效率大减
+    elif is_weak_defensive:
+        h_adj = 0.80  # 弱队蹲坑，进攻方总归不舒服
+
+    # 弱队防反 → 反击有威胁
+    if any(t in an for t in ['防反', '反击', '防守反击', '快速反击']):
+        a_adj = 1.35
+
+    # 首秀+经验不足 → 攻击力大幅削弱，防守也不稳
+    if '首秀' in an or '经验不足' in an:
+        a_adj *= 0.55  # 第一次上场腿软
+        if not is_possession_strong:
+            h_adj = 1.15  # 虐菜局反而放开手脚
+
+    # 强队高压 vs 弱队粗糙 → 弱队基本组织不了进攻
+    if any(t in hn for t in ['高位逼抢', '高压', '全攻全守']) and any(t in an for t in ['技术粗糙', '技术含量低', '创造力弱']):
+        a_adj *= 0.65
+
+    return h_adj, a_adj
+
 # 动态校准文件
 CALIBRATE_FILE = os.path.join(DIR, "calibrate.json")
 
@@ -231,9 +264,11 @@ def predict(h,a):
     hs=STYLE.get(h,(1.0,1.0)); as_=STYLE.get(a,(1.0,1.0))
     # 主场揭幕战加成
     hm_mult = HOST_OPENER.get(h, 1.0)
+    # 战术风格克制（传控vs大巴、防反vs高压等）
+    tactic_h, tactic_a = tactic_matchup(h, a)
     d=he-ae+50; gd=d/100*0.4
-    xh=max(0.3, (1.6+gd*0.7)*hs[0]*hm_mult/max(as_[1],0.5))
-    xa=max(0.3, (1.2-gd*0.4)*as_[0]/max(hs[1],0.5))
+    xh=max(0.3, (1.6+gd*0.7)*hs[0]*hm_mult*tactic_h/max(as_[1],0.5))
+    xa=max(0.3, (1.2-gd*0.4)*as_[0]*tactic_a/max(hs[1],0.5))
     w=dr=lo=0; sc={}
     for i in range(9):
         for j in range(9):
@@ -476,6 +511,9 @@ async function check(){{ const p=document.getElementById('pw').value; const h=aw
 function init(){{ if(localStorage.getItem('wc_auth')==='1'){{ document.getElementById('gate').style.display='none';document.getElementById('main').style.display='block'; }} }}
 </script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>世界杯实时分析</title><style>
 *{{margin:0;padding:0;box-sizing:border-box}}
 body{{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:12px;max-width:500px;margin:0 auto;color:#333}}

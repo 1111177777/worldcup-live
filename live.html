@@ -43,6 +43,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .tag-injury{background:#fff0f0;color:#c44;border:1px solid #fcc}
 .tag-risk{background:#fff8e0;color:#b80;border:1px solid #fe8}
 .tag-value{background:#f0f8ff;color:#36c;border:1px solid #bdf}
+.think{font-size:12px;color:#666;line-height:1.6;padding:10px;background:#fafafa;border-left:3px solid #111;margin:4px 0}
 .rf{text-align:center;font-size:11px;color:#999;margin:10px 0}
 .ft{text-align:center;color:#ccc;font-size:10px;margin:20px 0;line-height:1.6}
 .nav{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 12px;justify-content:center}
@@ -65,7 +66,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <h1>世界杯 · 实时分析</h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 赔率对比</div>
-<div class="upd">更新 06/15 23:22:47 · 每5分钟自动刷新</div>
+<div class="upd">更新 06/15 23:35:48 · 每5分钟自动刷新</div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
 <div class="results"><div class="rt">⚡ 最新赛果</div><div class="res"><span>🇲🇽 墨西哥 2:0 南非 🇿🇦</span><span class="d">6/11</span></div><div class="res"><span>🇰🇷 韩国 2:1 捷克 🇨🇿</span><span class="d">6/11</span></div><div class="res"><span>🇨🇦 加拿大 1:1 波黑 🇧🇦</span><span class="d">6/12</span></div><div class="res"><span>🇺🇸 美国 4:1 巴拉圭 🇵🇾</span><span class="d">6/12</span></div><div class="res"><span>🇧🇷 巴西 1:1 摩洛哥 🇲🇦</span><span class="d">6/13</span></div><div class="res"><span>🇭🇹 海地 0:1 苏格兰 🏴</span><span class="d">6/13</span></div><div class="res"><span>🇦🇺 澳大利亚 2:0 土耳其 🇹🇷</span><span class="d">6/13</span></div><div class="res"><span>🇶🇦 卡塔尔 1:1 瑞士 🇨🇭</span><span class="d">6/13</span></div><div class="res"><span>🇩🇪 德国 7:1 库拉索 🇨🇼</span><span class="d">6/14</span></div><div class="res"><span>🇨🇮 科特迪瓦 1:0 厄瓜多尔 🇪🇨</span><span class="d">6/14</span></div><div class="res"><span>🇳🇱 荷兰 2:2 日本 🇯🇵</span><span class="d">6/14</span></div><div class="res"><span>🇸🇪 瑞典 5:1 突尼斯 🇹🇳</span><span class="d">6/14</span></div></div>
 
@@ -83,7 +84,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 9.9%</span> <span class="c"><b>4:0</b> 9.0%</span> <span class="c"><b>2:0</b> 8.1%</span> <span class="c"><b>3:1</b> 7.5%</span> <span class="c"><b>4:1</b> 6.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.6球，大比分概率高——4球及以上占56%。</div><div class="cs"><span class="c">0球 1.2%</span> <span class="c">1球 5.4%</span> <span class="c">2球 11.9%</span> <span class="c">3球 17.4%</span> <span class="c">4球 19.2%</span> <span class="c">5球 16.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：墨西哥获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">墨西哥 ELO领先218分，明显优势。 倾向墨西哥获胜——主场+ELO优势转化为87.0%胜率。 风格对比：高原主场优势+边路突破，年龄偏大 VS 本土联赛为主+中规中矩，攻击力弱。进攻火力强劲，期望进球3.6球，大比分概率高——4球及以上占56%。 综合判断：倾向：墨西哥获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇰🇷 韩国 vs 捷克 🇨🇿</span><span class="d">6/11</span></div>
@@ -99,7 +100,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 9.8%</span> <span class="c"><b>1:1</b> 8.9%</span> <span class="c"><b>2:0</b> 8.4%</span> <span class="c"><b>1:0</b> 7.7%</span> <span class="c"><b>3:1</b> 7.1%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.2球，大比分概率高——4球及以上占41%。</div><div class="cs"><span class="c">0球 3.5%</span> <span class="c">1球 11.7%</span> <span class="c">2球 19.6%</span> <span class="c">3球 22.0%</span> <span class="c">4球 18.4%</span> <span class="c">5球 12.4%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：韩国获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">韩国 ELO略高100分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 捷克爆冷概率19%</span> 倾向韩国获胜——主场+ELO优势转化为60.7%胜率。 风格对比：孙兴慜速度反击+跑动量大，防空是软肋 VS 定位球威胁大(欧洲最多)+新帅磨合中。进攻火力强劲，期望进球2.2球，大比分概率高——4球及以上占41%。 综合判断：倾向：韩国获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇨🇦 加拿大 vs 波黑 🇧🇦</span><span class="d">6/12</span></div>
@@ -115,7 +116,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 9.5%</span> <span class="c"><b>1:1</b> 8.5%</span> <span class="c"><b>2:0</b> 7.4%</span> <span class="c"><b>3:1</b> 7.1%</span> <span class="c"><b>1:0</b> 6.6%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.2球，大比分概率高——4球及以上占44%。</div><div class="cs"><span class="c">0球 2.9%</span> <span class="c">1球 10.4%</span> <span class="c">2球 18.3%</span> <span class="c">3球 21.5%</span> <span class="c">4球 19.0%</span> <span class="c">5球 13.4%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：加拿大获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">加拿大 ELO略高71分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 波黑爆冷概率21%</span> 倾向加拿大获胜——主场+ELO优势转化为59.2%胜率。 风格对比：戴维斯核心+边路速度，防守不稳定 VS 哲科依赖症+中场创造力弱。进攻火力强劲，期望进球2.2球，大比分概率高——4球及以上占44%。 综合判断：倾向：加拿大获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇺🇸 美国 vs 巴拉圭 🇵🇾</span><span class="d">6/12</span></div>
@@ -131,7 +132,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 10.5%</span> <span class="c"><b>3:0</b> 9.5%</span> <span class="c"><b>2:1</b> 8.9%</span> <span class="c"><b>3:1</b> 8.0%</span> <span class="c"><b>1:0</b> 7.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.7球，大比分概率高——4球及以上占44%。</div><div class="cs"><span class="c">0球 2.9%</span> <span class="c">1球 10.3%</span> <span class="c">2球 18.2%</span> <span class="c">3球 21.4%</span> <span class="c">4球 19.0%</span> <span class="c">5球 13.5%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：美国获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">美国 ELO领先117分，明显优势。 倾向美国获胜——主场+ELO优势转化为76.3%胜率。 风格对比：普利西奇核心+主场气势，防守纪律一般 VS 南美大巴+防守硬，进攻靠定位球。进攻火力强劲，期望进球2.7球，大比分概率高——4球及以上占44%。 综合判断：倾向：美国获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🇧🇷 巴西 vs 摩洛哥 🇲🇦</span><span class="d">6/13</span></div>
@@ -147,7 +148,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:0</b> 12.5%</span> <span class="c"><b>2:0</b> 12.2%</span> <span class="c"><b>1:1</b> 10.0%</span> <span class="c"><b>2:1</b> 9.7%</span> <span class="c"><b>3:0</b> 7.9%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球集中在2-3球（46%），典型世界杯节奏。但也有24%概率打出4球以上。</div><div class="cs"><span class="c">0球 6.4%</span> <span class="c">1球 17.6%</span> <span class="c">2球 24.2%</span> <span class="c">3球 22.2%</span> <span class="c">4球 15.2%</span> <span class="c">5球 8.4%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：巴西获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">巴西 ELO领先125分，明显优势。 倾向巴西获胜——主场+ELO优势转化为64.4%胜率。 风格对比：桑巴技术流+个人能力突出，防守偶尔走神 VS 铁血防守+快速反击，定位球有威胁。进球集中在2-3球（46%），典型世界杯节奏。但也有24%概率打出4球以上。 综合判断：倾向：巴西获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🇭🇹 海地 vs 苏格兰 🏴</span><span class="d">6/13</span></div>
@@ -163,7 +164,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:2</b> 10.1%</span> <span class="c"><b>1:2</b> 9.6%</span> <span class="c"><b>0:1</b> 8.3%</span> <span class="c"><b>0:3</b> 8.2%</span> <span class="c"><b>1:1</b> 7.9%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻乏力，15%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 3.4%</span> <span class="c">1球 11.6%</span> <span class="c">2球 19.5%</span> <span class="c">3球 21.9%</span> <span class="c">4球 18.5%</span> <span class="c">5球 12.5%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：苏格兰获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差92分，实力非常接近。 倾向苏格兰——ELO差距在下半场可能体现。 风格对比：首秀紧张+身体天赋好，战术纪律差 VS 身体对抗+跑不死，技术含量低。进攻乏力，15%概率低于2球，小球倾向明显。 综合判断：倾向：苏格兰获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇦🇺 澳大利亚 vs 土耳其 🇹🇷</span><span class="d">6/13</span></div>
@@ -179,7 +180,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 9.5%</span> <span class="c"><b>1:1</b> 8.2%</span> <span class="c"><b>2:0</b> 8.0%</span> <span class="c"><b>3:1</b> 7.4%</span> <span class="c"><b>1:0</b> 6.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占44%。</div><div class="cs"><span class="c">0球 2.9%</span> <span class="c">1球 10.3%</span> <span class="c">2球 18.3%</span> <span class="c">3球 21.5%</span> <span class="c">4球 19.0%</span> <span class="c">5球 13.4%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：澳大利亚获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">澳大利亚 ELO略高72分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 土耳其爆冷概率18%</span> 倾向澳大利亚获胜——主场+ELO优势转化为62.6%胜率。 风格对比：身体流+定位球砸头球，技术粗糙 VS 技术流+恰尔汗奥卢组织，大赛气质差。进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占44%。 综合判断：倾向：澳大利亚获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇶🇦 卡塔尔 vs 瑞士 🇨🇭</span><span class="d">6/13</span></div>
@@ -195,7 +196,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:1</b> 15.3%</span> <span class="c"><b>0:2</b> 12.4%</span> <span class="c"><b>1:1</b> 11.3%</span> <span class="c"><b>0:0</b> 9.4%</span> <span class="c"><b>1:2</b> 9.2%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻乏力，32%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 9.4%</span> <span class="c">1球 22.2%</span> <span class="c">2球 26.3%</span> <span class="c">3球 20.7%</span> <span class="c">4球 12.3%</span> <span class="c">5球 5.8%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：瑞士获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差88分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 卡塔尔爆冷概率17%</span> 倾向瑞士——ELO差距在下半场可能体现。 风格对比：主场死守+归化球员，中场创造力弱 VS 纪律防守+反击效率高，进球能力差。进攻乏力，32%概率低于2球，小球倾向明显。 综合判断：倾向：瑞士获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇩🇪 德国 vs 库拉索 🇨🇼</span><span class="d">6/14</span></div>
@@ -211,7 +212,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>7:0</b> 11.0%</span> <span class="c"><b>6:0</b> 10.9%</span> <span class="c"><b>8:0</b> 9.8%</span> <span class="c"><b>5:0</b> 9.2%</span> <span class="c"><b>4:0</b> 6.4%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球7.1球，大比分概率高——4球及以上占48%。</div><div class="cs"><span class="c">0球 0.1%</span> <span class="c">1球 0.4%</span> <span class="c">2球 1.7%</span> <span class="c">3球 4.1%</span> <span class="c">4球 7.6%</span> <span class="c">5球 11.3%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：德国获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">德国 ELO领先405分，明显优势。 倾向德国获胜——主场+ELO优势转化为71.2%胜率。 风格对比：高压逼抢+快速转换，边路传中威胁大 VS 世界杯首秀+荷甲球员为主，经验不足。进攻火力强劲，期望进球7.1球，大比分概率高——4球及以上占48%。 综合判断：倾向：德国获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇨🇮 科特迪瓦 vs 厄瓜多尔 🇪🇨</span><span class="d">6/14</span></div>
@@ -227,7 +228,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.3%</span> <span class="c"><b>2:1</b> 9.6%</span> <span class="c"><b>1:0</b> 8.0%</span> <span class="c"><b>2:0</b> 7.5%</span> <span class="c"><b>1:2</b> 6.6%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球集中在2-3球（44%），典型世界杯节奏。但也有28%概率打出4球以上。</div><div class="cs"><span class="c">0球 4.3%</span> <span class="c">1球 13.6%</span> <span class="c">2球 21.3%</span> <span class="c">3球 22.3%</span> <span class="c">4球 17.5%</span> <span class="c">5球 11.0%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：科特迪瓦获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差6分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 厄瓜多尔爆冷概率26%</span> 倾向科特迪瓦获胜——主场+ELO优势转化为51.0%胜率。 风格对比：身体天赋+个人能力，战术松散 VS 高原主场+速度型，客场表现减半。进球集中在2-3球（44%），典型世界杯节奏。但也有28%概率打出4球以上。 综合判断：倾向：科特迪瓦获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇳🇱 荷兰 vs 日本 🇯🇵</span><span class="d">6/14</span></div>
@@ -243,7 +244,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 9.8%</span> <span class="c"><b>1:2</b> 9.6%</span> <span class="c"><b>0:1</b> 7.5%</span> <span class="c"><b>0:2</b> 7.4%</span> <span class="c"><b>2:1</b> 6.3%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占43%，但30%概率4球以上，16%概率低于2球。</div><div class="cs"><span class="c">0球 3.8%</span> <span class="c">1球 12.5%</span> <span class="c">2球 20.4%</span> <span class="c">3球 22.2%</span> <span class="c">4球 18.1%</span> <span class="c">5球 11.8%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：日本获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差86分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 荷兰爆冷概率25%</span> 倾向日本——ELO差距在下半场可能体现。 风格对比：全攻全守+三线均衡，终结能力一般 VS 技术传控+整体性强，身体对抗吃亏。进球分布分散——2-3球占43%，但30%概率4球以上，16%概率低于2球。 综合判断：倾向：日本获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇸🇪 瑞典 vs 突尼斯 🇹🇳</span><span class="d">6/14</span></div>
@@ -259,7 +260,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 13.9%</span> <span class="c"><b>3:0</b> 11.7%</span> <span class="c"><b>1:0</b> 11.0%</span> <span class="c"><b>2:1</b> 8.4%</span> <span class="c"><b>4:0</b> 7.4%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占37%。</div><div class="cs"><span class="c">0球 4.3%</span> <span class="c">1球 13.6%</span> <span class="c">2球 21.3%</span> <span class="c">3球 22.3%</span> <span class="c">4球 17.5%</span> <span class="c">5球 11.0%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：瑞典获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">瑞典 ELO领先242分，明显优势。 倾向瑞典获胜——主场+ELO优势转化为79.0%胜率。 风格对比：高大身体流+定位球，伊布退役后缺核心 VS 非洲防反+纪律性好，进球效率低。进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占37%。 综合判断：倾向：瑞典获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇪🇸 西班牙 vs 佛得角 🇨🇻</span><span class="d">6/15</span></div>
@@ -275,7 +276,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>5:0</b> 11.9%</span> <span class="c"><b>6:0</b> 11.9%</span> <span class="c"><b>7:0</b> 10.2%</span> <span class="c"><b>4:0</b> 10.0%</span> <span class="c"><b>8:0</b> 7.6%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球6.0球，大比分概率高——4球及以上占58%。</div><div class="cs"><span class="c">0球 0.2%</span> <span class="c">1球 1.2%</span> <span class="c">2球 3.7%</span> <span class="c">3球 7.7%</span> <span class="c">4球 12.1%</span> <span class="c">5球 15.2%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：西班牙获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">西班牙 ELO领先400分，明显优势。 倾向西班牙获胜——主场+ELO优势转化为84.0%胜率。 风格对比：传控为主+高位防线，怕快速反击 VS 首秀+葡萄牙归化球员为主，大赛未知。进攻火力强劲，期望进球6.0球，大比分概率高——4球及以上占58%。 综合判断：倾向：西班牙获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇸🇦 沙特阿拉伯 vs 乌拉圭 🇺🇾</span><span class="d">6/15</span></div>
@@ -291,7 +292,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:1</b> 11.8%</span> <span class="c"><b>0:2</b> 11.4%</span> <span class="c"><b>1:1</b> 10.1%</span> <span class="c"><b>1:2</b> 9.8%</span> <span class="c"><b>0:3</b> 7.4%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻乏力，23%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 6.1%</span> <span class="c">1球 17.0%</span> <span class="c">2球 23.8%</span> <span class="c">3球 22.3%</span> <span class="c">4球 15.6%</span> <span class="c">5球 8.7%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：乌拉圭获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差100分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 沙特阿拉伯爆冷概率16%</span> 倾向乌拉圭——ELO差距在下半场可能体现。 风格对比：技术传控+身体吃亏，防守脆弱 VS 。进攻乏力，23%概率低于2球，小球倾向明显。 综合判断：倾向：乌拉圭获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇧🇪 比利时 vs 埃及 🇪🇬</span><span class="d">6/15</span></div>
@@ -307,7 +308,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 10.0%</span> <span class="c"><b>3:0</b> 9.1%</span> <span class="c"><b>2:1</b> 8.9%</span> <span class="c"><b>3:1</b> 8.1%</span> <span class="c"><b>1:0</b> 7.4%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.7球，大比分概率高——4球及以上占46%。</div><div class="cs"><span class="c">0球 2.7%</span> <span class="c">1球 9.8%</span> <span class="c">2球 17.6%</span> <span class="c">3球 21.2%</span> <span class="c">4球 19.1%</span> <span class="c">5球 13.8%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：比利时获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">比利时 ELO领先225分，明显优势。 倾向比利时获胜——主场+ELO优势转化为75.8%胜率。 风格对比：黄金一代老化+进攻靠个人，防守有漏洞 VS 萨拉赫单核+防守反击，其余球员平庸。进攻火力强劲，期望进球2.7球，大比分概率高——4球及以上占46%。 综合判断：倾向：比利时获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇮🇷 伊朗 vs 新西兰 🇳🇿</span><span class="d">6/15</span></div>
@@ -323,7 +324,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 14.9%</span> <span class="c"><b>3:0</b> 12.2%</span> <span class="c"><b>1:0</b> 12.1%</span> <span class="c"><b>2:1</b> 8.2%</span> <span class="c"><b>4:0</b> 7.5%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占34%。</div><div class="cs"><span class="c">0球 4.9%</span> <span class="c">1球 14.8%</span> <span class="c">2球 22.3%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.9%</span> <span class="c">5球 10.1%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：伊朗获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">伊朗 ELO领先180分，明显优势。 倾向伊朗获胜——主场+ELO优势转化为79.1%胜率。 风格对比：铁桶防守+阿兹蒙反击，进球靠偷 VS 英式冲吊+身体碾压，技术粗糙。进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占34%。 综合判断：倾向：伊朗获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇫🇷 法国 vs 塞内加尔 🇸🇳</span><span class="d">6/16</span></div>
@@ -339,7 +340,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 9.5%</span> <span class="c"><b>2:0</b> 9.0%</span> <span class="c"><b>3:1</b> 8.1%</span> <span class="c"><b>2:1</b> 7.7%</span> <span class="c"><b>4:0</b> 7.5%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.2球，大比分概率高——4球及以上占52%。</div><div class="cs"><span class="c">0球 1.8%</span> <span class="c">1球 7.3%</span> <span class="c">2球 14.6%</span> <span class="c">3球 19.5%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.7%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：法国获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">法国 ELO领先240分，明显优势。 倾向法国获胜——主场+ELO优势转化为81.5%胜率。 风格对比：姆巴佩速度反击+中场控制力强 VS 身体碾压+速度反击，防守组织一般。进攻火力强劲，期望进球3.2球，大比分概率高——4球及以上占52%。 综合判断：倾向：法国获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇮🇶 伊拉克 vs 挪威 🇳🇴</span><span class="d">6/16</span></div>
@@ -355,7 +356,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:2</b> 8.3%</span> <span class="c"><b>1:3</b> 8.2%</span> <span class="c"><b>0:2</b> 7.9%</span> <span class="c"><b>0:3</b> 7.9%</span> <span class="c"><b>1:4</b> 6.1%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占34%，但35%概率4球以上，9%概率低于2球。</div><div class="cs"><span class="c">0球 1.8%</span> <span class="c">1球 7.2%</span> <span class="c">2球 14.4%</span> <span class="c">3球 19.4%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.7%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：挪威获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差145分，实力非常接近。 倾向挪威——ELO差距在下半场可能体现。 风格对比：技术型+亚洲杯表现出色，世界杯经验少 VS 哈兰德终结+厄德高组织，防线年轻。进球分布分散——2-3球占34%，但35%概率4球以上，9%概率低于2球。 综合判断：倾向：挪威获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇦🇷 阿根廷 vs 阿尔及利亚 🇩🇿</span><span class="d">6/16</span></div>
@@ -371,7 +372,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 12.3%</span> <span class="c"><b>4:0</b> 11.2%</span> <span class="c"><b>2:0</b> 10.1%</span> <span class="c"><b>5:0</b> 8.2%</span> <span class="c"><b>3:1</b> 6.6%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.7球，大比分概率高——4球及以上占54%。</div><div class="cs"><span class="c">0球 1.5%</span> <span class="c">1球 6.3%</span> <span class="c">2球 13.2%</span> <span class="c">3球 18.5%</span> <span class="c">4球 19.4%</span> <span class="c">5球 16.3%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：阿根廷获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">阿根廷 ELO领先355分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为90.1%胜率。 风格对比：梅西核心+短传渗透，防守纪律好 VS 非洲强队+马赫雷斯核心，状态起伏大。进攻火力强劲，期望进球3.7球，大比分概率高——4球及以上占54%。 综合判断：倾向：阿根廷获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇦🇹 奥地利 vs 约旦 🇯🇴</span><span class="d">6/16</span></div>
@@ -387,7 +388,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 11.4%</span> <span class="c"><b>4:0</b> 10.8%</span> <span class="c"><b>2:0</b> 9.0%</span> <span class="c"><b>5:0</b> 8.3%</span> <span class="c"><b>3:1</b> 6.6%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.8球，大比分概率高——4球及以上占56%。</div><div class="cs"><span class="c">0球 1.2%</span> <span class="c">1球 5.4%</span> <span class="c">2球 11.9%</span> <span class="c">3球 17.5%</span> <span class="c">4球 19.2%</span> <span class="c">5球 16.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：奥地利获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">奥地利 ELO领先245分，明显优势。 倾向奥地利获胜——主场+ELO优势转化为90.1%胜率。 风格对比：战术执行力强+高位逼抢，终结能力一般 VS 亚洲黑马+防守纪律+归化前锋。进攻火力强劲，期望进球3.8球，大比分概率高——4球及以上占56%。 综合判断：倾向：奥地利获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🏴 英格兰 vs 克罗地亚 🇭🇷</span><span class="d">6/17</span></div>
@@ -403,7 +404,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 12.1%</span> <span class="c"><b>1:0</b> 10.7%</span> <span class="c"><b>2:1</b> 9.5%</span> <span class="c"><b>3:0</b> 9.2%</span> <span class="c"><b>1:1</b> 8.4%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占35%。</div><div class="cs"><span class="c">0球 4.7%</span> <span class="c">1球 14.4%</span> <span class="c">2球 22.0%</span> <span class="c">3球 22.4%</span> <span class="c">4球 17.1%</span> <span class="c">5球 10.5%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：英格兰获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">英格兰 ELO领先205分，明显优势。 倾向英格兰获胜——主场+ELO优势转化为70.9%胜率。 风格对比：青年军速度快+定位球威胁大 VS 莫德里奇最后一舞+经验丰富，体能下降。进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占35%。 综合判断：倾向：英格兰获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🇬🇭 加纳 vs 巴拿马 🇵🇦</span><span class="d">6/17</span></div>
@@ -419,7 +420,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 9.2%</span> <span class="c"><b>2:0</b> 8.3%</span> <span class="c"><b>3:1</b> 8.0%</span> <span class="c"><b>4:0</b> 7.7%</span> <span class="c"><b>2:1</b> 7.2%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.3球，大比分概率高——4球及以上占54%。</div><div class="cs"><span class="c">0球 1.5%</span> <span class="c">1球 6.3%</span> <span class="c">2球 13.2%</span> <span class="c">3球 18.5%</span> <span class="c">4球 19.4%</span> <span class="c">5球 16.3%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：加纳获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">加纳 ELO略高90分，主场加权后有优势。 倾向加纳获胜——主场+ELO优势转化为83.0%胜率。 风格对比：身体对抗+速度型边锋，防守漏人 VS 身体对抗+定位球，整体实力弱。进攻火力强劲，期望进球3.3球，大比分概率高——4球及以上占54%。 综合判断：倾向：加纳获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇵🇹 葡萄牙 vs 刚果民主共和国 🇨🇩</span><span class="d">6/17</span></div>
@@ -435,7 +436,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>4:0</b> 9.8%</span> <span class="c"><b>5:0</b> 9.8%</span> <span class="c"><b>6:0</b> 8.2%</span> <span class="c"><b>3:0</b> 7.9%</span> <span class="c"><b>7:0</b> 5.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球5.0球，大比分概率高——4球及以上占61%。</div><div class="cs"><span class="c">0球 0.4%</span> <span class="c">1球 2.1%</span> <span class="c">2球 5.9%</span> <span class="c">3球 11.0%</span> <span class="c">4球 15.3%</span> <span class="c">5球 17.0%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：葡萄牙获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">葡萄牙 ELO领先320分，明显优势。 倾向葡萄牙获胜——主场+ELO优势转化为89.7%胜率。 风格对比：C罗终结+中场创造力，防线偏老 VS 身体天赋+速度，战术松散。进攻火力强劲，期望进球5.0球，大比分概率高——4球及以上占61%。 综合判断：倾向：葡萄牙获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇺🇿 乌兹别克斯坦 vs 哥伦比亚 🇨🇴</span><span class="d">6/17</span></div>
@@ -451,7 +452,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:2</b> 9.7%</span> <span class="c"><b>0:3</b> 9.6%</span> <span class="c"><b>1:2</b> 8.2%</span> <span class="c"><b>1:3</b> 8.1%</span> <span class="c"><b>0:4</b> 7.1%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻乏力，11%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 2.2%</span> <span class="c">1球 8.4%</span> <span class="c">2球 16.1%</span> <span class="c">3球 20.4%</span> <span class="c">4球 19.4%</span> <span class="c">5球 14.8%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：哥伦比亚获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差175分，实力非常接近。 倾向哥伦比亚——ELO差距在下半场可能体现。 风格对比：首秀+青年军为主，冲击力强经验弱 VS 迪亚斯速度+技术型，防守偶尔犯浑。进攻乏力，11%概率低于2球，小球倾向明显。 综合判断：倾向：哥伦比亚获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇨🇿 捷克 vs 南非 🇿🇦</span><span class="d">6/18</span></div>
@@ -467,7 +468,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 11.1%</span> <span class="c"><b>2:1</b> 9.5%</span> <span class="c"><b>1:0</b> 9.3%</span> <span class="c"><b>3:0</b> 8.8%</span> <span class="c"><b>1:1</b> 8.0%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.4球，大比分概率高——4球及以上占39%。</div><div class="cs"><span class="c">0球 3.9%</span> <span class="c">1球 12.7%</span> <span class="c">2球 20.6%</span> <span class="c">3球 22.2%</span> <span class="c">4球 18.0%</span> <span class="c">5球 11.7%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：捷克获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">捷克 ELO领先144分，明显优势。 倾向捷克获胜——主场+ELO优势转化为71.0%胜率。 风格对比：定位球威胁大(欧洲最多)+新帅磨合中 VS 本土联赛为主+中规中矩，攻击力弱。进攻火力强劲，期望进球2.4球，大比分概率高——4球及以上占39%。 综合判断：倾向：捷克获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇲🇽 墨西哥 vs 韩国 🇰🇷</span><span class="d">6/18</span></div>
@@ -483,7 +484,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 8.5%</span> <span class="c"><b>3:1</b> 8.0%</span> <span class="c"><b>2:0</b> 6.7%</span> <span class="c"><b>3:0</b> 6.3%</span> <span class="c"><b>1:1</b> 6.1%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.8球，大比分概率高——4球及以上占52%。</div><div class="cs"><span class="c">0球 1.7%</span> <span class="c">1球 7.0%</span> <span class="c">2球 14.2%</span> <span class="c">3球 19.2%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：墨西哥获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">墨西哥 ELO略高74分，主场加权后有优势。 倾向墨西哥获胜——主场+ELO优势转化为69.3%胜率。 风格对比：高原主场优势+边路突破，年龄偏大 VS 孙兴慜速度反击+跑动量大，防空是软肋。进攻火力强劲，期望进球2.8球，大比分概率高——4球及以上占52%。 综合判断：倾向：墨西哥获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇨🇭 瑞士 vs 波黑 🇧🇦</span><span class="d">6/18</span></div>
@@ -499,7 +500,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:0</b> 12.9%</span> <span class="c"><b>1:1</b> 11.3%</span> <span class="c"><b>2:0</b> 11.0%</span> <span class="c"><b>2:1</b> 9.6%</span> <span class="c"><b>0:0</b> 7.5%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球集中在2-3球（47%），典型世界杯节奏。但也有21%概率打出4球以上。</div><div class="cs"><span class="c">0球 7.5%</span> <span class="c">1球 19.5%</span> <span class="c">2球 25.2%</span> <span class="c">3球 21.7%</span> <span class="c">4球 14.0%</span> <span class="c">5球 7.3%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：瑞士获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">瑞士 ELO领先147分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 波黑爆冷概率19%</span> 倾向瑞士获胜——主场+ELO优势转化为57.1%胜率。 风格对比：纪律防守+反击效率高，进球能力差 VS 哲科依赖症+中场创造力弱。进球集中在2-3球（47%），典型世界杯节奏。但也有21%概率打出4球以上。 综合判断：倾向：瑞士获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇨🇦 加拿大 vs 卡塔尔 🇶🇦</span><span class="d">6/18</span></div>
@@ -515,7 +516,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 10.6%</span> <span class="c"><b>2:0</b> 9.3%</span> <span class="c"><b>4:0</b> 9.1%</span> <span class="c"><b>3:1</b> 7.6%</span> <span class="c"><b>2:1</b> 6.7%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.4球，大比分概率高——4球及以上占53%。</div><div class="cs"><span class="c">0球 1.6%</span> <span class="c">1球 6.6%</span> <span class="c">2球 13.7%</span> <span class="c">3球 18.8%</span> <span class="c">4球 19.5%</span> <span class="c">5球 16.1%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：加拿大获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">加拿大 ELO领先112分，明显优势。 倾向加拿大获胜——主场+ELO优势转化为86.1%胜率。 风格对比：戴维斯核心+边路速度，防守不稳定 VS 主场死守+归化球员，中场创造力弱。进攻火力强劲，期望进球3.4球，大比分概率高——4球及以上占53%。 综合判断：倾向：加拿大获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🇧🇷 巴西 vs 海地 🇭🇹</span><span class="d">6/19</span></div>
@@ -531,7 +532,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>7:0</b> 10.8%</span> <span class="c"><b>6:0</b> 10.5%</span> <span class="c"><b>8:0</b> 9.8%</span> <span class="c"><b>5:0</b> 8.7%</span> <span class="c"><b>4:0</b> 6.0%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球7.2球，大比分概率高——4球及以上占46%。</div><div class="cs"><span class="c">0球 0.1%</span> <span class="c">1球 0.4%</span> <span class="c">2球 1.5%</span> <span class="c">3球 3.8%</span> <span class="c">4球 7.2%</span> <span class="c">5球 10.8%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：巴西获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">巴西 ELO领先421分，明显优势。 倾向巴西获胜——主场+ELO优势转化为69.6%胜率。 风格对比：桑巴技术流+个人能力突出，防守偶尔走神 VS 首秀紧张+身体天赋好，战术纪律差。进攻火力强劲，期望进球7.2球，大比分概率高——4球及以上占46%。 综合判断：倾向：巴西获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🏴 苏格兰 vs 摩洛哥 🇲🇦</span><span class="d">6/19</span></div>
@@ -547,7 +548,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:1</b> 14.4%</span> <span class="c"><b>1:1</b> 13.0%</span> <span class="c"><b>0:0</b> 11.2%</span> <span class="c"><b>1:0</b> 10.1%</span> <span class="c"><b>0:2</b> 9.2%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻乏力，36%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 11.2%</span> <span class="c">1球 24.5%</span> <span class="c">2球 26.8%</span> <span class="c">3球 19.6%</span> <span class="c">4球 10.7%</span> <span class="c">5球 4.7%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">建议观望，平局概率偏高</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差104分，实力非常接近。 三者接近——平局往往被市场低估。 风格对比：身体对抗+跑不死，技术含量低 VS 铁血防守+快速反击，定位球有威胁。进攻乏力，36%概率低于2球，小球倾向明显。 综合判断：建议观望，平局概率偏高。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇹🇷 土耳其 vs 巴拉圭 🇵🇾</span><span class="d">6/19</span></div>
@@ -563,7 +564,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:0</b> 11.9%</span> <span class="c"><b>1:1</b> 11.2%</span> <span class="c"><b>2:0</b> 10.3%</span> <span class="c"><b>2:1</b> 9.8%</span> <span class="c"><b>0:0</b> 6.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球集中在2-3球（47%），典型世界杯节奏。但也有23%概率打出4球以上。</div><div class="cs"><span class="c">0球 6.8%</span> <span class="c">1球 18.3%</span> <span class="c">2球 24.6%</span> <span class="c">3球 22.0%</span> <span class="c">4球 14.8%</span> <span class="c">5球 7.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：土耳其获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">土耳其 ELO略高80分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 巴拉圭爆冷概率20%</span> 倾向土耳其获胜——主场+ELO优势转化为56.1%胜率。 风格对比：技术流+恰尔汗奥卢组织，大赛气质差 VS 南美大巴+防守硬，进攻靠定位球。进球集中在2-3球（47%），典型世界杯节奏。但也有23%概率打出4球以上。 综合判断：倾向：土耳其获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇺🇸 美国 vs 澳大利亚 🇦🇺</span><span class="d">6/19</span></div>
@@ -579,7 +580,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 8.1%</span> <span class="c"><b>3:1</b> 7.8%</span> <span class="c"><b>2:0</b> 6.1%</span> <span class="c"><b>3:0</b> 5.9%</span> <span class="c"><b>4:1</b> 5.7%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占54%。</div><div class="cs"><span class="c">0球 1.5%</span> <span class="c">1球 6.2%</span> <span class="c">2球 13.0%</span> <span class="c">3球 18.4%</span> <span class="c">4球 19.4%</span> <span class="c">5球 16.4%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：美国获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">美国 ELO略高65分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 澳大利亚爆冷概率15%</span> 倾向美国获胜——主场+ELO优势转化为69.0%胜率。 风格对比：普利西奇核心+主场气势，防守纪律一般 VS 身体流+定位球砸头球，技术粗糙。进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占54%。 综合判断：倾向：美国获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇩🇪 德国 vs 科特迪瓦 🇨🇮</span><span class="d">6/20</span></div>
@@ -595,7 +596,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 10.0%</span> <span class="c"><b>4:0</b> 9.2%</span> <span class="c"><b>2:0</b> 8.2%</span> <span class="c"><b>3:1</b> 7.4%</span> <span class="c"><b>4:1</b> 6.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.7球，大比分概率高——4球及以上占56%。</div><div class="cs"><span class="c">0球 1.2%</span> <span class="c">1球 5.3%</span> <span class="c">2球 11.8%</span> <span class="c">3球 17.3%</span> <span class="c">4球 19.1%</span> <span class="c">5球 16.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：德国获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">德国 ELO领先288分，明显优势。 倾向德国获胜——主场+ELO优势转化为87.4%胜率。 风格对比：高压逼抢+快速转换，边路传中威胁大 VS 身体天赋+个人能力，战术松散。进攻火力强劲，期望进球3.7球，大比分概率高——4球及以上占56%。 综合判断：倾向：德国获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇪🇨 厄瓜多尔 vs 库拉索 🇨🇼</span><span class="d">6/20</span></div>
@@ -611,7 +612,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>4:0</b> 11.9%</span> <span class="c"><b>3:0</b> 11.9%</span> <span class="c"><b>5:0</b> 9.5%</span> <span class="c"><b>2:0</b> 8.9%</span> <span class="c"><b>6:0</b> 6.4%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球4.0球，大比分概率高——4球及以上占57%。</div><div class="cs"><span class="c">0球 1.1%</span> <span class="c">1球 5.0%</span> <span class="c">2球 11.2%</span> <span class="c">3球 16.9%</span> <span class="c">4球 19.0%</span> <span class="c">5球 17.1%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：厄瓜多尔获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">厄瓜多尔 ELO领先223分，明显优势。 倾向厄瓜多尔获胜——主场+ELO优势转化为91.6%胜率。 风格对比：高原主场+速度型，客场表现减半 VS 世界杯首秀+荷甲球员为主，经验不足。进攻火力强劲，期望进球4.0球，大比分概率高——4球及以上占57%。 综合判断：倾向：厄瓜多尔获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇳🇱 荷兰 vs 瑞典 🇸🇪</span><span class="d">6/20</span></div>
@@ -627,7 +628,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.9%</span> <span class="c"><b>2:1</b> 9.2%</span> <span class="c"><b>1:0</b> 8.1%</span> <span class="c"><b>1:2</b> 7.4%</span> <span class="c"><b>2:0</b> 6.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球集中在2-3球（44%），典型世界杯节奏。但也有27%概率打出4球以上。</div><div class="cs"><span class="c">0球 4.8%</span> <span class="c">1球 14.5%</span> <span class="c">2球 22.1%</span> <span class="c">3球 22.4%</span> <span class="c">4球 17.0%</span> <span class="c">5球 10.4%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">建议观望，平局概率偏高</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差31分，实力非常接近。 三者接近——平局往往被市场低估。 风格对比：全攻全守+三线均衡，终结能力一般 VS 高大身体流+定位球，伊布退役后缺核心。进球集中在2-3球（44%），典型世界杯节奏。但也有27%概率打出4球以上。 综合判断：建议观望，平局概率偏高。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇹🇳 突尼斯 vs 日本 🇯🇵</span><span class="d">6/20</span></div>
@@ -643,7 +644,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:2</b> 14.3%</span> <span class="c"><b>0:1</b> 12.8%</span> <span class="c"><b>0:3</b> 10.7%</span> <span class="c"><b>1:2</b> 8.9%</span> <span class="c"><b>1:1</b> 8.0%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻乏力，22%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 5.7%</span> <span class="c">1球 16.3%</span> <span class="c">2球 23.4%</span> <span class="c">3球 22.3%</span> <span class="c">4球 16.0%</span> <span class="c">5球 9.2%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：日本获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差259分，实力非常接近。 倾向日本——ELO差距在下半场可能体现。 风格对比：非洲防反+纪律性好，进球效率低 VS 技术传控+整体性强，身体对抗吃亏。进攻乏力，22%概率低于2球，小球倾向明显。 综合判断：倾向：日本获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇪🇸 西班牙 vs 沙特阿拉伯 🇸🇦</span><span class="d">6/21</span></div>
@@ -659,7 +660,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 11.9%</span> <span class="c"><b>4:0</b> 11.5%</span> <span class="c"><b>2:0</b> 9.2%</span> <span class="c"><b>5:0</b> 8.9%</span> <span class="c"><b>3:1</b> 6.3%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.9球，大比分概率高——4球及以上占56%。</div><div class="cs"><span class="c">0球 1.2%</span> <span class="c">1球 5.4%</span> <span class="c">2球 11.8%</span> <span class="c">3球 17.4%</span> <span class="c">4球 19.2%</span> <span class="c">5球 16.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：西班牙获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">西班牙 ELO领先310分，明显优势。 倾向西班牙获胜——主场+ELO优势转化为90.9%胜率。 风格对比：传控为主+高位防线，怕快速反击 VS 技术传控+身体吃亏，防守脆弱。进攻火力强劲，期望进球3.9球，大比分概率高——4球及以上占56%。 综合判断：倾向：西班牙获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇺🇾 乌拉圭 vs 佛得角 🇨🇻</span><span class="d">6/21</span></div>
@@ -675,7 +676,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>4:0</b> 13.2%</span> <span class="c"><b>5:0</b> 12.7%</span> <span class="c"><b>3:0</b> 10.9%</span> <span class="c"><b>6:0</b> 10.2%</span> <span class="c"><b>7:0</b> 7.0%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球4.8球，大比分概率高——4球及以上占60%。</div><div class="cs"><span class="c">0球 0.6%</span> <span class="c">1球 3.0%</span> <span class="c">2球 7.7%</span> <span class="c">3球 13.2%</span> <span class="c">4球 17.0%</span> <span class="c">5球 17.5%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：乌拉圭获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">乌拉圭 ELO领先290分，明显优势。 倾向乌拉圭获胜——主场+ELO优势转化为92.0%胜率。 风格对比： VS 首秀+葡萄牙归化球员为主，大赛未知。进攻火力强劲，期望进球4.8球，大比分概率高——4球及以上占60%。 综合判断：倾向：乌拉圭获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇧🇪 比利时 vs 伊朗 🇮🇷</span><span class="d">6/21</span></div>
@@ -691,7 +692,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 13.9%</span> <span class="c"><b>1:0</b> 13.2%</span> <span class="c"><b>3:0</b> 9.7%</span> <span class="c"><b>2:1</b> 9.2%</span> <span class="c"><b>1:1</b> 8.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占29%。</div><div class="cs"><span class="c">0球 6.3%</span> <span class="c">1球 17.3%</span> <span class="c">2球 24.0%</span> <span class="c">3球 22.2%</span> <span class="c">4球 15.4%</span> <span class="c">5球 8.5%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：比利时获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">比利时 ELO领先215分，明显优势。 倾向比利时获胜——主场+ELO优势转化为70.8%胜率。 风格对比：黄金一代老化+进攻靠个人，防守有漏洞 VS 铁桶防守+阿兹蒙反击，进球靠偷。进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占29%。 综合判断：倾向：比利时获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇳🇿 新西兰 vs 埃及 🇪🇬</span><span class="d">6/21</span></div>
@@ -707,7 +708,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:2</b> 9.9%</span> <span class="c"><b>1:1</b> 9.5%</span> <span class="c"><b>0:2</b> 9.1%</span> <span class="c"><b>0:1</b> 8.7%</span> <span class="c"><b>1:3</b> 6.9%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占43%，但29%概率4球以上，18%概率低于2球。</div><div class="cs"><span class="c">0球 4.2%</span> <span class="c">1球 13.3%</span> <span class="c">2球 21.1%</span> <span class="c">3球 22.3%</span> <span class="c">4球 17.7%</span> <span class="c">5球 11.2%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：埃及获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差70分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 新西兰爆冷概率19%</span> 倾向埃及——ELO差距在下半场可能体现。 风格对比：英式冲吊+身体碾压，技术粗糙 VS 萨拉赫单核+防守反击，其余球员平庸。进球分布分散——2-3球占43%，但29%概率4球以上，18%概率低于2球。 综合判断：倾向：埃及获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇫🇷 法国 vs 伊拉克 🇮🇶</span><span class="d">6/22</span></div>
@@ -723,7 +724,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>5:0</b> 11.3%</span> <span class="c"><b>6:0</b> 10.4%</span> <span class="c"><b>4:0</b> 10.2%</span> <span class="c"><b>7:0</b> 8.3%</span> <span class="c"><b>3:0</b> 7.3%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球5.5球，大比分概率高——4球及以上占60%。</div><div class="cs"><span class="c">0球 0.3%</span> <span class="c">1球 1.5%</span> <span class="c">2球 4.6%</span> <span class="c">3球 9.1%</span> <span class="c">4球 13.5%</span> <span class="c">5球 16.2%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：法国获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">法国 ELO领先380分，明显优势。 倾向法国获胜——主场+ELO优势转化为87.4%胜率。 风格对比：姆巴佩速度反击+中场控制力强 VS 技术型+亚洲杯表现出色，世界杯经验少。进攻火力强劲，期望进球5.5球，大比分概率高——4球及以上占60%。 综合判断：倾向：法国获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇳🇴 挪威 vs 塞内加尔 🇸🇳</span><span class="d">6/22</span></div>
@@ -739,7 +740,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 8.7%</span> <span class="c"><b>3:1</b> 7.6%</span> <span class="c"><b>1:1</b> 6.6%</span> <span class="c"><b>2:0</b> 6.4%</span> <span class="c"><b>2:2</b> 5.9%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.6球，大比分概率高——4球及以上占51%。</div><div class="cs"><span class="c">0球 1.9%</span> <span class="c">1球 7.4%</span> <span class="c">2球 14.8%</span> <span class="c">3球 19.6%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.6%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：挪威获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">挪威 ELO领先105分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 塞内加尔爆冷概率18%</span> 倾向挪威获胜——主场+ELO优势转化为64.6%胜率。 风格对比：哈兰德终结+厄德高组织，防线年轻 VS 身体碾压+速度反击，防守组织一般。进攻火力强劲，期望进球2.6球，大比分概率高——4球及以上占51%。 综合判断：倾向：挪威获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇦🇷 阿根廷 vs 奥地利 🇦🇹</span><span class="d">6/22</span></div>
@@ -755,7 +756,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 10.4%</span> <span class="c"><b>2:0</b> 9.9%</span> <span class="c"><b>4:0</b> 8.1%</span> <span class="c"><b>3:1</b> 8.0%</span> <span class="c"><b>2:1</b> 7.6%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.1球，大比分概率高——4球及以上占50%。</div><div class="cs"><span class="c">0球 2.0%</span> <span class="c">1球 7.8%</span> <span class="c">2球 15.3%</span> <span class="c">3球 20.0%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.3%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：阿根廷获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">阿根廷 ELO领先270分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为82.9%胜率。 风格对比：梅西核心+短传渗透，防守纪律好 VS 战术执行力强+高位逼抢，终结能力一般。进攻火力强劲，期望进球3.1球，大比分概率高——4球及以上占50%。 综合判断：倾向：阿根廷获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇯🇴 约旦 vs 阿尔及利亚 🇩🇿</span><span class="d">6/22</span></div>
@@ -771,7 +772,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.7%</span> <span class="c"><b>1:2</b> 9.8%</span> <span class="c"><b>0:1</b> 9.8%</span> <span class="c"><b>0:2</b> 9.0%</span> <span class="c"><b>1:3</b> 6.0%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占45%，但26%概率4球以上，21%概率低于2球。</div><div class="cs"><span class="c">0球 5.3%</span> <span class="c">1球 15.6%</span> <span class="c">2球 22.9%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.4%</span> <span class="c">5球 9.6%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：阿尔及利亚获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差60分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 约旦爆冷概率22%</span> 倾向阿尔及利亚——ELO差距在下半场可能体现。 风格对比：亚洲黑马+防守纪律+归化前锋 VS 非洲强队+马赫雷斯核心，状态起伏大。进球分布分散——2-3球占45%，但26%概率4球以上，21%概率低于2球。 综合判断：倾向：阿尔及利亚获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🏴 英格兰 vs 加纳 🇬🇭</span><span class="d">6/23</span></div>
@@ -787,7 +788,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 11.9%</span> <span class="c"><b>2:0</b> 10.5%</span> <span class="c"><b>4:0</b> 10.1%</span> <span class="c"><b>3:1</b> 7.3%</span> <span class="c"><b>5:0</b> 6.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.4球，大比分概率高——4球及以上占52%。</div><div class="cs"><span class="c">0球 1.8%</span> <span class="c">1球 7.3%</span> <span class="c">2球 14.6%</span> <span class="c">3球 19.5%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.7%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：英格兰获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">英格兰 ELO领先325分，明显优势。 倾向英格兰获胜——主场+ELO优势转化为87.6%胜率。 风格对比：青年军速度快+定位球威胁大 VS 身体对抗+速度型边锋，防守漏人。进攻火力强劲，期望进球3.4球，大比分概率高——4球及以上占52%。 综合判断：倾向：英格兰获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🇵🇦 巴拿马 vs 克罗地亚 🇭🇷</span><span class="d">6/23</span></div>
@@ -803,7 +804,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:2</b> 11.3%</span> <span class="c"><b>0:3</b> 9.3%</span> <span class="c"><b>1:2</b> 9.3%</span> <span class="c"><b>0:1</b> 9.1%</span> <span class="c"><b>1:3</b> 7.7%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻乏力，16%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 3.7%</span> <span class="c">1球 12.2%</span> <span class="c">2球 20.1%</span> <span class="c">3球 22.1%</span> <span class="c">4球 18.2%</span> <span class="c">5球 12.0%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：克罗地亚获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差110分，实力非常接近。 倾向克罗地亚——ELO差距在下半场可能体现。 风格对比：身体对抗+定位球，整体实力弱 VS 莫德里奇最后一舞+经验丰富，体能下降。进攻乏力，16%概率低于2球，小球倾向明显。 综合判断：倾向：克罗地亚获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇵🇹 葡萄牙 vs 乌兹别克斯坦 🇺🇿</span><span class="d">6/23</span></div>
@@ -819,7 +820,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>5:0</b> 11.0%</span> <span class="c"><b>6:0</b> 10.4%</span> <span class="c"><b>4:0</b> 9.6%</span> <span class="c"><b>7:0</b> 8.4%</span> <span class="c"><b>3:0</b> 6.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球5.7球，大比分概率高——4球及以上占59%。</div><div class="cs"><span class="c">0球 0.2%</span> <span class="c">1球 1.3%</span> <span class="c">2球 4.1%</span> <span class="c">3球 8.4%</span> <span class="c">4球 12.9%</span> <span class="c">5球 15.7%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：葡萄牙获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">葡萄牙 ELO领先360分，明显优势。 倾向葡萄牙获胜——主场+ELO优势转化为86.3%胜率。 风格对比：C罗终结+中场创造力，防线偏老 VS 首秀+青年军为主，冲击力强经验弱。进攻火力强劲，期望进球5.7球，大比分概率高——4球及以上占59%。 综合判断：倾向：葡萄牙获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇨🇴 哥伦比亚 vs 刚果民主共和国 🇨🇩</span><span class="d">6/23</span></div>
@@ -835,7 +836,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>4:0</b> 9.0%</span> <span class="c"><b>3:0</b> 8.7%</span> <span class="c"><b>5:0</b> 7.4%</span> <span class="c"><b>4:1</b> 7.0%</span> <span class="c"><b>3:1</b> 6.7%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球4.1球，大比分概率高——4球及以上占60%。</div><div class="cs"><span class="c">0球 0.7%</span> <span class="c">1球 3.6%</span> <span class="c">2球 8.9%</span> <span class="c">3球 14.5%</span> <span class="c">4球 17.8%</span> <span class="c">5球 17.5%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：哥伦比亚获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">哥伦比亚 ELO领先235分，明显优势。 倾向哥伦比亚获胜——主场+ELO优势转化为88.8%胜率。 风格对比：迪亚斯速度+技术型，防守偶尔犯浑 VS 身体天赋+速度，战术松散。进攻火力强劲，期望进球4.1球，大比分概率高——4球及以上占60%。 综合判断：倾向：哥伦比亚获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🏴 苏格兰 vs 巴西 🇧🇷</span><span class="d">6/24</span></div>
@@ -851,7 +852,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:2</b> 9.9%</span> <span class="c"><b>1:2</b> 9.8%</span> <span class="c"><b>0:1</b> 8.7%</span> <span class="c"><b>1:1</b> 8.6%</span> <span class="c"><b>0:3</b> 7.5%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻乏力，16%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 3.8%</span> <span class="c">1球 12.5%</span> <span class="c">2球 20.4%</span> <span class="c">3球 22.2%</span> <span class="c">4球 18.1%</span> <span class="c">5球 11.8%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：巴西获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差179分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 苏格兰爆冷概率15%</span> 倾向巴西——ELO差距在下半场可能体现。 风格对比：身体对抗+跑不死，技术含量低 VS 桑巴技术流+个人能力突出，防守偶尔走神。进攻乏力，16%概率低于2球，小球倾向明显。 综合判断：倾向：巴西获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GC</span><span class="t">🇲🇦 摩洛哥 vs 海地 🇭🇹</span><span class="d">6/24</span></div>
@@ -867,7 +868,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>4:0</b> 14.5%</span> <span class="c"><b>3:0</b> 14.1%</span> <span class="c"><b>5:0</b> 11.9%</span> <span class="c"><b>2:0</b> 10.3%</span> <span class="c"><b>6:0</b> 8.1%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球4.1球，大比分概率高——4球及以上占56%。</div><div class="cs"><span class="c">0球 1.2%</span> <span class="c">1球 5.4%</span> <span class="c">2球 11.8%</span> <span class="c">3球 17.4%</span> <span class="c">4球 19.2%</span> <span class="c">5球 16.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：摩洛哥获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">摩洛哥 ELO领先346分，明显优势。 倾向摩洛哥获胜——主场+ELO优势转化为93.5%胜率。 风格对比：铁血防守+快速反击，定位球有威胁 VS 首秀紧张+身体天赋好，战术纪律差。进攻火力强劲，期望进球4.1球，大比分概率高——4球及以上占56%。 综合判断：倾向：摩洛哥获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇨🇭 瑞士 vs 加拿大 🇨🇦</span><span class="d">6/24</span></div>
@@ -883,7 +884,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:0</b> 11.2%</span> <span class="c"><b>2:0</b> 10.9%</span> <span class="c"><b>1:1</b> 10.1%</span> <span class="c"><b>2:1</b> 9.9%</span> <span class="c"><b>3:0</b> 7.1%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球集中在2-3球（46%），典型世界杯节奏。但也有25%概率打出4球以上。</div><div class="cs"><span class="c">0球 5.7%</span> <span class="c">1球 16.4%</span> <span class="c">2球 23.4%</span> <span class="c">3球 22.3%</span> <span class="c">4球 16.0%</span> <span class="c">5球 9.1%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：瑞士获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">瑞士 ELO领先126分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 加拿大爆冷概率17%</span> 倾向瑞士获胜——主场+ELO优势转化为61.8%胜率。 风格对比：纪律防守+反击效率高，进球能力差 VS 戴维斯核心+边路速度，防守不稳定。进球集中在2-3球（46%），典型世界杯节奏。但也有25%概率打出4球以上。 综合判断：倾向：瑞士获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇧🇦 波黑 vs 卡塔尔 🇶🇦</span><span class="d">6/24</span></div>
@@ -899,7 +900,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 13.2%</span> <span class="c"><b>3:0</b> 11.6%</span> <span class="c"><b>1:0</b> 9.9%</span> <span class="c"><b>2:1</b> 8.3%</span> <span class="c"><b>4:0</b> 7.7%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.6球，大比分概率高——4球及以上占40%。</div><div class="cs"><span class="c">0球 3.8%</span> <span class="c">1球 12.3%</span> <span class="c">2球 20.2%</span> <span class="c">3球 22.1%</span> <span class="c">4球 18.2%</span> <span class="c">5球 11.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：波黑获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">波黑 ELO略高91分，主场加权后有优势。 倾向波黑获胜——主场+ELO优势转化为80.0%胜率。 风格对比：哲科依赖症+中场创造力弱 VS 主场死守+归化球员，中场创造力弱。进攻火力强劲，期望进球2.6球，大比分概率高——4球及以上占40%。 综合判断：倾向：波黑获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇨🇿 捷克 vs 墨西哥 🇲🇽</span><span class="d">6/24</span></div>
@@ -915,7 +916,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.7%</span> <span class="c"><b>2:1</b> 8.6%</span> <span class="c"><b>1:2</b> 8.1%</span> <span class="c"><b>1:0</b> 7.1%</span> <span class="c"><b>0:1</b> 6.6%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球集中在2-3球（44%），典型世界杯节奏。但也有28%概率打出4球以上。</div><div class="cs"><span class="c">0球 4.4%</span> <span class="c">1球 13.7%</span> <span class="c">2球 21.4%</span> <span class="c">3球 22.3%</span> <span class="c">4球 17.5%</span> <span class="c">5球 11.0%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">建议观望，平局概率偏高</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差24分，实力非常接近。 三者接近——平局往往被市场低估。 风格对比：定位球威胁大(欧洲最多)+新帅磨合中 VS 高原主场优势+边路突破，年龄偏大。进球集中在2-3球（44%），典型世界杯节奏。但也有28%概率打出4球以上。 综合判断：建议观望，平局概率偏高。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇿🇦 南非 vs 韩国 🇰🇷</span><span class="d">6/24</span></div>
@@ -931,7 +932,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.8%</span> <span class="c"><b>1:2</b> 9.5%</span> <span class="c"><b>0:1</b> 8.6%</span> <span class="c"><b>0:2</b> 7.6%</span> <span class="c"><b>2:1</b> 6.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占45%，但27%概率4球以上，19%概率低于2球。</div><div class="cs"><span class="c">0球 4.8%</span> <span class="c">1球 14.6%</span> <span class="c">2球 22.2%</span> <span class="c">3球 22.4%</span> <span class="c">4球 17.0%</span> <span class="c">5球 10.3%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">建议观望，平局概率偏高</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差94分，实力非常接近。 三者接近——平局往往被市场低估。 风格对比：本土联赛为主+中规中矩，攻击力弱 VS 孙兴慜速度反击+跑动量大，防空是软肋。进球分布分散——2-3球占45%，但27%概率4球以上，19%概率低于2球。 综合判断：建议观望，平局概率偏高。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇹🇷 土耳其 vs 美国 🇺🇸</span><span class="d">6/25</span></div>
@@ -947,7 +948,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 9.4%</span> <span class="c"><b>2:1</b> 9.0%</span> <span class="c"><b>1:2</b> 7.2%</span> <span class="c"><b>2:2</b> 6.8%</span> <span class="c"><b>1:0</b> 6.2%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球集中在2-3球（41%），典型世界杯节奏。但也有32%概率打出4球以上。</div><div class="cs"><span class="c">0球 3.2%</span> <span class="c">1球 11.1%</span> <span class="c">2球 19.0%</span> <span class="c">3球 21.8%</span> <span class="c">4球 18.7%</span> <span class="c">5球 12.8%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">建议观望，平局概率偏高</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差13分，实力非常接近。 三者接近——平局往往被市场低估。 风格对比：技术流+恰尔汗奥卢组织，大赛气质差 VS 普利西奇核心+主场气势，防守纪律一般。进球集中在2-3球（41%），典型世界杯节奏。但也有32%概率打出4球以上。 综合判断：建议观望，平局概率偏高。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GD</span><span class="t">🇵🇾 巴拉圭 vs 澳大利亚 🇦🇺</span><span class="d">6/25</span></div>
@@ -963,7 +964,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 12.9%</span> <span class="c"><b>1:0</b> 10.7%</span> <span class="c"><b>0:1</b> 10.3%</span> <span class="c"><b>0:0</b> 8.5%</span> <span class="c"><b>2:1</b> 8.1%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占47%，但20%概率4球以上，30%概率低于2球。</div><div class="cs"><span class="c">0球 8.5%</span> <span class="c">1球 21.0%</span> <span class="c">2球 25.8%</span> <span class="c">3球 21.2%</span> <span class="c">4球 13.1%</span> <span class="c">5球 6.4%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">建议观望，平局概率偏高</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差2分，实力非常接近。 三者接近——平局往往被市场低估。 风格对比：南美大巴+防守硬，进攻靠定位球 VS 身体流+定位球砸头球，技术粗糙。进球分布分散——2-3球占47%，但20%概率4球以上，30%概率低于2球。 综合判断：建议观望，平局概率偏高。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇪🇨 厄瓜多尔 vs 德国 🇩🇪</span><span class="d">6/25</span></div>
@@ -979,7 +980,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:2</b> 9.8%</span> <span class="c"><b>1:1</b> 9.1%</span> <span class="c"><b>0:2</b> 8.9%</span> <span class="c"><b>0:1</b> 8.2%</span> <span class="c"><b>1:3</b> 7.1%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占43%，但30%概率4球以上，16%概率低于2球。</div><div class="cs"><span class="c">0球 3.8%</span> <span class="c">1球 12.5%</span> <span class="c">2球 20.4%</span> <span class="c">3球 22.2%</span> <span class="c">4球 18.1%</span> <span class="c">5球 11.8%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：德国获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差132分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 厄瓜多尔爆冷概率19%</span> 倾向德国——ELO差距在下半场可能体现。 风格对比：高原主场+速度型，客场表现减半 VS 高压逼抢+快速转换，边路传中威胁大。进球分布分散——2-3球占43%，但30%概率4球以上，16%概率低于2球。 综合判断：倾向：德国获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GE</span><span class="t">🇨🇼 库拉索 vs 科特迪瓦 🇨🇮</span><span class="d">6/25</span></div>
@@ -995,7 +996,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:2</b> 10.9%</span> <span class="c"><b>0:3</b> 9.5%</span> <span class="c"><b>1:2</b> 9.1%</span> <span class="c"><b>0:1</b> 8.3%</span> <span class="c"><b>1:3</b> 7.9%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻乏力，14%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 3.2%</span> <span class="c">1球 11.0%</span> <span class="c">2球 18.9%</span> <span class="c">3球 21.7%</span> <span class="c">4球 18.7%</span> <span class="c">5球 12.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：科特迪瓦获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差67分，实力非常接近。 倾向科特迪瓦——ELO差距在下半场可能体现。 风格对比：世界杯首秀+荷甲球员为主，经验不足 VS 身体天赋+个人能力，战术松散。进攻乏力，14%概率低于2球，小球倾向明显。 综合判断：倾向：科特迪瓦获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇳🇱 荷兰 vs 突尼斯 🇹🇳</span><span class="d">6/25</span></div>
@@ -1011,7 +1012,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 12.3%</span> <span class="c"><b>3:0</b> 10.1%</span> <span class="c"><b>1:0</b> 9.9%</span> <span class="c"><b>2:1</b> 9.1%</span> <span class="c"><b>3:1</b> 7.5%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占38%。</div><div class="cs"><span class="c">0球 4.0%</span> <span class="c">1球 12.9%</span> <span class="c">2球 20.7%</span> <span class="c">3球 22.2%</span> <span class="c">4球 17.9%</span> <span class="c">5球 11.5%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：荷兰获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">荷兰 ELO领先223分，明显优势。 倾向荷兰获胜——主场+ELO优势转化为75.1%胜率。 风格对比：全攻全守+三线均衡，终结能力一般 VS 非洲防反+纪律性好，进球效率低。进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占38%。 综合判断：倾向：荷兰获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GF</span><span class="t">🇸🇪 瑞典 vs 日本 🇯🇵</span><span class="d">6/25</span></div>
@@ -1027,7 +1028,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 11.2%</span> <span class="c"><b>1:2</b> 9.1%</span> <span class="c"><b>0:1</b> 8.3%</span> <span class="c"><b>2:1</b> 7.5%</span> <span class="c"><b>1:0</b> 6.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占45%，但27%概率4球以上，20%概率低于2球。</div><div class="cs"><span class="c">0球 5.1%</span> <span class="c">1球 15.1%</span> <span class="c">2球 22.6%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.7%</span> <span class="c">5球 9.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">建议观望，平局概率偏高</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差67分，实力非常接近。 三者接近——平局往往被市场低估。 风格对比：高大身体流+定位球，伊布退役后缺核心 VS 技术传控+整体性强，身体对抗吃亏。进球分布分散——2-3球占45%，但27%概率4球以上，20%概率低于2球。 综合判断：建议观望，平局概率偏高。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇳🇴 挪威 vs 法国 🇫🇷</span><span class="d">6/26</span></div>
@@ -1043,7 +1044,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:2</b> 8.4%</span> <span class="c"><b>1:1</b> 8.0%</span> <span class="c"><b>2:2</b> 7.1%</span> <span class="c"><b>2:1</b> 6.8%</span> <span class="c"><b>1:3</b> 5.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。</div><div class="cs"><span class="c">0球 2.3%</span> <span class="c">1球 8.6%</span> <span class="c">2球 16.2%</span> <span class="c">3球 20.5%</span> <span class="c">4球 19.4%</span> <span class="c">5球 14.7%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">建议观望，平局概率偏高</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差85分，实力非常接近。 三者接近——平局往往被市场低估。 风格对比：哈兰德终结+厄德高组织，防线年轻 VS 姆巴佩速度反击+中场控制力强。进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。 综合判断：建议观望，平局概率偏高。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GI</span><span class="t">🇸🇳 塞内加尔 vs 伊拉克 🇮🇶</span><span class="d">6/26</span></div>
@@ -1059,7 +1060,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 10.3%</span> <span class="c"><b>4:0</b> 9.6%</span> <span class="c"><b>2:0</b> 8.3%</span> <span class="c"><b>3:1</b> 7.2%</span> <span class="c"><b>5:0</b> 7.2%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.7球，大比分概率高——4球及以上占56%。</div><div class="cs"><span class="c">0球 1.2%</span> <span class="c">1球 5.3%</span> <span class="c">2球 11.7%</span> <span class="c">3球 17.3%</span> <span class="c">4球 19.1%</span> <span class="c">5球 16.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：塞内加尔获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">塞内加尔 ELO领先190分，明显优势。 倾向塞内加尔获胜——主场+ELO优势转化为88.3%胜率。 风格对比：身体碾压+速度反击，防守组织一般 VS 技术型+亚洲杯表现出色，世界杯经验少。进攻火力强劲，期望进球3.7球，大比分概率高——4球及以上占56%。 综合判断：倾向：塞内加尔获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇪🇬 埃及 vs 伊朗 🇮🇷</span><span class="d">6/26</span></div>
@@ -1075,7 +1076,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:0</b> 14.2%</span> <span class="c"><b>1:1</b> 12.6%</span> <span class="c"><b>2:0</b> 10.0%</span> <span class="c"><b>0:0</b> 10.0%</span> <span class="c"><b>2:1</b> 8.9%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占47%，但17%概率4球以上，33%概率低于2球。</div><div class="cs"><span class="c">0球 10.0%</span> <span class="c">1球 23.1%</span> <span class="c">2球 26.5%</span> <span class="c">3球 20.3%</span> <span class="c">4球 11.7%</span> <span class="c">5球 5.4%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">建议观望，平局概率偏高</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差40分，实力非常接近。 三者接近——平局往往被市场低估。 风格对比：萨拉赫单核+防守反击，其余球员平庸 VS 铁桶防守+阿兹蒙反击，进球靠偷。进球分布分散——2-3球占47%，但17%概率4球以上，33%概率低于2球。 综合判断：建议观望，平局概率偏高。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GG</span><span class="t">🇳🇿 新西兰 vs 比利时 🇧🇪</span><span class="d">6/26</span></div>
@@ -1091,7 +1092,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:2</b> 11.3%</span> <span class="c"><b>0:3</b> 11.0%</span> <span class="c"><b>1:2</b> 8.0%</span> <span class="c"><b>0:4</b> 8.0%</span> <span class="c"><b>1:3</b> 7.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻乏力，12%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 2.7%</span> <span class="c">1球 9.6%</span> <span class="c">2球 17.5%</span> <span class="c">3球 21.1%</span> <span class="c">4球 19.2%</span> <span class="c">5球 13.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：比利时获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差245分，实力非常接近。 倾向比利时——ELO差距在下半场可能体现。 风格对比：英式冲吊+身体碾压，技术粗糙 VS 黄金一代老化+进攻靠个人，防守有漏洞。进攻乏力，12%概率低于2球，小球倾向明显。 综合判断：倾向：比利时获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇺🇾 乌拉圭 vs 西班牙 🇪🇸</span><span class="d">6/26</span></div>
@@ -1107,7 +1108,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 12.3%</span> <span class="c"><b>1:0</b> 9.9%</span> <span class="c"><b>2:1</b> 8.8%</span> <span class="c"><b>0:1</b> 8.6%</span> <span class="c"><b>1:2</b> 7.6%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占47%，但22%概率4球以上，25%概率低于2球。</div><div class="cs"><span class="c">0球 6.9%</span> <span class="c">1球 18.5%</span> <span class="c">2球 24.7%</span> <span class="c">3球 22.0%</span> <span class="c">4球 14.7%</span> <span class="c">5球 7.8%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">建议观望，平局概率偏高</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差60分，实力非常接近。 三者接近——平局往往被市场低估。 风格对比： VS 传控为主+高位防线，怕快速反击。进球分布分散——2-3球占47%，但22%概率4球以上，25%概率低于2球。 综合判断：建议观望，平局概率偏高。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GH</span><span class="t">🇨🇻 佛得角 vs 沙特阿拉伯 🇸🇦</span><span class="d">6/26</span></div>
@@ -1123,7 +1124,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.5%</span> <span class="c"><b>1:2</b> 9.9%</span> <span class="c"><b>0:1</b> 9.8%</span> <span class="c"><b>0:2</b> 9.3%</span> <span class="c"><b>1:3</b> 6.3%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占45%，但26%概率4球以上，21%概率低于2球。</div><div class="cs"><span class="c">0球 5.2%</span> <span class="c">1球 15.4%</span> <span class="c">2球 22.7%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.6%</span> <span class="c">5球 9.8%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：沙特阿拉伯获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差40分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 佛得角爆冷概率21%</span> 倾向沙特阿拉伯——ELO差距在下半场可能体现。 风格对比：首秀+葡萄牙归化球员为主，大赛未知 VS 技术传控+身体吃亏，防守脆弱。进球分布分散——2-3球占45%，但26%概率4球以上，21%概率低于2球。 综合判断：倾向：沙特阿拉伯获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇨🇴 哥伦比亚 vs 葡萄牙 🇵🇹</span><span class="d">6/27</span></div>
@@ -1139,7 +1140,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 9.2%</span> <span class="c"><b>1:2</b> 8.2%</span> <span class="c"><b>2:1</b> 8.0%</span> <span class="c"><b>2:2</b> 7.1%</span> <span class="c"><b>0:1</b> 5.3%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球集中在2-3球（40%），典型世界杯节奏。但也有32%概率打出4球以上。</div><div class="cs"><span class="c">0球 3.0%</span> <span class="c">1球 10.5%</span> <span class="c">2球 18.4%</span> <span class="c">3球 21.5%</span> <span class="c">4球 18.9%</span> <span class="c">5球 13.3%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">建议观望，平局概率偏高</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差35分，实力非常接近。 三者接近——平局往往被市场低估。 风格对比：迪亚斯速度+技术型，防守偶尔犯浑 VS C罗终结+中场创造力，防线偏老。进球集中在2-3球（40%），典型世界杯节奏。但也有32%概率打出4球以上。 综合判断：建议观望，平局概率偏高。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GK</span><span class="t">🇨🇩 刚果民主共和国 vs 乌兹别克斯坦 🇺🇿</span><span class="d">6/27</span></div>
@@ -1155,7 +1156,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 8.9%</span> <span class="c"><b>3:1</b> 8.0%</span> <span class="c"><b>2:0</b> 7.8%</span> <span class="c"><b>3:0</b> 7.0%</span> <span class="c"><b>1:1</b> 6.6%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.7球，大比分概率高——4球及以上占49%。</div><div class="cs"><span class="c">0球 2.2%</span> <span class="c">1球 8.3%</span> <span class="c">2球 15.9%</span> <span class="c">3球 20.3%</span> <span class="c">4球 19.5%</span> <span class="c">5球 14.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：刚果民主共和国获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">刚果民主共和国 ELO略高90分，主场加权后有优势。 倾向刚果民主共和国获胜——主场+ELO优势转化为70.0%胜率。 风格对比：身体天赋+速度，战术松散 VS 首秀+青年军为主，冲击力强经验弱。进攻火力强劲，期望进球2.7球，大比分概率高——4球及以上占49%。 综合判断：倾向：刚果民主共和国获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇦🇹 奥地利 vs 阿根廷 🇦🇷</span><span class="d">6/27</span></div>
@@ -1171,7 +1172,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.1%</span> <span class="c"><b>1:2</b> 9.9%</span> <span class="c"><b>0:1</b> 9.0%</span> <span class="c"><b>0:2</b> 8.8%</span> <span class="c"><b>1:3</b> 6.5%</span></div></div>
       <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占44%，但28%概率4球以上，19%概率低于2球。</div><div class="cs"><span class="c">0球 4.6%</span> <span class="c">1球 14.1%</span> <span class="c">2球 21.7%</span> <span class="c">3球 22.4%</span> <span class="c">4球 17.3%</span> <span class="c">5球 10.7%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：阿根廷获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差170分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 奥地利爆冷概率21%</span> 倾向阿根廷——ELO差距在下半场可能体现。 风格对比：战术执行力强+高位逼抢，终结能力一般 VS 梅西核心+短传渗透，防守纪律好。进球分布分散——2-3球占44%，但28%概率4球以上，19%概率低于2球。 综合判断：倾向：阿根廷获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GJ</span><span class="t">🇩🇿 阿尔及利亚 vs 约旦 🇯🇴</span><span class="d">6/27</span></div>
@@ -1187,7 +1188,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 11.2%</span> <span class="c"><b>3:0</b> 10.9%</span> <span class="c"><b>2:1</b> 8.1%</span> <span class="c"><b>4:0</b> 7.9%</span> <span class="c"><b>3:1</b> 7.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占46%。</div><div class="cs"><span class="c">0球 2.7%</span> <span class="c">1球 9.7%</span> <span class="c">2球 17.5%</span> <span class="c">3球 21.2%</span> <span class="c">4球 19.2%</span> <span class="c">5球 13.9%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：阿尔及利亚获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">阿尔及利亚 ELO领先160分，明显优势。 倾向阿尔及利亚获胜——主场+ELO优势转化为81.3%胜率。 风格对比：非洲强队+马赫雷斯核心，状态起伏大 VS 亚洲黑马+防守纪律+归化前锋。进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占46%。 综合判断：倾向：阿尔及利亚获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🇵🇦 巴拿马 vs 英格兰 🏴</span><span class="d">6/27</span></div>
@@ -1203,7 +1204,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:3</b> 11.4%</span> <span class="c"><b>0:4</b> 10.6%</span> <span class="c"><b>0:2</b> 9.1%</span> <span class="c"><b>0:5</b> 7.9%</span> <span class="c"><b>1:3</b> 6.8%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻乏力，7%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 1.3%</span> <span class="c">1球 5.7%</span> <span class="c">2球 12.3%</span> <span class="c">3球 17.8%</span> <span class="c">4球 19.3%</span> <span class="c">5球 16.7%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：英格兰获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">两队仅差265分，实力非常接近。 倾向英格兰——ELO差距在下半场可能体现。 风格对比：身体对抗+定位球，整体实力弱 VS 青年军速度快+定位球威胁大。进攻乏力，7%概率低于2球，小球倾向明显。 综合判断：倾向：英格兰获胜。</div></div>
     </div>
     <div class="match">
       <div class="mh"><span class="g">GL</span><span class="t">🇭🇷 克罗地亚 vs 加纳 🇬🇭</span><span class="d">6/27</span></div>
@@ -1219,7 +1220,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 12.6%</span> <span class="c"><b>1:0</b> 11.4%</span> <span class="c"><b>2:1</b> 9.5%</span> <span class="c"><b>3:0</b> 9.2%</span> <span class="c"><b>1:1</b> 8.7%</span></div></div>
       <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.2球，大比分概率高——4球及以上占33%。</div><div class="cs"><span class="c">0球 5.2%</span> <span class="c">1球 15.4%</span> <span class="c">2球 22.7%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.6%</span> <span class="c">5球 9.8%</span></div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">倾向：克罗地亚获胜</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">克罗地亚 ELO领先170分，明显优势。 倾向克罗地亚获胜——主场+ELO优势转化为70.2%胜率。 风格对比：莫德里奇最后一舞+经验丰富，体能下降 VS 身体对抗+速度型边锋，防守漏人。进攻火力强劲，期望进球2.2球，大比分概率高——4球及以上占33%。 综合判断：倾向：克罗地亚获胜。</div></div>
     </div>
 <div class="ft">ELO评分基于FIFA排名和历史战绩<br>泊松分布推演比分概率 · 赔率来源于公开市场<br>所有数据仅供赛事分析参考</div>
 <script>

@@ -463,7 +463,7 @@ def gen():
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs">{' '.join(f'<span class="c"><b>{s}</b> {pr}%</span>'for s,pr in p['top'])}</div></div>
       <div class="s"><div class="st">总进球 · {gw}</div><div class="cs">{' '.join(f'<span class="c">{g}球 {pr}%</span>'for g,pr in list(p['gl'].items())[:6])}</div></div>
-      <div class="s" style="border-left:3px solid #111;padding-left:12px;background:#fafafa"><div class="st">建议</div><div style="font-weight:600;font-size:15px">{rec}</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think">{ew} {sw} 风格对比：{PLAY_STYLE.get(m['home'],'')} VS {PLAY_STYLE.get(m['away'],'')}。{gw} 综合判断：{rec}。</div></div>
     </div>"""
 
     html=f"""<!DOCTYPE html><html lang="zh-CN"><head>
@@ -511,6 +511,7 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
 .tag-injury{{background:#fff0f0;color:#c44;border:1px solid #fcc}}
 .tag-risk{{background:#fff8e0;color:#b80;border:1px solid #fe8}}
 .tag-value{{background:#f0f8ff;color:#36c;border:1px solid #bdf}}
+.think{{font-size:12px;color:#666;line-height:1.6;padding:10px;background:#fafafa;border-left:3px solid #111;margin:4px 0}}
 .rf{{text-align:center;font-size:11px;color:#999;margin:10px 0}}
 .ft{{text-align:center;color:#ccc;font-size:10px;margin:20px 0;line-height:1.6}}
 .nav{{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 12px;justify-content:center}}

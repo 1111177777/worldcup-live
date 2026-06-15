@@ -180,12 +180,12 @@
     "odds_home": "2.50",
     "odds_draw": "2.90",
     "odds_away": "3.10",
-    "result": "",
+    "result": "1:0",
     "time": "",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "荷兰",
@@ -214,12 +214,12 @@
     "odds_home": "2.10",
     "odds_draw": "3.00",
     "odds_away": "3.80",
-    "result": "",
+    "result": "5:1",
     "time": "",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "西班牙",

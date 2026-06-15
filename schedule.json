@@ -160,7 +160,7 @@
     "odds_home": "1.08",
     "odds_draw": "11.00",
     "odds_away": "26.00",
-    "result": "",
+    "result": "7:1",
     "time": "",
     "injury": "德全主力，库拉索首秀经验不足",
     "risk": [
@@ -168,7 +168,7 @@
       "首秀怯场"
     ],
     "value": "德国穿盘概率极高，但赔率已充分反映",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "科特迪瓦",
@@ -197,12 +197,12 @@
     "odds_home": "1.55",
     "odds_draw": "3.90",
     "odds_away": "6.00",
-    "result": "",
+    "result": "2:2",
     "time": "",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "瑞典",

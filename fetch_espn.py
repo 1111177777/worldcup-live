@@ -38,7 +38,22 @@ def update_scores():
 
         for ev in data.get('events', []):
             status = ev.get('status', {}).get('type', {}).get('description', '')
-            if status not in ('Full Time', 'FT', 'Finished'):
+            if status in ('Full Time', 'FT', 'Finished'):
+                pass  # 继续处理已结束比赛
+            elif status not in ('Scheduled',):
+                # 进行中的比赛
+                live_clock = ev.get('status', {}).get('displayClock', '')
+                for m in matches:
+                    if m.get('status') != 'FT' and m.get('status') != 'LIVE':
+                        h=m['home']; a=m['away']
+                        if (h in home_abbr or home_abbr in h.upper()) and (a in away_abbr or away_abbr in a.upper()):
+                            live_score = f'{home_score}:{away_score}'
+                            m['live_score'] = live_score
+                            m['live_clock'] = live_clock
+                            m['status'] = 'LIVE'
+                            print(f'🔴 LIVE {h} {live_score} {a} [{live_clock}]')
+                continue
+            else:
                 continue
 
             comps = ev.get('competitions', [{}])[0].get('competitors', [])

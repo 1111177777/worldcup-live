@@ -452,6 +452,7 @@ def gen():
     <div class="match">
       <div class="mh"><span class="g">G{m['group']}</span><span class="t">{fh} {m['home']} vs {m['away']} {fa}</span><span class="d">{d}</span></div>
       <div class="v">{m['venue']} · {PLAY_STYLE.get(m['home'], '')}  VS  {PLAY_STYLE.get(m['away'], '')}</div>{live}
+      {'<div class="live-badge">🔴 进行中 · ' + m.get('live_score','') + ' (' + m.get('live_clock','') + ')</div>' if m.get('status')=='LIVE' else ''}
       {'<div class="ft-badge">⚡ 已结束 · 全场比分: ' + m['result'] + '</div>' if m.get('result') and m.get('status')=='FT' else ''}
       <div class="int" style="{'opacity:0.5' if m.get('status')=='FT' else ''}">📰 {m['intel']}</div>
       {tags}
@@ -493,6 +494,8 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
 .d{{font-size:11px;color:#999}}
 .v{{font-size:11px;color:#ccc;margin:2px 0 6px}}
 .live{{background:#e44;color:#fff;padding:4px 10px;font-size:13px;font-weight:600;display:inline-block;margin:6px 0}}
+.live-badge{{background:#e44;color:#fff;padding:8px 12px;font-size:14px;font-weight:700;text-align:center;margin:8px 0;animation:pulse 1.5s infinite}}
+@keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:0.7}}}}
 .ft-badge{{background:#111;color:#ffd700;padding:8px 12px;font-size:14px;font-weight:700;text-align:center;margin:8px 0;letter-spacing:1px}}
 .int{{font-size:12px;color:#666;line-height:1.5;margin:6px 0;padding:8px;background:#fafafa}}
 .s{{margin:10px 0}}

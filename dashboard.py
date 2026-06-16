@@ -71,7 +71,7 @@ def gen_dashboard():
             for team, _ in sorted(sim[g].items(), key=lambda x: (-x[1]['pts'], -x[1]['gd']))[:2]:
                 team_qual[team] = team_qual.get(team, 0) + 1
 
-    mc_top = sorted(team_qual.items(), key=lambda x: -x[1])[:20]
+    mc_top = sorted(team_qual.items(), key=lambda x: -x[1])  # 全队
     FLAGS = {
         "阿根廷": "🇦🇷", "法国": "🇫🇷", "巴西": "🇧🇷", "英格兰": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "西班牙": "🇪🇸",
         "葡萄牙": "🇵🇹", "德国": "🇩🇪", "荷兰": "🇳🇱", "意大利": "🇮🇹", "乌拉圭": "🇺🇾",
@@ -100,9 +100,9 @@ def gen_dashboard():
             group_html += f'<div class="gr" {bold}><span>{flag} {team}</span><span>{s["p"]}场 {s["pts"]}分 {s["gd"]:+d}</span></div>'
         group_html += '</div>'
 
-    # 蒙特卡洛 — 超紧凑标签（仅TOP10，只显示国旗+百分比）
+    # 蒙特卡洛 — 所有球队出线概率
     mc_tags = ""
-    for team, count in mc_top[:10]:
+    for team, count in mc_top:  # 全部显示
         pct = round(count / N * 100, 1)
         c = '#390' if pct > 80 else ('#f80' if pct > 50 else '#999')
         bg = '#e8f5e9' if pct > 80 else ('#fff8e1' if pct > 50 else '#f5f5f5')
@@ -132,8 +132,8 @@ def gen_dashboard():
     <div class="dash-body open"><div class="groups-grid">{group_html}</div></div>
   </div>
   <div class="dash-section">
-    <div class="dash-title" onclick="toggleDash(this)">🎲 出线概率 <span>MC{N}次</span></div>
-    <div class="dash-body"><div class="mc-tags">{mc_tags}</div></div>
+    <div class="dash-title open" onclick="toggleDash(this)">🎲 出线概率 <span>MC{N}次</span></div>
+    <div class="dash-body open"><div class="mc-tags">{mc_tags}</div></div>
   </div>
 </div>
 """

@@ -106,7 +106,7 @@ def gen_dashboard():
         pct = round(count / N * 100, 1)
         c = '#390' if pct > 80 else ('#f80' if pct > 50 else '#999')
         bg = '#e8f5e9' if pct > 80 else ('#fff8e1' if pct > 50 else '#f5f5f5')
-        mc_tags += f'<span class="mc-tag" style="background:{bg};color:{c}">{FLAGS.get(team,\"\")} {pct}%</span>'
+        mc_tags += f'<span class="mc-tag" style="background:{bg};color:{c}">{FLAGS.get(team,\"\")}{team} {pct}%</span>'
 
     html = f"""
 <style>

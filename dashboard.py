@@ -71,6 +71,16 @@ def gen_dashboard():
             for team, _ in sorted(sim[g].items(), key=lambda x: (-x[1]['pts'], -x[1]['gd']))[:2]:
                 team_qual[team] = team_qual.get(team, 0) + 1
 
+    # 补全所有球队（包括概率0%的）
+    all_teams = set()
+    with open(SCHEDULE, 'r', encoding='utf-8') as f:
+        for m in json.load(f):
+            all_teams.add(m['home'])
+            all_teams.add(m['away'])
+    for t in all_teams:
+        if t not in team_qual:
+            team_qual[t] = 0
+
     mc_top = sorted(team_qual.items(), key=lambda x: -x[1])  # 全队
     FLAGS = {
         "阿根廷": "🇦🇷", "法国": "🇫🇷", "巴西": "🇧🇷", "英格兰": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "西班牙": "🇪🇸",

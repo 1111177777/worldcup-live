@@ -259,18 +259,25 @@ def calibrate(matches):
     return cal
 
 def kelly_stake(p_win, odds):
-    """凯利公式：建议投注比例，负值=不押"""
+    """凯利公式 → 星级评价：★★★★★=重仓，☆=别碰"""
     if not odds or odds <= 1:
-        return 0, "无赔率数据"
-    b = odds - 1  # 净赔率
+        return 0, "暂无数据", 0
+    b = odds - 1
     f = p_win/100 - (1 - p_win/100) / b
-    f = round(f * 100, 1)  # 转百分比
-    if f <= 0:
-        return 0, "无价值，跳过"
-    elif f > 15:
-        return 15, f"凯利{f:.0f}% → 封顶15%"
+    f_pct = round(f * 100, 1)
+    # 转星级
+    if f_pct <= 0:
+        return f_pct, "不值得碰", 0
+    elif f_pct < 3:
+        return f_pct, "⭐ 小试", 1
+    elif f_pct < 6:
+        return f_pct, "⭐⭐ 轻仓", 2
+    elif f_pct < 10:
+        return f_pct, "⭐⭐⭐ 值得", 3
+    elif f_pct < 15:
+        return f_pct, "⭐⭐⭐⭐ 重点", 4
     else:
-        return f, f"建议{f:.1f}%"
+        return f_pct, "⭐⭐⭐⭐⭐ 重仓", 5
 
 def predict(h,a):
     he=ELO.get(h,1700)+FORM_BOOST.get(h,0)
@@ -511,24 +518,24 @@ def gen():
             live=f'<div class="live">⚡ {m["result"]}</div>'
             results+=f'<div class="res"><span>{fh} {m["home"]} {m["result"]} {m["away"]} {fa}</span><span class="d">{d}</span></div>'
 
-        # 凯利公式
+        # 价值评估（凯利公式 → 星级）
         kelly_html = ""
         if m.get('odds_home') and not m.get('status'):
             oh = float(m['odds_home'])
             oa = float(m.get('odds_away', 0) or 0)
             od = float(m.get('odds_draw', 0) or 0)
-            # 对概率最高的方向算凯利
             best_p = max(p['win'], p['draw'], p['loss'])
             if p['win'] == best_p and oh > 1:
-                ks, km = kelly_stake(p['win'], oh)
+                ks, km, stars = kelly_stake(p['win'], oh)
             elif p['draw'] == best_p and od > 1:
-                ks, km = kelly_stake(p['draw'], od)
+                ks, km, stars = kelly_stake(p['draw'], od)
             elif p['loss'] == best_p and oa > 1:
-                ks, km = kelly_stake(p['loss'], oa)
+                ks, km, stars = kelly_stake(p['loss'], oa)
             else:
-                ks, km = 0, ""
-            kelly_color = "#390" if ks > 5 else ("#f80" if ks > 0 else "#999")
-            kelly_html = f'<div class="tag-row"><span class="tag" style="background:#f0fff0;color:{kelly_color};border:1px solid #cfc;font-weight:600">📐 凯利: {km}</span></div>' if km else ""
+                ks, km, stars = 0, "", 0
+            colors = {0: '#999', 1: '#f80', 2: '#f80', 3: '#390', 4: '#390', 5: '#e44'}
+            emoji = {0: '🚫', 1: '⭐', 2: '⭐', 3: '⭐', 4: '🔥', 5: '🔥'}
+            kelly_html = '<div class="tag-row"><span class="tag" style="background:#fff;color:' + colors.get(stars, '#999') + ';border:1px solid #ddd;font-size:12px;padding:4px 10px">' + emoji.get(stars, '') + ' 价值评估: ' + km + '</span></div>' if km else ''
 
         # 赔率
         on=""

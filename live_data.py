@@ -476,6 +476,15 @@ def explain(p, m, h, a, d):
     return ew, sw, gw, rec, tags_html + upset_html + upset_detail + score_tags + result_html
 
 def gen():
+    # 生成仪表盘数据
+    import subprocess
+    dash_file = os.path.join(DIR, "dashboard.html")
+    subprocess.run([os.sys.executable, os.path.join(DIR, "dashboard.py")], capture_output=True)
+    dashboard_html = ""
+    if os.path.exists(dash_file):
+        with open(dash_file, 'r', encoding='utf-8') as f:
+            dashboard_html = f.read()
+
     with open(SCHEDULE_FILE,encoding='utf-8') as f: matches=json.load(f)
     # 赛后校准：根据已完赛结果自动调整状态分
     calibrate(matches)
@@ -622,6 +631,7 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
 <div class="sub">ELO模型 + 泊松分布 · 赔率对比</div>
 <div class="upd">更新 {now} · 每5分钟自动刷新</div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
+{dashboard_html}
 {"<div class=\"results\"><div class=\"rt\">⚡ 最新赛果</div>"+results+"</div>" if results else ""}
 {cards}
 <div class="ft">ELO评分基于FIFA排名和历史战绩<br>泊松分布推演比分概率 · 赔率来源于公开市场<br>所有数据仅供赛事分析参考</div>

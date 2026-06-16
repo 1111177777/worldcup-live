@@ -100,37 +100,49 @@ def gen_dashboard():
             group_html += f'<div class="gr" {bold}><span>{flag} {team}</span><span>{s["p"]}场 {s["pts"]}分 {s["gd"]:+d}</span></div>'
         group_html += '</div>'
 
-    # 蒙特卡洛 TOP10
-    mc_html = ""
-    for team, count in mc_top[:10]:
+    # 蒙特卡洛 — 紧凑横向滚动标签
+    mc_tags = ""
+    for team, count in mc_top[:15]:
         pct = round(count / N * 100, 1)
-        bar = '█' * max(1, int(pct / 2))
-        mc_html += f'<div class="mc-row"><span class="mc-team">{FLAGS.get(team, "")} {team}</span><span class="mc-bar">{bar}</span><span class="mc-pct">{pct}%</span></div>'
+        c = '#390' if pct > 80 else ('#f80' if pct > 50 else '#999')
+        mc_tags += f'<span class="mc-tag" style="border-color:{c};color:{c}">{FLAGS.get(team,"")}{team} {pct}%</span>'
 
     html = f"""
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
-.dashboard {{ padding: 8px 0; }}
-.dash-section {{ margin: 12px 0; border: 1px solid #e0e0e0; border-radius: 4px; overflow: hidden; }}
-.dash-title {{ background: #111; color: #fff; padding: 6px 10px; font-size: 12px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }}
-.dash-title span {{ font-size: 10px; color: #0f0; }}
-.groups-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 8px; }}
-.group-card {{ border: 1px solid #eee; font-size: 10px; padding: 4px; }}
-.gn {{ font-weight: 700; font-size: 11px; margin-bottom: 3px; }}
-.gr {{ display: flex; justify-content: space-between; padding: 1px 0; }}
-.mc-row {{ display: flex; align-items: center; padding: 4px 10px; gap: 8px; font-size: 12px; }}
-.mc-team {{ min-width: 80px; }}
-.mc-bar {{ flex: 1; color: #390; font-size: 10px; letter-spacing: -1px; }}
-.mc-pct {{ font-weight: 700; min-width: 40px; text-align: right; }}
+.dashboard {{ padding: 4px 0; }}
+.dash-section {{ margin: 8px 0; border: 1px solid #e0e0e0; border-radius: 4px; overflow: hidden; }}
+.dash-title {{ background: #111; color: #fff; padding: 5px 8px; font-size: 11px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }}
+.dash-title span {{ font-size: 9px; color: #0f0; }}
+.dash-body {{ display: none; }}
+.dash-body.open {{ display: block; }}
+.dash-title::after {{ content: '+'; font-size: 14px; }}
+.dash-title.open::after {{ content: '−'; }}
+.groups-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 3px; padding: 6px; }}
+.group-card {{ border: 1px solid #eee; font-size: 9px; padding: 3px; background: #fafafa; }}
+.gn {{ font-weight: 700; font-size: 10px; margin-bottom: 2px; color: #111; }}
+.gr {{ display: flex; justify-content: space-between; padding: 1px 0; font-size: 9px; }}
+.mc-tags {{ padding: 8px; display: flex; flex-wrap: wrap; gap: 4px; }}
+.mc-tag {{ font-size: 10px; padding: 2px 6px; border: 1px solid; border-radius: 2px; white-space: nowrap; font-weight: 500; }}
 </style>
+<script>
+function toggleDash(el) {{
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}}
+</script>
 <div class="dashboard">
   <div class="dash-section">
-    <div class="dash-title">📊 小组积分 <span>{acc_rate}%准确 · MC{N}次</span></div>
-    <div class="groups-grid">{group_html}</div>
+    <div class="dash-title" onclick="toggleDash(this)">📊 小组积分榜 <span>{acc_rate}%准确 · MC{N}次</span></div>
+    <div class="dash-body open">
+      <div class="groups-grid">{group_html}</div>
+    </div>
   </div>
   <div class="dash-section">
-    <div class="dash-title">🎲 出线概率 TOP10</div>
-    {mc_html}
+    <div class="dash-title" onclick="toggleDash(this)">🎲 出线概率 <span>蒙特卡洛{N}次模拟</span></div>
+    <div class="dash-body">
+      <div class="mc-tags">{mc_tags}</div>
+    </div>
   </div>
 </div>
 """

@@ -248,12 +248,12 @@
     "odds_home": "7.00",
     "odds_draw": "3.80",
     "odds_away": "1.50",
-    "result": "",
+    "result": "1:1",
     "time": "",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "比利时",
@@ -265,12 +265,12 @@
     "odds_home": "1.65",
     "odds_draw": "3.60",
     "odds_away": "5.50",
-    "result": "",
+    "result": "1:1",
     "time": "",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "伊朗",
@@ -282,12 +282,12 @@
     "odds_home": "2.40",
     "odds_draw": "2.90",
     "odds_away": "3.20",
-    "result": "",
+    "result": "2:2",
     "time": "",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "法国",

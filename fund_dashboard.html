@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>基金持仓</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:12px;max-width:500px;margin:0 auto;color:#333}
+h1{font-size:18px;text-align:center;margin:8px 0}
+.total{text-align:center;padding:16px;background:#fafafa;margin-bottom:12px}
+.total .num{font-size:28px;font-weight:bold;color:#111}
+.total .label{font-size:11px;color:#999}
+.fund{border-bottom:1px solid #f0f0f0;padding:12px 0}
+.fund .name{font-weight:600;font-size:14px}
+.fund .role{font-size:10px;color:#999;margin-left:6px}
+.fund .row{display:flex;justify-content:space-between;margin:4px 0;font-size:13px}
+.fund .row .v{color:#666}
+.fund .row .c{font-weight:600}
+.green{color:#07c160}.red{color:#e44}.gray{color:#999}
+.btn{text-align:center;margin:16px 0}
+.btn button{padding:10px 24px;background:#111;color:#fff;border:none;font-size:14px;cursor:pointer}
+</style></head><body>
+<h1>基金持仓</h1>
+<div class="total">
+<div class="num" id="totalNav">¥ --</div>
+<div class="label">总资产 | 累计盈利 <span id="totalPnL"></span></div>
+</div>
+<div id="list"></div>
+<div class="btn"><button onclick="refresh()">刷新数据</button></div>
+<div style="text-align:center;color:#ccc;font-size:10px">数据来源：天天基金 · 仅供参考</div>
+
+<script>
+// 持仓数据（从腾讯理财通同步）
+const funds = [
+  {code:'022364',name:'永赢科技智选',cost:1724,role:'进攻'},
+  {code:'017488',name:'嘉实信息产业',cost:803,role:'进攻'},
+  {code:'023408',name:'华宝创业板AI',cost:0,role:'进攻'},
+  {code:'014110',name:'嘉实稀有金属',cost:586,role:'周期'},
+  {code:'007818',name:'国泰通信ETF',cost:413,role:'科技'},
+  {code:'001480',name:'财通成长优选',cost:564,role:'王牌'},
+  {code:'014319',name:'德邦半导体',cost:200,role:'科技'},
+  {code:'017730',name:'嘉实全球产业',cost:320,role:'海外'},
+  {code:'018486',name:'国投瑞银货币D',cost:904,role:'现金'},
+  {code:'040003',name:'华安现金富利',cost:124,role:'现金'},
+];
+
+// 手动更新最新净值（每天拉一次）
+const latestNAV = {
+  '022364':{nav:5.85,chg:-2.05},
+  '017488':{nav:3.87,chg:-3.51},
+  '023408':{nav:2.39,chg:-2.98},
+  '014110':{nav:1.04,chg:-1.00},
+  '007818':{nav:4.43,chg:-3.31},
+  '001480':{nav:8.16,chg:-2.35},
+  '014319':{nav:2.89,chg:0.05},
+  '017730':{nav:4.22,chg:1.90},
+  '018486':{nav:1.00,chg:0},
+  '040003':{nav:1.00,chg:0},
+};
+
+function refresh(){
+  let total=0, pnl=0;
+  let html='';
+  funds.forEach(f=>{
+    let nav=latestNAV[f.code]||{nav:0,chg:0};
+    let shares=f.cost>0?(f.cost/nav.nav).toFixed(0):0;
+    let value=f.cost>0?(shares*nav.nav).toFixed(0):'--';
+    let chgClass=nav.chg>0?'green':(nav.chg<0?'red':'gray');
+    total+=parseFloat(value)||0;
+    html+=`<div class="fund">
+      <div class="name">${f.name}<span class="role">${f.role}</span></div>
+      <div class="row"><span class="v">估算市值</span><span class="c">¥${Number(value).toLocaleString()}</span></div>
+      <div class="row"><span class="v">日涨跌</span><span class="c ${chgClass}">${nav.chg>0?'+':''}${nav.chg}%</span></div>
+    </div>`;
+  });
+  document.getElementById('totalNav').textContent='¥'+total.toLocaleString();
+  document.getElementById('list').innerHTML=html;
+  document.getElementById('totalPnL').textContent=pnl;
+}
+refresh();
+</script></body></html>

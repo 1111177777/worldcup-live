@@ -161,7 +161,56 @@ FORM_BOOST = {
 # 主场揭幕战加成（东道主首场比赛）
 HOST_OPENER = {"美国": 1.4, "加拿大": 1.25, "墨西哥": 1.2}  # 攻击力乘数
 
-# 战术克制系数（基于 TEAM_NOTES 的关键词匹配）
+# ===== 优化1：动态ELO修正 =====
+CONTINENTS = {
+    "南美": ["阿根廷","巴西","乌拉圭","哥伦比亚","厄瓜多尔","智利","秘鲁","巴拉圭","委内瑞拉","玻利维亚"],
+    "欧洲": ["法国","英格兰","西班牙","葡萄牙","德国","荷兰","意大利","比利时","克罗地亚","丹麦","瑞典","挪威","波兰","乌克兰","土耳其","瑞士","奥地利","捷克","塞尔维亚","苏格兰","威尔士","罗马尼亚","斯洛伐克","匈牙利","希腊","波黑"],
+    "非洲": ["摩洛哥","塞内加尔","埃及","尼日利亚","科特迪瓦","喀麦隆","加纳","突尼斯","阿尔及利亚","南非","佛得角","刚果民主共和国"],
+    "亚洲": ["日本","韩国","伊朗","澳大利亚","沙特阿拉伯","卡塔尔","伊拉克","阿联酋","约旦","乌兹别克斯坦"],
+    "中北美": ["美国","墨西哥","加拿大","哥斯达黎加","巴拿马","牙买加","海地","古巴","苏里南","库拉索"],
+    "大洋洲": ["新西兰"],
+}
+
+def get_continent(team):
+    for c, teams in CONTINENTS.items():
+        if team in teams: return c
+    return "其他"
+
+def elo_corrections(h, a, h_form, a_form, match_info):
+    """返回 (主场ELO修正, 客场ELO修正, 解释文本)"""
+    reasons = []
+    h_adj, a_adj = 0, 0
+
+    # 跨洲客场疲劳
+    hc, ac = get_continent(h), get_continent(a)
+    venue = match_info.get('venue', '')
+    is_us_host = any(c in venue for c in ['洛杉矶','纽约','达拉斯','休斯顿','迈阿密','西雅图','波士顿','旧金山','费城','亚特兰大','堪萨斯城'])
+    if hc != ac and not is_us_host:
+        a_adj -= 12
+        reasons.append(f'{a}跨洲作战-12')
+
+    # 连胜衰减
+    if h_form > 60:
+        h_adj -= 8
+        reasons.append(f'{h}连胜过高-8')
+    if a_form > 60:
+        a_adj -= 8
+        reasons.append(f'{a}连胜过高-8')
+
+    # 伤病量化
+    injury = match_info.get('injury', '')
+    if injury:
+        if '伤缺' in injury or '缺阵' in injury:
+            # 后防核心缺阵 → 扣对手ELO+提升预期失球
+            for team in [h, a]:
+                if team in injury and ('后防' in injury or '防' in injury):
+                    if team == h: h_adj -= 10
+                    else: a_adj -= 10
+                    reasons.append(f'{team}防线核心缺阵-10')
+
+    return h_adj, a_adj, '；'.join(reasons) if reasons else ''
+
+# ===== 优化2：战术克制矩阵 =====
 def tactic_matchup(h, a):
     """返回 (主队攻击修正, 客队攻击修正)：强队传控打大巴→攻击力打折；弱队防反→有机会偷"""
     hn, an = PLAY_STYLE.get(h, ''), PLAY_STYLE.get(a, '')
@@ -279,25 +328,53 @@ def kelly_stake(p_win, odds):
     else:
         return f_pct, "⭐⭐⭐⭐⭐ 重仓", 5
 
-def predict(h,a):
+def predict(h,a, match_info=None):
     he=ELO.get(h,1700)+FORM_BOOST.get(h,0)
     ae=ELO.get(a,1700)+FORM_BOOST.get(a,0)
     hs=STYLE.get(h,(1.0,1.0)); as_=STYLE.get(a,(1.0,1.0))
+
+    # 优化1：动态ELO修正
+    if match_info:
+        eh, ea, elo_reason = elo_corrections(h, a, FORM_BOOST.get(h,0), FORM_BOOST.get(a,0), match_info)
+        he += eh; ae += ea
+    else:
+        elo_reason = ''
+
     # 主场揭幕战加成
     hm_mult = HOST_OPENER.get(h, 1.0)
-    # 战术风格克制（传控vs大巴、防反vs高压等）
+    # 优化2：战术克制矩阵
     tactic_h, tactic_a = tactic_matchup(h, a)
+
+    # 优化3：战意系数（世界杯正赛=1.0，小组末轮可调）
+    motivation_h = motivation_a = 1.0
+
     d=he-ae+50; gd=d/100*0.4
-    xh=max(0.3, (1.6+gd*0.7)*hs[0]*hm_mult*tactic_h/max(as_[1],0.5))
-    xa=max(0.3, (1.2-gd*0.4)*as_[0]*tactic_a/max(hs[1],0.5))
+    xh=max(0.3, (1.6+gd*0.7)*hs[0]*hm_mult*tactic_h*motivation_h/max(as_[1],0.5))
+    xa=max(0.3, (1.2-gd*0.4)*as_[0]*tactic_a*motivation_a/max(hs[1],0.5))
+
+    # 优化3：赔率热度修正（市场过热→模型降权）
+    odds_adj = 1.0
+    odds_note = ''
+    if match_info and match_info.get('odds_home'):
+        try:
+            oh = float(match_info['odds_home'])
+            fair = round(1/max((0.5 if d>0 else 0.3), 0.01), 1)
+            # 市场比模型更乐观 → 可能过热
+            if oh < fair * 0.85:
+                odds_adj = 0.88
+                odds_note = f'市场过热({oh}<公允{fair})，胜率打折'
+            elif oh > fair * 1.2:
+                odds_adj = 1.08
+                odds_note = f'市场低估({oh}>公允{fair})，胜率上浮'
+        except: pass
+
     w=dr=lo=0; sc={}
     for i in range(9):
         for j in range(9):
             p=poisson(xh,i)*poisson(xa,j); sc[f"{i}:{j}"]=p
-            if i>j:w+=p*0.85  # 主胜概率打折——世界杯冷门多
-            elif i==j:dr+=p*1.3  # 平局概率放大——小组赛保守
-            else:lo+=p*0.85  # 客胜概率打折
-    # 归一化
+            if i>j:w+=p*0.85
+            elif i==j:dr+=p*1.3
+            else:lo+=p*0.85
     total=w+dr+lo
     w,dr,lo=w/total*100,dr/total*100,lo/total*100
     top=sorted(sc.items(),key=lambda x:x[1],reverse=True)[:5]
@@ -305,7 +382,47 @@ def predict(h,a):
     for i in range(10):
         for j in range(10):
             p=poisson(xh,i)*poisson(xa,j); t=i+j; gl[t]=gl.get(t,0)+p
-    return {"win":round(w,1),"draw":round(dr,1),"loss":round(lo,1),"xh":round(xh,2),"xa":round(xa,2),"top":[(s,round(p*100,1))for s,p in top],"gl":{str(k):round(v*100,1)for k,v in sorted(gl.items())[:8]},"he":he,"ae":ae}
+    # 优化3：赔率热度修正胜率
+    w_adj = w * odds_adj; dr_adj = dr / odds_adj; lo_adj = lo / odds_adj
+    total2 = w_adj + dr_adj + lo_adj
+    w_final = round(w_adj / total2 * 100, 1)
+    dr_final = round(dr_adj / total2 * 100, 1)
+    lo_final = round(lo_adj / total2 * 100, 1)
+
+    # 输出优化：胜率色标
+    if w_final > 75: tier = '🟢 稳胆'
+    elif w_final > 60: tier = '🟡 热门'
+    elif w_final > 45: tier = '🟠 胶着'
+    else: tier = '🔴 冷门倾向'
+
+    # 优化4：动态冷门概率（替代固定2%）
+    upset_base = min(lo_final, 100 - w_final) if w_final > 50 else min(w_final, 100 - lo_final) if lo_final > 50 else 25
+    # 风险因子加成
+    upset_bonus = 0
+    if match_info:
+        risks = match_info.get('risk', [])
+        for r in risks:
+            if '红牌' in str(r) or '伤缺' in str(r): upset_bonus += 5
+            if '高原' in str(r): upset_bonus += 3
+            if '天气' in str(r): upset_bonus += 2
+        if match_info.get('injury') and '🔴' in match_info.get('injury', ''): upset_bonus += 3
+    upset_prob = min(45, round(upset_base + upset_bonus, 1))
+
+    # 计算链路（用于AI思考面板）
+    calc_chain = f'ELO基{ELO.get(h,1700)}+状态{FORM_BOOST.get(h,0)}={he} vs {ELO.get(a,1700)}+{FORM_BOOST.get(a,0)}={ae}'
+    if elo_reason: calc_chain += f' | 修正: {elo_reason}'
+    calc_chain += f' | 主攻x{hs[0]:.1f}·揭幕x{hm_mult:.1f}·战术x{tactic_h:.2f}={xh:.1f}球'
+    if odds_note: calc_chain += f' | {odds_note}'
+
+    return {
+        "win": w_final, "draw": dr_final, "loss": lo_final,
+        "xh": round(xh, 2), "xa": round(xa, 2),
+        "top": [(s, round(p*100, 1)) for s, p in top],
+        "gl": {str(k): round(v*100, 1) for k, v in sorted(gl.items())[:8]},
+        "he": he, "ae": ae,
+        "tier": tier, "upset_prob": upset_prob,
+        "calc_chain": calc_chain, "odds_note": odds_note,
+    }
 
 def auto_tags(m, p):
     """自动生成伤停/风险/价值标签，无需手动填"""
@@ -500,7 +617,7 @@ def gen():
     # 按日期排序
     matches.sort(key=lambda x: x['date'])
     for m in matches:
-        p=predict(m['home'],m['away'])
+        p=predict(m['home'],m['away'], match_info=m)
         # 自动补全伤停/风险/价值/爆冷
         ai,ar,av,up,uw=auto_tags(m,p)
         if not m.get('injury'): m['injury']=ai
@@ -560,7 +677,7 @@ def gen():
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs">{' '.join(f'<span class="c"><b>{s}</b> {pr}%</span>'for s,pr in p['top'])}</div></div>
       <div class="s"><div class="st">总进球 · {gw}</div><div class="cs">{' '.join(f'<span class="c">{g}球 {pr}%</span>'for g,pr in list(p['gl'].items())[:6])}</div></div>
-      <div class="s"><div class="st">AI思考</div><div class="think">{ew} {sw} 风格对比：{PLAY_STYLE.get(m['home'],'')} VS {PLAY_STYLE.get(m['away'],'')}。{gw} 综合判断：{rec}。</div></div>
+      <div class="s"><div class="st">AI思考</div><div class="think"><b>{p.get('tier','')}</b> {ew} {sw} 风格：{PLAY_STYLE.get(m['home'],'')} VS {PLAY_STYLE.get(m['away'],'')}。{gw}<br><small style="color:#999">🧮 {p.get('calc_chain','')}</small><br>综合判断：{rec}。冷门风险{p.get('upset_prob','?')}%</div></div>
     </div>"""
 
     html=f"""<!DOCTYPE html><html lang="zh-CN"><head>

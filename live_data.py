@@ -273,9 +273,12 @@ def predict(h,a):
     for i in range(9):
         for j in range(9):
             p=poisson(xh,i)*poisson(xa,j); sc[f"{i}:{j}"]=p
-            if i>j:w+=p
-            elif i==j:dr+=p
-            else:lo+=p
+            if i>j:w+=p*0.85  # 主胜概率打折——世界杯冷门多
+            elif i==j:dr+=p*1.3  # 平局概率放大——小组赛保守
+            else:lo+=p*0.85  # 客胜概率打折
+    # 归一化
+    total=w+dr+lo
+    w,dr,lo=w/total*100,dr/total*100,lo/total*100
     top=sorted(sc.items(),key=lambda x:x[1],reverse=True)[:5]
     gl={}
     for i in range(10):

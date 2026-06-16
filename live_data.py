@@ -284,7 +284,7 @@ def predict(h,a):
     for i in range(10):
         for j in range(10):
             p=poisson(xh,i)*poisson(xa,j); t=i+j; gl[t]=gl.get(t,0)+p
-    return {"win":round(w*100,1),"draw":round(dr*100,1),"loss":round(lo*100,1),"xh":round(xh,2),"xa":round(xa,2),"top":[(s,round(p*100,1))for s,p in top],"gl":{str(k):round(v*100,1)for k,v in sorted(gl.items())[:8]},"he":he,"ae":ae}
+    return {"win":round(w,1),"draw":round(dr,1),"loss":round(lo,1),"xh":round(xh,2),"xa":round(xa,2),"top":[(s,round(p*100,1))for s,p in top],"gl":{str(k):round(v*100,1)for k,v in sorted(gl.items())[:8]},"he":he,"ae":ae}
 
 def auto_tags(m, p):
     """自动生成伤停/风险/价值标签，无需手动填"""

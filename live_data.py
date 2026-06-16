@@ -258,6 +258,20 @@ def calibrate(matches):
         print(f"   🔧 已校准 {len(cal)} 场比赛，状态分已更新")
     return cal
 
+def kelly_stake(p_win, odds):
+    """凯利公式：建议投注比例，负值=不押"""
+    if not odds or odds <= 1:
+        return 0, "无赔率数据"
+    b = odds - 1  # 净赔率
+    f = p_win/100 - (1 - p_win/100) / b
+    f = round(f * 100, 1)  # 转百分比
+    if f <= 0:
+        return 0, "无价值，跳过"
+    elif f > 15:
+        return 15, f"凯利{f:.0f}% → 封顶15%"
+    else:
+        return f, f"建议{f:.1f}%"
+
 def predict(h,a):
     he=ELO.get(h,1700)+FORM_BOOST.get(h,0)
     ae=ELO.get(a,1700)+FORM_BOOST.get(a,0)
@@ -488,6 +502,25 @@ def gen():
             live=f'<div class="live">⚡ {m["result"]}</div>'
             results+=f'<div class="res"><span>{fh} {m["home"]} {m["result"]} {m["away"]} {fa}</span><span class="d">{d}</span></div>'
 
+        # 凯利公式
+        kelly_html = ""
+        if m.get('odds_home') and not m.get('status'):
+            oh = float(m['odds_home'])
+            oa = float(m.get('odds_away', 0) or 0)
+            od = float(m.get('odds_draw', 0) or 0)
+            # 对概率最高的方向算凯利
+            best_p = max(p['win'], p['draw'], p['loss'])
+            if p['win'] == best_p and oh > 1:
+                ks, km = kelly_stake(p['win'], oh)
+            elif p['draw'] == best_p and od > 1:
+                ks, km = kelly_stake(p['draw'], od)
+            elif p['loss'] == best_p and oa > 1:
+                ks, km = kelly_stake(p['loss'], oa)
+            else:
+                ks, km = 0, ""
+            kelly_color = "#390" if ks > 5 else ("#f80" if ks > 0 else "#999")
+            kelly_html = f'<div class="tag-row"><span class="tag" style="background:#f0fff0;color:{kelly_color};border:1px solid #cfc;font-weight:600">📐 凯利: {km}</span></div>' if km else ""
+
         # 赔率
         on=""
         if m.get('odds_home'):
@@ -501,6 +534,7 @@ def gen():
       {'<div class="live-badge">🔴 进行中 · ' + m.get('live_score','') + ' (' + m.get('live_clock','') + ')</div>' if m.get('status')=='LIVE' else ''}
       {'<div class="ft-badge">⚡ 已结束 · 全场比分: ' + m['result'] + '</div>' if m.get('result') and m.get('status')=='FT' else ''}
       <div class="int" style="{'opacity:0.5' if m.get('status')=='FT' else ''}">📰 {m['intel']}</div>
+      {kelly_html}
       {tags}
       <div class="s"><div class="st">胜负 · {ew}</div>
         <div class="b"><span>主</span><div class="t"><i style="width:{p['win']}%"></i></div><span class="n">{p['win']}%</span></div>

@@ -1,6 +1,6 @@
 """
 世界杯实时数据引擎 v2
-读取 schedule.json → ELO预测 → 生成 live.html
+读取 schedule.json → ELO数据模型 → 生成 live.html
 每5分钟运行：python live_data.py
 """
 import json, os, math
@@ -14,8 +14,8 @@ OUTPUT = os.path.join(DIR, "live.html")
 PASSWORD = "wc2026"  # 访问密码，改这里即改密码
 PASS_HASH = hashlib.sha256(PASSWORD.encode()).hexdigest()
 
-ELO = {"阿根廷":1950,"法国":1930,"巴西":1920,"英格兰":1900,"西班牙":1890,"葡萄牙":1870,"德国":1860,"荷兰":1820,"意大利":1840,"乌拉圭":1820,"克罗地亚":1810,"哥伦比亚":1800,"摩洛哥":1790,"美国":1780,"墨西哥":1770,"塞内加尔":1760,"日本":1870,"韩国":1740,"伊朗":1730,"澳大利亚":1710,"埃及":1720,"尼日利亚":1710,"科特迪瓦":1700,"喀麦隆":1690,"加纳":1680,"突尼斯":1670,"阿尔及利亚":1660,"南非":1640,"加拿大":1730,"哥斯达黎加":1680,"巴拿马":1640,"牙买加":1630,"沙特阿拉伯":1670,"卡塔尔":1650,"伊拉克":1620,"阿联酋":1610,"新西兰":1600,"巴拉圭":1720,"厄瓜多尔":1740,"智利":1760,"秘鲁":1730,"委内瑞拉":1680,"玻利维亚":1620,"波黑":1690,"塞尔维亚":1750,"丹麦":1800,"瑞典":1790,"挪威":1780,"波兰":1760,"乌克兰":1740,"土耳其":1750,"比利时":1830,"威尔士":1700,"苏格兰":1690,"捷克":1720,"罗马尼亚":1680,"斯洛伐克":1670,"匈牙利":1700,"希腊":1680,"佛得角":1580,"库拉索":1560,"约旦":1590,"乌兹别克斯坦":1610,"海地":1550,"瑞士":1830,"摩洛哥":1790,"刚果民主共和国":1650,"奥地利":1760,"古巴":1540,"苏里南":1520}
-FLAGS = dict(阿根廷="🇦🇷",法国="🇫🇷",巴西="🇧🇷",英格兰="🏴",西班牙="🇪🇸",葡萄牙="🇵🇹",德国="🇩🇪",荷兰="🇳🇱",意大利="🇮🇹",乌拉圭="🇺🇾",克罗地亚="🇭🇷",哥伦比亚="🇨🇴",摩洛哥="🇲🇦",美国="🇺🇸",墨西哥="🇲🇽",塞内加尔="🇸🇳",日本="🇯🇵",韩国="🇰🇷",伊朗="🇮🇷",澳大利亚="🇦🇺",埃及="🇪🇬",尼日利亚="🇳🇬",科特迪瓦="🇨🇮",喀麦隆="🇨🇲",加纳="🇬🇭",突尼斯="🇹🇳",南非="🇿🇦",加拿大="🇨🇦",巴拉圭="🇵🇾",厄瓜多尔="🇪🇨",智利="🇨🇱",秘鲁="🇵🇪",波黑="🇧🇦",塞尔维亚="🇷🇸",丹麦="🇩🇰",瑞典="🇸🇪",挪威="🇳🇴",波兰="🇵🇱",乌克兰="🇺🇦",土耳其="🇹🇷",比利时="🇧🇪",捷克="🇨🇿",卡塔尔="🇶🇦",新西兰="🇳🇿",海地="🇭🇹",苏格兰="🏴",瑞士="🇨🇭",奥地利="🇦🇹",约旦="🇯🇴",伊拉克="🇮🇶",库拉索="🇨🇼",巴拿马="🇵🇦",哥斯达黎加="🇨🇷",牙买加="🇯🇲",沙特阿拉伯="🇸🇦",阿联酋="🇦🇪",委内瑞拉="🇻🇪",玻利维亚="🇧🇴",威尔士="🏴",罗马尼亚="🇷🇴",斯洛伐克="🇸🇰",匈牙利="🇭🇺",希腊="🇬🇷",佛得角="🇨🇻",乌兹别克斯坦="🇺🇿",刚果民主共和国="🇨🇩",阿尔及利亚="🇩🇿")
+ELO = {"阿根廷":1950,"法国":1930,"巴西":1920,"英格兰":1900,"西班牙":1890,"葡萄牙":1870,"德国":1860,"荷兰":1820,"意大利":1840,"乌拉圭":1820,"克罗地亚":1810,"哥伦比亚":1800,"摩洛哥":1790,"美国":1780,"墨西哥":1770,"塞内加尔":1760,"日本":1870,"韩国":1740,"伊朗":1730,"澳大利亚":1710,"埃及":1720,"尼日利亚":1710,"科特迪瓦":1700,"喀麦隆":1690,"加纳":1680,"突尼斯":1670,"阿尔及利亚":1660,"南非":1640,"加拿大":1730,"哥斯达黎加":1680,"巴拿马":1640,"牙买加":1630,"沙特阿拉伯":1670,"卡塔尔":1650,"伊拉克":1620,"阿联酋":1610,"新西兰":1600,"巴拉圭":1720,"厄瓜多尔":1740,"智利":1760,"秘鲁":1730,"委内瑞拉":1680,"玻利维亚":1620,"波黑":1690,"塞尔维亚":1750,"丹麦":1800,"瑞典":1790,"挪威":1780,"波兰":1760,"乌克兰":1740,"土耳其":1750,"比利时":1830,"威尔士":1700,"苏格兰":1690,"捷克":1720,"罗马尼亚":1680,"斯洛伐克":1670,"匈牙利":1700,"希腊":1680,"佛得角":1580,"库拉索":1560,"约旦":1590,"乌兹别克斯坦":1610,"海地":1550,"瑞士":1830,"摩洛哥":1790,"刚果民主队共和国":1650,"奥地利":1760,"古巴":1540,"苏里南":1520}
+FLAGS = dict(阿根廷="🇦🇷",法国="🇫🇷",巴西="🇧🇷",英格兰="🏴",西班牙="🇪🇸",葡萄牙="🇵🇹",德国="🇩🇪",荷兰="🇳🇱",意大利="🇮🇹",乌拉圭="🇺🇾",克罗地亚="🇭🇷",哥伦比亚="🇨🇴",摩洛哥="🇲🇦",美国="🇺🇸",墨西哥="🇲🇽",塞内加尔="🇸🇳",日本="🇯🇵",韩国="🇰🇷",伊朗="🇮🇷",澳大利亚="🇦🇺",埃及="🇪🇬",尼日利亚="🇳🇬",科特迪瓦="🇨🇮",喀麦隆="🇨🇲",加纳="🇬🇭",突尼斯="🇹🇳",南非="🇿🇦",加拿大="🇨🇦",巴拉圭="🇵🇾",厄瓜多尔="🇪🇨",智利="🇨🇱",秘鲁="🇵🇪",波黑="🇧🇦",塞尔维亚="🇷🇸",丹麦="🇩🇰",瑞典="🇸🇪",挪威="🇳🇴",波兰="🇵🇱",乌克兰="🇺🇦",土耳其="🇹🇷",比利时="🇧🇪",捷克="🇨🇿",卡塔尔="🇶🇦",新西兰="🇳🇿",海地="🇭🇹",苏格兰="🏴",瑞士="🇨🇭",奥地利="🇦🇹",约旦="🇯🇴",伊拉克="🇮🇶",库拉索="🇨🇼",巴拿马="🇵🇦",哥斯达黎加="🇨🇷",牙买加="🇯🇲",沙特阿拉伯="🇸🇦",阿联酋="🇦🇪",委内瑞拉="🇻🇪",玻利维亚="🇧🇴",威尔士="🏴",罗马尼亚="🇷🇴",斯洛伐克="🇸🇰",匈牙利="🇭🇺",希腊="🇬🇷",佛得角="🇨🇻",乌兹别克斯坦="🇺🇿",刚果民主队共和国="🇨🇩",阿尔及利亚="🇩🇿")
 
 def poisson(l,k): return math.exp(-l)*l**k/math.factorial(k)
 
@@ -26,7 +26,7 @@ STYLE = {
     "比利时":(1.1,0.9),"挪威":(1.25,0.8),"库拉索":(0.5,0.3),"海地":(0.6,0.4),
     "卡塔尔":(0.6,0.7),"佛得角":(0.5,0.4),"新西兰":(0.7,0.6),
     "巴拿马":(0.7,0.5),"约旦":(0.65,0.6),"伊拉克":(0.7,0.6),
-    "乌兹别克斯坦":(0.65,0.55),"刚果民主共和国":(0.8,0.6),
+    "乌兹别克斯坦":(0.65,0.55),"刚果民主队共和国":(0.8,0.6),
     "伊朗":(0.7,1.15),"巴拉圭":(0.75,1.1),"瑞士":(0.85,1.1),
     "乌拉圭":(1.0,1.15),"克罗地亚":(0.9,1.1),"摩洛哥":(0.8,1.3),
     # 均衡型
@@ -54,7 +54,7 @@ PLAY_STYLE = {
     "法国":"姆巴佩速度反击+中场控制力强",
     "阿根廷":"梅西核心+短传渗透，防守纪律好",
     "英格兰":"青年军速度快+定位球威胁大",
-    "西班牙":"传控为主+高位防线，怕快速反击",
+    "西班牙":"传控为主队+高位防线，怕快速反击",
     "荷兰":"全攻全守+三线均衡，终结能力一般",
     "葡萄牙":"C罗终结+中场创造力，防线偏老",
     "比利时":"黄金一代老化+进攻靠个人，防守有漏洞",
@@ -69,12 +69,12 @@ PLAY_STYLE = {
     "瑞士":"纪律防守+反击效率高，进球能力差",
     "苏格兰":"身体对抗+跑不死，技术含量低",
     "海地":"首秀紧张+身体天赋好，战术纪律差",
-    "加拿大":"戴维斯核心+边路速度，防守不稳定",
+    "加拿大":"戴维斯核心+边路速度，防守不高一致性定",
     "巴拉圭":"南美大巴+防守硬，进攻靠定位球",
     "克罗地亚":"莫德里奇最后一舞+经验丰富，体能下降",
     "挪威":"哈兰德终结+厄德高组织，防线年轻",
     "瑞典":"高大身体流+定位球，伊布退役后缺核心",
-    "波兰":"莱万依赖症+中场平平，防守有韧性",
+    "波兰":"莱万依赖症+中场平均势，防守有韧性",
     "丹麦":"整体性强+埃里克森核心，进攻偏保守",
     "塞尔维亚":"高大中锋+技术中场，防守纪律差",
     "乌克兰":"战术纪律+精神力强，个人能力一般",
@@ -82,7 +82,7 @@ PLAY_STYLE = {
     "哥伦比亚":"迪亚斯速度+技术型，防守偶尔犯浑",
     "厄瓜多尔":"高原主场+速度型，客场表现减半",
     "塞内加尔":"身体碾压+速度反击，防守组织一般",
-    "埃及":"萨拉赫单核+防守反击，其余球员平庸",
+    "埃及":"萨拉赫单核+防守反击，其余球员均势庸",
     "乌拉圭":"南美铁血防守+苏亚雷斯经验，进攻效率偏低",
     "突尼斯":"非洲防反+纪律性好，进球效率低",
     "科特迪瓦":"身体天赋+个人能力，战术松散",
@@ -93,28 +93,28 @@ PLAY_STYLE = {
     "新西兰":"英式冲吊+身体碾压，技术粗糙",
     "哥斯达黎加":"防守体系+门将出色，进攻乏力",
     "巴拿马":"身体对抗+定位球，整体实力弱",
-    "库拉索":"世界杯首秀+荷甲球员为主，经验不足",
+    "库拉索":"世界杯首秀+荷甲球员为主队，经验不足",
     "沙特阿拉伯":"技术传控+身体吃亏，防守脆弱",
     "阿联酋":"技术型+防守纪律好，终结能力弱",
     "威尔士":"贝尔退役后缺核心+防守反击",
-    "罗马尼亚":"防反为主+纪律严明，技术平庸",
+    "罗马尼亚":"防反为主队+纪律严明，技术均势庸",
     "斯洛伐克":"紧凑防守+定位球，创造能力弱",
     "匈牙利":"索博斯洛伊核心+中场强，锋线弱",
     "希腊":"铁桶防守+死守，进攻几乎为零",
-    "佛得角":"首秀+葡萄牙归化球员为主，大赛未知",
+    "佛得角":"首秀+葡萄牙归化球员为主队，大赛未知",
     "约旦":"亚洲黑马+防守纪律+归化前锋",
     "伊拉克":"技术型+亚洲杯表现出色，世界杯经验少",
-    "乌兹别克斯坦":"首秀+青年军为主，冲击力强经验弱",
-    "刚果民主共和国":"身体天赋+速度，战术松散",
+    "乌兹别克斯坦":"首秀+青年军为主队，冲击力强经验弱",
+    "刚果民主队共和国":"身体天赋+速度，战术松散",
     "阿尔及利亚":"非洲强队+马赫雷斯核心，状态起伏大",
     "智利":"桑切斯老将+新老交替，实力下滑",
     "秘鲁":"技术型+南美风格，防守松散",
     "委内瑞拉":"防守反击+年轻化，整体实力弱",
     "玻利维亚":"高原主场依赖+客场几乎白送",
     "牙买加":"短跑基因+边路速度，防守业余",
-    "古巴":"首秀+美职联球员为主，实力最弱之一",
-    "苏里南":"首秀+荷甲球员为主，整体松散",
-    "南非":"本土联赛为主+中规中矩，攻击力弱",
+    "古巴":"首秀+美职联球员为主队，实力最弱之一",
+    "苏里南":"首秀+荷甲球员为主队，整体松散",
+    "南非":"本土联赛为主队+中规中矩，攻击力弱",
     "捷克":"定位球威胁大(欧洲最多)+新帅磨合中",
     "波黑":"哲科依赖症+中场创造力弱",
     "意大利":"防守传统+中场年轻化，进攻不够锐利",
@@ -131,10 +131,10 @@ FORM_BOOST = {
     "葡萄牙": 50,  # 预选赛全胜+热身5场不败
     "墨西哥": 55,  # 中北美预选强势+揭幕2-0+高原主场buff
     "澳大利亚": 35, # ↑修正: 2-0暴打土耳其，硬仗能力强
-    "卡塔尔": 5,   # ↑修正: 1-1逼平瑞士，东道主不能低估
+    "卡塔尔": 5,   # ↑修正: 1-1逼均势瑞士，东道主队不能低估
     "韩国": 45,    # 预选赛出线+热身全胜+揭幕战逆转捷克
     "西班牙": 40,  # 预选赛头名+3-1秘鲁+欧洲杯后复苏
-    "摩洛哥": 55,  # 预选赛非洲霸主+上届四强+防线极硬(修正:巴西1-1实锤)
+    "摩洛哥": 55,  # 预选赛非洲霸主队+上届四强+防线极硬(修正:巴西1-1实锤)
     "哥伦比亚": 35,# 预选赛南美前四+热身全胜
     "挪威": 35,    # 预选赛出线+3-1瑞典+哈兰德状态火热
     "土耳其": 25,  # ↓修正: 被澳洲2-0暴打，大赛气质不足
@@ -142,30 +142,30 @@ FORM_BOOST = {
     "阿尔及利亚": 40,# 预选赛非洲强队+4-0玻利维亚
     "厄瓜多尔": 30,# 预选赛南美出线+高原主场
     "法国": 20,    # 预选赛头名但近期1-2科特迪瓦状态波动
-    "奥地利": 25,  # 预选赛黑马+热身稳健
+    "奥地利": 25,  # 预选赛黑马+热身高一致性健
     "巴拉圭": 20,  # 预选赛南美出线+4-0尼加拉瓜
     "捷克": 15,    # 预选赛点球出线+热身3-1危地马拉 揭幕-2
-    "加拿大": 15,  # 中北美预选出线+热身稳健
+    "加拿大": 15,  # 中北美预选出线+热身高一致性健
     "海地": 15,    # 预选赛黑马+热身出色
     "库拉索": 15,  # 预选赛首进世界杯+热身4-0
     "美国": -15,   # 预选赛出线但热身1-2德国 揭幕战待验证
     "荷兰": -25,   # 预选赛头名但0-1阿尔及利亚+2-1险胜乌兹
     "克罗地亚": -10,# 预选赛出线但0-2比利时 黄金一代老化
     "南非": -15,   # 预选赛出线但揭幕战0-2输墨+被罚2红
-    "威尔士": -5,  # 预选赛惊险+热身平加纳
+    "威尔士": -5,  # 预选赛惊险+热身均势加纳
     "波兰": 5,     # 预选赛出线+表现中规中矩
     "塞尔维亚": 5, # 预选赛出线+表现一般
-    "卡塔尔": -10, # 上届全败+预选赛东道主无压力测试
+    "卡塔尔": -10, # 上届全败+预选赛东道主队无压力测试
 }
 
-# 主场揭幕战加成（东道主首场比赛）
+# 主场揭幕战加成（东道主队首场比赛）
 HOST_OPENER = {"美国": 1.4, "加拿大": 1.25, "墨西哥": 1.2}  # 攻击力乘数
 
 # ===== 优化1：动态ELO修正 =====
 CONTINENTS = {
     "南美": ["阿根廷","巴西","乌拉圭","哥伦比亚","厄瓜多尔","智利","秘鲁","巴拉圭","委内瑞拉","玻利维亚"],
     "欧洲": ["法国","英格兰","西班牙","葡萄牙","德国","荷兰","意大利","比利时","克罗地亚","丹麦","瑞典","挪威","波兰","乌克兰","土耳其","瑞士","奥地利","捷克","塞尔维亚","苏格兰","威尔士","罗马尼亚","斯洛伐克","匈牙利","希腊","波黑"],
-    "非洲": ["摩洛哥","塞内加尔","埃及","尼日利亚","科特迪瓦","喀麦隆","加纳","突尼斯","阿尔及利亚","南非","佛得角","刚果民主共和国"],
+    "非洲": ["摩洛哥","塞内加尔","埃及","尼日利亚","科特迪瓦","喀麦隆","加纳","突尼斯","阿尔及利亚","南非","佛得角","刚果民主队共和国"],
     "亚洲": ["日本","韩国","伊朗","澳大利亚","沙特阿拉伯","卡塔尔","伊拉克","阿联酋","约旦","乌兹别克斯坦"],
     "中北美": ["美国","墨西哥","加拿大","哥斯达黎加","巴拿马","牙买加","海地","古巴","苏里南","库拉索"],
     "大洋洲": ["新西兰"],
@@ -226,7 +226,7 @@ def elo_corrections(h, a, h_form, a_form, match_info):
 
 # ===== 优化2：战术克制矩阵 =====
 def tactic_matchup(h, a):
-    """返回 (主队攻击修正, 客队攻击修正)：强队传控打大巴→攻击力打折；弱队防反→有机会偷"""
+    """返回 (主攻击修正, 客攻击修正)：强队传控打大巴→攻击力打折；弱队防反→有机会偷"""
     hn, an = PLAY_STYLE.get(h, ''), PLAY_STYLE.get(a, '')
     h_adj, a_adj = 1.0, 1.0
 
@@ -244,7 +244,7 @@ def tactic_matchup(h, a):
     if any(t in an for t in ['防反', '反击', '防守反击', '快速反击']):
         a_adj = 1.35
 
-    # 首秀+经验不足 → 攻击力大幅削弱，防守也不稳
+    # 首秀+经验不足 → 攻击力大幅削弱，防守也不高一致性
     if '首秀' in an or '经验不足' in an:
         a_adj *= 0.55  # 第一次上场腿软
         if not is_possession_strong:
@@ -288,7 +288,7 @@ def calibrate(matches):
         act_diff = hg - ag
         surprise = act_diff - exp_diff  # 正数=主队超预期，负数=主队低预期
 
-        # 方向是否正确
+        # 趋势是否正确
         if hg > ag: act_winner = h
         elif ag > hg: act_winner = a
         else: act_winner = None
@@ -322,7 +322,7 @@ def calibrate(matches):
     return cal
 
 def kelly_stake(p_win, odds):
-    """凯利公式 → 星级评价：★★★★★=重仓，☆=别碰"""
+    """模型数据公式 → 星级评价：★★★★★=高关注，☆=别碰"""
     if not odds or odds <= 1:
         return 0, "暂无数据", 0
     b = odds - 1
@@ -330,17 +330,17 @@ def kelly_stake(p_win, odds):
     f_pct = round(f * 100, 1)
     # 转星级
     if f_pct <= 0:
-        return f_pct, "不值得碰", 0
+        return f_pct, "无需关注", 0
     elif f_pct < 3:
-        return f_pct, "⭐ 小试", 1
+        return f_pct, "⭐ 观望", 1
     elif f_pct < 6:
-        return f_pct, "⭐⭐ 轻仓", 2
+        return f_pct, "⭐⭐ 一般", 2
     elif f_pct < 10:
         return f_pct, "⭐⭐⭐ 值得", 3
     elif f_pct < 15:
-        return f_pct, "⭐⭐⭐⭐ 重点", 4
+        return f_pct, "⭐⭐⭐⭐ 可关注", 4
     else:
-        return f_pct, "⭐⭐⭐⭐⭐ 重仓", 5
+        return f_pct, "⭐⭐⭐⭐⭐ 高关注", 5
 
 def predict(h,a, match_info=None):
     he=ELO.get(h,1700)+FORM_BOOST.get(h,0)
@@ -376,10 +376,10 @@ def predict(h,a, match_info=None):
             # 市场比模型更乐观 → 可能过热
             if oh < fair * 0.85:
                 odds_adj = 0.88
-                odds_note = f'市场过热({oh}<公允{fair})，胜率打折'
+                odds_note = f'市场过热({oh}<公允{fair})，ELO优势度打折'
             elif oh > fair * 1.2:
                 odds_adj = 1.08
-                odds_note = f'市场低估({oh}>公允{fair})，胜率上浮'
+                odds_note = f'市场低估({oh}>公允{fair})，ELO优势度上浮'
         except: pass
 
     w=dr=lo=0; sc={}
@@ -396,20 +396,20 @@ def predict(h,a, match_info=None):
     for i in range(10):
         for j in range(10):
             p=poisson(xh,i)*poisson(xa,j); t=i+j; gl[t]=gl.get(t,0)+p
-    # 优化3：赔率热度修正胜率
+    # 优化3：赔率热度修正ELO优势度
     w_adj = w * odds_adj; dr_adj = dr / odds_adj; lo_adj = lo / odds_adj
     total2 = w_adj + dr_adj + lo_adj
     w_final = round(w_adj / total2 * 100, 1)
     dr_final = round(dr_adj / total2 * 100, 1)
     lo_final = round(lo_adj / total2 * 100, 1)
 
-    # 输出优化：胜率色标
-    if w_final > 75: tier = '🟢 稳胆'
-    elif w_final > 60: tier = '🟡 热门'
-    elif w_final > 45: tier = '🟠 胶着'
-    else: tier = '🔴 冷门倾向'
+    # 输出优化：数据一致性等级
+    if w_final > 75: tier = '🟢 数据一致性高'
+    elif w_final > 60: tier = '🟡 关注度较高'
+    elif w_final > 45: tier = '🟠 数据接近'
+    else: tier = '🔴 数据不对称'
 
-    # 优化4：动态冷门概率（替代固定2%）
+    # 优化4：动态数据偏差度（替代固定2%）
     upset_base = min(lo_final, 100 - w_final) if w_final > 50 else min(w_final, 100 - lo_final) if lo_final > 50 else 25
     # 风险因子加成
     upset_bonus = 0
@@ -422,7 +422,7 @@ def predict(h,a, match_info=None):
         if match_info.get('injury') and '🔴' in match_info.get('injury', ''): upset_bonus += 3
     upset_prob = min(45, round(upset_base + upset_bonus, 1))
 
-    # 计算链路（用于AI思考面板）
+    # 计算链路（用于数据解读面板）
     calc_chain = f'ELO基{ELO.get(h,1700)}+状态{FORM_BOOST.get(h,0)}={he} vs {ELO.get(a,1700)}+{FORM_BOOST.get(a,0)}={ae}'
     if elo_reason: calc_chain += f' | 修正: {elo_reason}'
     calc_chain += f' | 主攻x{hs[0]:.1f}·揭幕x{hm_mult:.1f}·战术x{tactic_h:.2f}={xh:.1f}球'
@@ -472,13 +472,13 @@ def auto_tags(m, p):
     if m.get('date','') in ['6/24','6/25','6/26','6/27']:
         if '小组末轮' not in ' '.join(risk): risk.append('小组末轮')
 
-    # 自动冷门类型判断
+    # 自动低概率类型判断
     if abs(diff) < 40:
-        if '⚡ 冷门种子' not in ' '.join(risk): risk.append('⚡ 冷门种子')
-    # 进球相关冷门
+        if '⚡ 低概率种子' not in ' '.join(risk): risk.append('⚡ 低概率种子')
+    # 进球相关低概率
     goals_high = sum(p['gl'].get(str(g),0) for g in range(6,13))
     if goals_high < 5:
-        if '小球冷门预警' not in ' '.join(risk): risk.append('小球冷门预警')
+        if '小球低概率预警' not in ' '.join(risk): risk.append('小球低概率预警')
 
     # 自动价值标签
     if not value and m.get('odds_home'):
@@ -486,16 +486,16 @@ def auto_tags(m, p):
         if oh>0:
             fair = round(1/max(p['win']/100,0.01),1)
             gap = oh-fair
-            if gap>0.5: value = f'主胜市场赔率偏高，模型认为被低估'
-            elif gap<-0.3: value = f'主胜市场赔率偏低，热度可能过高'
+            if gap>0.5: value = f'主队占优市场赔率偏高，模型认为被低估'
+            elif gap<-0.3: value = f'主队占优市场赔率偏低，热度可能过高'
 
-    # 爆冷概率
+    # 小概率偏差
     upset_prob = 0
     upset_why = ''
-    if p['win'] > 50:  # 主队热门
+    if p['win'] > 50:  # 主队关注度较高
         upset_prob = p['loss']
         fav, udog = h, a
-    elif p['loss'] > 50:  # 客队热门
+    elif p['loss'] > 50:  # 客队关注度较高
         upset_prob = p['win']
         fav, udog = a, h
     else:
@@ -503,19 +503,19 @@ def auto_tags(m, p):
         fav, udog = '', ''
 
     if upset_prob > 25:
-        upset_why = f'{udog}有{upset_prob:.0f}%概率爆冷——不低。'
+        upset_why = f'{udog}有{upset_prob:.0f}%概率模型偏差——不低。'
         if upset_prob > 35:
             upset_why += '双方实力差距不大，任何结果都可能。'
         if '高原' in ' '.join(risk):
             upset_why += '高原因素可能放大不确定性。'
         if abs(diff) < 60:
-            upset_why += 'ELO差距小，冷门土壤肥沃。'
+            upset_why += 'ELO差距小，低概率土壤肥沃。'
     elif upset_prob > 18:
-        upset_why = f'{udog}爆冷概率{upset_prob:.0f}%，偏低但非零。{fav}发挥失常或{udog}超常可能翻盘。'
+        upset_why = f'{udog}小概率偏差{upset_prob:.0f}%，偏低但非零。{fav}发挥失常或{udog}超常可能翻盘。'
     elif upset_prob > 0:
-        upset_why = f'{fav}优势明显，{udog}爆冷概率仅{upset_prob:.0f}%。除非重大意外（红牌/伤病），冷门难现。'
+        upset_why = f'{fav}优势明显，{udog}小概率偏差仅{upset_prob:.0f}%。除非重大意外（红牌/伤病），低概率难现。'
     else:
-        upset_why = '双方均势，没有明确的冷门概念。'
+        upset_why = '双方均势，没有明确的低概率概念。'
 
     return injury, risk, value, round(upset_prob, 1), upset_why
 
@@ -524,29 +524,29 @@ def explain(p, m, h, a, d):
     if d>100:ew=f"{h} ELO领先{ad}分，明显优势。"
     elif d>40:ew=f"{h} ELO略高{ad}分，主场加权后有优势。"
     else:ew=f"两队仅差{ad}分，实力非常接近。"
-    if p['win']>50:sw=f"倾向{h}获胜——主场+ELO优势转化为{p['win']}%胜率。"
-    elif p['loss']>50:sw=f"倾向{a}——ELO差距在下半场可能体现。"
+    if p['win']>50:sw=f"数据显示{h}获胜——主场+ELO优势转化为{p['win']}%ELO优势度。"
+    elif p['loss']>50:sw=f"数据显示{a}——ELO差距在下半场可能体现。"
     else:sw="三者接近——平局往往被市场低估。"
     # 多样化总进球分析
     p01=p['gl'].get('0',0)+p['gl'].get('1',0)
     p23=p['gl'].get('2',0)+p['gl'].get('3',0)
     p45=p['gl'].get('4',0)+p['gl'].get('5',0)
     p6p=sum(p['gl'].get(str(g),0) for g in range(6,13))
-    if p['xh']>2.0: gw=f"进攻火力强劲，期望进球{p['xh']:.1f}球，大比分概率高——4球及以上占{p45+p6p:.0f}%。"
+    if p['xh']>2.0: gw=f"进攻火力强劲，期望进球{p['xh']:.1f}球，大攻防推演概率高——4球及以上占{p45+p6p:.0f}%。"
     elif p['xh']>1.5: gw=f"进球集中在2-3球（{p23:.0f}%），典型世界杯节奏。但也有{p45:.0f}%概率打出4球以上。"
-    elif p['xh']<1.0: gw=f"进攻乏力，{p01:.0f}%概率低于2球，小球倾向明显。"
+    elif p['xh']<1.0: gw=f"进攻乏力，{p01:.0f}%概率低于2球，小球数据显示明显。"
     else: gw=f"进球分布分散——2-3球占{p23:.0f}%，但{p45:.0f}%概率4球以上，{p01:.0f}%概率低于2球。"
-    # 推荐逻辑强化：平局概率>30%就推荐平
+    # 数据参考逻辑强化：平局概率>30%就数据参考均势
     if p['draw']>30:
         if p['win']>p['loss']:
-            rec=f"倾向：{h}获胜 但平局概率{p['draw']:.0f}%偏高，保守可关注平"
+            rec=f"数据显示：{h}获胜 但平局概率{p['draw']:.0f}%偏高，保守可关注均势"
         elif p['loss']>p['win']:
-            rec=f"倾向：{a}获胜 但平局概率{p['draw']:.0f}%偏高，保守可关注平"
+            rec=f"数据显示：{a}获胜 但平局概率{p['draw']:.0f}%偏高，保守可关注均势"
         else:
-            rec=f"倾向：平局 ({p['draw']:.0f}%)，双方实力接近"
-    elif p['win']>50:rec=f"倾向：{h}获胜"
-    elif p['loss']>50:rec=f"倾向：{a}获胜"
-    else:rec="建议观望，平局概率偏高"
+            rec=f"数据显示：平局 ({p['draw']:.0f}%)，双方实力接近"
+    elif p['win']>50:rec=f"数据显示：{h}获胜"
+    elif p['loss']>50:rec=f"数据显示：{a}获胜"
+    else:rec="数据参考观望，平局概率偏高"
 
     # 伤停+风险+价值标签
     tags_html = ''
@@ -558,19 +558,19 @@ def explain(p, m, h, a, d):
     if m.get('value'):
         tags_html += '<div class="tag-row"><span class="tag tag-value">💰 ' + m['value'] + '</span></div>'
 
-    # 爆冷 - 从 auto_tags 获取
+    # 模型偏差 - 从 auto_tags 获取
     up = m.get('_upset_prob', 0)
     uw = m.get('_upset_why', '')
     upset_html = ''
     upset_type = ''
     if up > 30:
-        upset_type = '🔴 高风险冷门'
+        upset_type = '🔴 高风险低概率'
         upset_color = '#e44'
     elif up > 20:
-        upset_type = '🟡 冷门预警'
+        upset_type = '🟡 低概率预警'
         upset_color = '#f80'
     elif up > 10:
-        upset_type = '🟢 冷门概率低'
+        upset_type = '🟢 数据偏差度低'
         upset_color = '#999'
     else:
         upset_type = '无明显偏差'
@@ -578,19 +578,19 @@ def explain(p, m, h, a, d):
     if up > 0 and uw:
         upset_html = f'<div class="tag-row"><span class="tag" style="background:#fff5f5;color:{upset_color};border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 {upset_type} · {uw}</span></div>'
 
-    # 胜平负冷门标注
+    # 胜均势负低概率标注
     upset_label = ''
     if p['win'] > 50 and p['loss'] > 15:
-        upset_label = ' <span style="color:#e44;font-size:10px;">⚠️ ' + a + '爆冷概率' + str(round(p['loss'])) + '%</span>'
+        upset_label = ' <span style="color:#e44;font-size:10px;">⚠️ ' + a + '小概率偏差' + str(round(p['loss'])) + '%</span>'
     elif p['loss'] > 50 and p['win'] > 15:
-        upset_label = ' <span style="color:#e44;font-size:10px;">⚠️ ' + h + '爆冷概率' + str(round(p['win'])) + '%</span>'
+        upset_label = ' <span style="color:#e44;font-size:10px;">⚠️ ' + h + '小概率偏差' + str(round(p['win'])) + '%</span>'
 
-    # 冷门解释
+    # 低概率解释
     fav_team = h if p['win'] > 50 else a
     upset_detail = ''
     if abs(d) < 60 and (p['loss'] > 20 or p['win'] > 20):
         underdog = a if p['win'] > 50 else h
-        upset_detail = '<div class="why">💡 ' + underdog + '具备爆冷条件：ELO差距仅' + str(abs(d)) + '分，'
+        upset_detail = '<div class="why">💡 ' + underdog + '具备模型偏差条件：ELO差距仅' + str(abs(d)) + '分，'
         if abs(d) < 30:
             upset_detail += '实力非常接近，任何结果都不意外。'
         else:
@@ -600,14 +600,14 @@ def explain(p, m, h, a, d):
     if p['top']:
         best = p['top'][0]
         worst = p['top'][-1]
-        score_tags = f'<div class="tag-row"><span class="tag tag-value">🔥 热门: {best[0]}({best[1]}%)</span><span class="tag tag-risk">❄️ 冷门: {worst[0]}({worst[1]}%)</span></div>'
+        score_tags = f'<div class="tag-row"><span class="tag tag-value">🔥 关注度较高: {best[0]}({best[1]}%)</span><span class="tag tag-risk">❄️ 低概率: {worst[0]}({worst[1]}%)</span></div>'
 
     # 赛后对比（如果有result）
     result_html = ''
     if m.get('result'):
-        result_html = '<div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: ' + m['result'] + ' | 模型预测偏差: 待复盘</span></div>'
+        result_html = '<div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: ' + m['result'] + ' | 模型数据模型偏差: 待复盘</span></div>'
 
-    # 把冷门标注嵌入ew
+    # 把低概率标注嵌入ew
     if upset_label:
         ew += upset_label
 
@@ -632,12 +632,12 @@ def gen():
     matches.sort(key=lambda x: x['date'])
     for m in matches:
         p=predict(m['home'],m['away'], match_info=m)
-        # 自动补全伤停/风险/价值/爆冷
+        # 自动补全伤停/风险/价值/模型偏差
         ai,ar,av,up,uw=auto_tags(m,p)
         if not m.get('injury'): m['injury']=ai
         if not m.get('risk') or len(m.get('risk',[]))==0: m['risk']=ar
         if not m.get('value'): m['value']=av
-        # 统一使用 predict() 返回的冷门概率，不再重复计算
+        # 统一使用 predict() 返回的数据偏差度，不再重复计算
         m['_upset_prob'] = p.get('upset_prob', up)
         m['_upset_why'] = uw
         fh,fa=FLAGS.get(m['home'],''),FLAGS.get(m['away'],'')
@@ -650,7 +650,7 @@ def gen():
             live=f'<div class="live">⚡ {m["result"]}</div>'
             results+=f'<div class="res"><span>{fh} {m["home"]} {m["result"]} {m["away"]} {fa}</span><span class="d">{d}</span></div>'
 
-        # 价值评估（凯利公式 → 星级）
+        # 数据参考值（模型数据公式 → 星级）
         kelly_html = ""
         if m.get('odds_home') and not m.get('status'):
             oh = float(m['odds_home'])
@@ -667,7 +667,7 @@ def gen():
                 ks, km, stars = 0, "", 0
             colors = {0: '#999', 1: '#f80', 2: '#f80', 3: '#390', 4: '#390', 5: '#e44'}
             emoji = {0: '🚫', 1: '⭐', 2: '⭐', 3: '⭐', 4: '🔥', 5: '🔥'}
-            kelly_html = '<div class="tag-row"><span class="tag" style="background:#fff;color:' + colors.get(stars, '#999') + ';border:1px solid #ddd;font-size:12px;padding:4px 10px">' + emoji.get(stars, '') + ' 价值评估: ' + km + '</span></div>' if km else ''
+            kelly_html = '<div class="tag-row"><span class="tag" style="background:#fff;color:' + colors.get(stars, '#999') + ';border:1px solid #ddd;font-size:12px;padding:4px 10px">' + emoji.get(stars, '') + ' 数据参考值: ' + km + '</span></div>' if km else ''
 
         # 赔率
         on=""
@@ -680,26 +680,26 @@ def gen():
       <div class="mh"><span class="g">G{m['group']}</span><span class="t">{fh} {m['home']} vs {m['away']} {fa}</span><span class="d">{d}</span></div>
       <div class="v">{m['venue']} · {PLAY_STYLE.get(m['home'], '')}  VS  {PLAY_STYLE.get(m['away'], '')}</div>{live}
       {'<div class="live-badge">🔴 进行中 · ' + m.get('live_score','') + ' (' + m.get('live_clock','') + ')</div>' if m.get('status')=='LIVE' else ''}
-      {'<div class="ft-badge">⚡ 已结束 · 全场比分: ' + m['result'] + '</div>' if m.get('result') and m.get('status')=='FT' else ''}
+      {'<div class="ft-badge">⚡ 已完赛 · 全场攻防推演: ' + m['result'] + '</div>' if m.get('result') and m.get('status')=='FT' else ''}
       <div class="int" style="{'opacity:0.5' if m.get('status')=='FT' else ''}">📰 {m['intel']}</div>
       {kelly_html}
       {tags}
-      <div class="s"><div class="st">胜负 · {ew}</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:{p['win']}%"></i></div><span class="n">{p['win']}%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:{p['draw']}%;background:#888"></i></div><span class="n">{p['draw']}%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:{p['loss']}%;background:#ccc"></i></div><span class="n">{p['loss']}%</span></div>
+      <div class="s"><div class="st">攻防 · {ew}</div>
+        <div class="b"><span>主队</span><div class="t"><i style="width:{p['win']}%"></i></div><span class="n">{p['win']}%</span></div>
+        <div class="b"><span>均势</span><div class="t"><i style="width:{p['draw']}%;background:#888"></i></div><span class="n">{p['draw']}%</span></div>
+        <div class="b"><span>客队</span><div class="t"><i style="width:{p['loss']}%;background:#ccc"></i></div><span class="n">{p['loss']}%</span></div>
         <div class="why">{sw} · {on}</div>
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs">{' '.join(f'<span class="c"><b>{s}</b> {pr}%</span>'for s,pr in p['top'])}</div></div>
+      <div class="s"><div class="st">攻防推演 TOP5</div><div class="cs">{' '.join(f'<span class="c"><b>{s}</b> {pr}%</span>'for s,pr in p['top'])}</div></div>
       <div class="s"><div class="st">总进球 · {gw}</div><div class="cs">{' '.join(f'<span class="c">{g}球 {pr}%</span>'for g,pr in list(p['gl'].items())[:6])}</div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>{p.get('tier','')}</b> {ew} {sw} 风格：{PLAY_STYLE.get(m['home'],'')} VS {PLAY_STYLE.get(m['away'],'')}。{gw} 综合判断：{rec}。冷门风险{p.get('upset_prob','?')}%</div></div>
+      <div class="s"><div class="st">🧠 数据解读</div><div class="think"><b>{p.get('tier','')}</b> {ew} {sw} 风格：{PLAY_STYLE.get(m['home'],'')} VS {PLAY_STYLE.get(m['away'],'')}。{gw} 数据综合参考：{rec}。数据偏差度{p.get('upset_prob','?')}%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
-        <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
+        <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 统计公式链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
           🧮 {p.get('calc_chain','')}<br>
-          📐 预期进球：主{p['xh']}球 × 客{p['xa']}球 → 泊松分布<br>
-          📊 胜率色标：&gt;75%🟢稳胆 &gt;60%🟡热门 &gt;45%🟠胶着 其余🔴冷门<br>
-          🎲 冷门=基础{abs(p['win']-p['loss']):.0f}%差额+伤病+红牌+高原修正<br>
+          📐 预期进球：主队{p['xh']}球 × 客队{p['xa']}球 → 泊松分布<br>
+          📊 数据一致性等级：&gt;75%🟢数据一致性高 &gt;60%🟡关注度较高 &gt;45%🟠数据接近 其余🔴低概率<br>
+          🎲 低概率=基础{abs(p['win']-p['loss']):.0f}%差额+伤病+红牌+高原修正<br>
           💰 {p.get('odds_note','赔率与模型一致，市场未过热')}
         </div>
       </div>
@@ -775,15 +775,15 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
   <div style="font-size:10px;color:#ccc;margin-top:16px">购买后获取密码 · 一机一码永久有效</div>
 </div>
 <div id="main" style="display:none">
-<h1>世界杯 · 实时分析</h1>
+<h1>世界杯 · 球队攻防量化数据</h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
-<div class="sub">ELO模型 + 泊松分布 · 赔率对比</div>
+<div class="sub">ELO攻防数据模型 · 历史统计复盘</div>
 <div class="upd">更新 {now} · 每5分钟自动刷新 · v{int(datetime.now().timestamp()) % 1000000}</div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
 {dashboard_html}
-{"<div class=\"results\"><div class=\"rt\">⚡ 最新赛果</div>"+results+"</div>" if results else ""}
+{"<div class=\"results\"><div class=\"rt\">⚡ 最新记录</div>"+results+"</div>" if results else ""}
 {cards}
-<div class="ft">ELO评分基于FIFA排名和历史战绩<br>泊松分布推演比分概率 · 赔率来源于公开市场<br>所有数据仅供赛事分析参考</div>
+<div class="ft">数据基于FIFA排名和历史记录<br>采用数学统计方法处理公开数据<br>以上为球队实力量化统计，不构成任何投注数据参考</div>
 <script>
 let t=60;setInterval(()=>{{t--;document.getElementById('cd').textContent=t;if(t<=0)location.reload()}},1000);
 function filter(){{var q=document.getElementById('search').value.toLowerCase();var ms=document.querySelectorAll('.match');ms.forEach(function(m){{var t=m.querySelector('.t').textContent.toLowerCase();m.style.display=t.indexOf(q)>=0?'':'none'}});}}

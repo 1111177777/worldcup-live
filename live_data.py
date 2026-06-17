@@ -177,36 +177,50 @@ def get_continent(team):
     return "其他"
 
 def elo_corrections(h, a, h_form, a_form, match_info):
-    """返回 (主场ELO修正, 客场ELO修正, 解释文本)"""
+    """量化全部变量→统一ELO扣分/进球修正值"""
     reasons = []
     h_adj, a_adj = 0, 0
 
-    # 跨洲客场疲劳
+    # 跨洲客场疲劳（长途飞行）
     hc, ac = get_continent(h), get_continent(a)
     venue = match_info.get('venue', '')
     is_us_host = any(c in venue for c in ['洛杉矶','纽约','达拉斯','休斯顿','迈阿密','西雅图','波士顿','旧金山','费城','亚特兰大','堪萨斯城'])
-    if hc != ac and not is_us_host:
-        a_adj -= 12
-        reasons.append(f'{a}跨洲作战-12')
+    if hc != ac:
+        if not is_us_host:
+            a_adj -= 12
+            reasons.append(f'{a}跨洲飞行-12')
 
-    # 连胜衰减
-    if h_form > 60:
-        h_adj -= 8
-        reasons.append(f'{h}连胜过高-8')
-    if a_form > 60:
-        a_adj -= 8
-        reasons.append(f'{a}连胜过高-8')
+    # 连胜衰减（连胜越多，边际效用递减）
+    if h_form > 80: h_adj -= 12; reasons.append(f'{h}超高连胜-12')
+    elif h_form > 60: h_adj -= 8; reasons.append(f'{h}连胜衰减-8')
+    if a_form > 80: a_adj -= 12; reasons.append(f'{a}超高连胜-12')
+    elif a_form > 60: a_adj -= 8; reasons.append(f'{a}连胜衰减-8')
 
-    # 伤病量化
+    # 伤病量化（按位置分等级）
     injury = match_info.get('injury', '')
     if injury:
-        if '伤缺' in injury or '缺阵' in injury:
-            # 后防核心缺阵 → 扣对手ELO+提升预期失球
-            for team in [h, a]:
-                if team in injury and ('后防' in injury or '防' in injury):
-                    if team == h: h_adj -= 10
-                    else: a_adj -= 10
-                    reasons.append(f'{team}防线核心缺阵-10')
+        for team, pos_keywords, penalty in [
+            (h, ['后防核心','防线','门将','后卫','中卫'], -10),
+            (a, ['后防核心','防线','门将','后卫','中卫'], -10),
+            (h, ['中场核心','组织','核心中场'], -7),
+            (a, ['中场核心','组织','核心中场'], -7),
+            (h, ['前锋','射手','进攻核心'], -5),
+            (a, ['前锋','射手','进攻核心'], -5),
+        ]:
+            if any(k in injury for k in pos_keywords):
+                if team == h: h_adj += penalty
+                else: a_adj += penalty
+                reasons.append(f'{team}核心缺阵{penalty}')
+                break  # 只计最高等级
+
+    # 复仇战意（历史交锋记录）
+    intel = match_info.get('intel', '')
+    if '复仇' in intel or '复仇战' in intel:
+        for team in [h, a]:
+            if team in intel.split('复仇')[0]:
+                if team == h: h_adj += 8
+                else: a_adj += 8
+                reasons.append(f'{team}复仇战意+8')
 
     return h_adj, a_adj, '；'.join(reasons) if reasons else ''
 
@@ -623,8 +637,9 @@ def gen():
         if not m.get('injury'): m['injury']=ai
         if not m.get('risk') or len(m.get('risk',[]))==0: m['risk']=ar
         if not m.get('value'): m['value']=av
-        m['_upset_prob']=up
-        m['_upset_why']=uw
+        # 统一使用 predict() 返回的冷门概率，不再重复计算
+        m['_upset_prob'] = p.get('upset_prob', up)
+        m['_upset_why'] = uw
         fh,fa=FLAGS.get(m['home'],''),FLAGS.get(m['away'],'')
         ew,sw,gw,rec,tags=explain(p,m,m['home'],m['away'],p['he']-p['ae']+50)
         d=f"{m['date']} {m['time']}".strip()
@@ -677,7 +692,17 @@ def gen():
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs">{' '.join(f'<span class="c"><b>{s}</b> {pr}%</span>'for s,pr in p['top'])}</div></div>
       <div class="s"><div class="st">总进球 · {gw}</div><div class="cs">{' '.join(f'<span class="c">{g}球 {pr}%</span>'for g,pr in list(p['gl'].items())[:6])}</div></div>
-      <div class="s"><div class="st">AI思考</div><div class="think"><b>{p.get('tier','')}</b> {ew} {sw} 风格：{PLAY_STYLE.get(m['home'],'')} VS {PLAY_STYLE.get(m['away'],'')}。{gw}<br><small style="color:#999">🧮 {p.get('calc_chain','')}</small><br>综合判断：{rec}。冷门风险{p.get('upset_prob','?')}%</div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>{p.get('tier','')}</b> {ew} {sw} 风格：{PLAY_STYLE.get(m['home'],'')} VS {PLAY_STYLE.get(m['away'],'')}。{gw} 综合判断：{rec}。冷门风险{p.get('upset_prob','?')}%</div></div>
+      <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
+        <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
+        <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
+          🧮 {p.get('calc_chain','')}<br>
+          📐 预期进球：主{p['xh']}球 × 客{p['xa']}球 → 泊松分布<br>
+          📊 胜率色标：&gt;75%🟢稳胆 &gt;60%🟡热门 &gt;45%🟠胶着 其余🔴冷门<br>
+          🎲 冷门=基础{abs(p['win']-p['loss']):.0f}%差额+伤病+红牌+高原修正<br>
+          💰 {p.get('odds_note','赔率与模型一致，市场未过热')}
+        </div>
+      </div>
     </div>"""
 
     html=f"""<!DOCTYPE html><html lang="zh-CN"><head>
@@ -753,7 +778,7 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
 <h1>世界杯 · 实时分析</h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 赔率对比</div>
-<div class="upd">更新 {now} · 每5分钟自动刷新</div>
+<div class="upd">更新 {now} · 每5分钟自动刷新 · v{int(datetime.now().timestamp()) % 1000000}</div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
 {dashboard_html}
 {"<div class=\"results\"><div class=\"rt\">⚡ 最新赛果</div>"+results+"</div>" if results else ""}

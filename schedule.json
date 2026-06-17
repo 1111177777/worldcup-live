@@ -341,7 +341,7 @@
     "odds_home": "1.40",
     "odds_draw": "4.50",
     "odds_away": "8.00",
-    "result": "",
+    "result": "3:0",
     "time": "",
     "injury": "阿塔利亚菲科伤缺🔴，阿尔及利亚本塞拜尼缺阵🔴",
     "risk": [
@@ -350,7 +350,7 @@
       "阿尔及利亚后防漏洞"
     ],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "奥地利",
@@ -362,7 +362,7 @@
     "odds_home": "1.80",
     "odds_draw": "3.40",
     "odds_away": "4.50",
-    "result": "",
+    "result": "3:1",
     "time": "",
     "injury": "约主力射手伤缺🔴",
     "risk": [
@@ -371,7 +371,7 @@
       "奥地利大赛经验"
     ],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "英格兰",

@@ -299,7 +299,7 @@
     "odds_home": "1.45",
     "odds_draw": "4.20",
     "odds_away": "7.50",
-    "result": "",
+    "result": "3:1",
     "time": "",
     "injury": "法萨利巴康复✅，塞库利巴利伤缺🔴",
     "risk": [
@@ -308,7 +308,7 @@
       "法国中场仅6人"
     ],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "伊拉克",
@@ -320,7 +320,7 @@
     "odds_home": "5.50",
     "odds_draw": "3.60",
     "odds_away": "1.65",
-    "result": "",
+    "result": "1:4",
     "time": "",
     "injury": "伊拉克侯赛因机场滞留7h🟡，挪威拉森感冒存疑🟡",
     "risk": [
@@ -329,7 +329,7 @@
       "挪威大赛经验不足"
     ],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "阿根廷",

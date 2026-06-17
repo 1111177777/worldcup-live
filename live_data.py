@@ -459,6 +459,94 @@ def auto_tags(m, p):
     h,a = m['home'], m['away']
     he,ae = p['he'], p['ae']
     diff = he-ae
+    injury = m.get('injury','')
+    if not injury:
+        injury_parts = []
+        h_style = STYLE.get(h, (1,1))
+        a_style = STYLE.get(a, (1,1))
+        if h_style[0] > 1.15 and a_style[0] < 0.8:
+            injury_parts.append(f'{h}攻击线优势明显')
+        if a_style[1] > 1.1:
+            injury_parts.append(f'{a}防守韧性值得关注')
+        injury = '；'.join(injury_parts) if injury_parts else ''
+    risk = list(m.get('risk',[]))
+    value = m.get('value','')
+    v = m.get('venue','')
+    if '高原' in v: risk.append('高原2200m')
+    if abs(diff)>200: risk.append('实力悬殊')
+    elif abs(diff)<30: risk.append('实力接近')
+    upset_prob = 0
+    if p['win'] > 50: upset_prob = p['loss']
+    elif p['loss'] > 50: upset_prob = p['win']
+    if upset_prob > 25: upset_why = f'不低——双方实力差距不大'
+    elif upset_prob > 15: upset_why = f'偏低但非零'
+    else: upset_why = f'冷门难现，除非重大意外'
+    return injury, risk, value, round(upset_prob, 1), upset_why
+
+def match_review(m, p):
+    """赛后AI复盘：3条推理链→白话解读+模型优化建议"""
+    h, a, r = m['home'], m['away'], m.get('result','')
+    if not r: return '', ''
+    hg, ag = map(int, r.split(':'))
+
+    # 推理链1：阵容克制推演
+    chain1 = []
+    injury = m.get('injury','')
+    if injury:
+        if '伤缺' in injury or '缺阵' in injury:
+            chain1.append(f'伤病影响：{injury}')
+    hs = PLAY_STYLE.get(h,'')
+    as_ = PLAY_STYLE.get(a,'')
+    if '边路' in hs and '高龄' in as_:
+        chain1.append(f'{h}边路速度优势 vs {a}高龄后防，突破造杀伤是胜负手')
+    if '速度' in hs or '速度' in as_:
+        chain1.append(f'速度型前锋对决→禁区一对一增多，点球概率上升')
+
+    # 推理链2：战术对冲进球推演
+    chain2 = []
+    exp_diff = p['xh'] - p['xa']
+    act_diff = hg - ag
+    total_goals = hg + ag
+    exp_total = p['xh'] + p['xa']
+    if abs(exp_diff - act_diff) > 1.5:
+        chain2.append(f'预期差{exp_diff:+.1f}球→实际差{act_diff:+.1f}球，偏差{abs(exp_diff-act_diff):.1f}球')
+    if total_goals > exp_total + 1.5:
+        chain2.append(f'总进球{total_goals}远超预期{exp_total:.1f}，攻防节奏超出模型预判')
+    if total_goals >= 5:
+        chain2.append(f'高比分({total_goals}球)：双方对攻或防守体系崩塌')
+    if total_goals <= 1:
+        chain2.append(f'低比分({total_goals}球)：默契平局或双方锋线集体哑火')
+
+    # 推理链3：数据偏差复盘
+    chain3 = []
+    elo_diff = p['he'] - p['ae']
+    if abs(elo_diff) < 60 and abs(act_diff) >= 2:
+        chain3.append(f'ELO差距仅{abs(elo_diff)}分(实力接近)但比分差{abs(act_diff)}球→模型低估了场上一方爆发力')
+    if exp_diff > 1.5 and act_diff <= 0.5:
+        chain3.append(f'模型预期{h}大胜但实际接近→{a}战术部署成功抵消实力差距')
+    # 模型修正建议
+    fixes = []
+    if total_goals > exp_total + 1:
+        fixes.append(f'上调双方攻击系数或下调防守系数(当前预期{exp_total:.1f}球vs实际{total_goals}球)')
+    if abs(elo_diff) < 80 and abs(act_diff) >= 2:
+        fixes.append(f'ELO接近时增加战术对冲权重，避免低估单点爆发')
+
+    # 拼装输出
+    plain = f'{h} {r} {a}。'
+    if chain1: plain += ' ' + ' '.join(chain1) + '。'
+    if chain2: plain += ' ' + ' '.join(chain2) + '。'
+    if chain3: plain += ' ' + ' '.join(chain3) + '。'
+
+    tech = ''
+    if fixes: tech = '建议：' + '；'.join(fixes) + '。'
+    if m.get('odds_home'):
+        oh = float(m['odds_home'])
+        fair = round(1/max(p['win']/100,0.01), 1)
+        tech += f' 赔率对比：市场{oh}vs模型公允{fair}。'
+
+    return plain, tech
+    he,ae = p['he'], p['ae']
+    diff = he-ae
     injury = m.get('injury','')  # 手动填的优先
     # 自动细化伤停影响
     if not injury:
@@ -677,9 +765,13 @@ def gen():
 
         # 实时结果
         live=""
+        review_plain = review_tech = ""
         if m.get('result'):
             live=f'<div class="live">⚡ {m["result"]}</div>'
             results+=f'<div class="res"><span>{fh} {m["home"]} {m["result"]} {m["away"]} {fa}</span><span class="d">{d}</span></div>'
+            # 赛后复盘
+            if m.get('status') == 'FT':
+                review_plain, review_tech = match_review(m, p)
 
         # 价值评估（凯利公式 → 星级）
         kelly_html = ""
@@ -734,6 +826,15 @@ def gen():
           💰 {p.get('odds_note','赔率与模型一致，市场未过热')}
         </div>
       </div>
+""" + (f"""
+      <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
+        <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
+        <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
+          <b>白话解读：</b>{review_plain}<br><br>
+          <b>模型优化：</b><span style="color:#666">{review_tech}</span>
+        </div>
+      </div>
+""" if m.get('status')=='FT' else "") + """
     </div>"""
 
     html=f"""<!DOCTYPE html><html lang="zh-CN"><head>

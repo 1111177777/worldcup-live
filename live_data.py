@@ -359,8 +359,24 @@ def predict(h,a, match_info=None):
     # 优化2：战术克制矩阵
     tactic_h, tactic_a = tactic_matchup(h, a)
 
-    # 优化3：战意系数（世界杯正赛=1.0，小组末轮可调）
+    # 优化5：出线压力战意系数
+    def qual_pressure(team, pts_dict, played_dict):
+        p = pts_dict.get(team, 0)
+        played = played_dict.get(team, 0)
+        if played == 1:
+            if p == 0: return '🔴生死战', 1.15  # 必须赢
+            if p == 1: return '🟡抢分', 1.08    # 需要3分
+            if p == 3: return '🟢从容', 0.95    # 可保守
+        return '', 1.0
+
+    # 从match_info获取当前积分（需要外部传入）
+    qual_label_h = qual_label_a = ''
     motivation_h = motivation_a = 1.0
+    if match_info and match_info.get('_pts'):
+        pts_dict = match_info['_pts']
+        played_dict = match_info.get('_played', {})
+        qual_label_h, motivation_h = qual_pressure(h, pts_dict, played_dict)
+        qual_label_a, motivation_a = qual_pressure(a, pts_dict, played_dict)
 
     d=he-ae+50; gd=d/100*0.4
     xh=max(0.3, (1.6+gd*0.7)*hs[0]*hm_mult*tactic_h*motivation_h/max(as_[1],0.5))
@@ -630,7 +646,22 @@ def gen():
     cards,results="",""
     # 按日期排序
     matches.sort(key=lambda x: x['date'])
+
+    # 计算当前积分（用于出线压力分析）
+    from collections import defaultdict
+    pts_dict = defaultdict(int)
+    played_dict = defaultdict(int)
     for m in matches:
+        if m.get('result'):
+            hg, ag = map(int, m['result'].split(':'))
+            played_dict[m['home']] += 1; played_dict[m['away']] += 1
+            if hg > ag: pts_dict[m['home']] += 3
+            elif ag > hg: pts_dict[m['away']] += 3
+            else: pts_dict[m['home']] += 1; pts_dict[m['away']] += 1
+
+    for m in matches:
+        m['_pts'] = pts_dict
+        m['_played'] = played_dict
         p=predict(m['home'],m['away'], match_info=m)
         # 自动补全伤停/风险/价值/爆冷
         ai,ar,av,up,uw=auto_tags(m,p)

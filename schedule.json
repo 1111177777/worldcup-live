@@ -383,12 +383,12 @@
     "odds_home": "1.90",
     "odds_draw": "3.30",
     "odds_away": "4.20",
-    "result": "",
+    "result": "4:2",
     "time": "",
     "injury": "英Livramento退赛🔴 Saka带伤🟡，克Gvardiol复出✅",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "加纳",
@@ -400,12 +400,12 @@
     "odds_home": "2.30",
     "odds_draw": "2.90",
     "odds_away": "3.40",
-    "result": "",
+    "result": "1:0",
     "time": "",
     "injury": "加纳Partey缺阵🔴 Kudus伤缺🔴",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "葡萄牙",
@@ -434,12 +434,12 @@
     "odds_home": "6.50",
     "odds_draw": "3.80",
     "odds_away": "1.55",
-    "result": "",
+    "result": "1:3",
     "time": "",
     "injury": "乌兹别克3主力伤缺🔴",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "捷克",

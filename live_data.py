@@ -257,6 +257,11 @@ def tactic_matchup(h, a):
     if any(t in hn for t in ['高位逼抢', '高压', '全攻全守']) and any(t in an for t in ['技术粗糙', '技术含量低', '创造力弱']):
         a_adj *= 0.65
 
+    # 蹲坑型球队→领先后收缩，预期进球打折，平局概率上升
+    parking_bus = ['捷克', '伊朗', '巴拉圭', '卡塔尔', '希腊']
+    if h in parking_bus: h_adj = min(h_adj, 0.78)
+    if a in parking_bus: a_adj = min(a_adj, 0.78)
+
     return h_adj, a_adj
 
 # 动态校准文件

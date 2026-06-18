@@ -71,7 +71,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <h1>世界杯 · 实时分析</h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 数据参考</div>
-<div class="upd">更新 06/19 02:22:33 · 每5分钟自动刷新 · v806953</div>
+<div class="upd">更新 06/19 05:03:05 · 每5分钟自动刷新 · v816585</div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
 
 <style>
@@ -93,16 +93,16 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <script>function toggleDash(e){e.classList.toggle('open');e.nextElementSibling.classList.toggle('open');}</script>
 <div class="dashboard">
   <div class="dash-section">
-    <div class="dash-title open" onclick="toggleDash(this)">📊 小组积分 <span>60.0%准确</span></div>
-    <div class="dash-body open"><div class="groups-grid"><div class="group-card"><div class="gn">A组</div><div class="gr" style="font-weight:700"><span>🇲🇽 墨西哥</span><span>1场 3分 +2</span></div><div class="gr" style="font-weight:700"><span>🇰🇷 韩国</span><span>1场 3分 +1</span></div><div class="gr" ><span>🇨🇿 捷克</span><span>2场 1分 -1</span></div><div class="gr" ><span>🇿🇦 南非</span><span>2场 1分 -2</span></div></div><div class="group-card"><div class="gn">B组</div><div class="gr" style="font-weight:700"><span>🇨🇦 加拿大</span><span>1场 1分 +0</span></div><div class="gr" style="font-weight:700"><span>🇧🇦 波黑</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇶🇦 卡塔尔</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇨🇭 瑞士</span><span>1场 1分 +0</span></div></div><div class="group-card"><div class="gn">C组</div><div class="gr" style="font-weight:700"><span>🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰</span><span>1场 3分 +1</span></div><div class="gr" style="font-weight:700"><span>🇧🇷 巴西</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇲🇦 摩洛哥</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇭🇹 海地</span><span>1场 0分 -1</span></div></div><div class="group-card"><div class="gn">D组</div><div class="gr" style="font-weight:700"><span>🇺🇸 美国</span><span>1场 3分 +3</span></div><div class="gr" style="font-weight:700"><span>🇦🇺 澳大利亚</span><span>1场 3分 +2</span></div><div class="gr" ><span>🇹🇷 土耳其</span><span>1场 0分 -2</span></div><div class="gr" ><span>🇵🇾 巴拉圭</span><span>1场 0分 -3</span></div></div><div class="group-card"><div class="gn">E组</div><div class="gr" style="font-weight:700"><span>🇩🇪 德国</span><span>1场 3分 +6</span></div><div class="gr" style="font-weight:700"><span>🇨🇮 科特迪瓦</span><span>1场 3分 +1</span></div><div class="gr" ><span>🇪🇨 厄瓜多尔</span><span>1场 0分 -1</span></div><div class="gr" ><span>🇨🇼 库拉索</span><span>1场 0分 -6</span></div></div><div class="group-card"><div class="gn">F组</div><div class="gr" style="font-weight:700"><span>🇸🇪 瑞典</span><span>1场 3分 +4</span></div><div class="gr" style="font-weight:700"><span>🇳🇱 荷兰</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇯🇵 日本</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇹🇳 突尼斯</span><span>1场 0分 -4</span></div></div><div class="group-card"><div class="gn">G组</div><div class="gr" style="font-weight:700"><span>🇮🇷 伊朗</span><span>1场 1分 +0</span></div><div class="gr" style="font-weight:700"><span>🇳🇿 新西兰</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇧🇪 比利时</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇪🇬 埃及</span><span>1场 1分 +0</span></div></div><div class="group-card"><div class="gn">H组</div><div class="gr" style="font-weight:700"><span>🇸🇦 沙特阿拉伯</span><span>1场 1分 +0</span></div><div class="gr" style="font-weight:700"><span>🇺🇾 乌拉圭</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇪🇸 西班牙</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇨🇻 佛得角</span><span>1场 1分 +0</span></div></div><div class="group-card"><div class="gn">I组</div><div class="gr" style="font-weight:700"><span>🇳🇴 挪威</span><span>1场 3分 +3</span></div><div class="gr" style="font-weight:700"><span>🇫🇷 法国</span><span>1场 3分 +2</span></div><div class="gr" ><span>🇸🇳 塞内加尔</span><span>1场 0分 -2</span></div><div class="gr" ><span>🇮🇶 伊拉克</span><span>1场 0分 -3</span></div></div><div class="group-card"><div class="gn">J组</div><div class="gr" style="font-weight:700"><span>🇦🇷 阿根廷</span><span>1场 3分 +3</span></div><div class="gr" style="font-weight:700"><span>🇦🇹 奥地利</span><span>1场 3分 +2</span></div><div class="gr" ><span>🇯🇴 约旦</span><span>1场 0分 -2</span></div><div class="gr" ><span>🇩🇿 阿尔及利亚</span><span>1场 0分 -3</span></div></div><div class="group-card"><div class="gn">K组</div><div class="gr" style="font-weight:700"><span>🇨🇴 哥伦比亚</span><span>1场 3分 +2</span></div><div class="gr" style="font-weight:700"><span>🇵🇹 葡萄牙</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇨🇩 刚果民主共和国</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇺🇿 乌兹别克斯坦</span><span>1场 0分 -2</span></div></div><div class="group-card"><div class="gn">L组</div><div class="gr" style="font-weight:700"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰</span><span>1场 3分 +2</span></div><div class="gr" style="font-weight:700"><span>🇬🇭 加纳</span><span>1场 3分 +1</span></div><div class="gr" ><span>🇵🇦 巴拿马</span><span>1场 0分 -1</span></div><div class="gr" ><span>🇭🇷 克罗地亚</span><span>1场 0分 -2</span></div></div></div></div>
+    <div class="dash-title open" onclick="toggleDash(this)">📊 小组积分 <span>61.5%准确</span></div>
+    <div class="dash-body open"><div class="groups-grid"><div class="group-card"><div class="gn">A组</div><div class="gr" style="font-weight:700"><span>🇲🇽 墨西哥</span><span>1场 3分 +2</span></div><div class="gr" style="font-weight:700"><span>🇰🇷 韩国</span><span>1场 3分 +1</span></div><div class="gr" ><span>🇨🇿 捷克</span><span>2场 1分 -1</span></div><div class="gr" ><span>🇿🇦 南非</span><span>2场 1分 -2</span></div></div><div class="group-card"><div class="gn">B组</div><div class="gr" style="font-weight:700"><span>🇨🇭 瑞士</span><span>2场 4分 +3</span></div><div class="gr" style="font-weight:700"><span>🇨🇦 加拿大</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇶🇦 卡塔尔</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇧🇦 波黑</span><span>2场 1分 -3</span></div></div><div class="group-card"><div class="gn">C组</div><div class="gr" style="font-weight:700"><span>🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰</span><span>1场 3分 +1</span></div><div class="gr" style="font-weight:700"><span>🇧🇷 巴西</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇲🇦 摩洛哥</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇭🇹 海地</span><span>1场 0分 -1</span></div></div><div class="group-card"><div class="gn">D组</div><div class="gr" style="font-weight:700"><span>🇺🇸 美国</span><span>1场 3分 +3</span></div><div class="gr" style="font-weight:700"><span>🇦🇺 澳大利亚</span><span>1场 3分 +2</span></div><div class="gr" ><span>🇹🇷 土耳其</span><span>1场 0分 -2</span></div><div class="gr" ><span>🇵🇾 巴拉圭</span><span>1场 0分 -3</span></div></div><div class="group-card"><div class="gn">E组</div><div class="gr" style="font-weight:700"><span>🇩🇪 德国</span><span>1场 3分 +6</span></div><div class="gr" style="font-weight:700"><span>🇨🇮 科特迪瓦</span><span>1场 3分 +1</span></div><div class="gr" ><span>🇪🇨 厄瓜多尔</span><span>1场 0分 -1</span></div><div class="gr" ><span>🇨🇼 库拉索</span><span>1场 0分 -6</span></div></div><div class="group-card"><div class="gn">F组</div><div class="gr" style="font-weight:700"><span>🇸🇪 瑞典</span><span>1场 3分 +4</span></div><div class="gr" style="font-weight:700"><span>🇳🇱 荷兰</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇯🇵 日本</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇹🇳 突尼斯</span><span>1场 0分 -4</span></div></div><div class="group-card"><div class="gn">G组</div><div class="gr" style="font-weight:700"><span>🇮🇷 伊朗</span><span>1场 1分 +0</span></div><div class="gr" style="font-weight:700"><span>🇳🇿 新西兰</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇧🇪 比利时</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇪🇬 埃及</span><span>1场 1分 +0</span></div></div><div class="group-card"><div class="gn">H组</div><div class="gr" style="font-weight:700"><span>🇸🇦 沙特阿拉伯</span><span>1场 1分 +0</span></div><div class="gr" style="font-weight:700"><span>🇺🇾 乌拉圭</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇪🇸 西班牙</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇨🇻 佛得角</span><span>1场 1分 +0</span></div></div><div class="group-card"><div class="gn">I组</div><div class="gr" style="font-weight:700"><span>🇳🇴 挪威</span><span>1场 3分 +3</span></div><div class="gr" style="font-weight:700"><span>🇫🇷 法国</span><span>1场 3分 +2</span></div><div class="gr" ><span>🇸🇳 塞内加尔</span><span>1场 0分 -2</span></div><div class="gr" ><span>🇮🇶 伊拉克</span><span>1场 0分 -3</span></div></div><div class="group-card"><div class="gn">J组</div><div class="gr" style="font-weight:700"><span>🇦🇷 阿根廷</span><span>1场 3分 +3</span></div><div class="gr" style="font-weight:700"><span>🇦🇹 奥地利</span><span>1场 3分 +2</span></div><div class="gr" ><span>🇯🇴 约旦</span><span>1场 0分 -2</span></div><div class="gr" ><span>🇩🇿 阿尔及利亚</span><span>1场 0分 -3</span></div></div><div class="group-card"><div class="gn">K组</div><div class="gr" style="font-weight:700"><span>🇨🇴 哥伦比亚</span><span>1场 3分 +2</span></div><div class="gr" style="font-weight:700"><span>🇵🇹 葡萄牙</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇨🇩 刚果民主共和国</span><span>1场 1分 +0</span></div><div class="gr" ><span>🇺🇿 乌兹别克斯坦</span><span>1场 0分 -2</span></div></div><div class="group-card"><div class="gn">L组</div><div class="gr" style="font-weight:700"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰</span><span>1场 3分 +2</span></div><div class="gr" style="font-weight:700"><span>🇬🇭 加纳</span><span>1场 3分 +1</span></div><div class="gr" ><span>🇵🇦 巴拿马</span><span>1场 0分 -1</span></div><div class="gr" ><span>🇭🇷 克罗地亚</span><span>1场 0分 -2</span></div></div></div></div>
   </div>
   <div class="dash-section">
     <div class="dash-title open" onclick="toggleDash(this)">🎲 出线概率 <span>MC3000次</span></div>
-    <div class="dash-body open"><div class="mc-tags"><span class="mc-tag" style="background:#e8f5e9;color:#390">🇫🇷法国 99.7%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🏴󠁧󠁢󠁥󠁮󠁧󠁿英格兰 99.7%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇦🇷阿根廷 98.5%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇩🇪德国 97.9%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇴哥伦比亚 96.2%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇵🇹葡萄牙 96.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇲🇽墨西哥 95.4%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇺🇾乌拉圭 92.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇺🇸美国 91.7%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇧🇪比利时 91.3%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇰🇷韩国 89.3%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇧🇷巴西 88.5%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇪🇬埃及 83.1%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇳🇴挪威 82.6%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇲🇦摩洛哥 80.9%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇪🇸西班牙 80.5%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇨🇦加拿大 77.3%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇨🇮科特迪瓦 75.9%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇭🇷克罗地亚 75.0%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇦🇺澳大利亚 74.7%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇯🇵日本 67.9%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇸🇪瑞典 67.6%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇨🇭瑞士 62.3%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇳🇱荷兰 60.2%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇧🇦波黑 58.3%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇩🇿阿尔及利亚 50.7%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇦🇹奥地利 44.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🏴󠁧󠁢󠁳󠁣󠁴󠁿苏格兰 30.6%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇪🇨厄瓜多尔 26.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇸🇦沙特阿拉伯 25.4%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇬🇭加纳 24.2%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇹🇷土耳其 24.1%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇸🇳塞内加尔 17.6%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇮🇷伊朗 15.3%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇳🇿新西兰 10.3%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇵🇾巴拉圭 9.4%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇿捷克 8.8%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇩刚果民主共和国 7.2%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇯🇴约旦 6.8%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇿🇦南非 6.4%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇹🇳突尼斯 4.3%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇶🇦卡塔尔 2.2%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇻佛得角 2.1%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇵🇦巴拿马 1.1%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇺🇿乌兹别克斯坦 0.5%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇼库拉索 0.2%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇮🇶伊拉克 0.1%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇭🇹海地 0.0%</span></div></div>
+    <div class="dash-body open"><div class="mc-tags"><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇭瑞士 99.9%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇫🇷法国 99.9%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🏴󠁧󠁢󠁥󠁮󠁧󠁿英格兰 99.8%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇦🇷阿根廷 98.4%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇩🇪德国 98.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇵🇹葡萄牙 96.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇴哥伦比亚 95.8%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇲🇽墨西哥 95.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇧🇪比利时 91.5%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇺🇾乌拉圭 91.4%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇺🇸美国 90.5%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇰🇷韩国 90.4%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇦加拿大 90.1%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇧🇷巴西 88.2%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇪🇬埃及 84.2%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇳🇴挪威 82.2%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇪🇸西班牙 81.6%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇲🇦摩洛哥 79.3%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇨🇮科特迪瓦 75.6%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇦🇺澳大利亚 75.4%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇭🇷克罗地亚 74.8%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇸🇪瑞典 68.6%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇯🇵日本 67.1%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇳🇱荷兰 60.0%</span><span class="mc-tag" style="background:#fff8e1;color:#f80">🇩🇿阿尔及利亚 51.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇦🇹奥地利 44.4%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🏴󠁧󠁢󠁳󠁣󠁴󠁿苏格兰 32.5%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇪🇨厄瓜多尔 26.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇸🇦沙特阿拉伯 24.9%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇹🇷土耳其 24.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇬🇭加纳 23.9%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇸🇳塞内加尔 17.8%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇮🇷伊朗 15.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇵🇾巴拉圭 10.2%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇳🇿新西兰 9.3%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇿捷克 8.2%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇧🇦波黑 7.7%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇩刚果民主共和国 7.7%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇿🇦南非 6.4%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇯🇴约旦 6.2%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇹🇳突尼斯 4.3%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇶🇦卡塔尔 2.2%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇻佛得角 2.1%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇵🇦巴拿马 1.5%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇺🇿乌兹别克斯坦 0.5%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇼库拉索 0.4%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇮🇶伊拉克 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇭🇹海地 0.0%</span></div></div>
   </div>
 </div>
 
-<div class="results"><div class="rt">⚡ 最新赛果</div><div class="res"><span>🇲🇽 墨西哥 2:0 南非 🇿🇦</span><span class="d">6/11</span></div><div class="res"><span>🇰🇷 韩国 2:1 捷克 🇨🇿</span><span class="d">6/11</span></div><div class="res"><span>🇨🇦 加拿大 1:1 波黑 🇧🇦</span><span class="d">6/12</span></div><div class="res"><span>🇺🇸 美国 4:1 巴拉圭 🇵🇾</span><span class="d">6/12</span></div><div class="res"><span>🇧🇷 巴西 1:1 摩洛哥 🇲🇦</span><span class="d">6/13</span></div><div class="res"><span>🇭🇹 海地 0:1 苏格兰 🏴</span><span class="d">6/13</span></div><div class="res"><span>🇦🇺 澳大利亚 2:0 土耳其 🇹🇷</span><span class="d">6/13</span></div><div class="res"><span>🇶🇦 卡塔尔 1:1 瑞士 🇨🇭</span><span class="d">6/13</span></div><div class="res"><span>🇩🇪 德国 7:1 库拉索 🇨🇼</span><span class="d">6/14</span></div><div class="res"><span>🇨🇮 科特迪瓦 1:0 厄瓜多尔 🇪🇨</span><span class="d">6/14</span></div><div class="res"><span>🇳🇱 荷兰 2:2 日本 🇯🇵</span><span class="d">6/14</span></div><div class="res"><span>🇸🇪 瑞典 5:1 突尼斯 🇹🇳</span><span class="d">6/14</span></div><div class="res"><span>🇪🇸 西班牙 0:0 佛得角 🇨🇻</span><span class="d">6/15</span></div><div class="res"><span>🇸🇦 沙特阿拉伯 1:1 乌拉圭 🇺🇾</span><span class="d">6/15</span></div><div class="res"><span>🇧🇪 比利时 1:1 埃及 🇪🇬</span><span class="d">6/15</span></div><div class="res"><span>🇮🇷 伊朗 2:2 新西兰 🇳🇿</span><span class="d">6/15</span></div><div class="res"><span>🇫🇷 法国 3:1 塞内加尔 🇸🇳</span><span class="d">6/16</span></div><div class="res"><span>🇮🇶 伊拉克 1:4 挪威 🇳🇴</span><span class="d">6/16</span></div><div class="res"><span>🇦🇷 阿根廷 3:0 阿尔及利亚 🇩🇿</span><span class="d">6/16</span></div><div class="res"><span>🇦🇹 奥地利 3:1 约旦 🇯🇴</span><span class="d">6/16</span></div><div class="res"><span>🏴 英格兰 4:2 克罗地亚 🇭🇷</span><span class="d">6/17</span></div><div class="res"><span>🇬🇭 加纳 1:0 巴拿马 🇵🇦</span><span class="d">6/17</span></div><div class="res"><span>🇵🇹 葡萄牙 1:1 刚果民主共和国 🇨🇩</span><span class="d">6/17</span></div><div class="res"><span>🇺🇿 乌兹别克斯坦 1:3 哥伦比亚 🇨🇴</span><span class="d">6/17</span></div><div class="res"><span>🇨🇿 捷克 1:1 南非 🇿🇦</span><span class="d">6/18</span></div></div>
+<div class="results"><div class="rt">⚡ 最新赛果</div><div class="res"><span>🇲🇽 墨西哥 2:0 南非 🇿🇦</span><span class="d">6/11</span></div><div class="res"><span>🇰🇷 韩国 2:1 捷克 🇨🇿</span><span class="d">6/11</span></div><div class="res"><span>🇨🇦 加拿大 1:1 波黑 🇧🇦</span><span class="d">6/12</span></div><div class="res"><span>🇺🇸 美国 4:1 巴拉圭 🇵🇾</span><span class="d">6/12</span></div><div class="res"><span>🇧🇷 巴西 1:1 摩洛哥 🇲🇦</span><span class="d">6/13</span></div><div class="res"><span>🇭🇹 海地 0:1 苏格兰 🏴</span><span class="d">6/13</span></div><div class="res"><span>🇦🇺 澳大利亚 2:0 土耳其 🇹🇷</span><span class="d">6/13</span></div><div class="res"><span>🇶🇦 卡塔尔 1:1 瑞士 🇨🇭</span><span class="d">6/13</span></div><div class="res"><span>🇩🇪 德国 7:1 库拉索 🇨🇼</span><span class="d">6/14</span></div><div class="res"><span>🇨🇮 科特迪瓦 1:0 厄瓜多尔 🇪🇨</span><span class="d">6/14</span></div><div class="res"><span>🇳🇱 荷兰 2:2 日本 🇯🇵</span><span class="d">6/14</span></div><div class="res"><span>🇸🇪 瑞典 5:1 突尼斯 🇹🇳</span><span class="d">6/14</span></div><div class="res"><span>🇪🇸 西班牙 0:0 佛得角 🇨🇻</span><span class="d">6/15</span></div><div class="res"><span>🇸🇦 沙特阿拉伯 1:1 乌拉圭 🇺🇾</span><span class="d">6/15</span></div><div class="res"><span>🇧🇪 比利时 1:1 埃及 🇪🇬</span><span class="d">6/15</span></div><div class="res"><span>🇮🇷 伊朗 2:2 新西兰 🇳🇿</span><span class="d">6/15</span></div><div class="res"><span>🇫🇷 法国 3:1 塞内加尔 🇸🇳</span><span class="d">6/16</span></div><div class="res"><span>🇮🇶 伊拉克 1:4 挪威 🇳🇴</span><span class="d">6/16</span></div><div class="res"><span>🇦🇷 阿根廷 3:0 阿尔及利亚 🇩🇿</span><span class="d">6/16</span></div><div class="res"><span>🇦🇹 奥地利 3:1 约旦 🇯🇴</span><span class="d">6/16</span></div><div class="res"><span>🏴 英格兰 4:2 克罗地亚 🇭🇷</span><span class="d">6/17</span></div><div class="res"><span>🇬🇭 加纳 1:0 巴拿马 🇵🇦</span><span class="d">6/17</span></div><div class="res"><span>🇵🇹 葡萄牙 1:1 刚果民主共和国 🇨🇩</span><span class="d">6/17</span></div><div class="res"><span>🇺🇿 乌兹别克斯坦 1:3 哥伦比亚 🇨🇴</span><span class="d">6/17</span></div><div class="res"><span>🇨🇿 捷克 1:1 南非 🇿🇦</span><span class="d">6/18</span></div><div class="res"><span>🇨🇭 瑞士 4:1 波黑 🇧🇦</span><span class="d">6/18</span></div></div>
 
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇲🇽 墨西哥 vs 南非 🇿🇦</span><span class="d">6/11</span></div>
@@ -185,23 +185,23 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 1:1</div>
       <div class="int" style="opacity:0.5">📰 戴维斯伤缺。波黑哲科存疑。双方攻击核心缺席。</div>
       
-      <div class="tag-row"><span class="tag tag-injury">🚑 加戴维斯伤缺🔴，波黑哲科存疑🟡</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 核心缺阵</span><span class="tag tag-risk">⚠️ 攻击力大减</span></div><div class="tag-row"><span class="tag tag-value">💰 双方攻击核心缺席，小球倾向被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(7.6%)</span><span class="tag tag-risk">❄️ 低概率: 3:2(5.7%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 1:1 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 加拿大 ELO略高83分，主场加权后有优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:47.5%"></i></div><span class="n">47.5%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:26.5%;background:#888"></i></div><span class="n">26.5%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:26.0%;background:#ccc"></i></div><span class="n">26.0%</span></div>
-        <div class="why">三者接近——平局往往被市场低估。 · 市场参考2.2 · 模型公允2.1</div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 加戴维斯伤缺🔴，波黑哲科存疑🟡</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 核心缺阵</span><span class="tag tag-risk">⚠️ 攻击力大减</span></div><div class="tag-row"><span class="tag tag-value">💰 双方攻击核心缺席，小球倾向被低估</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 偏低但非零</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(8.1%)</span><span class="tag tag-risk">❄️ 低概率: 3:2(5.6%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 1:1 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 加拿大 ELO领先120分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 波黑低概率值21%</span></div>
+        <div class="b"><span>主</span><div class="t"><i style="width:54.2%"></i></div><span class="n">54.2%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:25.3%;background:#888"></i></div><span class="n">25.3%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:20.6%;background:#ccc"></i></div><span class="n">20.6%</span></div>
+        <div class="why">倾向加拿大获胜——主场+ELO优势转化为54.2%胜率。 · 市场参考2.2 · 模型公允1.8</div>
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 7.6%</span> <span class="c"><b>2:2</b> 6.9%</span> <span class="c"><b>3:1</b> 6.2%</span> <span class="c"><b>1:1</b> 6.1%</span> <span class="c"><b>3:2</b> 5.7%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占55%。</div><div class="cs"><span class="c">0球 1.4%</span> <span class="c">1球 5.8%</span> <span class="c">2球 12.5%</span> <span class="c">3球 18.0%</span> <span class="c">4球 19.3%</span> <span class="c">5球 16.6%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 加拿大 ELO略高83分，主场加权后有优势。 三者接近——平局往往被市场低估。 风格：4-3-3田径高压逼抢，戴维斯边翼往返，全员年轻体能充沛。短板：技术粗糙中场组织匮乏 VS 4-2-3-1低位收缩针对性防反，专门克制转身慢的控球型球队。短板：进攻依赖单点整体推进乏力。进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占55%。 综合判断：建议观望，平局概率偏高。不确定性28%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 8.1%</span> <span class="c"><b>3:1</b> 7.0%</span> <span class="c"><b>2:2</b> 6.5%</span> <span class="c"><b>1:1</b> 6.2%</span> <span class="c"><b>3:2</b> 5.6%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.6球，大比分概率高——4球及以上占54%。</div><div class="cs"><span class="c">0球 1.5%</span> <span class="c">1球 6.2%</span> <span class="c">2球 13.1%</span> <span class="c">3球 18.4%</span> <span class="c">4球 19.4%</span> <span class="c">5球 16.4%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 加拿大 ELO领先120分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 波黑低概率值21%</span> 倾向加拿大获胜——主场+ELO优势转化为54.2%胜率。 风格：4-3-3田径高压逼抢，戴维斯边翼往返，全员年轻体能充沛。短板：技术粗糙中场组织匮乏 VS 4-2-3-1低位收缩针对性防反，专门克制转身慢的控球型球队。短板：进攻依赖单点整体推进乏力。进攻火力强劲，期望进球2.6球，大比分概率高——4球及以上占54%。 综合判断：倾向：加拿大获胜。不确定性23.6%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1730+状态-2=1728 vs 1690+17=1695 | 修正: 波黑跨洲飞行-12 | 主攻x1.0·揭幕x1.2·战术x1.00=2.5球<br>
-          📐 预期进球：主2.47球 × 客1.83球 → 泊松分布<br>
+          🧮 ELO基1730+状态-2=1728 vs 1690+-20=1658 | 修正: 波黑跨洲飞行-12 | 主攻x1.0·揭幕x1.2·战术x1.00=2.6球<br>
+          📐 预期进球：主2.61球 × 客1.6球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础22%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础34%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -210,7 +210,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
         <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
         <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
           <b>白话解读：</b>加拿大 1:1 波黑。 伤病影响：加戴维斯伤缺🔴，波黑哲科存疑🟡。<br><br>
-          <b>模型优化：</b><span style="color:#666"> 市场参考：市场2.2vs模型公允2.1。</span>
+          <b>模型优化：</b><span style="color:#666"> 市场参考：市场2.2vs模型公允1.8。</span>
         </div>
       </div>
 
@@ -370,21 +370,21 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 1:1</div>
       <div class="int" style="opacity:0.5">📰 卡塔尔上届全败。瑞士纪律严明，实力差距大。 亚预赛第四阶段头名出线。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 0:2(14.1%)</span><span class="tag tag-risk">❄️ 低概率: 1:1(7.4%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 1:1 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 两队仅差88分，实力非常接近。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:8.4%"></i></div><span class="n">8.4%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:21.8%;background:#888"></i></div><span class="n">21.8%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:69.8%;background:#ccc"></i></div><span class="n">69.8%</span></div>
-        <div class="why">倾向瑞士——ELO差距在下半场可能体现。 · 市场参考9.0 · 模型公允11.9</div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 0:2(14.9%)</span><span class="tag tag-risk">❄️ 低概率: 1:1(7.5%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 1:1 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 两队仅差125分，实力非常接近。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:8.1%"></i></div><span class="n">8.1%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:22.3%;background:#888"></i></div><span class="n">22.3%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:69.6%;background:#ccc"></i></div><span class="n">69.6%</span></div>
+        <div class="why">倾向瑞士——ELO差距在下半场可能体现。 · 市场参考9.0 · 模型公允12.3</div>
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:2</b> 14.1%</span> <span class="c"><b>0:1</b> 11.9%</span> <span class="c"><b>0:3</b> 11.1%</span> <span class="c"><b>1:2</b> 8.8%</span> <span class="c"><b>1:1</b> 7.4%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻乏力，20%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 5.0%</span> <span class="c">1球 15.0%</span> <span class="c">2球 22.4%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.8%</span> <span class="c">5球 10.1%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差88分，实力非常接近。 倾向瑞士——ELO差距在下半场可能体现。 风格：4-1-4-1慢速控球节奏拖延流，中场倒脚消磨时间，开球大脚推对方半场。短板：防线转身慢怕边路冲击 VS 4-3-3均衡控球务实流，中后场传导流畅，边路推进稳定。短板：射门转化率极低，回追慢怕反击。进攻乏力，20%概率低于2球，小球倾向明显。 综合判断：倾向：瑞士获胜。不确定性8.4%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:2</b> 14.9%</span> <span class="c"><b>0:1</b> 13.0%</span> <span class="c"><b>0:3</b> 11.4%</span> <span class="c"><b>1:2</b> 8.6%</span> <span class="c"><b>1:1</b> 7.5%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻乏力，22%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 5.7%</span> <span class="c">1球 16.3%</span> <span class="c">2球 23.4%</span> <span class="c">3球 22.3%</span> <span class="c">4球 16.0%</span> <span class="c">5球 9.2%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差125分，实力非常接近。 倾向瑞士——ELO差距在下半场可能体现。 风格：4-1-4-1慢速控球节奏拖延流，中场倒脚消磨时间，开球大脚推对方半场。短板：防线转身慢怕边路冲击 VS 4-3-3均衡控球务实流，中后场传导流畅，边路推进稳定。短板：射门转化率极低，回追慢怕反击。进攻乏力，22%概率低于2球，小球倾向明显。 综合判断：倾向：瑞士获胜。不确定性8.1%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1650+状态16=1666 vs 1830+-26=1804 | 主攻x0.6·揭幕x1.0·战术x0.78=0.6球 | 市场低估(9.0>公允3.3)，胜率上浮<br>
-          📐 预期进球：主0.62球 × 客2.37球 → 泊松分布<br>
+          🧮 ELO基1650+状态16=1666 vs 1830+11=1841 | 主攻x0.6·揭幕x1.0·战术x0.78=0.6球 | 市场低估(9.0>公允3.3)，胜率上浮<br>
+          📐 预期进球：主0.57球 × 客2.3球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
           🎲 低概率=基础61%差额+伤病+红牌+高原修正<br>
           💰 市场低估(9.0>公允3.3)，胜率上浮
@@ -394,8 +394,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
         <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
         <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
-          <b>白话解读：</b>卡塔尔 1:1 瑞士。 预期差-1.8球→实际差+0.0球，偏差1.8球。<br><br>
-          <b>模型优化：</b><span style="color:#666"> 市场参考：市场9.0vs模型公允11.9。</span>
+          <b>白话解读：</b>卡塔尔 1:1 瑞士。 预期差-1.7球→实际差+0.0球，偏差1.7球。<br><br>
+          <b>模型优化：</b><span style="color:#666"> 市场参考：市场9.0vs模型公允12.3。</span>
         </div>
       </div>
 
@@ -1060,29 +1060,37 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     </div>
     <div class="match">
       <div class="mh"><span class="g">GB</span><span class="t">🇨🇭 瑞士 vs 波黑 🇧🇦</span><span class="d">6/18</span></div>
-      <div class="v">洛杉矶 · 4-3-3均衡控球务实流，中后场传导流畅，边路推进稳定。短板：射门转化率极低，回追慢怕反击  VS  4-2-3-1低位收缩针对性防反，专门克制转身慢的控球型球队。短板：进攻依赖单点整体推进乏力</div>
+      <div class="v">洛杉矶 · 4-3-3均衡控球务实流，中后场传导流畅，边路推进稳定。短板：射门转化率极低，回追慢怕反击  VS  4-2-3-1低位收缩针对性防反，专门克制转身慢的控球型球队。短板：进攻依赖单点整体推进乏力</div><div class="live">⚡ 4:1</div>
       
+      <div class="ft-badge">⚡ 已结束 · 全场比分: 4:1</div>
+      <div class="int" style="opacity:0.5">📰 B组第二轮！四队同积1分，出线关键战。瑞士全主力。波黑哲科存疑🟡。</div>
       
-      <div class="int" style="">📰 B组第二轮！四队同积1分，出线关键战。瑞士全主力。波黑哲科存疑🟡。</div>
-      <div class="tag-row"><span class="tag" style="background:#fff;color:#999;border:1px solid #ddd;font-size:12px;padding:4px 10px">🚫 价值评估: 不值得碰</span></div>
-      <div class="tag-row"><span class="tag tag-injury">🚑 波黑哲科存疑🟡</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:1(10.4%)</span><span class="tag tag-risk">❄️ 低概率: 1:2(6.6%)</span></div>
-      <div class="s"><div class="st">胜负 · 瑞士 ELO领先147分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:45.3%"></i></div><span class="n">45.3%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:31.1%;background:#888"></i></div><span class="n">31.1%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:23.7%;background:#ccc"></i></div><span class="n">23.7%</span></div>
-        <div class="why">三者接近——平局往往被市场低估。 · 市场参考1.7 · 模型公允2.2</div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 波黑哲科存疑🟡</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 偏低但非零</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:1(10.5%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(6.2%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 4:1 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 瑞士 ELO领先221分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 波黑低概率值18%</span></div>
+        <div class="b"><span>主</span><div class="t"><i style="width:51.1%"></i></div><span class="n">51.1%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:30.5%;background:#888"></i></div><span class="n">30.5%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:18.4%;background:#ccc"></i></div><span class="n">18.4%</span></div>
+        <div class="why">倾向瑞士获胜——主场+ELO优势转化为51.1%胜率。 · 市场参考1.7 · 模型公允2.0</div>
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.4%</span> <span class="c"><b>2:1</b> 9.6%</span> <span class="c"><b>1:0</b> 8.1%</span> <span class="c"><b>2:0</b> 7.5%</span> <span class="c"><b>1:2</b> 6.6%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进球集中在2-3球（44%），典型世界杯节奏。但也有28%概率打出4球以上。</div><div class="cs"><span class="c">0球 4.4%</span> <span class="c">1球 13.7%</span> <span class="c">2球 21.5%</span> <span class="c">3球 22.3%</span> <span class="c">4球 17.5%</span> <span class="c">5球 10.9%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 瑞士 ELO领先147分，明显优势。 三者接近——平局往往被市场低估。 风格：4-3-3均衡控球务实流，中后场传导流畅，边路推进稳定。短板：射门转化率极低，回追慢怕反击 VS 4-2-3-1低位收缩针对性防反，专门克制转身慢的控球型球队。短板：进攻依赖单点整体推进乏力。进球集中在2-3球（44%），典型世界杯节奏。但也有28%概率打出4球以上。 综合判断：倾向：瑞士获胜 但平局概率31%偏高，保守可关注平。不确定性25%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.5%</span> <span class="c"><b>1:0</b> 10.1%</span> <span class="c"><b>2:1</b> 9.9%</span> <span class="c"><b>2:0</b> 9.5%</span> <span class="c"><b>3:1</b> 6.2%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进球集中在2-3球（45%），典型世界杯节奏。但也有26%概率打出4球以上。</div><div class="cs"><span class="c">0球 5.4%</span> <span class="c">1球 15.7%</span> <span class="c">2球 23.0%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.4%</span> <span class="c">5球 9.6%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 瑞士 ELO领先221分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 波黑低概率值18%</span> 倾向瑞士获胜——主场+ELO优势转化为51.1%胜率。 风格：4-3-3均衡控球务实流，中后场传导流畅，边路推进稳定。短板：射门转化率极低，回追慢怕反击 VS 4-2-3-1低位收缩针对性防反，专门克制转身慢的控球型球队。短板：进攻依赖单点整体推进乏力。进球集中在2-3球（45%），典型世界杯节奏。但也有26%概率打出4球以上。 综合判断：倾向：瑞士获胜 但平局概率30%偏高，保守可关注平。不确定性18.4%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1830+状态-26=1804 vs 1690+17=1707 | 主攻x0.8·揭幕x1.0·战术x1.00=1.8球<br>
-          📐 预期进球：主1.85球 × 客1.28球 → 泊松分布<br>
+          🧮 ELO基1830+状态11=1841 vs 1690+-20=1670 | 主攻x0.8·揭幕x1.0·战术x1.00=1.9球<br>
+          📐 预期进球：主1.89球 × 客1.04球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础22%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础33%差额+伤病+红牌+高原修正<br>
           💰 
+        </div>
+      </div>
+
+      <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
+        <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
+        <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
+          <b>白话解读：</b>瑞士 4:1 波黑。 预期差+0.8球→实际差+3.0球，偏差2.2球 总进球5远超预期2.9，攻防节奏超出模型预判 高比分(5球)：双方对攻或防守体系崩塌。<br><br>
+          <b>模型优化：</b><span style="color:#666">建议：上调双方攻击系数或下调防守系数(当前预期2.9球vs实际5球)。 市场参考：市场1.7vs模型公允2.0。</span>
         </div>
       </div>
 
@@ -1761,23 +1769,23 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       
       <div class="int" style="">📰 瑞士纪律出线。加拿大主场谢幕。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(10.3%)</span><span class="tag tag-risk">❄️ 低概率: 3:0(7.4%)</span></div>
-      <div class="s"><div class="st">胜负 · 瑞士 ELO领先138分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:58.4%"></i></div><span class="n">58.4%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:27.3%;background:#888"></i></div><span class="n">27.3%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:14.3%;background:#ccc"></i></div><span class="n">14.3%</span></div>
-        <div class="why">倾向瑞士获胜——主场+ELO优势转化为58.4%胜率。 · </div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(10.9%)</span><span class="tag tag-risk">❄️ 低概率: 3:0(7.6%)</span></div>
+      <div class="s"><div class="st">胜负 · 瑞士 ELO领先175分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:58.5%"></i></div><span class="n">58.5%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:27.7%;background:#888"></i></div><span class="n">27.7%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:13.8%;background:#ccc"></i></div><span class="n">13.8%</span></div>
+        <div class="why">倾向瑞士获胜——主场+ELO优势转化为58.5%胜率。 · </div>
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 10.3%</span> <span class="c"><b>2:1</b> 9.9%</span> <span class="c"><b>1:0</b> 9.6%</span> <span class="c"><b>1:1</b> 9.2%</span> <span class="c"><b>3:0</b> 7.4%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占36%。</div><div class="cs"><span class="c">0球 4.5%</span> <span class="c">1球 13.9%</span> <span class="c">2球 21.6%</span> <span class="c">3球 22.4%</span> <span class="c">4球 17.4%</span> <span class="c">5球 10.8%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 瑞士 ELO领先138分，明显优势。 倾向瑞士获胜——主场+ELO优势转化为58.4%胜率。 风格：4-3-3均衡控球务实流，中后场传导流畅，边路推进稳定。短板：射门转化率极低，回追慢怕反击 VS 4-3-3田径高压逼抢，戴维斯边翼往返，全员年轻体能充沛。短板：技术粗糙中场组织匮乏。进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占36%。 综合判断：倾向：瑞士获胜。不确定性14.3%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 10.9%</span> <span class="c"><b>1:0</b> 10.5%</span> <span class="c"><b>2:1</b> 9.9%</span> <span class="c"><b>1:1</b> 9.5%</span> <span class="c"><b>3:0</b> 7.6%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占34%。</div><div class="cs"><span class="c">0球 5.0%</span> <span class="c">1球 15.0%</span> <span class="c">2球 22.5%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.8%</span> <span class="c">5球 10.0%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 瑞士 ELO领先175分，明显优势。 倾向瑞士获胜——主场+ELO优势转化为58.5%胜率。 风格：4-3-3均衡控球务实流，中后场传导流畅，边路推进稳定。短板：射门转化率极低，回追慢怕反击 VS 4-3-3田径高压逼抢，戴维斯边翼往返，全员年轻体能充沛。短板：技术粗糙中场组织匮乏。进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占34%。 综合判断：倾向：瑞士获胜。不确定性13.8%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1830+状态-26=1804 vs 1730+-2=1716 | 修正: 加拿大跨洲飞行-12 | 主攻x0.8·揭幕x1.0·战术x1.00=2.1球<br>
-          📐 预期进球：主2.15球 × 客0.96球 → 泊松分布<br>
+          🧮 ELO基1830+状态11=1841 vs 1730+-2=1716 | 修正: 加拿大跨洲飞行-12 | 主攻x0.8·揭幕x1.0·战术x1.00=2.1球<br>
+          📐 预期进球：主2.09球 × 客0.9球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础44%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础45%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -1790,23 +1798,23 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       
       <div class="int" style="">📰 波黑拼出线。卡塔尔求首胜。 亚预赛第四阶段头名出线。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(13.7%)</span><span class="tag tag-risk">❄️ 低概率: 2:1(7.1%)</span></div>
-      <div class="s"><div class="st">胜负 · 波黑 ELO领先103分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:81.0%"></i></div><span class="n">81.0%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:15.0%;background:#888"></i></div><span class="n">15.0%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:4.0%;background:#ccc"></i></div><span class="n">4.0%</span></div>
-        <div class="why">倾向波黑获胜——主场+ELO优势转化为81.0%胜率。 · </div>
+      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力接近</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(14.6%)</span><span class="tag tag-risk">❄️ 低概率: 4:0(7.9%)</span></div>
+      <div class="s"><div class="st">胜负 · 波黑 ELO略高66分，主场加权后有优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:75.2%"></i></div><span class="n">75.2%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:19.2%;background:#888"></i></div><span class="n">19.2%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:5.6%;background:#ccc"></i></div><span class="n">5.6%</span></div>
+        <div class="why">倾向波黑获胜——主场+ELO优势转化为75.2%胜率。 · </div>
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 13.7%</span> <span class="c"><b>3:0</b> 13.3%</span> <span class="c"><b>4:0</b> 9.7%</span> <span class="c"><b>1:0</b> 9.4%</span> <span class="c"><b>2:1</b> 7.1%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占43%。</div><div class="cs"><span class="c">0球 3.2%</span> <span class="c">1球 11.1%</span> <span class="c">2球 19.0%</span> <span class="c">3球 21.8%</span> <span class="c">4球 18.7%</span> <span class="c">5球 12.9%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 波黑 ELO领先103分，明显优势。 倾向波黑获胜——主场+ELO优势转化为81.0%胜率。 风格：4-2-3-1低位收缩针对性防反，专门克制转身慢的控球型球队。短板：进攻依赖单点整体推进乏力 VS 4-1-4-1慢速控球节奏拖延流，中场倒脚消磨时间，开球大脚推对方半场。短板：防线转身慢怕边路冲击。进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占43%。 综合判断：倾向：波黑获胜。不确定性4.0%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 14.6%</span> <span class="c"><b>3:0</b> 12.4%</span> <span class="c"><b>1:0</b> 11.5%</span> <span class="c"><b>2:1</b> 8.1%</span> <span class="c"><b>4:0</b> 7.9%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占36%。</div><div class="cs"><span class="c">0球 4.5%</span> <span class="c">1球 13.9%</span> <span class="c">2球 21.6%</span> <span class="c">3球 22.4%</span> <span class="c">4球 17.3%</span> <span class="c">5球 10.8%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 波黑 ELO略高66分，主场加权后有优势。 倾向波黑获胜——主场+ELO优势转化为75.2%胜率。 风格：4-2-3-1低位收缩针对性防反，专门克制转身慢的控球型球队。短板：进攻依赖单点整体推进乏力 VS 4-1-4-1慢速控球节奏拖延流，中场倒脚消磨时间，开球大脚推对方半场。短板：防线转身慢怕边路冲击。进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占36%。 综合判断：倾向：波黑获胜。不确定性5.6%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1690+状态17=1707 vs 1650+16=1654 | 修正: 卡塔尔跨洲飞行-12 | 主攻x1.0·揭幕x1.0·战术x1.00=2.9球<br>
-          📐 预期进球：主2.91球 × 客0.52球 → 泊松分布<br>
+          🧮 ELO基1690+状态-20=1670 vs 1650+16=1654 | 修正: 卡塔尔跨洲飞行-12 | 主攻x1.0·揭幕x1.0·战术x1.00=2.5球<br>
+          📐 预期进球：主2.55球 × 客0.55球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础77%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础70%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>

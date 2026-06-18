@@ -161,6 +161,9 @@ FORM_BOOST = {
 # 主场揭幕战加成（东道主首场比赛）
 HOST_OPENER = {"美国": 1.4, "加拿大": 1.25, "墨西哥": 1.2}  # 攻击力乘数
 
+# 友谊赛/热身赛可信度折扣（正赛=1.0，友谊赛结果打5折）
+FRIENDLY_DISCOUNT = 0.5
+
 # ===== 优化1：动态ELO修正 =====
 CONTINENTS = {
     "南美": ["阿根廷","巴西","乌拉圭","哥伦比亚","厄瓜多尔","智利","秘鲁","巴拉圭","委内瑞拉","玻利维亚"],
@@ -343,8 +346,23 @@ def kelly_stake(p_win, odds):
         return f_pct, "⭐⭐⭐⭐⭐ 重仓", 5
 
 def predict(h,a, match_info=None):
-    he=ELO.get(h,1700)+FORM_BOOST.get(h,0)
-    ae=ELO.get(a,1700)+FORM_BOOST.get(a,0)
+    # 友谊赛战绩可信度打折——只信正赛（世预赛+世界杯），友谊赛/热身赛降权
+    raw_h_boost = FORM_BOOST.get(h, 0)
+    raw_a_boost = FORM_BOOST.get(a, 0)
+    # 友谊赛/热身赛可信度打5折：FORM_BOOST中有部分基于友谊赛
+    # 正赛校准值保持100%，原始形态分>30且未校准→视作友谊赛水分
+    cal_file = os.path.join(DIR, 'calibrate.json')
+    calibrated_teams = set()
+    if os.path.exists(cal_file):
+        with open(cal_file, 'r', encoding='utf-8') as f:
+            for k in json.load(f).keys():
+                calibrated_teams.add(k.split(':')[0])
+                calibrated_teams.add(k.split(':')[1])
+    h_discount = 1.0 if h in calibrated_teams else FRIENDLY_DISCOUNT
+    a_discount = 1.0 if a in calibrated_teams else FRIENDLY_DISCOUNT
+    friendly_note = ' | 友谊赛战绩降权' if (h_discount < 1 or a_discount < 1) else ''
+    he=ELO.get(h,1700)+int(raw_h_boost * h_discount)
+    ae=ELO.get(a,1700)+int(raw_a_boost * a_discount)
     hs=STYLE.get(h,(1.0,1.0)); as_=STYLE.get(a,(1.0,1.0))
 
     # 优化1：动态ELO修正
@@ -382,7 +400,7 @@ def predict(h,a, match_info=None):
     xh=max(0.3, (1.6+gd*0.7)*hs[0]*hm_mult*tactic_h*motivation_h/max(as_[1],0.5))
     xa=max(0.3, (1.2-gd*0.4)*as_[0]*tactic_a*motivation_a/max(hs[1],0.5))
 
-    # 优化3：赔率热度修正（市场过热→模型降权）
+    # 优化3：市场热度修正（市场过热→模型降权）
     odds_adj = 1.0
     odds_note = ''
     if match_info and match_info.get('odds_home'):
@@ -412,7 +430,7 @@ def predict(h,a, match_info=None):
     for i in range(10):
         for j in range(10):
             p=poisson(xh,i)*poisson(xa,j); t=i+j; gl[t]=gl.get(t,0)+p
-    # 优化3：赔率热度修正胜率
+    # 优化3：市场热度修正胜率
     w_adj = w * odds_adj; dr_adj = dr / odds_adj; lo_adj = lo / odds_adj
     total2 = w_adj + dr_adj + lo_adj
     w_final = round(w_adj / total2 * 100, 1)
@@ -420,10 +438,10 @@ def predict(h,a, match_info=None):
     lo_final = round(lo_adj / total2 * 100, 1)
 
     # 输出优化：胜率色标
-    if w_final > 75: tier = '🟢 稳胆'
-    elif w_final > 60: tier = '🟡 热门'
-    elif w_final > 45: tier = '🟠 胶着'
-    else: tier = '🔴 冷门倾向'
+    if w_final > 75: tier = '🟢 高确定性'
+    elif w_final > 60: tier = '🟡 较高概率'
+    elif w_final > 45: tier = '🟠 势均力敌'
+    else: tier = '🔴 概率较低'
 
     # 优化4：动态冷门概率（替代固定2%）
     upset_base = min(lo_final, 100 - w_final) if w_final > 50 else min(w_final, 100 - lo_final) if lo_final > 50 else 25
@@ -480,7 +498,7 @@ def auto_tags(m, p):
     elif p['loss'] > 50: upset_prob = p['win']
     if upset_prob > 25: upset_why = f'不低——双方实力差距不大'
     elif upset_prob > 15: upset_why = f'偏低但非零'
-    else: upset_why = f'冷门难现，除非重大意外'
+    else: upset_why = f'低概率结果，除非重大意外'
     return injury, risk, value, round(upset_prob, 1), upset_why
 
 def match_review(m, p):
@@ -542,7 +560,7 @@ def match_review(m, p):
     if m.get('odds_home'):
         oh = float(m['odds_home'])
         fair = round(1/max(p['win']/100,0.01), 1)
-        tech += f' 赔率对比：市场{oh}vs模型公允{fair}。'
+        tech += f' 市场参考：市场{oh}vs模型公允{fair}。'
 
     return plain, tech
     he,ae = p['he'], p['ae']
@@ -578,11 +596,11 @@ def match_review(m, p):
 
     # 自动冷门类型判断
     if abs(diff) < 40:
-        if '⚡ 冷门种子' not in ' '.join(risk): risk.append('⚡ 冷门种子')
+        if '⚡ 低概率种子' not in ' '.join(risk): risk.append('⚡ 低概率种子')
     # 进球相关冷门
     goals_high = sum(p['gl'].get(str(g),0) for g in range(6,13))
     if goals_high < 5:
-        if '小球冷门预警' not in ' '.join(risk): risk.append('小球冷门预警')
+        if '小球概率预警' not in ' '.join(risk): risk.append('小球概率预警')
 
     # 自动价值标签
     if not value and m.get('odds_home'):
@@ -590,10 +608,10 @@ def match_review(m, p):
         if oh>0:
             fair = round(1/max(p['win']/100,0.01),1)
             gap = oh-fair
-            if gap>0.5: value = f'主胜市场赔率偏高，模型认为被低估'
-            elif gap<-0.3: value = f'主胜市场赔率偏低，热度可能过高'
+            if gap>0.5: value = f'主胜市场参考偏高，模型认为被低估'
+            elif gap<-0.3: value = f'主胜市场参考偏低，热度可能过高'
 
-    # 爆冷概率
+    # 低概率值
     upset_prob = 0
     upset_why = ''
     if p['win'] > 50:  # 主队热门
@@ -607,19 +625,19 @@ def match_review(m, p):
         fav, udog = '', ''
 
     if upset_prob > 25:
-        upset_why = f'{udog}有{upset_prob:.0f}%概率爆冷——不低。'
+        upset_why = f'{udog}有{upset_prob:.0f}%低概率结果——不低。'
         if upset_prob > 35:
             upset_why += '双方实力差距不大，任何结果都可能。'
         if '高原' in ' '.join(risk):
             upset_why += '高原因素可能放大不确定性。'
         if abs(diff) < 60:
-            upset_why += 'ELO差距小，冷门土壤肥沃。'
+            upset_why += 'ELO差距小，不确定性较高。'
     elif upset_prob > 18:
-        upset_why = f'{udog}爆冷概率{upset_prob:.0f}%，偏低但非零。{fav}发挥失常或{udog}超常可能翻盘。'
+        upset_why = f'{udog}低概率值{upset_prob:.0f}%，偏低但非零。{fav}发挥失常或{udog}超常可能翻盘。'
     elif upset_prob > 0:
-        upset_why = f'{fav}优势明显，{udog}爆冷概率仅{upset_prob:.0f}%。除非重大意外（红牌/伤病），冷门难现。'
+        upset_why = f'{fav}优势明显，{udog}低概率值仅{upset_prob:.0f}%。除非重大意外（红牌/伤病），低概率结果。'
     else:
-        upset_why = '双方均势，没有明确的冷门概念。'
+        upset_why = '双方均势，没有明确的概率偏向。'
 
     return injury, risk, value, round(upset_prob, 1), upset_why
 
@@ -662,19 +680,19 @@ def explain(p, m, h, a, d):
     if m.get('value'):
         tags_html += '<div class="tag-row"><span class="tag tag-value">💰 ' + m['value'] + '</span></div>'
 
-    # 爆冷 - 从 auto_tags 获取
+    # 低概率 - 从 auto_tags 获取
     up = m.get('_upset_prob', 0)
     uw = m.get('_upset_why', '')
     upset_html = ''
     upset_type = ''
     if up > 30:
-        upset_type = '🔴 高风险冷门'
+        upset_type = '🔴 高不确定性'
         upset_color = '#e44'
     elif up > 20:
-        upset_type = '🟡 冷门预警'
+        upset_type = '🟡 概率预警'
         upset_color = '#f80'
     elif up > 10:
-        upset_type = '🟢 冷门概率低'
+        upset_type = '🟢 不确定性低'
         upset_color = '#999'
     else:
         upset_type = '无明显偏差'
@@ -682,19 +700,19 @@ def explain(p, m, h, a, d):
     if up > 0 and uw:
         upset_html = f'<div class="tag-row"><span class="tag" style="background:#fff5f5;color:{upset_color};border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 {upset_type} · {uw}</span></div>'
 
-    # 胜平负冷门标注
+    # 胜平负概率标注
     upset_label = ''
     if p['win'] > 50 and p['loss'] > 15:
-        upset_label = ' <span style="color:#e44;font-size:10px;">⚠️ ' + a + '爆冷概率' + str(round(p['loss'])) + '%</span>'
+        upset_label = ' <span style="color:#e44;font-size:10px;">⚠️ ' + a + '低概率值' + str(round(p['loss'])) + '%</span>'
     elif p['loss'] > 50 and p['win'] > 15:
-        upset_label = ' <span style="color:#e44;font-size:10px;">⚠️ ' + h + '爆冷概率' + str(round(p['win'])) + '%</span>'
+        upset_label = ' <span style="color:#e44;font-size:10px;">⚠️ ' + h + '低概率值' + str(round(p['win'])) + '%</span>'
 
-    # 冷门解释
+    # 概率解释
     fav_team = h if p['win'] > 50 else a
     upset_detail = ''
     if abs(d) < 60 and (p['loss'] > 20 or p['win'] > 20):
         underdog = a if p['win'] > 50 else h
-        upset_detail = '<div class="why">💡 ' + underdog + '具备爆冷条件：ELO差距仅' + str(abs(d)) + '分，'
+        upset_detail = '<div class="why">💡 ' + underdog + '存在以下可能性：ELO差距仅' + str(abs(d)) + '分，'
         if abs(d) < 30:
             upset_detail += '实力非常接近，任何结果都不意外。'
         else:
@@ -704,14 +722,14 @@ def explain(p, m, h, a, d):
     if p['top']:
         best = p['top'][0]
         worst = p['top'][-1]
-        score_tags = f'<div class="tag-row"><span class="tag tag-value">🔥 热门: {best[0]}({best[1]}%)</span><span class="tag tag-risk">❄️ 冷门: {worst[0]}({worst[1]}%)</span></div>'
+        score_tags = f'<div class="tag-row"><span class="tag tag-value">🔥 高概率: {best[0]}({best[1]}%)</span><span class="tag tag-risk">❄️ 低概率: {worst[0]}({worst[1]}%)</span></div>'
 
     # 赛后对比（如果有result）
     result_html = ''
     if m.get('result'):
         result_html = '<div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: ' + m['result'] + ' | 模型预测偏差: 待复盘</span></div>'
 
-    # 把冷门标注嵌入ew
+    # 把概率标注嵌入ew
     if upset_label:
         ew += upset_label
 
@@ -792,11 +810,11 @@ def gen():
             emoji = {0: '🚫', 1: '⭐', 2: '⭐', 3: '⭐', 4: '🔥', 5: '🔥'}
             kelly_html = '<div class="tag-row"><span class="tag" style="background:#fff;color:' + colors.get(stars, '#999') + ';border:1px solid #ddd;font-size:12px;padding:4px 10px">' + emoji.get(stars, '') + ' 价值评估: ' + km + '</span></div>' if km else ''
 
-        # 赔率
+        # 市场参考
         on=""
         if m.get('odds_home'):
             o=float(m['odds_home']);fair=round(1/max(p['win']/100,0.01),1)
-            on=f"市场赔率{o} · 模型公允{fair}"
+            on=f"市场参考{o} · 模型公允{fair}"
 
         cards+=f"""
     <div class="match">
@@ -815,15 +833,15 @@ def gen():
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs">{' '.join(f'<span class="c"><b>{s}</b> {pr}%</span>'for s,pr in p['top'])}</div></div>
       <div class="s"><div class="st">总进球 · {gw}</div><div class="cs">{' '.join(f'<span class="c">{g}球 {pr}%</span>'for g,pr in list(p['gl'].items())[:6])}</div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>{p.get('tier','')}</b> {ew} {sw} 风格：{PLAY_STYLE.get(m['home'],'')} VS {PLAY_STYLE.get(m['away'],'')}。{gw} 综合判断：{rec}。冷门风险{p.get('upset_prob','?')}%</div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>{p.get('tier','')}</b> {ew} {sw} 风格：{PLAY_STYLE.get(m['home'],'')} VS {PLAY_STYLE.get(m['away'],'')}。{gw} 综合判断：{rec}。不确定性{p.get('upset_prob','?')}%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
           🧮 {p.get('calc_chain','')}<br>
           📐 预期进球：主{p['xh']}球 × 客{p['xa']}球 → 泊松分布<br>
-          📊 胜率色标：&gt;75%🟢稳胆 &gt;60%🟡热门 &gt;45%🟠胶着 其余🔴冷门<br>
-          🎲 冷门=基础{abs(p['win']-p['loss']):.0f}%差额+伤病+红牌+高原修正<br>
-          💰 {p.get('odds_note','赔率与模型一致，市场未过热')}
+          📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
+          🎲 低概率=基础{abs(p['win']-p['loss']):.0f}%差额+伤病+红牌+高原修正<br>
+          💰 {p.get('odds_note','参考值与模型一致，市场未过热')}
         </div>
       </div>
 """ + (f"""
@@ -909,13 +927,13 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
 <div id="main" style="display:none">
 <h1>世界杯 · 实时分析</h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
-<div class="sub">ELO模型 + 泊松分布 · 赔率对比</div>
+<div class="sub">ELO模型 + 泊松分布 · 数据参考</div>
 <div class="upd">更新 {now} · 每5分钟自动刷新 · v{int(datetime.now().timestamp()) % 1000000}</div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
 {dashboard_html}
 {"<div class=\"results\"><div class=\"rt\">⚡ 最新赛果</div>"+results+"</div>" if results else ""}
 {cards}
-<div class="ft">ELO评分基于FIFA排名和历史战绩<br>泊松分布推演比分概率 · 赔率来源于公开市场<br>所有数据仅供赛事分析参考</div>
+<div class="ft">ELO评分基于FIFA排名和历史战绩<br>泊松分布推演比分概率 · 参考值来源于公开市场<br>所有数据仅供赛事数据研究参考，不构成任何建议</div>
 <script>
 let t=60;setInterval(()=>{{t--;document.getElementById('cd').textContent=t;if(t<=0)location.reload()}},1000);
 function filter(){{var q=document.getElementById('search').value.toLowerCase();var ms=document.querySelectorAll('.match');ms.forEach(function(m){{var t=m.querySelector('.t').textContent.toLowerCase();m.style.display=t.indexOf(q)>=0?'':'none'}});}}

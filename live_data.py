@@ -372,8 +372,10 @@ def predict(h,a, match_info=None):
     else:
         elo_reason = ''
 
-    # 主场揭幕战加成
+    # 主场揭幕战加成（仅首轮有效，第二轮起取消）
     hm_mult = HOST_OPENER.get(h, 1.0)
+    if match_info and match_info.get('date','') >= '6/18':
+        hm_mult = 1.0  # 第二轮起主场情绪回归正常
     # 优化2：战术克制矩阵
     tactic_h, tactic_a = tactic_matchup(h, a)
 

@@ -1,0 +1,6 @@
+name = "wc-counter-page"
+pages_build_output_dir = "."
+
+[[kv_namespaces]]
+binding = "ONLINE"
+id = "b17e4e6edd634bd9b7e8b2251c480f5f"

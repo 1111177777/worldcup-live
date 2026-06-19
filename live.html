@@ -71,7 +71,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <h1>世界杯 · 实时分析</h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 数据参考</div>
-<div class="upd">更新 06/20 02:37:29 · 每5分钟自动刷新 · v894249 · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
+<div class="upd">更新 06/20 02:54:18 · 每5分钟自动刷新 · v895258 · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
 
 <style>
@@ -2420,20 +2420,27 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <script>
 let t=60;setInterval(()=>{t--;document.getElementById('cd').textContent=t;if(t<=0)location.reload()},1000);
 function filter(){var q=document.getElementById('search').value.toLowerCase();var ms=document.querySelectorAll('.match');ms.forEach(function(m){var t=m.querySelector('.t').textContent.toLowerCase();m.style.display=t.indexOf(q)>=0?'':'none'});}
-// 在线人数
-var COUNTER_URL='https://wc-counter.3033309474.workers.dev';
-(function(){
-if(COUNTER_URL.indexOf('__')>=0){document.getElementById('online_cnt').textContent='';return;}
-var sid=localStorage.getItem('wc_sid')||(Date.now().toString(36)+Math.random().toString(36).slice(2,8));
-localStorage.setItem('wc_sid',sid);
-var el=document.getElementById('online_cnt');
-function hb(){
-fetch(COUNTER_URL+'/hb',{method:'POST',body:JSON.stringify({sid:sid}),headers:{'Content-Type':'application/json'}})
-.then(r=>r.json()).then(d=>{el.textContent='🟢 '+d.online+'人在线';})
-.catch(()=>{el.textContent='';});
-}
-hb();setInterval(hb,30000);
-})();
+	// 在线人数（GitHub Gist API）
+	var GIST_API='https://api.github.com/gists/6a2918fe826c613081dbbbce38e2321a';
+	var GH_TOKEN='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';
+	(function(){
+	if(GH_TOKEN.indexOf('__')>=0){document.getElementById('online_cnt').textContent='';return;}
+	var sid=localStorage.getItem("wc_sid")||(Date.now().toString(36)+Math.random().toString(36).slice(2,10));
+	localStorage.setItem("wc_sid",sid);
+	var el=document.getElementById("online_cnt");
+	function hb(){
+	fetch(GIST_API,{headers:{Authorization:'Bearer '+GH_TOKEN}}).then(function(r){return r.json();}).then(function(gist){
+	var raw=gist.files['online.json'].content;
+	var s=JSON.parse(raw).sessions||{};
+	var n=Date.now();
+	Object.keys(s).forEach(function(k){if(n-s[k]>60000)delete s[k];});
+	s[sid]=n;
+	el.textContent='🟢 '+Object.keys(s).length+'人在线';
+	return fetch(GIST_API,{method:'PATCH',headers:{Authorization:'Bearer '+GH_TOKEN,'Content-Type':'application/json'},body:JSON.stringify({files:{'online.json':{content:JSON.stringify({sessions:s})}}})});
+	}).catch(function(){});
+	}
+	hb();setInterval(hb,45000);
+	})();
 </script>
 </div>
 </body></html>

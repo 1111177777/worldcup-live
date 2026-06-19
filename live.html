@@ -71,8 +71,30 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <h1>世界杯 · 实时分析</h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 数据参考</div>
-<div class="upd">更新 06/20 03:04:21 · 每5分钟自动刷新 · v895861 · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
+<div class="upd">更新 06/20 03:26:09 · 每5分钟自动刷新 · v897169 · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
+<style>
+.guide{margin:6px 0;border:1px solid #e8e8e8;border-radius:5px;overflow:hidden}
+.guide-t{background:#f5f5f5;padding:8px 12px;font-size:12px;font-weight:600;cursor:pointer;user-select:none;color:#555}
+.guide-t::after{content:' ▼';font-size:10px;float:right;transition:.2s}
+.guide-t.open::after{content:' ▲'}
+.guide-b{display:none;padding:10px 14px;font-size:12px;color:#666;line-height:1.8;background:#fafafa}
+.guide-b.open{display:block}
+.guide-b b{color:#333}
+</style>
+<div class="guide">
+<div class="guide-t" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">📖 使用说明（点我展开）</div>
+<div class="guide-b">
+<b>🔍 搜索：</b>顶部输入框搜球队名，快速定位比赛<br>
+<b>📊 概率怎么看：</b>胜/平/负是统计模型推演的参考概率，非真实赔率，仅供参考<br>
+<b>⭐ 星级：</b>价值评分，最高5星，基于概率与市场差异计算<br>
+<b>🏷️ 标签：</b>伤病/风险/价值标签，提示关注点<br>
+<b>📈 比分分布：</b>TOP5 最可能出现的比分及其概率<br>
+<b>🔄 自动刷新：</b>页面每60秒自动刷新获取最新数据<br>
+<b>🟢 在线人数：</b>当前正在查看页面的用户数量<br>
+<b>⚠️ 免责：</b>所有数据为数学模型统计结果，仅供赛事数据研究参考
+</div>
+</div>
 
 <style>
 .dashboard { padding: 2px 0; }

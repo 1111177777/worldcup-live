@@ -22,6 +22,9 @@ jobs:
       - name: Install deps
         run: pip install akshare matplotlib
 
+      - name: Setup token
+        run: echo '${{ secrets.GH_TOKEN }}' > .env
+
       - name: Run live_data
         run: python live_data.py
 

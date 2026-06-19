@@ -979,8 +979,12 @@ function filter(){{var q=document.getElementById('search').value.toLowerCase();v
 </body></html>"""
 
     # 替换在线计数器配置（Token 拆两半避免 GitHub 扫描）
-    t1 = GH_TOKEN[:len(GH_TOKEN)//2]
-    t2 = GH_TOKEN[len(GH_TOKEN)//2:]
+    # GitHub Actions 没有 .env，token 为空时显示占位符触发隐藏
+    if GH_TOKEN:
+        t1 = GH_TOKEN[:len(GH_TOKEN)//2]
+        t2 = GH_TOKEN[len(GH_TOKEN)//2:]
+    else:
+        t1 = t2 = ""  # 空 token → 计数器自动隐藏
     html = html.replace('__GIST_ID__', GIST_ID)
     html = html.replace("'__GH_TOKEN__'", f"'{t1}'+'{t2}'")
 

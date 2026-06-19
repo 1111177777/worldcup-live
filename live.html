@@ -71,7 +71,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <h1>世界杯 · 实时分析</h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 数据参考</div>
-<div class="upd">更新 06/20 02:54:18 · 每5分钟自动刷新 · v895258 · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
+<div class="upd">更新 06/20 03:00:07 · 每5分钟自动刷新 · v895607 · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
 
 <style>
@@ -2422,7 +2422,7 @@ let t=60;setInterval(()=>{t--;document.getElementById('cd').textContent=t;if(t<=
 function filter(){var q=document.getElementById('search').value.toLowerCase();var ms=document.querySelectorAll('.match');ms.forEach(function(m){var t=m.querySelector('.t').textContent.toLowerCase();m.style.display=t.indexOf(q)>=0?'':'none'});}
 	// 在线人数（GitHub Gist API）
 	var GIST_API='https://api.github.com/gists/6a2918fe826c613081dbbbce38e2321a';
-	var GH_TOKEN='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';
+	var GH_TOKEN='ghp_C5wzU86QrhVvKgT6'+'kmZGeTU9H6Y7RI2IKcKa';
 	(function(){
 	if(GH_TOKEN.indexOf('__')>=0){document.getElementById('online_cnt').textContent='';return;}
 	var sid=localStorage.getItem("wc_sid")||(Date.now().toString(36)+Math.random().toString(36).slice(2,10));

@@ -241,12 +241,31 @@ def tactic_matchup(h, a):
     if any(t in hn for t in ['高位逼抢', '高压', '全攻全守']) and any(t in an for t in ['技术粗糙', '技术含量低', '创造力弱']):
         a_adj *= 0.65
 
-    # 蹲坑型球队→领先后收缩，预期进球打折，平局概率上升
+    # 蹲坑型球队→领先后收缩，预期进球打折
     parking_bus = ['捷克', '伊朗', '巴拉圭', '卡塔尔', '希腊']
     if h in parking_bus: h_adj = min(h_adj, 0.78)
     if a in parking_bus: a_adj = min(a_adj, 0.78)
 
     return h_adj, a_adj
+
+def knockout_strategy_modifier(team, pts, played, group_standings):
+    """强队算分避对手：已出线/接近出线的队可能留力"""
+    if played < 2: return 1.0, ''  # 只从第3轮开始
+
+    # 已经锁定出线（6分）→ 可能轮换留力
+    if pts >= 6:
+        return 0.85, f'{team}已出线→可能轮换留力'
+
+    # 已经锁定头名（6分+净胜球优势）→ 更可能留力
+    # 简化：6分且净胜球≥3
+    if pts >= 6:
+        return 0.80, f'{team}锁定头名→大概率轮换'
+
+    # 3分且净胜球劣势 → 必须拼命
+    if pts == 3:
+        return 1.10, f'{team}必须抢分→战意拉满'
+
+    return 1.0, ''
 
 # 动态校准文件
 CALIBRATE_FILE = os.path.join(DIR, "calibrate.json")

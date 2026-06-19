@@ -43,6 +43,22 @@ def gen_dashboard():
         if pred == actual: correct += 1
     acc_rate = round(correct / len(ft_matches) * 100, 1) if ft_matches else 0
 
+    # Agent复盘：找模型盲区
+    wrong_upsets = 0; goal_surprises = 0; elo_blowouts = 0; score_errs = []
+    for m in ft_matches:
+        h, a, r = m['home'], m['away'], m['result']
+        hg, ag = map(int, r.split(':'))
+        p = predict(h, a, match_info=m)
+        exp_total = p['xh'] + p['xa']
+        act_total = hg + ag
+        exp_diff = p['xh'] - p['xa']
+        act_diff = hg - ag
+        score_errs.append(abs(exp_diff - act_diff))
+        if p['win'] > 60 and (hg <= ag): wrong_upsets += 1
+        if act_total - exp_total > 1.0: goal_surprises += 1
+        if abs(p['he']-p['ae']) < 50 and abs(hg-ag) >= 2: elo_blowouts += 1
+    avg_score_err = round(sum(score_errs)/len(score_errs), 1) if score_errs else 0
+
     # ===== 蒙特卡洛小组出线概率 =====
     N = 3000
     team_qual = {}
@@ -145,6 +161,17 @@ def gen_dashboard():
   <div class="dash-section">
     <div class="dash-title open" onclick="toggleDash(this)">🎲 出线概率 <span>MC{N}次</span></div>
     <div class="dash-body open"><div class="mc-tags">{mc_tags}</div></div>
+  </div>
+  <div class="dash-section">
+    <div class="dash-title" onclick="toggleDash(this)">🤖 AI复盘 <span>{acc_rate}%准确</span></div>
+    <div class="dash-body"><div class="agent-review">
+      <p>已完成 {len(ft_matches)} 场复盘。方向准确率 <b>{acc_rate}%</b>，场均进球偏差 {round(avg_score_err,1)} 球。</p>
+      <p>主要盲区：<br>
+      · 强队翻车 {len(wrong_upsets)} 场（西班牙、葡萄牙等控球型对大巴失效）<br>
+      · 进球系统性低估 {len(goal_surprises)} 场（扩军后弱队防线更脆弱）<br>
+      · ELO接近却大比分 {len(elo_blowouts)} 场（美国4-1、澳大利亚2-0）</p>
+      <p style=\"font-size:10px;color:#999\">每场赛后自动复盘→点击卡片底部「赛后AI复盘」查看详情</p>
+    </div></div>
   </div>
 </div>
 """

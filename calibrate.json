@@ -190,5 +190,37 @@
     "surprise": 0.1,
     "adj_h": 2.0,
     "adj_a": -2.0
+  },
+  "捷克:南非": {
+    "date": "6/18",
+    "result": "1:1",
+    "expected": "1.9-0.9",
+    "surprise": -1.0,
+    "adj_h": -15.0,
+    "adj_a": 15.0
+  },
+  "瑞士:波黑": {
+    "date": "6/18",
+    "result": "4:1",
+    "expected": "1.7-1.2",
+    "surprise": 2.5,
+    "adj_h": 37.0,
+    "adj_a": -37.0
+  },
+  "墨西哥:韩国": {
+    "date": "6/18",
+    "result": "1:0",
+    "expected": "2.8-1.7",
+    "surprise": -0.1,
+    "adj_h": -2.0,
+    "adj_a": 2.0
+  },
+  "加拿大:卡塔尔": {
+    "date": "6/18",
+    "result": "6:0",
+    "expected": "3.4-0.6",
+    "surprise": 3.1,
+    "adj_h": 47.0,
+    "adj_a": -47.0
   }
 }

@@ -14,6 +14,9 @@ OUTPUT = os.path.join(DIR, "live.html")
 PASSWORD = "wc2026"  # 访问密码，改这里即改密码
 PASS_HASH = hashlib.sha256(PASSWORD.encode()).hexdigest()
 
+# 在线人数计数器 URL（部署 Cloudflare Worker 后填写）
+COUNTER_URL = "https://wc-counter.3033309474.workers.dev"
+
 ELO = {"阿根廷":1950,"法国":1930,"巴西":1920,"英格兰":1900,"西班牙":1890,"葡萄牙":1870,"德国":1860,"荷兰":1820,"意大利":1840,"乌拉圭":1820,"克罗地亚":1810,"哥伦比亚":1800,"摩洛哥":1790,"美国":1780,"墨西哥":1770,"塞内加尔":1760,"日本":1870,"韩国":1740,"伊朗":1730,"澳大利亚":1710,"埃及":1720,"尼日利亚":1710,"科特迪瓦":1700,"喀麦隆":1690,"加纳":1680,"突尼斯":1670,"阿尔及利亚":1660,"南非":1640,"加拿大":1730,"哥斯达黎加":1680,"巴拿马":1640,"牙买加":1630,"沙特阿拉伯":1670,"卡塔尔":1650,"伊拉克":1620,"阿联酋":1610,"新西兰":1600,"巴拉圭":1720,"厄瓜多尔":1740,"智利":1760,"秘鲁":1730,"委内瑞拉":1680,"玻利维亚":1620,"波黑":1690,"塞尔维亚":1750,"丹麦":1800,"瑞典":1790,"挪威":1780,"波兰":1760,"乌克兰":1740,"土耳其":1750,"比利时":1830,"威尔士":1700,"苏格兰":1690,"捷克":1720,"罗马尼亚":1680,"斯洛伐克":1670,"匈牙利":1700,"希腊":1680,"佛得角":1580,"库拉索":1560,"约旦":1590,"乌兹别克斯坦":1610,"海地":1550,"瑞士":1830,"摩洛哥":1790,"刚果民主共和国":1650,"奥地利":1760,"古巴":1540,"苏里南":1520}
 FLAGS = dict(阿根廷="🇦🇷",法国="🇫🇷",巴西="🇧🇷",英格兰="🏴",西班牙="🇪🇸",葡萄牙="🇵🇹",德国="🇩🇪",荷兰="🇳🇱",意大利="🇮🇹",乌拉圭="🇺🇾",克罗地亚="🇭🇷",哥伦比亚="🇨🇴",摩洛哥="🇲🇦",美国="🇺🇸",墨西哥="🇲🇽",塞内加尔="🇸🇳",日本="🇯🇵",韩国="🇰🇷",伊朗="🇮🇷",澳大利亚="🇦🇺",埃及="🇪🇬",尼日利亚="🇳🇬",科特迪瓦="🇨🇮",喀麦隆="🇨🇲",加纳="🇬🇭",突尼斯="🇹🇳",南非="🇿🇦",加拿大="🇨🇦",巴拉圭="🇵🇾",厄瓜多尔="🇪🇨",智利="🇨🇱",秘鲁="🇵🇪",波黑="🇧🇦",塞尔维亚="🇷🇸",丹麦="🇩🇰",瑞典="🇸🇪",挪威="🇳🇴",波兰="🇵🇱",乌克兰="🇺🇦",土耳其="🇹🇷",比利时="🇧🇪",捷克="🇨🇿",卡塔尔="🇶🇦",新西兰="🇳🇿",海地="🇭🇹",苏格兰="🏴",瑞士="🇨🇭",奥地利="🇦🇹",约旦="🇯🇴",伊拉克="🇮🇶",库拉索="🇨🇼",巴拿马="🇵🇦",哥斯达黎加="🇨🇷",牙买加="🇯🇲",沙特阿拉伯="🇸🇦",阿联酋="🇦🇪",委内瑞拉="🇻🇪",玻利维亚="🇧🇴",威尔士="🏴",罗马尼亚="🇷🇴",斯洛伐克="🇸🇰",匈牙利="🇭🇺",希腊="🇬🇷",佛得角="🇨🇻",乌兹别克斯坦="🇺🇿",刚果民主共和国="🇨🇩",阿尔及利亚="🇩🇿")
 
@@ -938,7 +941,7 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
 <h1>世界杯 · 实时分析</h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 数据参考</div>
-<div class="upd">更新 {now} · 每5分钟自动刷新 · v{int(datetime.now().timestamp()) % 1000000}</div>
+<div class="upd">更新 {now} · 每5分钟自动刷新 · v{int(datetime.now().timestamp()) % 1000000} · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
 {dashboard_html}
 {"<div class=\"results\"><div class=\"rt\">⚡ 最新赛果</div>"+results+"</div>" if results else ""}
@@ -947,9 +950,27 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
 <script>
 let t=60;setInterval(()=>{{t--;document.getElementById('cd').textContent=t;if(t<=0)location.reload()}},1000);
 function filter(){{var q=document.getElementById('search').value.toLowerCase();var ms=document.querySelectorAll('.match');ms.forEach(function(m){{var t=m.querySelector('.t').textContent.toLowerCase();m.style.display=t.indexOf(q)>=0?'':'none'}});}}
+// 在线人数
+var COUNTER_URL='__COUNTER_URL__';
+(function(){{
+if(COUNTER_URL.indexOf('__')>=0){{document.getElementById('online_cnt').textContent='';return;}}
+var sid=localStorage.getItem('wc_sid')||(Date.now().toString(36)+Math.random().toString(36).slice(2,8));
+localStorage.setItem('wc_sid',sid);
+var el=document.getElementById('online_cnt');
+function hb(){{
+fetch(COUNTER_URL+'/hb',{{method:'POST',body:JSON.stringify({{sid:sid}}),headers:{{'Content-Type':'application/json'}}}})
+.then(r=>r.json()).then(d=>{{el.textContent='🟢 '+d.online+'人在线';}})
+.catch(()=>{{el.textContent='';}});
+}}
+hb();setInterval(hb,30000);
+}})();
 </script>
 </div>
 </body></html>"""
+
+    # 替换在线计数器 URL（为空则隐藏）
+    counter_url = COUNTER_URL or "__COUNTER_URL__"
+    html = html.replace('__COUNTER_URL__', counter_url)
 
     with open(OUTPUT,'w',encoding='utf-8') as f:f.write(html)
     print(f"✅ {len(matches)}场比赛已生成")

@@ -222,5 +222,37 @@
     "surprise": 3.1,
     "adj_h": 47.0,
     "adj_a": -47.0
+  },
+  "巴西:海地": {
+    "date": "6/19",
+    "result": "3:0",
+    "expected": "5.1-0.3",
+    "surprise": -1.8,
+    "adj_h": -26.0,
+    "adj_a": 26.0
+  },
+  "苏格兰:摩洛哥": {
+    "date": "6/19",
+    "result": "0:1",
+    "expected": "0.9-1.7",
+    "surprise": -0.2,
+    "adj_h": -3.0,
+    "adj_a": 3.0
+  },
+  "土耳其:巴拉圭": {
+    "date": "6/19",
+    "result": "0:1",
+    "expected": "1.2-0.7",
+    "surprise": -1.5,
+    "adj_h": -22.0,
+    "adj_a": 22.0
+  },
+  "美国:澳大利亚": {
+    "date": "6/19",
+    "result": "2:0",
+    "expected": "2.9-1.3",
+    "surprise": 0.4,
+    "adj_h": 7.0,
+    "adj_a": -7.0
   }
 }

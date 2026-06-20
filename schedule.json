@@ -520,11 +520,11 @@
     "odds_draw": "9.00",
     "odds_away": "21.00",
     "time": "",
-    "result": "",
+    "result": "3:0",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "苏格兰",
@@ -537,11 +537,11 @@
     "odds_draw": "2.90",
     "odds_away": "2.70",
     "time": "",
-    "result": "",
+    "result": "0:1",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "土耳其",
@@ -554,11 +554,11 @@
     "odds_draw": "3.10",
     "odds_away": "3.20",
     "time": "",
-    "result": "",
+    "result": "0:1",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "美国",
@@ -571,11 +571,11 @@
     "odds_draw": "3.40",
     "odds_away": "4.50",
     "time": "",
-    "result": "",
+    "result": "2:0",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "德国",

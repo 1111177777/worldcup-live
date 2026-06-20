@@ -42,16 +42,24 @@ def update_scores():
                 pass  # 继续处理已结束比赛
             elif status not in ('Scheduled',):
                 # 进行中的比赛
+                comps_live = ev.get('competitions', [{}])[0].get('competitors', [])
+                if len(comps_live) < 2:
+                    continue
+                home_abbr_live = comps_live[0].get('team', {}).get('abbreviation', '')
+                away_abbr_live = comps_live[1].get('team', {}).get('abbreviation', '')
+                home_score_live = comps_live[0].get('score', '')
+                away_score_live = comps_live[1].get('score', '')
                 live_clock = ev.get('status', {}).get('displayClock', '')
                 for m in matches:
-                    if m.get('status') != 'FT' and m.get('status') != 'LIVE':
-                        h=m['home']; a=m['away']
-                        if (h in home_abbr or home_abbr in h.upper()) and (a in away_abbr or away_abbr in a.upper()):
-                            live_score = f'{home_score}:{away_score}'
-                            m['live_score'] = live_score
-                            m['live_clock'] = live_clock
-                            m['status'] = 'LIVE'
-                            print(f'🔴 LIVE {h} {live_score} {a} [{live_clock}]')
+                    if m.get('status') == 'FT' or m.get('status') == 'LIVE':
+                        continue
+                    h=m['home']; a=m['away']
+                    if (h in home_abbr_live or home_abbr_live.upper() in h.upper()) and (a in away_abbr_live or away_abbr_live.upper() in a.upper()):
+                        live_score = f'{home_score_live}:{away_score_live}'
+                        m['live_score'] = live_score
+                        m['live_clock'] = live_clock
+                        m['status'] = 'LIVE'
+                        print(f'🔴 LIVE {h} {live_score} {a} [{live_clock}]')
                 continue
             else:
                 continue

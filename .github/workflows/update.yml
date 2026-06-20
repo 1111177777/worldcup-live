@@ -20,10 +20,13 @@ jobs:
           python-version: '3.11'
 
       - name: Install deps
-        run: pip install akshare matplotlib
+        run: pip install akshare matplotlib requests
 
       - name: Setup token
         run: echo '${{ secrets.GH_TOKEN }}' > .env
+
+      - name: Fetch live scores
+        run: python fetch_espn.py
 
       - name: Run live_data
         run: python live_data.py

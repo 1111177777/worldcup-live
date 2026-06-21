@@ -254,5 +254,37 @@
     "surprise": 0.4,
     "adj_h": 7.0,
     "adj_a": -7.0
+  },
+  "德国:科特迪瓦": {
+    "date": "6/20",
+    "result": "2:1",
+    "expected": "3.7-0.7",
+    "surprise": -1.9,
+    "adj_h": -29.0,
+    "adj_a": 29.0
+  },
+  "厄瓜多尔:库拉索": {
+    "date": "6/20",
+    "result": "0:0",
+    "expected": "4.6-0.3",
+    "surprise": -4.3,
+    "adj_h": -60,
+    "adj_a": 60
+  },
+  "荷兰:瑞典": {
+    "date": "6/20",
+    "result": "5:1",
+    "expected": "1.7-1.4",
+    "surprise": 3.7,
+    "adj_h": 55.0,
+    "adj_a": -55.0
+  },
+  "突尼斯:日本": {
+    "date": "6/20",
+    "result": "0:4",
+    "expected": "0.6-2.2",
+    "surprise": -2.4,
+    "adj_h": -36.0,
+    "adj_a": 36.0
   }
 }

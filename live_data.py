@@ -751,6 +751,29 @@ def explain(p, m, h, a, d):
 
     return ew, sw, gw, rec, tags_html + upset_html + upset_detail + score_tags + result_html
 
+
+def calc_standings(matches):
+    groups={}
+    for m in matches:
+        g=m.get("group","")
+        if g not in groups: groups[g]=[]
+    for m in matches:
+        h,a=m["home"],m["away"];g=m.get("group","")
+        if m.get("status")!="FT" or not m.get("result"): continue
+        r=m["result"]
+        if ":" not in r: continue
+        hg,ag=map(int,r.split(":"))
+        hr=next((t for t in groups[g] if t["name"]==h),None)
+        if not hr: hr={"name":h,"p":0,"gf":0,"ga":0,"gd":0};groups[g].append(hr)
+        ar=next((t for t in groups[g] if t["name"]==a),None)
+        if not ar: ar={"name":a,"p":0,"gf":0,"ga":0,"gd":0};groups[g].append(ar)
+        hr["gf"]+=hg;hr["ga"]+=ag;hr["gd"]=hr["gf"]-hr["ga"]
+        ar["gf"]+=ag;ar["ga"]+=hg;ar["gd"]=ar["gf"]-ar["ga"]
+        if hg>ag:hr["p"]+=3
+        elif ag>hg:ar["p"]+=3
+        else:hr["p"]+=1;ar["p"]+=1
+    return groups
+
 def gen():
     # 生成仪表盘数据
     import subprocess
@@ -871,6 +894,17 @@ def gen():
 """ if m.get('status')=='FT' else "") + """
     </div>"""
 
+    # 生成小组积分表
+    groups=calc_standings(matches)
+    standings_html='<div class="standings-toggle" onclick="var s=document.getElementById("standings");s.style.display=s.style.display==="none"?"block":"none"">📊 小组积分 (点击展开)</div><div id="standings" style="display:none;margin-bottom:12px">'
+    for g in sorted(groups.keys()):
+        teams=sorted(groups[g],key=lambda t:(-t["p"],-t["gd"],-t["gf"]))
+        standings_html+=f'<div style="font-size:12px;color:#999;margin:8px 0 2px">G{g}</div>'
+        for i,t in enumerate(teams):
+            badge='🟢' if i<2 else ('🟡' if i==2 else '')
+            standings_html+=f'<div style="font-size:12px;display:flex;justify-content:space-between;padding:2px 0"><span>{badge} {t["name"]}</span><span>{t["p"]}分 {t["gf"]}:{t["ga"]} GD:{t["gd"]:+d}</span></div>'
+    standings_html+='</div>'
+    
     html=f"""<!DOCTYPE html><html lang="zh-CN"><head>
 <script>
 // 访问验证

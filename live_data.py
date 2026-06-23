@@ -774,6 +774,19 @@ def calc_standings(matches):
         else:hr["p"]+=1;ar["p"]+=1
     return groups
 
+
+
+def monte_carlo(h,a,runs=500):
+    p=predict(h,a)
+    import random
+    w=dr=lo=0
+    for _ in range(runs):
+        sh=sum(1 for _ in range(int(p["xh"]*10)) if random.random()<0.1)
+        sa=sum(1 for _ in range(int(p["xa"]*10)) if random.random()<0.1)
+        if sh>sa:w+=1
+        elif sh==sa:dr+=1
+        else:lo+=1
+    return {"win":round(w/runs*100,1),"draw":round(dr/runs*100,1),"loss":round(lo/runs*100,1)}
 def gen():
     # 生成仪表盘数据
     import subprocess

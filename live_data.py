@@ -908,7 +908,7 @@ def gen():
     html=f"""<!DOCTYPE html><html lang="zh-CN"><head>
 <script>
 // 访问验证
-const HASH='{PASS_HASH}';
+document.write("<!-- v06240320 -->"); const HASH='{PASS_HASH}';
 async function sha256(m){{ const e=new TextEncoder();const d=await crypto.subtle.digest('SHA-256',e.encode(m));return [...new Uint8Array(d)].map(b=>b.toString(16).padStart(2,'0')).join(''); }}
 async function check(){{ const p=document.getElementById('pw').value; const h=await sha256(p); if(h===HASH){{ localStorage.setItem('wc_auth','1'); document.getElementById('gate').style.display='none'; document.getElementById('main').style.display='block'; }}else{{ document.getElementById('err').style.display='block'; }} }}
 function init(){{ if(localStorage.getItem('wc_auth')==='1'){{ document.getElementById('gate').style.display='none';document.getElementById('main').style.display='block'; }} }}

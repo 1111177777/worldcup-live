@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="zh-CN"><head>
 <script>
 // 访问验证
-const HASH='1a8837466e2762afd8d407d67cab479239f1380ef44bd6ae0c887fbcaff8f20f';
+document.write("<!-- v06240320 -->"); const HASH='1a8837466e2762afd8d407d67cab479239f1380ef44bd6ae0c887fbcaff8f20f';
 async function sha256(m){ const e=new TextEncoder();const d=await crypto.subtle.digest('SHA-256',e.encode(m));return [...new Uint8Array(d)].map(b=>b.toString(16).padStart(2,'0')).join(''); }
 async function check(){ const p=document.getElementById('pw').value; const h=await sha256(p); if(h===HASH){ localStorage.setItem('wc_auth','1'); document.getElementById('gate').style.display='none'; document.getElementById('main').style.display='block'; }else{ document.getElementById('err').style.display='block'; } }
 function init(){ if(localStorage.getItem('wc_auth')==='1'){ document.getElementById('gate').style.display='none';document.getElementById('main').style.display='block'; } }
@@ -71,7 +71,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <h1>世界杯 · 实时分析</h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 数据参考</div>
-<div class="upd">更新 06/24 03:14:00 · 每5分钟自动刷新 · v242040 · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
+<div class="upd">更新 06/24 03:20:58 · 每5分钟自动刷新 · v242458 · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
 <style>
 .guide{margin:6px 0;border:1px solid #e8e8e8;border-radius:5px;overflow:hidden}

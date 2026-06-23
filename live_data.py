@@ -911,6 +911,7 @@ def gen():
         <div class="b"><span>平</span><div class="t"><i style="width:{p['draw']}%;background:#888"></i></div><span class="n">{p['draw']}%</span></div>
         <div class="b"><span>客</span><div class="t"><i style="width:{p['loss']}%;background:#ccc"></i></div><span class="n">{p['loss']}%</span></div>
         <div class="why">{sw} · {on}</div>
+<div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主{monte_carlo(m["home"],m["away"])["win"]:.0f}% 平{monte_carlo(m["home"],m["away"])["draw"]:.0f}% 客{monte_carlo(m["home"],m["away"])["loss"]:.0f}%</div>
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs">{' '.join(f'<span class="c"><b>{s}</b> {pr}%</span>'for s,pr in p['top'])}</div></div>
       <div class="s"><div class="st">总进球 · {gw}</div><div class="cs">{' '.join(f'<span class="c">{g}球 {pr}%</span>'for g,pr in list(p['gl'].items())[:6])}</div></div>

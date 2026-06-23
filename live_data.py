@@ -1018,7 +1018,7 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
   <div style="font-size:10px;color:#ccc;margin-top:16px">购买后获取密码 · 一机一码永久有效</div>
 </div>
 <div id="main" style="display:none">
-<h1>世界杯 · 实时分析</h1>
+<h1>世界杯 · 实时分析 <span style="color:#e44;font-size:12px">v06240623</span></h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 数据参考</div>
 <div class="upd">更新 {now} · 每5分钟自动刷新 · v{int(datetime.now().timestamp()) % 1000000} · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>

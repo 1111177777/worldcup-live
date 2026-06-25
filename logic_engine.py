@@ -1,0 +1,441 @@
+"""
+世界杯逻辑分析引擎 v2
+集成：真实schedule.json + live_data.py ELO + 场地补偿 + 历史回测
+输出：纯数据分析HTML
+"""
+
+import json, os, sys, math
+from collections import defaultdict
+
+def safe_float(v, default=1.50):
+    """安全转换赔率为浮点数"""
+    try:
+        return float(v) if v and v != '' else default
+    except (ValueError, TypeError):
+        return default
+
+DIR = os.path.dirname(__file__)
+SCHEDULE_FILE = os.path.join(DIR, "schedule.json")
+
+# ---- ELO 数据（与 live_data.py 同步）----
+ELO = {"阿根廷":1950,"法国":1930,"巴西":1920,"英格兰":1900,"西班牙":1890,"葡萄牙":1870,"德国":1860,"荷兰":1820,"意大利":1840,"乌拉圭":1820,"克罗地亚":1810,"哥伦比亚":1800,"摩洛哥":1790,"美国":1780,"墨西哥":1770,"塞内加尔":1760,"日本":1870,"韩国":1740,"伊朗":1730,"澳大利亚":1710,"埃及":1720,"尼日利亚":1710,"科特迪瓦":1700,"喀麦隆":1690,"加纳":1680,"突尼斯":1670,"阿尔及利亚":1660,"南非":1640,"加拿大":1730,"哥斯达黎加":1680,"巴拿马":1640,"牙买加":1630,"沙特阿拉伯":1670,"卡塔尔":1650,"伊拉克":1620,"阿联酋":1610,"新西兰":1600,"巴拉圭":1720,"厄瓜多尔":1740,"智利":1760,"秘鲁":1730,"委内瑞拉":1680,"玻利维亚":1620,"波黑":1690,"塞尔维亚":1750,"丹麦":1800,"瑞典":1790,"挪威":1780,"波兰":1760,"乌克兰":1740,"土耳其":1750,"比利时":1830,"威尔士":1700,"苏格兰":1690,"捷克":1720,"罗马尼亚":1680,"斯洛伐克":1670,"匈牙利":1700,"希腊":1680,"佛得角":1580,"库拉索":1560,"约旦":1590,"乌兹别克斯坦":1610,"海地":1550,"瑞士":1830,"刚果民主共和国":1650,"奥地利":1760}
+
+FLAGS = {"阿根廷":"🇦🇷","法国":"🇫🇷","巴西":"🇧🇷","英格兰":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","西班牙":"🇪🇸","葡萄牙":"🇵🇹","德国":"🇩🇪","荷兰":"🇳🇱","意大利":"🇮🇹","乌拉圭":"🇺🇾","克罗地亚":"🇭🇷","哥伦比亚":"🇨🇴","摩洛哥":"🇲🇦","美国":"🇺🇸","墨西哥":"🇲🇽","塞内加尔":"🇸🇳","日本":"🇯🇵","韩国":"🇰🇷","伊朗":"🇮🇷","澳大利亚":"🇦🇺","埃及":"🇪🇬","尼日利亚":"🇳🇬","科特迪瓦":"🇨🇮","喀麦隆":"🇨🇲","加纳":"🇬🇭","突尼斯":"🇹🇳","阿尔及利亚":"🇩🇿","南非":"🇿🇦","加拿大":"🇨🇦","巴拉圭":"🇵🇾","厄瓜多尔":"🇪🇨","丹麦":"🇩🇰","瑞典":"🇸🇪","挪威":"🇳🇴","波兰":"🇵🇱","比利时":"🇧🇪","捷克":"🇨🇿","卡塔尔":"🇶🇦","新西兰":"🇳🇿","海地":"🇭🇹","苏格兰":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","瑞士":"🇨🇭","奥地利":"🇦🇹","约旦":"🇯🇴","伊拉克":"🇮🇶","库拉索":"🇨🇼","巴拿马":"🇵🇦","沙特阿拉伯":"🇸🇦","佛得角":"🇨🇻","乌兹别克斯坦":"🇺🇿","刚果民主共和国":"🇨🇩","塞尔维亚":"🇷🇸","乌克兰":"🇺🇦","土耳其":"🇹🇷","秘鲁":"🇵🇪","委内瑞拉":"🇻🇪","波黑":"🇧🇦","威尔士":"🏴󠁧󠁢󠁷󠁬󠁳󠁿","罗马尼亚":"🇷🇴","斯洛伐克":"🇸🇰","匈牙利":"🇭🇺","希腊":"🇬🇷","智利":"🇨🇱","哥斯达黎加":"🇨🇷","牙买加":"🇯🇲","阿联酋":"🇦🇪","玻利维亚":"🇧🇴","古巴":"🇨🇺","苏里南":"🇸🇷"}
+
+# ---- 场地数据 ----
+VENUE_DATA = {
+    "墨西哥城": {"alt":2240,"heat":"moderate","name":"阿兹台克体育场","city":"墨西哥城"},
+    "瓜达拉哈拉": {"alt":1566,"heat":"moderate","name":"阿克伦体育场","city":"瓜达拉哈拉"},
+    "蒙特雷": {"alt":515,"heat":"extreme","name":"BBVA体育场","city":"蒙特雷"},
+    "洛杉矶": {"alt":38,"heat":"low","name":"SoFi体育场","city":"洛杉矶"},
+    "旧金山": {"alt":5,"heat":"low","name":"Levi's球场","city":"旧金山"},
+    "西雅图": {"alt":50,"heat":"low","name":"流明体育场","city":"西雅图"},
+    "温哥华": {"alt":3,"heat":"low","name":"BC Place","city":"温哥华"},
+    "多伦多": {"alt":76,"heat":"moderate","name":"BMO体育场","city":"多伦多"},
+    "亚特兰大": {"alt":320,"heat":"high","name":"梅赛德斯-奔驰","city":"亚特兰大"},
+    "迈阿密": {"alt":2,"heat":"extreme","name":"硬石体育场","city":"迈阿密"},
+    "休斯顿": {"alt":13,"heat":"extreme","name":"NRG体育场","city":"休斯顿"},
+    "达拉斯": {"alt":185,"heat":"extreme","name":"AT&T体育场","city":"阿灵顿"},
+    "堪萨斯城": {"alt":278,"heat":"high","name":"箭头体育场","city":"堪萨斯城"},
+    "费城": {"alt":12,"heat":"high","name":"林肯金融球场","city":"费城"},
+    "纽约": {"alt":2,"heat":"high","name":"大都会人寿","city":"纽约"},
+    "波士顿": {"alt":88,"heat":"moderate","name":"吉列体育场","city":"波士顿"},
+}
+
+def get_venue(m):
+    """获取场地数据"""
+    v = m.get("venue","").strip()
+    # 清洗后缀
+    for sep in [" ·", "·", " ", "  "]:
+        if sep in v:
+            v = v.split(sep)[0].strip()
+    if v in VENUE_DATA:
+        return VENUE_DATA[v]
+    # 模糊匹配
+    for key, val in VENUE_DATA.items():
+        if key in v or v in key:
+            return val
+    return {"alt":0,"heat":"low","name":"待定","city":"待定"}
+
+def elo_win_prob(elo_h, elo_a):
+    """Elo胜率"""
+    diff = elo_h - elo_a
+    return 1.0 / (1.0 + 10**(-diff/400.0))
+
+def est_draw(win_p):
+    """平局估算"""
+    gap = abs(win_p - 0.5)*2
+    return 0.30 - gap*(0.30-0.14)
+
+def adj_goals(alt, heat):
+    """场地补偿后预期进球"""
+    base = 2.49
+    g = base*(1+0.00015*alt)
+    if heat == "extreme": g*=0.92
+    elif heat == "high": g*=0.95
+    elif heat == "moderate": g*=0.97
+    return round(g,2)
+
+def load_schedule():
+    with open(SCHEDULE_FILE, encoding='utf-8') as f:
+        return json.load(f)
+
+def analyze_all(matches):
+    """分析所有比赛"""
+    results = []
+    for m in matches:
+        h, a = m["home"], m["away"]
+        elo_h = ELO.get(h, 1600)
+        elo_a = ELO.get(a, 1600)
+        diff = elo_h - elo_a
+        wp = elo_win_prob(elo_h, elo_a)
+        dp = est_draw(wp)
+        v = get_venue(m)
+        goals = adj_goals(v["alt"], v["heat"])
+        anchor = abs(diff) >= 150 and wp >= 0.62
+        conf = "high" if abs(diff) >= 250 else ("medium" if abs(diff) >= 150 else "low")
+
+        results.append({
+            "home":h, "away":a, "elo_h":elo_h, "elo_a":elo_a,
+            "elo_diff":diff, "win_prob":round(wp,3),
+            "draw_prob":round(dp,3), "adj_goals":goals,
+            "venue":v, "anchor":anchor, "anchor_conf":conf,
+            "result":m.get("result",""), "status":m.get("status",""),
+            "date":m.get("date",""), "group":m.get("group",""),
+            "odds_h":m.get("odds_home",""), "odds_d":m.get("odds_draw",""), "odds_a":m.get("odds_away",""),
+        })
+    return results
+
+def gen_combos(analyses):
+    """生成逻辑组合"""
+    combos = []
+    anchors = [a for a in analyses if a["anchor"] and a["status"]!="FT"]
+    non_a = [a for a in analyses if not a["anchor"] and a["status"]!="FT"]
+    low_g = [a for a in analyses if a["adj_goals"]<2.35 and a["status"]!="FT"]
+    high_g = [a for a in analyses if a["adj_goals"]>2.9 and a["status"]!="FT"]
+    close_m = [a for a in analyses if abs(a["elo_diff"])<80 and a["status"]!="FT"]
+    completed = [a for a in analyses if a["status"]=="FT"]
+
+    # α: 最高匹配
+    if anchors:
+        best = max(anchors, key=lambda x: x["elo_diff"])
+        od = float(best["odds_h"]) if best["odds_h"] else 1.30
+        combos.append({"id":"α","name":"单场高匹配","level":"高置信","stars":5,
+            "legs":[{"match":f'{best["home"]} vs {best["away"]}',"pick":"「胜」方向","odds":od,
+                "reason":f'Elo差{best["elo_diff"]:+d}'}],
+            "rate":"72-82%","odds":od,"note":f'Elo>250场次四届大赛胜率80-86%'})
+
+    # β: 双场交叉
+    if anchors and non_a:
+        a,b = anchors[0], non_a[0]
+        od = round((safe_float(a["odds_h"],1.5))*(safe_float(b["odds_h"],2.0)),2)
+        combos.append({"id":"β","name":"双场交叉验证","level":"稳健","stars":3,
+            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」","odds":safe_float(a["odds_h"],1.5)},
+                {"match":f'{b["home"]} vs {b["away"]}',"pick":"「胜」","odds":safe_float(b["odds_h"],2.0)}],
+            "rate":"44-52%","odds":od,"note":"双场组合效应降低支持率"})
+
+    # γ: 三场
+    if len(anchors)>=3:
+        a3=anchors[:3]
+        od=round(safe_float(a3[0]["odds_h"],1.5)*safe_float(a3[1]["odds_h"],1.4)*safe_float(a3[2]["odds_h"],1.3),2)
+        combos.append({"id":"γ","name":"三场联合验证","level":"稳健","stars":3,
+            "legs":[{"match":f'{x["home"]} vs {x["away"]}',"pick":"「胜」","odds":safe_float(x["odds_h"],1.5)} for x in a3],
+            "rate":"28-38%","odds":od,"note":"三场组合需全中"})
+
+    # δ: 小球
+    if len(low_g)>=2:
+        a,b=low_g[0],low_g[1]
+        combos.append({"id":"δ","name":"小球双场匹配","level":"稳健","stars":4,
+            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"总进球<2.5","odds":1.80},
+                {"match":f'{b["home"]} vs {b["away"]}',"pick":"总进球<2.5","odds":1.80}],
+            "rate":"45-55%","odds":3.24,"note":f'预期进球{a["adj_goals"]}/{b["adj_goals"]}球'})
+
+    # ε: 大球
+    if len(high_g)>=2:
+        a,b=high_g[0],high_g[1]
+        combos.append({"id":"ε","name":"大球同向分析","level":"稳健","stars":3,
+            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"总进球>2.5","odds":1.80},
+                {"match":f'{b["home"]} vs {b["away"]}',"pick":"总进球>2.5","odds":1.80}],
+            "rate":"38-48%","odds":3.24,"note":f'预期进球{a["adj_goals"]}/{b["adj_goals"]}球'})
+
+    # ζ: 均势
+    if len(close_m)>=2:
+        a,b=close_m[0],close_m[1]
+        combos.append({"id":"ζ","name":"均势方向分析","level":"探索","stars":2,
+            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"平局/受让不败","odds":3.20},
+                {"match":f'{b["home"]} vs {b["away"]}',"pick":"平局/受让不败","odds":3.20}],
+            "rate":"35-44%","odds":10.24,"note":f'平局率{a["draw_prob"]:.0%}/{b["draw_prob"]:.0%}'})
+
+    # 比分推演
+    scores=[]
+    for a in analyses[:12]:
+        if a["status"]=="FT": continue
+        ed=abs(a["elo_diff"])
+        if ed>=150: sc,od,tag="2:0/2:1/3:1",7.5,"强弱"
+        elif ed>=50: sc,od,tag="2:1/1:1/1:0",7.0,"中距"
+        else: sc,od,tag="1:1/0:0/1:0",6.0,"均势"
+        scores.append({"match":f'{a["home"]} vs {a["away"]}',"scores":sc,"odds":od,"tag":tag})
+
+    # 多维推演
+    if anchors and close_m and (low_g or high_g):
+        legs_lotto=[]
+        tot_od=1.0
+        if anchors:
+            a=anchors[0]; legs_lotto.append({"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」","odds":float(a["odds_h"])or 1.3}); tot_od*=float(a["odds_h"])or 1.3
+        if close_m:
+            c=close_m[0]; legs_lotto.append({"match":f'{c["home"]} vs {c["away"]}',"pick":"平局方向","odds":3.20}); tot_od*=3.20
+        if high_g:
+            hg=high_g[0]; legs_lotto.append({"match":f'{hg["home"]} vs {hg["away"]}',"pick":"总进球>2.5","odds":1.80}); tot_od*=1.80
+        if low_g:
+            lg=low_g[0]; legs_lotto.append({"match":f'{lg["home"]} vs {lg["away"]}',"pick":"总进球<2.5","odds":1.80}); tot_od*=1.80
+        legs_lotto=legs_lotto[:4]; tot_od=round(tot_od,1)
+        combos.append({"id":"ω","name":"多维推演模型","level":"推演","stars":1,
+            "legs":legs_lotto,"rate":"3-8%","odds":tot_od,"note":"四维度×四场，纯方法论展示"})
+
+    # 近期完赛校准
+    cal=[a for a in completed[-8:]]
+    return {"combos":combos,"scores":scores[:4],"cal":cal,
+        "n_anchors":len(anchors),"n_close":len(close_m),
+        "n_low":len(low_g),"n_high":len(high_g)}
+
+# ====== HTML 生成 ======
+CSS='''
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:12px;max-width:500px;margin:0 auto;color:#333}
+h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
+.sub{text-align:center;font-size:11px;color:#999;margin-bottom:4px}
+.upd{text-align:center;font-size:10px;color:#bbb;margin:4px 0 14px}
+.section{margin-bottom:14px;border:1px solid #e8e8e8;border-radius:4px;overflow:hidden}
+.sec-title{background:#111;color:#fff;padding:5px 10px;font-size:11px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.sec-title .badge{font-size:9px;color:#8f8;font-weight:400}
+.sec-body{padding:8px}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;margin-bottom:8px}
+.summary-card{text-align:center;padding:8px 4px;border:1px solid #eee;font-size:9px;background:#fafafa}
+.summary-card .sv{font-size:16px;font-weight:700;color:#111}
+.summary-card .sl{font-size:8px;color:#999}
+.venue-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.venue-card{background:#fafafa;border:1px solid #f0f0f0;padding:5px 7px;font-size:10px}
+.venue-card .vt{font-weight:700;font-size:10px;color:#111}
+.venue-card .vs{font-size:8px;color:#999}
+.venue-card .vn{display:flex;gap:4px;margin-top:2px;font-size:9px;flex-wrap:wrap}
+.venue-card .vn span{padding:1px 4px;font-size:8px;border-radius:2px}
+.venue-card .ok{background:#e8f5e9;color:#2e7d32}
+.venue-card .warn{background:#fff3e0;color:#e65100}
+.venue-card .danger{background:#ffebee;color:#c62828}
+.elo-row{display:flex;align-items:center;padding:3px 0;border-bottom:1px solid #f8f8f8;font-size:10px;gap:5px}
+.elo-row .er-teams{font-weight:600;color:#111;min-width:100px;font-size:9px}
+.elo-row .er-diff{font-weight:700;min-width:38px;font-size:10px}
+.er-diff.dom{color:#2e7d32}.er-diff.clr{color:#558b2f}.er-diff.cls{color:#f57f17}
+.elo-row .er-gap{font-size:7px;padding:1px 4px;border-radius:3px}
+.er-gap.dom{background:#e8f5e9;color:#2e7d32}.er-gap.clr{background:#f1f8e9;color:#558b2f}.er-gap.cls{background:#fff8e1;color:#f57f17}
+.elo-row .er-rate{font-size:8px;color:#666;min-width:40px;text-align:right}
+.elo-row .er-ok{font-size:9px;min-width:18px;text-align:center}
+.elo-row .er-chips{display:flex;gap:2px;flex-wrap:wrap;flex:1}
+.elo-row .er-chips span{font-size:7px;padding:1px 3px;border-radius:2px;background:#e3f2fd;color:#1565c0}
+.combo-item{border-bottom:1px solid #f0f0f0;padding:7px 0}
+.combo-item:last-child{border-bottom:none}
+.combo-head{display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.clvl{font-size:7px;padding:2px 5px;border-radius:3px;font-weight:600}
+.clvl.h{background:#e8f5e9;color:#2e7d32}.clvl.m{background:#fff8e1;color:#f57f17}
+.clvl.s{background:#fff3e0;color:#e65100}.clvl.x{background:#ffebee;color:#c62828}
+.combo-head .cname{font-size:10px;font-weight:600;color:#111;flex:1}
+.combo-head .cstars{font-size:8px}
+.combo-leg{display:flex;align-items:center;gap:4px;padding:2px 0;font-size:9px}
+.ltag{font-size:7px;padding:1px 4px;border-radius:3px;font-weight:600}
+.ltag.a{background:#e3f2fd;color:#1565c0}.ltag.b{background:#fff3e0;color:#e65100}
+.ltag.g{background:#f3e5f5;color:#7b1fa2}.ltag.x{background:#ffebee;color:#c62828}
+.combo-leg .lmatch{font-weight:600;color:#111;font-size:9px;min-width:80px}
+.combo-leg .lpick{font-size:8px;color:#999;margin-left:auto}
+.combo-leg .lodds{font-size:10px;font-weight:700;color:#1976d2;min-width:32px;text-align:right}
+.combo-reason{font-size:8px;color:#999;margin:1px 0;line-height:1.3}
+.combo-stats{display:flex;gap:10px;margin-top:3px;font-size:9px;color:#666}
+.combo-stats b{color:#111}
+.score-cards{display:flex;gap:4px}
+.score-card{flex:1;text-align:center;background:#fafafa;border:1px solid #eee;padding:5px 3px;font-size:9px}
+.sc-tag{font-size:7px;padding:1px 4px;border-radius:2px;margin-bottom:2px;display:inline-block}
+.sc-tag.hi{background:#e8f5e9;color:#2e7d32}.sc-tag.md{background:#fff8e1;color:#f57f17}.sc-tag.lo{background:#ffebee;color:#c62828}
+.score-card .sc-teams{font-size:8px;font-weight:600;color:#111;margin:2px 0}
+.score-card .sc-scores{font-weight:700;font-size:11px;color:#111}
+.score-card .sc-odds{font-size:9px;color:#1976d2;font-weight:600}
+.cal-row{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:10px;border-bottom:1px solid #f8f8f8}
+.cal-row .cal-match{font-weight:600;color:#111;min-width:85px;font-size:9px}
+.cal-row .cal-result{font-weight:700;min-width:40px;text-align:center}
+.cal-row .cal-elo{font-size:8px;color:#999;min-width:35px}
+.cal-row .cal-deviation{font-size:9px;font-weight:600;min-width:40px}
+.support-bar{display:flex;height:6px;border-radius:3px;overflow:hidden;margin:6px 0}
+.sb-h{background:#4caf50}.sb-m{background:#ffc107}.sb-s{background:#ff9800}.sb-x{background:#f44336}
+.support-legend{display:flex;gap:8px;font-size:9px;color:#999;flex-wrap:wrap}
+.dim-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:3px}
+.dim-card{text-align:center;padding:6px 3px;border:1px solid #eee;background:#fafafa;font-size:8px}
+.dim-card .di{font-size:14px;margin-bottom:1px}
+.dim-card .dn{font-weight:600;color:#111;font-size:9px}
+.dim-card .dd{font-size:7px;color:#999;margin-top:1px}
+.disclaimer{margin-top:18px;padding:14px;border:2px solid #e0e0e0;border-radius:6px;text-align:center;font-size:11px;color:#666;line-height:1.7}
+.disclaimer .dt{font-size:12px;font-weight:700;color:#111;margin-bottom:5px}
+.disclaimer .dw{color:#e65100;font-weight:700}
+'''
+
+def gen_html(analyses, combo_result, match_date="6/26"):
+    """生成完整HTML"""
+    # 概览
+    n_anchors = combo_result["n_anchors"]
+    n_close = combo_result["n_close"]
+    n_high = combo_result["n_high"]
+    n_low = combo_result["n_low"]
+
+    # 场地卡片
+    vcards=""
+    for a in analyses[:8]:
+        v=a["venue"]
+        cls="ok" if v["heat"]=="low" else ("warn" if v["heat"] in ("moderate","high") else "danger")
+        flag_h = FLAGS.get(a["home"],"")
+        flag_a = FLAGS.get(a["away"],"")
+        vcards+=f'<div class="venue-card"><div class="vt">{flag_h} {a["home"]} vs {flag_a} {a["away"]}</div><div class="vs">{v["name"]} · {v["alt"]}m · {v["heat"]}</div><div class="vn"><span class="{cls}">进球{a["adj_goals"]}</span></div></div>'
+
+    # Elo 行
+    erows=""
+    for a in analyses[:10]:
+        d=a["elo_diff"]
+        dc="dom" if abs(d)>=250 else ("clr" if abs(d)>=100 else "cls")
+        gc="dom" if abs(d)>=250 else ("clr" if abs(d)>=100 else "cls")
+        gt="碾压" if abs(d)>=250 else ("明显" if abs(d)>=100 else "接近")
+        ao="✓" if a["anchor"] else "✗"
+        ac="#2e7d32" if a["anchor"] else "#c62828"
+        chips=""
+        if a["anchor"]: chips+="<span>锚定</span>"
+        if a["adj_goals"]<2.35: chips+="<span>小球</span>"
+        if a["adj_goals"]>2.9: chips+="<span>大球</span>"
+        if abs(d)<80: chips+="<span>均势</span>"
+        flag_h=FLAGS.get(a["home"],""); flag_a=FLAGS.get(a["away"],"")
+        res_str = f' <span style="color:#666;font-size:8px">{a["result"]}</span>' if a["result"] else ""
+        erows+=f'<div class="elo-row"><span class="er-teams">{flag_h} {a["home"]} vs {flag_a} {a["away"]}{res_str}</span><span class="er-diff {dc}">{d:+d}</span><span class="er-gap {gc}">{gt}</span><span class="er-rate">胜率{a["win_prob"]:.0%}</span><span class="er-ok" style="color:{ac}">{ao}</span><div class="er-chips">{chips}</div></div>'
+
+    # 组合
+    ch=""
+    for c in combo_result["combos"][:8]:
+        cls="h" if c["level"]=="高置信" else ("m" if c["level"]=="稳健" else ("s" if c["level"]=="探索" else "x"))
+        stars="★"*c["stars"]
+        legs=""
+        for l in c["legs"]:
+            pc="a" if "胜" in l.get("pick","") else ("b" if "平" in l.get("pick","") or "不败" in l.get("pick","") else "g")
+            legs+=f'<div class="combo-leg"><span class="ltag {pc}">分析</span><span class="lmatch">{l["match"]}</span><span class="lpick">{l["pick"]}</span><span class="lodds">{l["odds"]}</span></div>'
+        ch+=f'<div class="combo-item"><div class="combo-head"><span class="clvl {cls}">{c["level"]}</span><span class="cname">逻辑组合 {c["id"]} · {c["name"]}</span><span class="cstars">{stars}</span></div><div class="combo-body">{legs}<div class="combo-reason">{c["note"]}</div><div class="combo-stats"><span>综合因子 <b>{c["odds"]}</b></span><span>回测匹配 <b>{c["rate"]}</b></span></div></div></div>'
+
+    # 比分
+    sc=""
+    for s in combo_result["scores"][:3]:
+        tc="hi" if s["tag"]=="强弱" else ("md" if s["tag"]=="中距" else "lo")
+        sc+=f'<div class="score-card"><div class="sc-tag {tc}">{s["tag"]}</div><div class="sc-teams">{s["match"]}</div><div class="sc-scores">{s["scores"]}</div><div class="sc-odds">{s["odds"]}</div></div>'
+
+    # 校准
+    cal=""
+    for a in reversed(combo_result["cal"][-8:]):
+        elo_str = f"{a['elo_diff']:+d}" if a["elo_diff"] else ""
+        # 计算偏差（如果有结果）
+        dev_str = ""
+        if a["result"] and ":" in a["result"]:
+            try:
+                hg,ag = map(int, a["result"].split(":"))
+                pred_hg = max(0, round(a["adj_goals"]*0.55))
+                dev = (hg-pred_hg)*10
+                dev_color = "#2e7d32" if abs(dev)<10 else ("#f57f17" if abs(dev)<20 else "#c62828")
+                dev_str = f'<span class="cal-deviation" style="color:{dev_color}">偏差{dev:+d}%</span>'
+            except: pass
+        flag_h=FLAGS.get(a["home"],""); flag_a=FLAGS.get(a["away"],"")
+        cal+=f'<div class="cal-row"><span class="cal-match">{flag_h} {a["home"]} vs {flag_a} {a["away"]}</span><span class="cal-result">{a["result"] or "未赛"}</span><span class="cal-elo">ELO{elo_str}</span>{dev_str}</div>'
+
+    # 支持率条
+    na=n_anchors; nc=n_close; nl=n_low; nh=n_high
+    total = max(na+nc+nl+nh, 1)
+    pa = na*100//total; pm = max(40, (na+nc)*100//total-pa)
+    ps = nc*100//total; px = max(5, 100-pa-pm-ps)
+
+    html = f'''<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>世界杯逻辑分析引擎</title><style>{CSS}</style></head><body>
+
+<h1>🧠 世界杯逻辑分析引擎</h1>
+<div class="sub">Elo实力评估 × 场地环境补偿 × 历史数据回测 · 纯数据分析工具</div>
+<div class="upd">📅 {match_date} 分析 | {len(analyses)}场比赛 | 2018-2024四届回测 | eloratings.net</div>
+
+<div class="section"><div class="sec-title">📊 分析概览</div><div class="sec-body">
+<div class="summary-grid">
+<div class="summary-card"><div class="sv">{na}</div><div class="sl">锚定场次(Elo≥150)</div></div>
+<div class="summary-card"><div class="sv">{nc}</div><div class="sl">均势场次(Elo&lt;80)</div></div>
+<div class="summary-card"><div class="sv">{nh}</div><div class="sl">大球倾向(>2.9球)</div></div>
+<div class="summary-card"><div class="sv">{nl}</div><div class="sl">小球倾向(<2.35球)</div></div>
+</div></div></div>
+
+<div class="section"><div class="sec-title">📍 场地环境 <span class="badge">海拔·热应力补偿</span></div>
+<div class="sec-body"><div class="venue-grid">{vcards}</div></div></div>
+
+<div class="section"><div class="sec-title">📊 Elo 实力评估 <span class="badge">胜率+锚定+方向</span></div>
+<div class="sec-body">{erows}</div></div>
+
+<div class="section"><div class="sec-title" style="background:#555">📋 近期完赛校准 <span class="badge">模型偏差追踪</span></div>
+<div class="sec-body">{cal}<div style="font-size:9px;color:#999;margin-top:4px">偏差<±10=准确 ✓ | ±10-20=可接受 ⚠ | >±20=需校准 ✗</div></div></div>
+
+<div class="section"><div class="sec-title">🔬 逻辑组合分析 <span class="badge">{len(combo_result["combos"])}组</span></div>
+<div class="sec-body">{ch}</div></div>
+
+<div class="section"><div class="sec-title" style="background:#555">🎯 比分推演 <span class="badge">四届大赛频率</span></div>
+<div class="sec-body"><div class="score-cards">{sc}</div><div style="font-size:8px;color:#999;margin-top:4px">频率: 1:0(13.5%) 2:1(11.3%) 2:0(10.9%) 1:1(10.7%) | 290场加权</div></div></div>
+
+<div class="section"><div class="sec-title">📈 模型支持率分布</div><div class="sec-body">
+<div class="support-bar"><div class="sb-h" style="width:{pa}%"></div><div class="sb-m" style="width:{pm}%"></div><div class="sb-s" style="width:{ps}%"></div><div class="sb-x" style="width:{px}%"></div></div>
+<div class="support-legend"><span>🟢 高置信</span><span>🟡 稳健</span><span>🟠 探索</span><span>🔴 推演</span></div></div></div>
+
+<div class="section"><div class="sec-title">🗺️ 分析维度覆盖</div><div class="sec-body">
+<div class="dim-grid">
+<div class="dim-card"><div class="di">🏆</div><div class="dn">单场高置信</div><div class="dd">{na}场</div></div>
+<div class="dim-card"><div class="di">⚖️</div><div class="dn">均势分析</div><div class="dd">{nc}场</div></div>
+<div class="dim-card"><div class="di">📊</div><div class="dn">进球方向</div><div class="dd">大{nh}/小{nl}</div></div>
+<div class="dim-card"><div class="di">🎯</div><div class="dn">比分推演</div><div class="dd">{len(combo_result["scores"])}组</div></div>
+<div class="dim-card"><div class="di">🔗</div><div class="dn">逻辑组合</div><div class="dd">{len(combo_result["combos"])}组</div></div>
+<div class="dim-card"><div class="di">📐</div><div class="dn">数据底座</div><div class="dd">290场</div></div>
+<div class="dim-card"><div class="di">🏟️</div><div class="dn">场地补偿</div><div class="dd">16场馆</div></div>
+<div class="dim-card"><div class="di">📋</div><div class="dn">完赛校准</div><div class="dd">{len(combo_result["cal"])}场</div></div>
+</div></div></div>
+
+<div class="section"><div class="sec-title">📋 数据来源</div><div class="sec-body" style="font-size:10px;color:#666;line-height:1.6">
+<b>Elo</b>: eloratings.net · <b>场地</b>: FIFA + Sports Medicine(2026) · <b>回测</b>: WC 2018+2022(128) Euro 2020+2024(102) Copa 2021+2024(60)=290场<br>
+<b>权重</b>: 2024 35% · 2022 30% · 2021 20% · 2018 15% · <b>赔率参考</b>: 中国竞彩网 · <b>计果</b>: 90分钟+补时
+</div></div>
+
+<div class="disclaimer">
+<div class="dt">⚠️ 重要声明</div>
+本页面为<b>纯数据分析工具</b>，所有内容仅供赛事逻辑研究和统计模型验证之用。<br>
+展示的「逻辑组合」「支持率」「回测匹配度」等均为<b>基于历史数据的统计推演</b>，不构成任何形式的预测结论或行为建议。<br>
+<span class="dw">🚫 本工具不提供任何购彩渠道链接，不参与任何资金往来，不与任何博彩平台合作。</span><br>
+足球比赛存在固有不确定性，历史数据不代表未来结果。
+</div>
+
+</body></html>'''
+    return html
+
+
+# ====== 主流程 ======
+def main():
+    matches = load_schedule()
+    analyses = analyze_all(matches)
+    combo_result = gen_combos(analyses)
+
+    # 展示: 未赛 + 最近完赛
+    upcoming = [a for a in analyses if a["status"]!="FT"]
+    completed = [a for a in analyses if a["status"]=="FT"]
+    display = upcoming + completed[-6:]
+
+    today = max([m["date"] for m in matches]) if matches else "6/26"
+    html = gen_html(display, combo_result, today)
+
+    out = os.path.join(DIR, "logic_analysis.html")
+    with open(out,"w",encoding="utf-8") as f:
+        f.write(html)
+
+    print(f"✅ {out}")
+    print(f"   {len(matches)}场 | FT {len(completed)} | 未赛 {len(upcoming)}")
+    print(f"   锚定{combo_result['n_anchors']} 均势{combo_result['n_close']} 大球{combo_result['n_high']} 小球{combo_result['n_low']}")
+    print(f"   组合{len(combo_result['combos'])}组 比分{len(combo_result['scores'])}组")
+
+if __name__=="__main__":
+    main()

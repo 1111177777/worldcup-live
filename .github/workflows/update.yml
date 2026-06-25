@@ -8,6 +8,7 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 10  # 防止挂死
     permissions:
       contents: write
     steps:
@@ -20,21 +21,21 @@ jobs:
           python-version: '3.11'
 
       - name: Install deps
-        run: pip install akshare matplotlib requests
+        run: pip install requests akshare matplotlib
 
-      - name: Setup token
+      - name: Setup GH token
         run: echo '${{ secrets.GH_TOKEN }}' > .env
+        continue-on-error: true  # token可选，不影响主流程
 
-      - name: Fetch live scores
-        run: python fetch_espn.py
+      - name: Fetch scores & regenerate
+        run: |
+          echo "🏟 开始抓取比分..."
+          python fetch_espn.py
+          echo "✅ 抓取+生成完成"
 
-      - name: Run live_data
-        run: python live_data.py
-
-      - name: Push changes
+      - name: Commit and push
         run: |
           git config user.name "wc-bot"
           git config user.email "bot@wc.live"
           git add live.html dashboard.html dashboard.json schedule.json calibrate.json chat_history.json 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "auto: $(TZ='Asia/Shanghai' date +'%m/%d %H:%M')"
-          git push
+          git diff --staged --quiet || (git commit -m "auto: $(TZ='Asia/Shanghai' date +'%m/%d %H:%M')" && git push)

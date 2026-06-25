@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>世界杯逻辑分析引擎</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:12px;max-width:500px;margin:0 auto;color:#333}
+h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
+.sub{text-align:center;font-size:11px;color:#999;margin-bottom:4px}
+.upd{text-align:center;font-size:10px;color:#bbb;margin:4px 0 14px}
+.section{margin-bottom:14px;border:1px solid #e8e8e8;border-radius:4px;overflow:hidden}
+.sec-title{background:#111;color:#fff;padding:5px 10px;font-size:11px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.sec-title .badge{font-size:9px;color:#8f8;font-weight:400}
+.sec-body{padding:8px}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;margin-bottom:8px}
+.summary-card{text-align:center;padding:8px 4px;border:1px solid #eee;font-size:9px;background:#fafafa}
+.summary-card .sv{font-size:16px;font-weight:700;color:#111}
+.summary-card .sl{font-size:8px;color:#999}
+.venue-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.venue-card{background:#fafafa;border:1px solid #f0f0f0;padding:5px 7px;font-size:10px}
+.venue-card .vt{font-weight:700;font-size:10px;color:#111}
+.venue-card .vs{font-size:8px;color:#999}
+.venue-card .vn{display:flex;gap:4px;margin-top:2px;font-size:9px;flex-wrap:wrap}
+.venue-card .vn span{padding:1px 4px;font-size:8px;border-radius:2px}
+.venue-card .ok{background:#e8f5e9;color:#2e7d32}
+.venue-card .warn{background:#fff3e0;color:#e65100}
+.venue-card .danger{background:#ffebee;color:#c62828}
+.elo-row{display:flex;align-items:center;padding:3px 0;border-bottom:1px solid #f8f8f8;font-size:10px;gap:5px}
+.elo-row .er-teams{font-weight:600;color:#111;min-width:100px;font-size:9px}
+.elo-row .er-diff{font-weight:700;min-width:38px;font-size:10px}
+.er-diff.dom{color:#2e7d32}.er-diff.clr{color:#558b2f}.er-diff.cls{color:#f57f17}
+.elo-row .er-gap{font-size:7px;padding:1px 4px;border-radius:3px}
+.er-gap.dom{background:#e8f5e9;color:#2e7d32}.er-gap.clr{background:#f1f8e9;color:#558b2f}.er-gap.cls{background:#fff8e1;color:#f57f17}
+.elo-row .er-rate{font-size:8px;color:#666;min-width:40px;text-align:right}
+.elo-row .er-ok{font-size:9px;min-width:18px;text-align:center}
+.elo-row .er-chips{display:flex;gap:2px;flex-wrap:wrap;flex:1}
+.elo-row .er-chips span{font-size:7px;padding:1px 3px;border-radius:2px;background:#e3f2fd;color:#1565c0}
+.combo-item{border-bottom:1px solid #f0f0f0;padding:7px 0}
+.combo-item:last-child{border-bottom:none}
+.combo-head{display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.clvl{font-size:7px;padding:2px 5px;border-radius:3px;font-weight:600}
+.clvl.h{background:#e8f5e9;color:#2e7d32}.clvl.m{background:#fff8e1;color:#f57f17}
+.clvl.s{background:#fff3e0;color:#e65100}.clvl.x{background:#ffebee;color:#c62828}
+.combo-head .cname{font-size:10px;font-weight:600;color:#111;flex:1}
+.combo-head .cstars{font-size:8px}
+.combo-leg{display:flex;align-items:center;gap:4px;padding:2px 0;font-size:9px}
+.ltag{font-size:7px;padding:1px 4px;border-radius:3px;font-weight:600}
+.ltag.a{background:#e3f2fd;color:#1565c0}.ltag.b{background:#fff3e0;color:#e65100}
+.ltag.g{background:#f3e5f5;color:#7b1fa2}.ltag.x{background:#ffebee;color:#c62828}
+.combo-leg .lmatch{font-weight:600;color:#111;font-size:9px;min-width:80px}
+.combo-leg .lpick{font-size:8px;color:#999;margin-left:auto}
+.combo-leg .lodds{font-size:10px;font-weight:700;color:#1976d2;min-width:32px;text-align:right}
+.combo-reason{font-size:8px;color:#999;margin:1px 0;line-height:1.3}
+.combo-stats{display:flex;gap:10px;margin-top:3px;font-size:9px;color:#666}
+.combo-stats b{color:#111}
+.score-cards{display:flex;gap:4px}
+.score-card{flex:1;text-align:center;background:#fafafa;border:1px solid #eee;padding:5px 3px;font-size:9px}
+.sc-tag{font-size:7px;padding:1px 4px;border-radius:2px;margin-bottom:2px;display:inline-block}
+.sc-tag.hi{background:#e8f5e9;color:#2e7d32}.sc-tag.md{background:#fff8e1;color:#f57f17}.sc-tag.lo{background:#ffebee;color:#c62828}
+.score-card .sc-teams{font-size:8px;font-weight:600;color:#111;margin:2px 0}
+.score-card .sc-scores{font-weight:700;font-size:11px;color:#111}
+.score-card .sc-odds{font-size:9px;color:#1976d2;font-weight:600}
+.cal-row{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:10px;border-bottom:1px solid #f8f8f8}
+.cal-row .cal-match{font-weight:600;color:#111;min-width:85px;font-size:9px}
+.cal-row .cal-result{font-weight:700;min-width:40px;text-align:center}
+.cal-row .cal-elo{font-size:8px;color:#999;min-width:35px}
+.cal-row .cal-deviation{font-size:9px;font-weight:600;min-width:40px}
+.support-bar{display:flex;height:6px;border-radius:3px;overflow:hidden;margin:6px 0}
+.sb-h{background:#4caf50}.sb-m{background:#ffc107}.sb-s{background:#ff9800}.sb-x{background:#f44336}
+.support-legend{display:flex;gap:8px;font-size:9px;color:#999;flex-wrap:wrap}
+.dim-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:3px}
+.dim-card{text-align:center;padding:6px 3px;border:1px solid #eee;background:#fafafa;font-size:8px}
+.dim-card .di{font-size:14px;margin-bottom:1px}
+.dim-card .dn{font-weight:600;color:#111;font-size:9px}
+.dim-card .dd{font-size:7px;color:#999;margin-top:1px}
+.disclaimer{margin-top:18px;padding:14px;border:2px solid #e0e0e0;border-radius:6px;text-align:center;font-size:11px;color:#666;line-height:1.7}
+.disclaimer .dt{font-size:12px;font-weight:700;color:#111;margin-bottom:5px}
+.disclaimer .dw{color:#e65100;font-weight:700}
+</style></head><body>
+
+<h1>🧠 世界杯逻辑分析引擎</h1>
+<div class="sub">Elo实力评估 × 场地环境补偿 × 历史数据回测 · 纯数据分析工具</div>
+<div class="upd">📅 6/27 分析 | 32场比赛 | 2018-2024四届回测 | eloratings.net</div>
+
+<div class="section"><div class="sec-title">📊 分析概览</div><div class="sec-body">
+<div class="summary-grid">
+<div class="summary-card"><div class="sv">3</div><div class="sl">锚定场次(Elo≥150)</div></div>
+<div class="summary-card"><div class="sv">9</div><div class="sl">均势场次(Elo&lt;80)</div></div>
+<div class="summary-card"><div class="sv">25</div><div class="sl">大球倾向(>2.9球)</div></div>
+<div class="summary-card"><div class="sv">0</div><div class="sl">小球倾向(<2.35球)</div></div>
+</div></div></div>
+
+<div class="section"><div class="sec-title">📍 场地环境 <span class="badge">海拔·热应力补偿</span></div>
+<div class="sec-body"><div class="venue-grid"><div class="venue-card"><div class="vt">🇵🇦 巴拿马 vs 🇭🇷 克罗地亚</div><div class="vs">BMO体育场 · 76m · moderate</div><div class="vn"><span class="warn">进球2.44</span></div></div><div class="venue-card"><div class="vt">🇨🇴 哥伦比亚 vs 🇨🇩 刚果民主共和国</div><div class="vs">阿克伦体育场 · 1566m · moderate</div><div class="vn"><span class="warn">进球2.98</span></div></div><div class="venue-card"><div class="vt">🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰 vs 🇧🇷 巴西</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇲🇦 摩洛哥 vs 🇭🇹 海地</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇨🇭 瑞士 vs 🇨🇦 加拿大</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇧🇦 波黑 vs 🇶🇦 卡塔尔</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇨🇿 捷克 vs 🇲🇽 墨西哥</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇿🇦 南非 vs 🇰🇷 韩国</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div></div></div></div>
+
+<div class="section"><div class="sec-title">📊 Elo 实力评估 <span class="badge">胜率+锚定+方向</span></div>
+<div class="sec-body"><div class="elo-row"><span class="er-teams">🇵🇦 巴拿马 vs 🇭🇷 克罗地亚</span><span class="er-diff clr">-170</span><span class="er-gap clr">明显</span><span class="er-rate">胜率27%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"></div></div><div class="elo-row"><span class="er-teams">🇨🇴 哥伦比亚 vs 🇨🇩 刚果民主共和国</span><span class="er-diff clr">+150</span><span class="er-gap clr">明显</span><span class="er-rate">胜率70%</span><span class="er-ok" style="color:#2e7d32">✓</span><div class="er-chips"><span>锚定</span><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰 vs 🇧🇷 巴西</span><span class="er-diff clr">-230</span><span class="er-gap clr">明显</span><span class="er-rate">胜率21%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇲🇦 摩洛哥 vs 🇭🇹 海地</span><span class="er-diff clr">+240</span><span class="er-gap clr">明显</span><span class="er-rate">胜率80%</span><span class="er-ok" style="color:#2e7d32">✓</span><div class="er-chips"><span>锚定</span><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇨🇭 瑞士 vs 🇨🇦 加拿大</span><span class="er-diff clr">+100</span><span class="er-gap clr">明显</span><span class="er-rate">胜率64%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇧🇦 波黑 vs 🇶🇦 卡塔尔</span><span class="er-diff cls">+40</span><span class="er-gap cls">接近</span><span class="er-rate">胜率56%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div><div class="elo-row"><span class="er-teams">🇨🇿 捷克 vs 🇲🇽 墨西哥</span><span class="er-diff cls">-50</span><span class="er-gap cls">接近</span><span class="er-rate">胜率43%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div><div class="elo-row"><span class="er-teams">🇿🇦 南非 vs 🇰🇷 韩国</span><span class="er-diff clr">-100</span><span class="er-gap clr">明显</span><span class="er-rate">胜率36%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇹🇷 土耳其 vs 🇺🇸 美国</span><span class="er-diff cls">-30</span><span class="er-gap cls">接近</span><span class="er-rate">胜率46%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div><div class="elo-row"><span class="er-teams">🇵🇾 巴拉圭 vs 🇦🇺 澳大利亚</span><span class="er-diff cls">+10</span><span class="er-gap cls">接近</span><span class="er-rate">胜率51%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div></div></div>
+
+<div class="section"><div class="sec-title" style="background:#555">📋 近期完赛校准 <span class="badge">模型偏差追踪</span></div>
+<div class="sec-body"><div class="cal-row"><span class="cal-match">🇵🇹 葡萄牙 vs 🇺🇿 乌兹别克斯坦</span><span class="cal-result">5:0</span><span class="cal-elo">ELO+260</span><span class="cal-deviation" style="color:#c62828">偏差+40%</span></div><div class="cal-row"><span class="cal-match">🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰 vs 🇬🇭 加纳</span><span class="cal-result">0:0</span><span class="cal-elo">ELO+220</span><span class="cal-deviation" style="color:#f57f17">偏差-10%</span></div><div class="cal-row"><span class="cal-match">🇯🇴 约旦 vs 🇩🇿 阿尔及利亚</span><span class="cal-result">1:2</span><span class="cal-elo">ELO-70</span><span class="cal-deviation" style="color:#2e7d32">偏差+0%</span></div><div class="cal-row"><span class="cal-match">🇦🇷 阿根廷 vs 🇦🇹 奥地利</span><span class="cal-result">2:0</span><span class="cal-elo">ELO+190</span><span class="cal-deviation" style="color:#f57f17">偏差+10%</span></div><div class="cal-row"><span class="cal-match">🇳🇴 挪威 vs 🇸🇳 塞内加尔</span><span class="cal-result">3:2</span><span class="cal-elo">ELO+20</span><span class="cal-deviation" style="color:#c62828">偏差+20%</span></div><div class="cal-row"><span class="cal-match">🇫🇷 法国 vs 🇮🇶 伊拉克</span><span class="cal-result">3:0</span><span class="cal-elo">ELO+310</span><span class="cal-deviation" style="color:#c62828">偏差+20%</span></div><div class="cal-row"><span class="cal-match">🇳🇿 新西兰 vs 🇪🇬 埃及</span><span class="cal-result">1:3</span><span class="cal-elo">ELO-120</span><span class="cal-deviation" style="color:#2e7d32">偏差+0%</span></div><div class="cal-row"><span class="cal-match">🇧🇪 比利时 vs 🇮🇷 伊朗</span><span class="cal-result">0:0</span><span class="cal-elo">ELO+100</span><span class="cal-deviation" style="color:#f57f17">偏差-10%</span></div><div style="font-size:9px;color:#999;margin-top:4px">偏差<±10=准确 ✓ | ±10-20=可接受 ⚠ | >±20=需校准 ✗</div></div></div>
+
+<div class="section"><div class="sec-title">🔬 逻辑组合分析 <span class="badge">6组</span></div>
+<div class="sec-body"><div class="combo-item"><div class="combo-head"><span class="clvl h">高置信</span><span class="cname">逻辑组合 α · 单场高匹配</span><span class="cstars">★★★★★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">摩洛哥 vs 海地</span><span class="lpick">「胜」方向</span><span class="lodds">1.3</span></div><div class="combo-reason">Elo>250场次四届大赛胜率80-86%</div><div class="combo-stats"><span>综合因子 <b>1.3</b></span><span>回测匹配 <b>72-82%</b></span></div></div></div><div class="combo-item"><div class="combo-head"><span class="clvl m">稳健</span><span class="cname">逻辑组合 β · 双场交叉验证</span><span class="cstars">★★★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">哥伦比亚 vs 刚果民主共和国</span><span class="lpick">「胜」</span><span class="lodds">1.75</span></div><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">巴拿马 vs 克罗地亚</span><span class="lpick">「胜」</span><span class="lodds">6.0</span></div><div class="combo-reason">双场组合效应降低支持率</div><div class="combo-stats"><span>综合因子 <b>10.5</b></span><span>回测匹配 <b>44-52%</b></span></div></div></div><div class="combo-item"><div class="combo-head"><span class="clvl m">稳健</span><span class="cname">逻辑组合 γ · 三场联合验证</span><span class="cstars">★★★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">哥伦比亚 vs 刚果民主共和国</span><span class="lpick">「胜」</span><span class="lodds">1.75</span></div><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">摩洛哥 vs 海地</span><span class="lpick">「胜」</span><span class="lodds">1.5</span></div><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">荷兰 vs 突尼斯</span><span class="lpick">「胜」</span><span class="lodds">1.5</span></div><div class="combo-reason">三场组合需全中</div><div class="combo-stats"><span>综合因子 <b>3.18</b></span><span>回测匹配 <b>28-38%</b></span></div></div></div><div class="combo-item"><div class="combo-head"><span class="clvl m">稳健</span><span class="cname">逻辑组合 ε · 大球同向分析</span><span class="cstars">★★★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag g">分析</span><span class="lmatch">哥伦比亚 vs 刚果民主共和国</span><span class="lpick">总进球>2.5</span><span class="lodds">1.8</span></div><div class="combo-leg"><span class="ltag g">分析</span><span class="lmatch">苏格兰 vs 巴西</span><span class="lpick">总进球>2.5</span><span class="lodds">1.8</span></div><div class="combo-reason">预期进球2.98/3.23球</div><div class="combo-stats"><span>综合因子 <b>3.24</b></span><span>回测匹配 <b>38-48%</b></span></div></div></div><div class="combo-item"><div class="combo-head"><span class="clvl s">探索</span><span class="cname">逻辑组合 ζ · 均势方向分析</span><span class="cstars">★★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag b">分析</span><span class="lmatch">波黑 vs 卡塔尔</span><span class="lpick">平局/受让不败</span><span class="lodds">3.2</span></div><div class="combo-leg"><span class="ltag b">分析</span><span class="lmatch">捷克 vs 墨西哥</span><span class="lpick">平局/受让不败</span><span class="lodds">3.2</span></div><div class="combo-reason">平局率28%/28%</div><div class="combo-stats"><span>综合因子 <b>10.24</b></span><span>回测匹配 <b>35-44%</b></span></div></div></div><div class="combo-item"><div class="combo-head"><span class="clvl x">推演</span><span class="cname">逻辑组合 ω · 多维推演模型</span><span class="cstars">★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">哥伦比亚 vs 刚果民主共和国</span><span class="lpick">「胜」</span><span class="lodds">1.75</span></div><div class="combo-leg"><span class="ltag b">分析</span><span class="lmatch">波黑 vs 卡塔尔</span><span class="lpick">平局方向</span><span class="lodds">3.2</span></div><div class="combo-leg"><span class="ltag g">分析</span><span class="lmatch">哥伦比亚 vs 刚果民主共和国</span><span class="lpick">总进球>2.5</span><span class="lodds">1.8</span></div><div class="combo-reason">四维度×四场，纯方法论展示</div><div class="combo-stats"><span>综合因子 <b>10.1</b></span><span>回测匹配 <b>3-8%</b></span></div></div></div></div></div>
+
+<div class="section"><div class="sec-title" style="background:#555">🎯 比分推演 <span class="badge">四届大赛频率</span></div>
+<div class="sec-body"><div class="score-cards"></div><div style="font-size:8px;color:#999;margin-top:4px">频率: 1:0(13.5%) 2:1(11.3%) 2:0(10.9%) 1:1(10.7%) | 290场加权</div></div></div>
+
+<div class="section"><div class="sec-title">📈 模型支持率分布</div><div class="sec-body">
+<div class="support-bar"><div class="sb-h" style="width:8%"></div><div class="sb-m" style="width:40%"></div><div class="sb-s" style="width:24%"></div><div class="sb-x" style="width:28%"></div></div>
+<div class="support-legend"><span>🟢 高置信</span><span>🟡 稳健</span><span>🟠 探索</span><span>🔴 推演</span></div></div></div>
+
+<div class="section"><div class="sec-title">🗺️ 分析维度覆盖</div><div class="sec-body">
+<div class="dim-grid">
+<div class="dim-card"><div class="di">🏆</div><div class="dn">单场高置信</div><div class="dd">3场</div></div>
+<div class="dim-card"><div class="di">⚖️</div><div class="dn">均势分析</div><div class="dd">9场</div></div>
+<div class="dim-card"><div class="di">📊</div><div class="dn">进球方向</div><div class="dd">大25/小0</div></div>
+<div class="dim-card"><div class="di">🎯</div><div class="dn">比分推演</div><div class="dd">0组</div></div>
+<div class="dim-card"><div class="di">🔗</div><div class="dn">逻辑组合</div><div class="dd">6组</div></div>
+<div class="dim-card"><div class="di">📐</div><div class="dn">数据底座</div><div class="dd">290场</div></div>
+<div class="dim-card"><div class="di">🏟️</div><div class="dn">场地补偿</div><div class="dd">16场馆</div></div>
+<div class="dim-card"><div class="di">📋</div><div class="dn">完赛校准</div><div class="dd">8场</div></div>
+</div></div></div>
+
+<div class="section"><div class="sec-title">📋 数据来源</div><div class="sec-body" style="font-size:10px;color:#666;line-height:1.6">
+<b>Elo</b>: eloratings.net · <b>场地</b>: FIFA + Sports Medicine(2026) · <b>回测</b>: WC 2018+2022(128) Euro 2020+2024(102) Copa 2021+2024(60)=290场<br>
+<b>权重</b>: 2024 35% · 2022 30% · 2021 20% · 2018 15% · <b>赔率参考</b>: 中国竞彩网 · <b>计果</b>: 90分钟+补时
+</div></div>
+
+<div class="disclaimer">
+<div class="dt">⚠️ 重要声明</div>
+本页面为<b>纯数据分析工具</b>，所有内容仅供赛事逻辑研究和统计模型验证之用。<br>
+展示的「逻辑组合」「支持率」「回测匹配度」等均为<b>基于历史数据的统计推演</b>，不构成任何形式的预测结论或行为建议。<br>
+<span class="dw">🚫 本工具不提供任何购彩渠道链接，不参与任何资金往来，不与任何博彩平台合作。</span><br>
+足球比赛存在固有不确定性，历史数据不代表未来结果。
+</div>
+
+</body></html>

@@ -1,11 +1,12 @@
 name: Auto Update Scores & Deploy
 on:
   schedule:
-    - cron: '*/5 * * * *'  # 每5分钟
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write
     steps:
@@ -17,18 +18,15 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install requests
+      - name: Install deps
         run: pip install requests
 
-      - name: Fetch live scores from ESPN
+      - name: Fetch scores & regenerate
         run: python fetch_espn.py
-
-      - name: Generate live.html
-        run: python live_data.py
 
       - name: Commit and push
         run: |
           git config user.name "Bot"
           git config user.email "bot@auto.update"
-          git add live.html schedule.json
-          git diff --staged --quiet || (git commit -m "🔄 自动更新比分" && git push)
+          git add live.html schedule.json calibrate.json 2>/dev/null || true
+          git diff --staged --quiet || (git commit -m "🔄 auto update" && git push)

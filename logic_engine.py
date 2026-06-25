@@ -201,7 +201,7 @@ def gen_combos(analyses):
 # ====== HTML 生成 ======
 CSS='''
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:12px;max-width:500px;margin:0 auto;color:#333}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:12px;max-width:1060px;margin:0 auto;color:#333}
 h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .sub{text-align:center;font-size:11px;color:#999;margin-bottom:4px}
 .upd{text-align:center;font-size:10px;color:#bbb;margin:4px 0 14px}
@@ -209,6 +209,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .sec-title{background:#111;color:#fff;padding:5px 10px;font-size:11px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
 .sec-title .badge{font-size:9px;color:#8f8;font-weight:400}
 .sec-body{padding:8px}
+.groups-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px}
+.group-card{border:1px solid #f0f0f0;font-size:8px;padding:3px;background:#fafafa}
+.gn{font-weight:700;font-size:8px;margin-bottom:1px}
+.gr{display:flex;justify-content:space-between;padding:0;font-size:7px;line-height:1.3}
+.mc-tags{padding:6px 4px;display:flex;flex-wrap:wrap;gap:3px}
+.mc-tag{font-size:9px;padding:1px 5px;border-radius:2px;white-space:nowrap;font-weight:600}
+.match-card{border-bottom:1px solid #eee;padding:12px 0}
+.match-card:last-child{border-bottom:none}
+.mh{display:flex;align-items:center;gap:6px}
+.t{font-weight:600;font-size:14px;flex:1}
+.meta{font-size:10px;color:#999;margin:2px 0 6px}
+.bar-line{display:flex;align-items:center;margin:3px 0;gap:6px}
+.bar-line .lbl{width:30px;font-size:11px;color:#666}
+.bar-line .track{flex:1;height:5px;background:#eee;border-radius:3px}
+.bar-line .track .fill{height:5px;border-radius:3px}
+.bar-line .num{width:40px;font-size:11px;text-align:right;font-weight:600}
+.match-info{font-size:10px;color:#666;margin:4px 0;line-height:1.5}
+.match-info b{color:#111}
 .summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;margin-bottom:8px}
 .summary-card{text-align:center;padding:8px 4px;border:1px solid #eee;font-size:9px;background:#fafafa}
 .summary-card .sv{font-size:16px;font-weight:700;color:#111}
@@ -265,6 +283,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .support-bar{display:flex;height:6px;border-radius:3px;overflow:hidden;margin:6px 0}
 .sb-h{background:#4caf50}.sb-m{background:#ffc107}.sb-s{background:#ff9800}.sb-x{background:#f44336}
 .support-legend{display:flex;gap:8px;font-size:9px;color:#999;flex-wrap:wrap}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
 .dim-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:3px}
 .dim-card{text-align:center;padding:6px 3px;border:1px solid #eee;background:#fafafa;font-size:8px}
 .dim-card .di{font-size:14px;margin-bottom:1px}
@@ -275,8 +295,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .disclaimer .dw{color:#e65100;font-weight:700}
 '''
 
-def gen_html(analyses, combo_result, match_date="6/26"):
-    """生成完整HTML"""
+def gen_html(analyses, combo_result, dash_data, match_cards, match_date="6/26"):
+    """生成完整HTML，包含小组积分+出线概率+逻辑分析"""
     # 概览
     n_anchors = combo_result["n_anchors"]
     n_close = combo_result["n_close"]
@@ -354,52 +374,74 @@ def gen_html(analyses, combo_result, match_date="6/26"):
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 <title>世界杯逻辑分析引擎</title><style>{CSS}</style></head><body>
 
-<h1>🧠 世界杯逻辑分析引擎</h1>
-<div class="sub">Elo实力评估 × 场地环境补偿 × 历史数据回测 · 纯数据分析工具</div>
-<div class="upd">📅 {match_date} 分析 | {len(analyses)}场比赛 | 2018-2024四届回测 | eloratings.net</div>
+<h1>⚽ 世界杯综合看板</h1>
+<div class="sub">比分预测 × 小组积分 × 出线概率 × 逻辑分析引擎 · 纯数据分析工具</div>
+<div class="upd">📅 {match_date} | {len(analyses)}场 | MC3000次 | 2018-2024回测</div>
 
-<div class="section"><div class="sec-title">📊 分析概览</div><div class="sec-body">
+<!-- ====== 全宽：小组积分 ====== -->
+<div class="section"><div class="sec-title">📊 小组积分 <span class="badge">{dash_data['acc_rate']}%准确</span></div>
+<div class="sec-body"><div class="groups-grid">{dash_data['groups_html']}</div></div></div>
+
+<!-- ====== 全宽：出线概率 ====== -->
+<div class="section"><div class="sec-title">🎲 出线概率 <span class="badge">MC3000次</span></div>
+<div class="sec-body"><div class="mc-tags">{dash_data['qual_html']}</div></div></div>
+
+<!-- ====== 全宽：模型复盘 ====== -->
+<div class="section"><div class="sec-title" style="background:#555">🔍 模型复盘 <span class="badge">盲区检测</span></div>
+<div class="sec-body" style="font-size:10px;color:#666">{dash_data['review_html']}</div></div>
+
+<!-- ====== 两栏布局 ====== -->
+<div class="two-col">
+
+<!-- 左栏：比赛预测 -->
+<div>
+<div class="section"><div class="sec-title">⚽ 比赛预测 <span class="badge">胜平负·总进球·比分</span></div>
+<div class="sec-body">
+{''.join(f'''<div class="match-card">
+<div class="mh"><span class="g">{c['group']}组</span><span class="t">{c['flag_h']} {c['home']} vs {c['flag_a']} {c['away']}</span>{c['status_tag']}{c['result_str']}</div>
+<div class="meta">{c['date']} | {c['venue'] or '待定'} | {c['tier']}</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:{c['w']:.0f}%;background:#4caf50"></div></div><span class="num">{c['w_pct']}</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:{c['dr']:.0f}%;background:#ffc107"></div></div><span class="num">{c['dr_pct']}</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:{c['lo']:.0f}%;background:#f44336"></div></div><span class="num">{c['lo_pct']}</span></div>
+<div class="match-info"><b>预期进球</b> {c['total_xg']}球 | <b>冷门指数</b> {c['upset']:.0f}%<br><b>比分</b> {c['scores_str']}<br><b>总进球</b> {c['goals_str']}</div>
+</div>''' for c in match_cards[:15]) if match_cards else '<div style="text-align:center;color:#999;padding:12px">暂无未赛比赛</div>'}
+</div></div>
+</div>
+
+<!-- 右栏：逻辑分析 -->
+<div>
+<div class="section"><div class="sec-title">📊 分析概览 <span class="badge">场地+Elo</span></div><div class="sec-body">
 <div class="summary-grid">
-<div class="summary-card"><div class="sv">{na}</div><div class="sl">锚定场次(Elo≥150)</div></div>
-<div class="summary-card"><div class="sv">{nc}</div><div class="sl">均势场次(Elo&lt;80)</div></div>
-<div class="summary-card"><div class="sv">{nh}</div><div class="sl">大球倾向(>2.9球)</div></div>
-<div class="summary-card"><div class="sv">{nl}</div><div class="sl">小球倾向(<2.35球)</div></div>
+<div class="summary-card"><div class="sv">{na}</div><div class="sl">锚定场次</div></div>
+<div class="summary-card"><div class="sv">{nc}</div><div class="sl">均势场次</div></div>
+<div class="summary-card"><div class="sv">{nh}</div><div class="sl">大球倾向</div></div>
+<div class="summary-card"><div class="sv">{nl}</div><div class="sl">小球倾向</div></div>
 </div></div></div>
 
-<div class="section"><div class="sec-title">📍 场地环境 <span class="badge">海拔·热应力补偿</span></div>
+<div class="section"><div class="sec-title">📍 场地环境</div>
 <div class="sec-body"><div class="venue-grid">{vcards}</div></div></div>
 
-<div class="section"><div class="sec-title">📊 Elo 实力评估 <span class="badge">胜率+锚定+方向</span></div>
+<div class="section"><div class="sec-title">📊 Elo 评估</div>
 <div class="sec-body">{erows}</div></div>
 
-<div class="section"><div class="sec-title" style="background:#555">📋 近期完赛校准 <span class="badge">模型偏差追踪</span></div>
-<div class="sec-body">{cal}<div style="font-size:9px;color:#999;margin-top:4px">偏差<±10=准确 ✓ | ±10-20=可接受 ⚠ | >±20=需校准 ✗</div></div></div>
-
-<div class="section"><div class="sec-title">🔬 逻辑组合分析 <span class="badge">{len(combo_result["combos"])}组</span></div>
+<div class="section"><div class="sec-title">🔬 逻辑组合 <span class="badge">{len(combo_result["combos"])}组</span></div>
 <div class="sec-body">{ch}</div></div>
 
-<div class="section"><div class="sec-title" style="background:#555">🎯 比分推演 <span class="badge">四届大赛频率</span></div>
-<div class="sec-body"><div class="score-cards">{sc}</div><div style="font-size:8px;color:#999;margin-top:4px">频率: 1:0(13.5%) 2:1(11.3%) 2:0(10.9%) 1:1(10.7%) | 290场加权</div></div></div>
+<div class="section"><div class="sec-title" style="background:#555">🎯 比分推演</div>
+<div class="sec-body"><div class="score-cards">{sc}</div><div style="font-size:8px;color:#999;margin-top:4px">1:0(13.5%) 2:1(11.3%) 2:0(10.9%) 1:1(10.7%) | 290场加权</div></div></div>
 
-<div class="section"><div class="sec-title">📈 模型支持率分布</div><div class="sec-body">
+<div class="section"><div class="sec-title">📈 支持率分布</div><div class="sec-body">
 <div class="support-bar"><div class="sb-h" style="width:{pa}%"></div><div class="sb-m" style="width:{pm}%"></div><div class="sb-s" style="width:{ps}%"></div><div class="sb-x" style="width:{px}%"></div></div>
-<div class="support-legend"><span>🟢 高置信</span><span>🟡 稳健</span><span>🟠 探索</span><span>🔴 推演</span></div></div></div>
+<div class="support-legend"><span>🟢高</span><span>🟡稳</span><span>🟠探</span><span>🔴推</span></div></div></div>
 
-<div class="section"><div class="sec-title">🗺️ 分析维度覆盖</div><div class="sec-body">
-<div class="dim-grid">
-<div class="dim-card"><div class="di">🏆</div><div class="dn">单场高置信</div><div class="dd">{na}场</div></div>
-<div class="dim-card"><div class="di">⚖️</div><div class="dn">均势分析</div><div class="dd">{nc}场</div></div>
-<div class="dim-card"><div class="di">📊</div><div class="dn">进球方向</div><div class="dd">大{nh}/小{nl}</div></div>
-<div class="dim-card"><div class="di">🎯</div><div class="dn">比分推演</div><div class="dd">{len(combo_result["scores"])}组</div></div>
-<div class="dim-card"><div class="di">🔗</div><div class="dn">逻辑组合</div><div class="dd">{len(combo_result["combos"])}组</div></div>
-<div class="dim-card"><div class="di">📐</div><div class="dn">数据底座</div><div class="dd">290场</div></div>
-<div class="dim-card"><div class="di">🏟️</div><div class="dn">场地补偿</div><div class="dd">16场馆</div></div>
-<div class="dim-card"><div class="di">📋</div><div class="dn">完赛校准</div><div class="dd">{len(combo_result["cal"])}场</div></div>
-</div></div></div>
+<div class="section"><div class="sec-title">📋 近期校准</div>
+<div class="sec-body">{cal}<div style="font-size:9px;color:#999;margin-top:4px">偏差&lt;±10=准 ✓ | ±10-20=可接受 ⚠ | &gt;±20=需校准 ✗</div></div></div>
+</div>
+</div><!-- /two-col -->
 
 <div class="section"><div class="sec-title">📋 数据来源</div><div class="sec-body" style="font-size:10px;color:#666;line-height:1.6">
 <b>Elo</b>: eloratings.net · <b>场地</b>: FIFA + Sports Medicine(2026) · <b>回测</b>: WC 2018+2022(128) Euro 2020+2024(102) Copa 2021+2024(60)=290场<br>
-<b>权重</b>: 2024 35% · 2022 30% · 2021 20% · 2018 15% · <b>赔率参考</b>: 中国竞彩网 · <b>计果</b>: 90分钟+补时
+<b>权重</b>: 2024 35% · 2022 30% · 2021 20% · 2018 15% · <b>赔率参考</b>: 中国竞彩网
 </div></div>
 
 <div class="disclaimer">
@@ -414,11 +456,193 @@ def gen_html(analyses, combo_result, match_date="6/26"):
     return html
 
 
+# ====== 导入 live_data 预测函数 ======
+from live_data import predict, ELO as LIVE_ELO, FLAGS as LIVE_FLAGS, STYLE
+
+# 同步 ELO
+ELO.update(LIVE_ELO)
+FLAGS.update(LIVE_FLAGS)
+
+# ====== 生成每场比赛预测卡片 ======
+def gen_match_predictions(matches):
+    """为每场比赛生成胜平负+总进球+比分预测"""
+    cards = []
+    for m in matches:
+        if m.get('status') == 'FT':
+            continue  # 跳过已完赛
+        try:
+            p = predict(m['home'], m['away'], match_info=m)
+        except Exception as e:
+            continue
+
+        w, dr, lo = p['win'], p['draw'], p['loss']
+        tier = '🟢' if w > 75 else ('🟡' if w > 60 else ('🟠' if w > 45 else '🔴'))
+        w_pct = f"{w}%"; dr_pct = f"{dr}%"; lo_pct = f"{lo}%"
+
+        # 比分 Top 3
+        top_scores = p.get('top', [])[:3]
+        scores_str = ' · '.join([f"{s}({pr}%)" for s, pr in top_scores])
+
+        # 总进球分布
+        gl = p.get('gl', {})
+        goals_str = ' | '.join([f"{k}球:{v}%" for k, v in sorted(gl.items(), key=lambda x: int(x[0]))[:7]])
+
+        # 冷门概率
+        upset = p.get('upset', min(lo, 100-w) if w > 50 else 25)
+
+        # 预期进球
+        xh, xa = p.get('xh', 0), p.get('xa', 0)
+        total_xg = round(xh + xa, 1)
+
+        flag_h = FLAGS.get(m['home'], ''); flag_a = FLAGS.get(m['away'], '')
+        result_str = f'<span style="color:#666">({m["result"]})</span>' if m.get('result') else ''
+        status_tag = ''
+        if m.get('live_score'):
+            status_tag = f'<span style="background:#e44;color:#fff;padding:2px 6px;font-size:9px">🔴 {m["live_score"]}</span>'
+
+        cards.append({
+            'home': m['home'], 'away': m['away'],
+            'flag_h': flag_h, 'flag_a': flag_a,
+            'result_str': result_str, 'status_tag': status_tag,
+            'tier': tier, 'w': w, 'dr': dr, 'lo': lo,
+            'w_pct': w_pct, 'dr_pct': dr_pct, 'lo_pct': lo_pct,
+            'scores_str': scores_str, 'goals_str': goals_str,
+            'upset': upset, 'total_xg': total_xg,
+            'date': m.get('date',''), 'group': m.get('group',''),
+            'venue': m.get('venue',''), 'result': m.get('result',''),
+            'live_clock': m.get('live_clock',''),
+        })
+    return cards
+
+
+# ====== 导入现有 dashboard 生成器 ======
+def gen_dashboard_data(matches):
+    """复用 dashboard.py 的核心逻辑：小组积分 + 出线概率"""
+    import random as rnd
+    from live_data import predict as lpredict
+
+    # 小组积分
+    groups = {}
+    for m in matches:
+        g = m['group']
+        if g not in groups: groups[g] = {}
+        for t in [m['home'], m['away']]:
+            if t not in groups[g]: groups[g][t] = {'pts':0,'gd':0,'gs':0,'gc':0,'p':0}
+        if m.get('result'):
+            hg, ag = map(int, m['result'].split(':'))
+            groups[g][m['home']]['p'] += 1; groups[g][m['away']]['p'] += 1
+            groups[g][m['home']]['gs'] += hg; groups[g][m['home']]['gc'] += ag
+            groups[g][m['away']]['gs'] += ag; groups[g][m['away']]['gc'] += hg
+            groups[g][m['home']]['gd'] = groups[g][m['home']]['gs'] - groups[g][m['home']]['gc']
+            groups[g][m['away']]['gd'] = groups[g][m['away']]['gs'] - groups[g][m['away']]['gc']
+            if hg > ag: groups[g][m['home']]['pts'] += 3
+            elif ag > hg: groups[g][m['away']]['pts'] += 3
+            else: groups[g][m['home']]['pts'] += 1; groups[g][m['away']]['pts'] += 1
+
+    # 模型准确率
+    ft_matches = [m for m in matches if m.get('status') == 'FT']
+    correct = 0
+    for m in ft_matches:
+        h, a, r = m['home'], m['away'], m['result']
+        hg, ag = map(int, r.split(':'))
+        p = lpredict(h, a)
+        pred = 'win' if p['win'] > max(p['draw'], p['loss']) else ('draw' if p['draw'] > max(p['win'], p['loss']) else 'loss')
+        actual = 'win' if hg > ag else ('draw' if hg == ag else 'loss')
+        if pred == actual: correct += 1
+    acc_rate = round(correct / len(ft_matches) * 100, 1) if ft_matches else 0
+
+    # 蒙特卡洛出线概率 3000次
+    N = 3000
+    team_qual = {t: 0 for g in groups for t in groups[g]}
+    remaining = [m for m in matches if not m.get('result') and m.get('status') != 'FT']
+    for _ in range(N):
+        sim = {g: {t: {'pts': s['pts'], 'gd': s['gd']} for t, s in teams.items()} for g, teams in groups.items()}
+        for m in remaining:
+            g = m['group']
+            p = lpredict(m['home'], m['away'])
+            r = rnd.random()
+            if r < p['win'] / 100:
+                hg = max(1, int(p['xh'] + rnd.gauss(0, 0.5)))
+                ag = max(0, int(p['xa'] + rnd.gauss(0, 0.5)))
+                if hg <= ag: hg = ag + 1
+                sim[g][m['home']]['pts'] += 3
+            elif r < (p['win'] + p['draw']) / 100:
+                hg = ag = max(0, int((p['xh'] + p['xa']) / 2))
+                sim[g][m['home']]['pts'] += 1; sim[g][m['away']]['pts'] += 1
+            else:
+                ag = max(1, int(p['xa'] + rnd.gauss(0, 0.5)))
+                hg = max(0, int(p['xh'] + rnd.gauss(0, 0.5)))
+                if ag <= hg: ag = hg + 1
+                sim[g][m['away']]['pts'] += 3
+            hg_diff = hg - ag
+            sim[g][m['home']]['gd'] += hg_diff
+            sim[g][m['away']]['gd'] -= hg_diff
+        for g in groups:
+            ranked = sorted(sim[g].items(), key=lambda x: (-x[1]['pts'], -x[1]['gd']))
+            for j, (team, _) in enumerate(ranked):
+                if j < 2: team_qual[team] += 1
+
+    # 生成小组积分 HTML
+    sorted_groups = sorted(groups.items())
+    groups_html = ""
+    for g, teams in sorted_groups:
+        ranked = sorted(teams.items(), key=lambda x: (-x[1]['pts'], -x[1]['gd']))
+        rows = ""
+        for t, s in ranked:
+            flag = FLAGS.get(t, "")
+            bold = "style='font-weight:700'" if ranked.index((t,s)) < 2 else ""
+            rows += f"<div class='gr' {bold}><span>{flag} {t}</span><span>{s['p']}场 {s['pts']}分 {s['gd']:+d}</span></div>"
+        groups_html += f"<div class='group-card'><div class='gn'>{g}组</div>{rows}</div>"
+
+    # 生成出线概率 HTML
+    qual_sorted = sorted(team_qual.items(), key=lambda x: -x[1])
+    qual_html = ""
+    for team, cnt in qual_sorted:
+        pct = cnt / N * 100
+        if pct >= 90: bg = "#e8f5e9"; c = "#390"
+        elif pct >= 50: bg = "#fff8e1"; c = "#f80"
+        else: bg = "#f5f5f5"; c = "#999"
+        flag = FLAGS.get(team, "")
+        qual_html += f"<span class='mc-tag' style='background:{bg};color:{c}'>{flag}{team} {pct:.1f}%</span>"
+
+    # Agent复盘
+    wrong_upsets = 0; goal_surprises = 0; elo_blowouts = 0; score_errs = []
+    for m in ft_matches:
+        h, a, r = m['home'], m['away'], m['result']
+        hg, ag = map(int, r.split(':'))
+        p = lpredict(h, a, match_info=m)
+        exp_total = p['xh'] + p['xa']
+        act_total = hg + ag
+        if p['win'] > 60 and (hg <= ag): wrong_upsets += 1
+        if act_total - exp_total > 1.0: goal_surprises += 1
+        if abs(p['he']-p['ae']) < 50 and abs(hg-ag) >= 2: elo_blowouts += 1
+        score_errs.append(abs((p['xh']-p['xa']) - (hg-ag)))
+    avg_score_err = round(sum(score_errs)/len(score_errs), 1) if score_errs else 0
+    review_html = f"<span>爆冷 {wrong_upsets}场</span> <span>进球超预期 {goal_surprises}场</span> <span>ELO均势大胜 {elo_blowouts}场</span> <span>平均分差误差 {avg_score_err}</span>"
+
+    return {
+        "groups_html": groups_html,
+        "qual_html": qual_html,
+        "acc_rate": acc_rate,
+        "review_html": review_html,
+    }
+
+
 # ====== 主流程 ======
 def main():
     matches = load_schedule()
     analyses = analyze_all(matches)
     combo_result = gen_combos(analyses)
+
+    # 生成 dashboard 数据
+    print("🎲 蒙特卡洛模拟中...")
+    dash_data = gen_dashboard_data(matches)
+    print(f"   准确率 {dash_data['acc_rate']}%")
+
+    # 生成每场比赛预测卡片
+    print("⚽ 生成比赛预测...")
+    match_cards = gen_match_predictions(matches)
+    print(f"   {len(match_cards)}场比赛预测")
 
     # 展示: 未赛 + 最近完赛
     upcoming = [a for a in analyses if a["status"]!="FT"]
@@ -426,7 +650,7 @@ def main():
     display = upcoming + completed[-6:]
 
     today = max([m["date"] for m in matches]) if matches else "6/26"
-    html = gen_html(display, combo_result, today)
+    html = gen_html(display, combo_result, dash_data, match_cards, today)
 
     out = os.path.join(DIR, "logic_analysis.html")
     with open(out,"w",encoding="utf-8") as f:

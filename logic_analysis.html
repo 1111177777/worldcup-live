@@ -2,7 +2,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 <title>世界杯逻辑分析引擎</title><style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:12px;max-width:500px;margin:0 auto;color:#333}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:12px;max-width:1060px;margin:0 auto;color:#333}
 h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .sub{text-align:center;font-size:11px;color:#999;margin-bottom:4px}
 .upd{text-align:center;font-size:10px;color:#bbb;margin:4px 0 14px}
@@ -10,6 +10,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .sec-title{background:#111;color:#fff;padding:5px 10px;font-size:11px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
 .sec-title .badge{font-size:9px;color:#8f8;font-weight:400}
 .sec-body{padding:8px}
+.groups-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px}
+.group-card{border:1px solid #f0f0f0;font-size:8px;padding:3px;background:#fafafa}
+.gn{font-weight:700;font-size:8px;margin-bottom:1px}
+.gr{display:flex;justify-content:space-between;padding:0;font-size:7px;line-height:1.3}
+.mc-tags{padding:6px 4px;display:flex;flex-wrap:wrap;gap:3px}
+.mc-tag{font-size:9px;padding:1px 5px;border-radius:2px;white-space:nowrap;font-weight:600}
+.match-card{border-bottom:1px solid #eee;padding:12px 0}
+.match-card:last-child{border-bottom:none}
+.mh{display:flex;align-items:center;gap:6px}
+.t{font-weight:600;font-size:14px;flex:1}
+.meta{font-size:10px;color:#999;margin:2px 0 6px}
+.bar-line{display:flex;align-items:center;margin:3px 0;gap:6px}
+.bar-line .lbl{width:30px;font-size:11px;color:#666}
+.bar-line .track{flex:1;height:5px;background:#eee;border-radius:3px}
+.bar-line .track .fill{height:5px;border-radius:3px}
+.bar-line .num{width:40px;font-size:11px;text-align:right;font-weight:600}
+.match-info{font-size:10px;color:#666;margin:4px 0;line-height:1.5}
+.match-info b{color:#111}
 .summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;margin-bottom:8px}
 .summary-card{text-align:center;padding:8px 4px;border:1px solid #eee;font-size:9px;background:#fafafa}
 .summary-card .sv{font-size:16px;font-weight:700;color:#111}
@@ -66,6 +84,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .support-bar{display:flex;height:6px;border-radius:3px;overflow:hidden;margin:6px 0}
 .sb-h{background:#4caf50}.sb-m{background:#ffc107}.sb-s{background:#ff9800}.sb-x{background:#f44336}
 .support-legend{display:flex;gap:8px;font-size:9px;color:#999;flex-wrap:wrap}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
 .dim-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:3px}
 .dim-card{text-align:center;padding:6px 3px;border:1px solid #eee;background:#fafafa;font-size:8px}
 .dim-card .di{font-size:14px;margin-bottom:1px}
@@ -76,52 +96,172 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .disclaimer .dw{color:#e65100;font-weight:700}
 </style></head><body>
 
-<h1>🧠 世界杯逻辑分析引擎</h1>
-<div class="sub">Elo实力评估 × 场地环境补偿 × 历史数据回测 · 纯数据分析工具</div>
-<div class="upd">📅 6/27 分析 | 32场比赛 | 2018-2024四届回测 | eloratings.net</div>
+<h1>⚽ 世界杯综合看板</h1>
+<div class="sub">比分预测 × 小组积分 × 出线概率 × 逻辑分析引擎 · 纯数据分析工具</div>
+<div class="upd">📅 6/27 | 32场 | MC3000次 | 2018-2024回测</div>
 
-<div class="section"><div class="sec-title">📊 分析概览</div><div class="sec-body">
+<!-- ====== 全宽：小组积分 ====== -->
+<div class="section"><div class="sec-title">📊 小组积分 <span class="badge">67.4%准确</span></div>
+<div class="sec-body"><div class="groups-grid"><div class='group-card'><div class='gn'>A组</div><div class='gr' style='font-weight:700'><span>🇲🇽 墨西哥</span><span>2场 6分 +3</span></div><div class='gr' style='font-weight:700'><span>🇰🇷 韩国</span><span>2场 3分 +0</span></div><div class='gr' ><span>🇨🇿 捷克</span><span>2场 1分 -1</span></div><div class='gr' ><span>🇿🇦 南非</span><span>2场 1分 -2</span></div></div><div class='group-card'><div class='gn'>B组</div><div class='gr' style='font-weight:700'><span>🇨🇦 加拿大</span><span>2场 4分 +6</span></div><div class='gr' style='font-weight:700'><span>🇨🇭 瑞士</span><span>2场 4分 +3</span></div><div class='gr' ><span>🇧🇦 波黑</span><span>2场 1分 -3</span></div><div class='gr' ><span>🇶🇦 卡塔尔</span><span>2场 1分 -6</span></div></div><div class='group-card'><div class='gn'>C组</div><div class='gr' style='font-weight:700'><span>🇧🇷 巴西</span><span>2场 4分 +3</span></div><div class='gr' style='font-weight:700'><span>🇲🇦 摩洛哥</span><span>2场 4分 +1</span></div><div class='gr' ><span>🏴 苏格兰</span><span>2场 3分 +0</span></div><div class='gr' ><span>🇭🇹 海地</span><span>2场 0分 -4</span></div></div><div class='group-card'><div class='gn'>D组</div><div class='gr' style='font-weight:700'><span>🇺🇸 美国</span><span>2场 6分 +5</span></div><div class='gr' style='font-weight:700'><span>🇦🇺 澳大利亚</span><span>2场 3分 +0</span></div><div class='gr' ><span>🇵🇾 巴拉圭</span><span>2场 3分 -2</span></div><div class='gr' ><span>🇹🇷 土耳其</span><span>2场 0分 -3</span></div></div><div class='group-card'><div class='gn'>E组</div><div class='gr' style='font-weight:700'><span>🇩🇪 德国</span><span>2场 6分 +7</span></div><div class='gr' style='font-weight:700'><span>🇨🇮 科特迪瓦</span><span>2场 3分 +0</span></div><div class='gr' ><span>🇪🇨 厄瓜多尔</span><span>2场 1分 -1</span></div><div class='gr' ><span>🇨🇼 库拉索</span><span>2场 1分 -6</span></div></div><div class='group-card'><div class='gn'>F组</div><div class='gr' style='font-weight:700'><span>🇳🇱 荷兰</span><span>2场 4分 +4</span></div><div class='gr' style='font-weight:700'><span>🇯🇵 日本</span><span>2场 4分 +4</span></div><div class='gr' ><span>🇸🇪 瑞典</span><span>2场 3分 +0</span></div><div class='gr' ><span>🇹🇳 突尼斯</span><span>2场 0分 -8</span></div></div><div class='group-card'><div class='gn'>G组</div><div class='gr' style='font-weight:700'><span>🇪🇬 埃及</span><span>2场 4分 +2</span></div><div class='gr' style='font-weight:700'><span>🇧🇪 比利时</span><span>2场 2分 +0</span></div><div class='gr' ><span>🇮🇷 伊朗</span><span>2场 2分 +0</span></div><div class='gr' ><span>🇳🇿 新西兰</span><span>2场 1分 -2</span></div></div><div class='group-card'><div class='gn'>H组</div><div class='gr' style='font-weight:700'><span>🇪🇸 西班牙</span><span>2场 4分 +4</span></div><div class='gr' style='font-weight:700'><span>🇨🇻 佛得角</span><span>2场 2分 +0</span></div><div class='gr' ><span>🇺🇾 乌拉圭</span><span>2场 2分 +0</span></div><div class='gr' ><span>🇸🇦 沙特阿拉伯</span><span>2场 1分 -4</span></div></div><div class='group-card'><div class='gn'>I组</div><div class='gr' style='font-weight:700'><span>🇫🇷 法国</span><span>2场 6分 +5</span></div><div class='gr' style='font-weight:700'><span>🇳🇴 挪威</span><span>2场 6分 +4</span></div><div class='gr' ><span>🇸🇳 塞内加尔</span><span>2场 0分 -3</span></div><div class='gr' ><span>🇮🇶 伊拉克</span><span>2场 0分 -6</span></div></div><div class='group-card'><div class='gn'>J组</div><div class='gr' style='font-weight:700'><span>🇦🇷 阿根廷</span><span>2场 6分 +5</span></div><div class='gr' style='font-weight:700'><span>🇦🇹 奥地利</span><span>2场 3分 +0</span></div><div class='gr' ><span>🇩🇿 阿尔及利亚</span><span>2场 3分 -2</span></div><div class='gr' ><span>🇯🇴 约旦</span><span>2场 0分 -3</span></div></div><div class='group-card'><div class='gn'>K组</div><div class='gr' style='font-weight:700'><span>🇵🇹 葡萄牙</span><span>2场 4分 +5</span></div><div class='gr' style='font-weight:700'><span>🇨🇴 哥伦比亚</span><span>1场 3分 +2</span></div><div class='gr' ><span>🇨🇩 刚果民主共和国</span><span>1场 1分 +0</span></div><div class='gr' ><span>🇺🇿 乌兹别克斯坦</span><span>2场 0分 -7</span></div></div><div class='group-card'><div class='gn'>L组</div><div class='gr' style='font-weight:700'><span>🏴 英格兰</span><span>2场 4分 +2</span></div><div class='gr' style='font-weight:700'><span>🇬🇭 加纳</span><span>2场 4分 +1</span></div><div class='gr' ><span>🇵🇦 巴拿马</span><span>1场 0分 -1</span></div><div class='gr' ><span>🇭🇷 克罗地亚</span><span>1场 0分 -2</span></div></div></div></div></div>
+
+<!-- ====== 全宽：出线概率 ====== -->
+<div class="section"><div class="sec-title">🎲 出线概率 <span class="badge">MC3000次</span></div>
+<div class="sec-body"><div class="mc-tags"><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇲🇽墨西哥 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇦加拿大 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇭瑞士 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇺🇸美国 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇩🇪德国 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇳🇱荷兰 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇫🇷法国 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇳🇴挪威 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇦🇷阿根廷 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇲🇦摩洛哥 99.9%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🏴英格兰 99.9%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇵🇹葡萄牙 97.4%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇪🇸西班牙 97.3%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇴哥伦比亚 96.3%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇮科特迪瓦 92.3%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇧🇪比利时 89.6%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇪🇬埃及 88.6%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇧🇷巴西 88.1%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇰🇷韩国 83.1%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇯🇵日本 75.7%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇩🇿阿尔及利亚 72.6%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇦🇺澳大利亚 70.6%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇸🇦沙特阿拉伯 51.1%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇭🇷克罗地亚 50.5%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇬🇭加纳 49.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇵🇾巴拉圭 29.4%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇺🇾乌拉圭 28.4%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇦🇹奥地利 26.7%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇸🇪瑞典 24.3%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇻佛得角 23.2%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇮🇷伊朗 15.6%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇿🇦南非 12.9%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🏴苏格兰 12.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇼库拉索 6.4%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇩刚果民主共和国 6.3%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇳🇿新西兰 6.2%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇿捷克 4.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇪🇨厄瓜多尔 1.2%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇯🇴约旦 0.7%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇵🇦巴拿马 0.6%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇧🇦波黑 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇶🇦卡塔尔 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇹🇷土耳其 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇭🇹海地 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇹🇳突尼斯 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇸🇳塞内加尔 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇮🇶伊拉克 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇺🇿乌兹别克斯坦 0.0%</span></div></div></div>
+
+<!-- ====== 全宽：模型复盘 ====== -->
+<div class="section"><div class="sec-title" style="background:#555">🔍 模型复盘 <span class="badge">盲区检测</span></div>
+<div class="sec-body" style="font-size:10px;color:#666"><span>爆冷 6场</span> <span>进球超预期 10场</span> <span>ELO均势大胜 4场</span> <span>平均分差误差 1.5</span></div></div>
+
+<!-- ====== 两栏布局 ====== -->
+<div class="two-col">
+
+<!-- 左栏：比赛预测 -->
+<div>
+<div class="section"><div class="sec-title">⚽ 比赛预测 <span class="badge">胜平负·总进球·比分</span></div>
+<div class="sec-body">
+<div class="match-card">
+<div class="mh"><span class="g">L组</span><span class="t">🇵🇦 巴拿马 vs 🇭🇷 克罗地亚</span></div>
+<div class="meta">6/23 | 多伦多 | 🔴</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:12%;background:#4caf50"></div></div><span class="num">11.6%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:23%;background:#ffc107"></div></div><span class="num">22.8%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:66%;background:#f44336"></div></div><span class="num">65.6%</span></div>
+<div class="match-info"><b>预期进球</b> 3.3球 | <b>冷门指数</b> 25%<br><b>比分</b> 0:2(11.2%) · 1:2(9.4%) · 0:1(9.1%)<br><b>总进球</b> 0球:3.7% | 1球:12.3% | 2球:20.2% | 3球:22.1% | 4球:18.2% | 5球:11.9% | 6球:6.5%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">K组</span><span class="t">🇨🇴 哥伦比亚 vs 🇨🇩 刚果民主共和国</span></div>
+<div class="meta">6/23 | 瓜达拉哈拉 | 🟢</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:89%;background:#4caf50"></div></div><span class="num">89.0%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:8%;background:#ffc107"></div></div><span class="num">8.4%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:3%;background:#f44336"></div></div><span class="num">2.6%</span></div>
+<div class="match-info"><b>预期进球</b> 5.0球 | <b>冷门指数</b> 3%<br><b>比分</b> 4:0(9.1%) · 3:0(8.7%) · 5:0(7.7%)<br><b>总进球</b> 0球:0.7% | 1球:3.5% | 2球:8.6% | 3球:14.3% | 4球:17.7% | 5球:17.5% | 6球:14.5%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">C组</span><span class="t">🏴 苏格兰 vs 🇧🇷 巴西</span></div>
+<div class="meta">6/24 | 待定 | 🔴</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:14%;background:#4caf50"></div></div><span class="num">13.5%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:26%;background:#ffc107"></div></div><span class="num">25.8%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:61%;background:#f44336"></div></div><span class="num">60.7%</span></div>
+<div class="match-info"><b>预期进球</b> 3.3球 | <b>冷门指数</b> 25%<br><b>比分</b> 0:2(10.0%) · 1:2(9.8%) · 0:1(8.7%)<br><b>总进球</b> 0球:3.8% | 1球:12.5% | 2球:20.4% | 3球:22.2% | 4球:18.1% | 5球:11.8% | 6球:6.4%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">C组</span><span class="t">🇲🇦 摩洛哥 vs 🇭🇹 海地</span></div>
+<div class="meta">6/24 | 待定 | 🟢</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:96%;background:#4caf50"></div></div><span class="num">96.4%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:3%;background:#ffc107"></div></div><span class="num">3.2%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:0%;background:#f44336"></div></div><span class="num">0.4%</span></div>
+<div class="match-info"><b>预期进球</b> 5.0球 | <b>冷门指数</b> 0%<br><b>比分</b> 4:0(13.7%) · 5:0(12.9%) · 3:0(11.6%)<br><b>总进球</b> 0球:0.7% | 1球:3.4% | 2球:8.4% | 3球:14.0% | 4球:17.5% | 5球:17.5% | 6球:14.6%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">B组</span><span class="t">🇨🇭 瑞士 vs 🇨🇦 加拿大</span></div>
+<div class="meta">6/24 | 待定 | 🟠</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:58%;background:#4caf50"></div></div><span class="num">57.5%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:28%;background:#ffc107"></div></div><span class="num">28.5%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:14%;background:#f44336"></div></div><span class="num">14.0%</span></div>
+<div class="match-info"><b>预期进球</b> 2.9球 | <b>冷门指数</b> 14%<br><b>比分</b> 2:0(11.3%) · 1:0(11.2%) · 2:1(9.9%)<br><b>总进球</b> 0球:5.6% | 1球:16.1% | 2球:23.2% | 3球:22.4% | 4球:16.1% | 5球:9.3% | 6球:4.5%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">B组</span><span class="t">🇧🇦 波黑 vs 🇶🇦 卡塔尔</span></div>
+<div class="meta">6/24 | 待定 | 🟢</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:80%;background:#4caf50"></div></div><span class="num">79.6%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:16%;background:#ffc107"></div></div><span class="num">16.3%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:4%;background:#f44336"></div></div><span class="num">4.1%</span></div>
+<div class="match-info"><b>预期进球</b> 3.2球 | <b>冷门指数</b> 4%<br><b>比分</b> 2:0(15.1%) · 3:0(13.7%) · 1:0(11.0%)<br><b>总进球</b> 0球:4.0% | 1球:12.9% | 2球:20.8% | 3球:22.2% | 4球:17.9% | 5球:11.5% | 6球:6.1%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">A组</span><span class="t">🇨🇿 捷克 vs 🇲🇽 墨西哥</span></div>
+<div class="meta">6/24 | 待定 | 🔴</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:28%;background:#4caf50"></div></div><span class="num">27.6%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:34%;background:#ffc107"></div></div><span class="num">34.0%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:38%;background:#f44336"></div></div><span class="num">38.4%</span></div>
+<div class="match-info"><b>预期进球</b> 2.8球 | <b>冷门指数</b> 25%<br><b>比分</b> 1:1(11.9%) · 0:1(9.5%) · 1:2(9.0%)<br><b>总进球</b> 0球:6.2% | 1球:17.3% | 2球:24.0% | 3球:22.2% | 4球:15.4% | 5球:8.5% | 6球:4.0%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">A组</span><span class="t">🇿🇦 南非 vs 🇰🇷 韩国</span></div>
+<div class="meta">6/24 | 待定 | 🔴</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:17%;background:#4caf50"></div></div><span class="num">16.8%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:26%;background:#ffc107"></div></div><span class="num">25.9%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:57%;background:#f44336"></div></div><span class="num">57.3%</span></div>
+<div class="match-info"><b>预期进球</b> 3.6球 | <b>冷门指数</b> 25%<br><b>比分</b> 1:2(9.4%) · 1:1(7.8%) · 0:2(7.5%)<br><b>总进球</b> 0球:2.6% | 1球:9.5% | 2球:17.3% | 3球:21.1% | 4球:19.2% | 5球:14.0% | 6球:8.5%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">D组</span><span class="t">🇹🇷 土耳其 vs 🇺🇸 美国</span></div>
+<div class="meta">6/25 | 待定 | 🟠</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:48%;background:#4caf50"></div></div><span class="num">48.2%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:29%;background:#ffc107"></div></div><span class="num">28.9%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:23%;background:#f44336"></div></div><span class="num">22.9%</span></div>
+<div class="match-info"><b>预期进球</b> 3.5球 | <b>冷门指数</b> 25%<br><b>比分</b> 2:1(9.3%) · 1:1(8.9%) · 2:0(6.6%)<br><b>总进球</b> 0球:3.0% | 1球:10.5% | 2球:18.5% | 3球:21.6% | 4球:18.9% | 5球:13.2% | 6球:7.7%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">D组</span><span class="t">🇵🇾 巴拉圭 vs 🇦🇺 澳大利亚</span></div>
+<div class="meta">6/25 | 待定 | 🔴</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:30%;background:#4caf50"></div></div><span class="num">30.1%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:39%;background:#ffc107"></div></div><span class="num">38.7%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:31%;background:#f44336"></div></div><span class="num">31.2%</span></div>
+<div class="match-info"><b>预期进球</b> 2.2球 | <b>冷门指数</b> 25%<br><b>比分</b> 1:1(13.4%) · 0:1(12.4%) · 1:0(12.1%)<br><b>总进球</b> 0球:11.2% | 1球:24.5% | 2球:26.8% | 3球:19.6% | 4球:10.7% | 5球:4.7% | 6球:1.7%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">E组</span><span class="t">🇪🇨 厄瓜多尔 vs 🇩🇪 德国</span></div>
+<div class="meta">6/25 | 待定 | 🔴</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:18%;background:#4caf50"></div></div><span class="num">17.9%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:28%;background:#ffc107"></div></div><span class="num">28.3%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:54%;background:#f44336"></div></div><span class="num">53.8%</span></div>
+<div class="match-info"><b>预期进球</b> 3.3球 | <b>冷门指数</b> 25%<br><b>比分</b> 1:2(9.8%) · 1:1(9.3%) · 0:2(8.6%)<br><b>总进球</b> 0球:3.8% | 1球:12.5% | 2球:20.3% | 3球:22.2% | 4球:18.1% | 5球:11.8% | 6球:6.4%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">E组</span><span class="t">🇨🇼 库拉索 vs 🇨🇮 科特迪瓦</span></div>
+<div class="meta">6/25 | 待定 | 🔴</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:9%;background:#4caf50"></div></div><span class="num">9.0%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:21%;background:#ffc107"></div></div><span class="num">21.4%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:70%;background:#f44336"></div></div><span class="num">69.6%</span></div>
+<div class="match-info"><b>预期进球</b> 3.4球 | <b>冷门指数</b> 25%<br><b>比分</b> 0:2(10.9%) · 0:3(9.4%) · 1:2(9.1%)<br><b>总进球</b> 0球:3.2% | 1球:11.0% | 2球:19.0% | 3球:21.8% | 4球:18.7% | 5球:12.9% | 6球:7.4%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">F组</span><span class="t">🇳🇱 荷兰 vs 🇹🇳 突尼斯</span></div>
+<div class="meta">6/25 | 待定 | 🟠</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:50%;background:#4caf50"></div></div><span class="num">50.4%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:31%;background:#ffc107"></div></div><span class="num">30.6%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:19%;background:#f44336"></div></div><span class="num">19.0%</span></div>
+<div class="match-info"><b>预期进球</b> 3.0球 | <b>冷门指数</b> 19%<br><b>比分</b> 1:1(10.5%) · 2:1(9.9%) · 1:0(9.8%)<br><b>总进球</b> 0球:5.2% | 1球:15.3% | 2球:22.7% | 3球:22.4% | 4球:16.6% | 5球:9.8% | 6球:4.8%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">F组</span><span class="t">🇸🇪 瑞典 vs 🇯🇵 日本</span></div>
+<div class="meta">6/25 | 待定 | 🔴</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:26%;background:#4caf50"></div></div><span class="num">25.9%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:32%;background:#ffc107"></div></div><span class="num">32.5%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:42%;background:#f44336"></div></div><span class="num">41.6%</span></div>
+<div class="match-info"><b>预期进球</b> 3.0球 | <b>冷门指数</b> 25%<br><b>比分</b> 1:1(11.1%) · 1:2(9.4%) · 0:1(8.7%)<br><b>总进球</b> 0球:5.2% | 1球:15.3% | 2球:22.7% | 3球:22.4% | 4球:16.6% | 5球:9.8% | 6球:4.9%</div>
+</div><div class="match-card">
+<div class="mh"><span class="g">I组</span><span class="t">🇳🇴 挪威 vs 🇫🇷 法国</span></div>
+<div class="meta">6/26 | 待定 | 🔴</div>
+<div class="bar-line"><span class="lbl">主胜</span><div class="track"><div class="fill" style="width:20%;background:#4caf50"></div></div><span class="num">20.1%</span></div>
+<div class="bar-line"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:24%;background:#ffc107"></div></div><span class="num">24.1%</span></div>
+<div class="bar-line"><span class="lbl">客胜</span><div class="track"><div class="fill" style="width:56%;background:#f44336"></div></div><span class="num">55.9%</span></div>
+<div class="match-info"><b>预期进球</b> 4.5球 | <b>冷门指数</b> 25%<br><b>比分</b> 1:2(7.4%) · 1:3(6.9%) · 2:2(6.3%)<br><b>总进球</b> 0球:1.1% | 1球:4.9% | 2球:11.1% | 3球:16.8% | 4球:18.9% | 5球:17.1% | 6球:12.9%</div>
+</div>
+</div></div>
+</div>
+
+<!-- 右栏：逻辑分析 -->
+<div>
+<div class="section"><div class="sec-title">📊 分析概览 <span class="badge">场地+Elo</span></div><div class="sec-body">
 <div class="summary-grid">
-<div class="summary-card"><div class="sv">3</div><div class="sl">锚定场次(Elo≥150)</div></div>
-<div class="summary-card"><div class="sv">9</div><div class="sl">均势场次(Elo&lt;80)</div></div>
-<div class="summary-card"><div class="sv">25</div><div class="sl">大球倾向(>2.9球)</div></div>
-<div class="summary-card"><div class="sv">0</div><div class="sl">小球倾向(<2.35球)</div></div>
+<div class="summary-card"><div class="sv">3</div><div class="sl">锚定场次</div></div>
+<div class="summary-card"><div class="sv">9</div><div class="sl">均势场次</div></div>
+<div class="summary-card"><div class="sv">25</div><div class="sl">大球倾向</div></div>
+<div class="summary-card"><div class="sv">0</div><div class="sl">小球倾向</div></div>
 </div></div></div>
 
-<div class="section"><div class="sec-title">📍 场地环境 <span class="badge">海拔·热应力补偿</span></div>
-<div class="sec-body"><div class="venue-grid"><div class="venue-card"><div class="vt">🇵🇦 巴拿马 vs 🇭🇷 克罗地亚</div><div class="vs">BMO体育场 · 76m · moderate</div><div class="vn"><span class="warn">进球2.44</span></div></div><div class="venue-card"><div class="vt">🇨🇴 哥伦比亚 vs 🇨🇩 刚果民主共和国</div><div class="vs">阿克伦体育场 · 1566m · moderate</div><div class="vn"><span class="warn">进球2.98</span></div></div><div class="venue-card"><div class="vt">🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰 vs 🇧🇷 巴西</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇲🇦 摩洛哥 vs 🇭🇹 海地</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇨🇭 瑞士 vs 🇨🇦 加拿大</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇧🇦 波黑 vs 🇶🇦 卡塔尔</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇨🇿 捷克 vs 🇲🇽 墨西哥</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇿🇦 南非 vs 🇰🇷 韩国</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div></div></div></div>
+<div class="section"><div class="sec-title">📍 场地环境</div>
+<div class="sec-body"><div class="venue-grid"><div class="venue-card"><div class="vt">🇵🇦 巴拿马 vs 🇭🇷 克罗地亚</div><div class="vs">BMO体育场 · 76m · moderate</div><div class="vn"><span class="warn">进球2.44</span></div></div><div class="venue-card"><div class="vt">🇨🇴 哥伦比亚 vs 🇨🇩 刚果民主共和国</div><div class="vs">阿克伦体育场 · 1566m · moderate</div><div class="vn"><span class="warn">进球2.98</span></div></div><div class="venue-card"><div class="vt">🏴 苏格兰 vs 🇧🇷 巴西</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇲🇦 摩洛哥 vs 🇭🇹 海地</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇨🇭 瑞士 vs 🇨🇦 加拿大</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇧🇦 波黑 vs 🇶🇦 卡塔尔</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇨🇿 捷克 vs 🇲🇽 墨西哥</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div><div class="venue-card"><div class="vt">🇿🇦 南非 vs 🇰🇷 韩国</div><div class="vs">阿兹台克体育场 · 2240m · moderate</div><div class="vn"><span class="warn">进球3.23</span></div></div></div></div></div>
 
-<div class="section"><div class="sec-title">📊 Elo 实力评估 <span class="badge">胜率+锚定+方向</span></div>
-<div class="sec-body"><div class="elo-row"><span class="er-teams">🇵🇦 巴拿马 vs 🇭🇷 克罗地亚</span><span class="er-diff clr">-170</span><span class="er-gap clr">明显</span><span class="er-rate">胜率27%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"></div></div><div class="elo-row"><span class="er-teams">🇨🇴 哥伦比亚 vs 🇨🇩 刚果民主共和国</span><span class="er-diff clr">+150</span><span class="er-gap clr">明显</span><span class="er-rate">胜率70%</span><span class="er-ok" style="color:#2e7d32">✓</span><div class="er-chips"><span>锚定</span><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰 vs 🇧🇷 巴西</span><span class="er-diff clr">-230</span><span class="er-gap clr">明显</span><span class="er-rate">胜率21%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇲🇦 摩洛哥 vs 🇭🇹 海地</span><span class="er-diff clr">+240</span><span class="er-gap clr">明显</span><span class="er-rate">胜率80%</span><span class="er-ok" style="color:#2e7d32">✓</span><div class="er-chips"><span>锚定</span><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇨🇭 瑞士 vs 🇨🇦 加拿大</span><span class="er-diff clr">+100</span><span class="er-gap clr">明显</span><span class="er-rate">胜率64%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇧🇦 波黑 vs 🇶🇦 卡塔尔</span><span class="er-diff cls">+40</span><span class="er-gap cls">接近</span><span class="er-rate">胜率56%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div><div class="elo-row"><span class="er-teams">🇨🇿 捷克 vs 🇲🇽 墨西哥</span><span class="er-diff cls">-50</span><span class="er-gap cls">接近</span><span class="er-rate">胜率43%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div><div class="elo-row"><span class="er-teams">🇿🇦 南非 vs 🇰🇷 韩国</span><span class="er-diff clr">-100</span><span class="er-gap clr">明显</span><span class="er-rate">胜率36%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇹🇷 土耳其 vs 🇺🇸 美国</span><span class="er-diff cls">-30</span><span class="er-gap cls">接近</span><span class="er-rate">胜率46%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div><div class="elo-row"><span class="er-teams">🇵🇾 巴拉圭 vs 🇦🇺 澳大利亚</span><span class="er-diff cls">+10</span><span class="er-gap cls">接近</span><span class="er-rate">胜率51%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div></div></div>
+<div class="section"><div class="sec-title">📊 Elo 评估</div>
+<div class="sec-body"><div class="elo-row"><span class="er-teams">🇵🇦 巴拿马 vs 🇭🇷 克罗地亚</span><span class="er-diff clr">-170</span><span class="er-gap clr">明显</span><span class="er-rate">胜率27%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"></div></div><div class="elo-row"><span class="er-teams">🇨🇴 哥伦比亚 vs 🇨🇩 刚果民主共和国</span><span class="er-diff clr">+150</span><span class="er-gap clr">明显</span><span class="er-rate">胜率70%</span><span class="er-ok" style="color:#2e7d32">✓</span><div class="er-chips"><span>锚定</span><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🏴 苏格兰 vs 🇧🇷 巴西</span><span class="er-diff clr">-230</span><span class="er-gap clr">明显</span><span class="er-rate">胜率21%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇲🇦 摩洛哥 vs 🇭🇹 海地</span><span class="er-diff clr">+240</span><span class="er-gap clr">明显</span><span class="er-rate">胜率80%</span><span class="er-ok" style="color:#2e7d32">✓</span><div class="er-chips"><span>锚定</span><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇨🇭 瑞士 vs 🇨🇦 加拿大</span><span class="er-diff clr">+100</span><span class="er-gap clr">明显</span><span class="er-rate">胜率64%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇧🇦 波黑 vs 🇶🇦 卡塔尔</span><span class="er-diff cls">+40</span><span class="er-gap cls">接近</span><span class="er-rate">胜率56%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div><div class="elo-row"><span class="er-teams">🇨🇿 捷克 vs 🇲🇽 墨西哥</span><span class="er-diff cls">-50</span><span class="er-gap cls">接近</span><span class="er-rate">胜率43%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div><div class="elo-row"><span class="er-teams">🇿🇦 南非 vs 🇰🇷 韩国</span><span class="er-diff clr">-100</span><span class="er-gap clr">明显</span><span class="er-rate">胜率36%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span></div></div><div class="elo-row"><span class="er-teams">🇹🇷 土耳其 vs 🇺🇸 美国</span><span class="er-diff cls">-30</span><span class="er-gap cls">接近</span><span class="er-rate">胜率46%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div><div class="elo-row"><span class="er-teams">🇵🇾 巴拉圭 vs 🇦🇺 澳大利亚</span><span class="er-diff cls">+10</span><span class="er-gap cls">接近</span><span class="er-rate">胜率51%</span><span class="er-ok" style="color:#c62828">✗</span><div class="er-chips"><span>大球</span><span>均势</span></div></div></div></div>
 
-<div class="section"><div class="sec-title" style="background:#555">📋 近期完赛校准 <span class="badge">模型偏差追踪</span></div>
-<div class="sec-body"><div class="cal-row"><span class="cal-match">🇵🇹 葡萄牙 vs 🇺🇿 乌兹别克斯坦</span><span class="cal-result">5:0</span><span class="cal-elo">ELO+260</span><span class="cal-deviation" style="color:#c62828">偏差+40%</span></div><div class="cal-row"><span class="cal-match">🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰 vs 🇬🇭 加纳</span><span class="cal-result">0:0</span><span class="cal-elo">ELO+220</span><span class="cal-deviation" style="color:#f57f17">偏差-10%</span></div><div class="cal-row"><span class="cal-match">🇯🇴 约旦 vs 🇩🇿 阿尔及利亚</span><span class="cal-result">1:2</span><span class="cal-elo">ELO-70</span><span class="cal-deviation" style="color:#2e7d32">偏差+0%</span></div><div class="cal-row"><span class="cal-match">🇦🇷 阿根廷 vs 🇦🇹 奥地利</span><span class="cal-result">2:0</span><span class="cal-elo">ELO+190</span><span class="cal-deviation" style="color:#f57f17">偏差+10%</span></div><div class="cal-row"><span class="cal-match">🇳🇴 挪威 vs 🇸🇳 塞内加尔</span><span class="cal-result">3:2</span><span class="cal-elo">ELO+20</span><span class="cal-deviation" style="color:#c62828">偏差+20%</span></div><div class="cal-row"><span class="cal-match">🇫🇷 法国 vs 🇮🇶 伊拉克</span><span class="cal-result">3:0</span><span class="cal-elo">ELO+310</span><span class="cal-deviation" style="color:#c62828">偏差+20%</span></div><div class="cal-row"><span class="cal-match">🇳🇿 新西兰 vs 🇪🇬 埃及</span><span class="cal-result">1:3</span><span class="cal-elo">ELO-120</span><span class="cal-deviation" style="color:#2e7d32">偏差+0%</span></div><div class="cal-row"><span class="cal-match">🇧🇪 比利时 vs 🇮🇷 伊朗</span><span class="cal-result">0:0</span><span class="cal-elo">ELO+100</span><span class="cal-deviation" style="color:#f57f17">偏差-10%</span></div><div style="font-size:9px;color:#999;margin-top:4px">偏差<±10=准确 ✓ | ±10-20=可接受 ⚠ | >±20=需校准 ✗</div></div></div>
-
-<div class="section"><div class="sec-title">🔬 逻辑组合分析 <span class="badge">6组</span></div>
+<div class="section"><div class="sec-title">🔬 逻辑组合 <span class="badge">6组</span></div>
 <div class="sec-body"><div class="combo-item"><div class="combo-head"><span class="clvl h">高置信</span><span class="cname">逻辑组合 α · 单场高匹配</span><span class="cstars">★★★★★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">摩洛哥 vs 海地</span><span class="lpick">「胜」方向</span><span class="lodds">1.3</span></div><div class="combo-reason">Elo>250场次四届大赛胜率80-86%</div><div class="combo-stats"><span>综合因子 <b>1.3</b></span><span>回测匹配 <b>72-82%</b></span></div></div></div><div class="combo-item"><div class="combo-head"><span class="clvl m">稳健</span><span class="cname">逻辑组合 β · 双场交叉验证</span><span class="cstars">★★★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">哥伦比亚 vs 刚果民主共和国</span><span class="lpick">「胜」</span><span class="lodds">1.75</span></div><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">巴拿马 vs 克罗地亚</span><span class="lpick">「胜」</span><span class="lodds">6.0</span></div><div class="combo-reason">双场组合效应降低支持率</div><div class="combo-stats"><span>综合因子 <b>10.5</b></span><span>回测匹配 <b>44-52%</b></span></div></div></div><div class="combo-item"><div class="combo-head"><span class="clvl m">稳健</span><span class="cname">逻辑组合 γ · 三场联合验证</span><span class="cstars">★★★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">哥伦比亚 vs 刚果民主共和国</span><span class="lpick">「胜」</span><span class="lodds">1.75</span></div><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">摩洛哥 vs 海地</span><span class="lpick">「胜」</span><span class="lodds">1.5</span></div><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">荷兰 vs 突尼斯</span><span class="lpick">「胜」</span><span class="lodds">1.5</span></div><div class="combo-reason">三场组合需全中</div><div class="combo-stats"><span>综合因子 <b>3.18</b></span><span>回测匹配 <b>28-38%</b></span></div></div></div><div class="combo-item"><div class="combo-head"><span class="clvl m">稳健</span><span class="cname">逻辑组合 ε · 大球同向分析</span><span class="cstars">★★★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag g">分析</span><span class="lmatch">哥伦比亚 vs 刚果民主共和国</span><span class="lpick">总进球>2.5</span><span class="lodds">1.8</span></div><div class="combo-leg"><span class="ltag g">分析</span><span class="lmatch">苏格兰 vs 巴西</span><span class="lpick">总进球>2.5</span><span class="lodds">1.8</span></div><div class="combo-reason">预期进球2.98/3.23球</div><div class="combo-stats"><span>综合因子 <b>3.24</b></span><span>回测匹配 <b>38-48%</b></span></div></div></div><div class="combo-item"><div class="combo-head"><span class="clvl s">探索</span><span class="cname">逻辑组合 ζ · 均势方向分析</span><span class="cstars">★★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag b">分析</span><span class="lmatch">波黑 vs 卡塔尔</span><span class="lpick">平局/受让不败</span><span class="lodds">3.2</span></div><div class="combo-leg"><span class="ltag b">分析</span><span class="lmatch">捷克 vs 墨西哥</span><span class="lpick">平局/受让不败</span><span class="lodds">3.2</span></div><div class="combo-reason">平局率28%/28%</div><div class="combo-stats"><span>综合因子 <b>10.24</b></span><span>回测匹配 <b>35-44%</b></span></div></div></div><div class="combo-item"><div class="combo-head"><span class="clvl x">推演</span><span class="cname">逻辑组合 ω · 多维推演模型</span><span class="cstars">★</span></div><div class="combo-body"><div class="combo-leg"><span class="ltag a">分析</span><span class="lmatch">哥伦比亚 vs 刚果民主共和国</span><span class="lpick">「胜」</span><span class="lodds">1.75</span></div><div class="combo-leg"><span class="ltag b">分析</span><span class="lmatch">波黑 vs 卡塔尔</span><span class="lpick">平局方向</span><span class="lodds">3.2</span></div><div class="combo-leg"><span class="ltag g">分析</span><span class="lmatch">哥伦比亚 vs 刚果民主共和国</span><span class="lpick">总进球>2.5</span><span class="lodds">1.8</span></div><div class="combo-reason">四维度×四场，纯方法论展示</div><div class="combo-stats"><span>综合因子 <b>10.1</b></span><span>回测匹配 <b>3-8%</b></span></div></div></div></div></div>
 
-<div class="section"><div class="sec-title" style="background:#555">🎯 比分推演 <span class="badge">四届大赛频率</span></div>
-<div class="sec-body"><div class="score-cards"></div><div style="font-size:8px;color:#999;margin-top:4px">频率: 1:0(13.5%) 2:1(11.3%) 2:0(10.9%) 1:1(10.7%) | 290场加权</div></div></div>
+<div class="section"><div class="sec-title" style="background:#555">🎯 比分推演</div>
+<div class="sec-body"><div class="score-cards"></div><div style="font-size:8px;color:#999;margin-top:4px">1:0(13.5%) 2:1(11.3%) 2:0(10.9%) 1:1(10.7%) | 290场加权</div></div></div>
 
-<div class="section"><div class="sec-title">📈 模型支持率分布</div><div class="sec-body">
+<div class="section"><div class="sec-title">📈 支持率分布</div><div class="sec-body">
 <div class="support-bar"><div class="sb-h" style="width:8%"></div><div class="sb-m" style="width:40%"></div><div class="sb-s" style="width:24%"></div><div class="sb-x" style="width:28%"></div></div>
-<div class="support-legend"><span>🟢 高置信</span><span>🟡 稳健</span><span>🟠 探索</span><span>🔴 推演</span></div></div></div>
+<div class="support-legend"><span>🟢高</span><span>🟡稳</span><span>🟠探</span><span>🔴推</span></div></div></div>
 
-<div class="section"><div class="sec-title">🗺️ 分析维度覆盖</div><div class="sec-body">
-<div class="dim-grid">
-<div class="dim-card"><div class="di">🏆</div><div class="dn">单场高置信</div><div class="dd">3场</div></div>
-<div class="dim-card"><div class="di">⚖️</div><div class="dn">均势分析</div><div class="dd">9场</div></div>
-<div class="dim-card"><div class="di">📊</div><div class="dn">进球方向</div><div class="dd">大25/小0</div></div>
-<div class="dim-card"><div class="di">🎯</div><div class="dn">比分推演</div><div class="dd">0组</div></div>
-<div class="dim-card"><div class="di">🔗</div><div class="dn">逻辑组合</div><div class="dd">6组</div></div>
-<div class="dim-card"><div class="di">📐</div><div class="dn">数据底座</div><div class="dd">290场</div></div>
-<div class="dim-card"><div class="di">🏟️</div><div class="dn">场地补偿</div><div class="dd">16场馆</div></div>
-<div class="dim-card"><div class="di">📋</div><div class="dn">完赛校准</div><div class="dd">8场</div></div>
-</div></div></div>
+<div class="section"><div class="sec-title">📋 近期校准</div>
+<div class="sec-body"><div class="cal-row"><span class="cal-match">🇵🇹 葡萄牙 vs 🇺🇿 乌兹别克斯坦</span><span class="cal-result">5:0</span><span class="cal-elo">ELO+260</span><span class="cal-deviation" style="color:#c62828">偏差+40%</span></div><div class="cal-row"><span class="cal-match">🏴 英格兰 vs 🇬🇭 加纳</span><span class="cal-result">0:0</span><span class="cal-elo">ELO+220</span><span class="cal-deviation" style="color:#f57f17">偏差-10%</span></div><div class="cal-row"><span class="cal-match">🇯🇴 约旦 vs 🇩🇿 阿尔及利亚</span><span class="cal-result">1:2</span><span class="cal-elo">ELO-70</span><span class="cal-deviation" style="color:#2e7d32">偏差+0%</span></div><div class="cal-row"><span class="cal-match">🇦🇷 阿根廷 vs 🇦🇹 奥地利</span><span class="cal-result">2:0</span><span class="cal-elo">ELO+190</span><span class="cal-deviation" style="color:#f57f17">偏差+10%</span></div><div class="cal-row"><span class="cal-match">🇳🇴 挪威 vs 🇸🇳 塞内加尔</span><span class="cal-result">3:2</span><span class="cal-elo">ELO+20</span><span class="cal-deviation" style="color:#c62828">偏差+20%</span></div><div class="cal-row"><span class="cal-match">🇫🇷 法国 vs 🇮🇶 伊拉克</span><span class="cal-result">3:0</span><span class="cal-elo">ELO+310</span><span class="cal-deviation" style="color:#c62828">偏差+20%</span></div><div class="cal-row"><span class="cal-match">🇳🇿 新西兰 vs 🇪🇬 埃及</span><span class="cal-result">1:3</span><span class="cal-elo">ELO-120</span><span class="cal-deviation" style="color:#2e7d32">偏差+0%</span></div><div class="cal-row"><span class="cal-match">🇧🇪 比利时 vs 🇮🇷 伊朗</span><span class="cal-result">0:0</span><span class="cal-elo">ELO+100</span><span class="cal-deviation" style="color:#f57f17">偏差-10%</span></div><div style="font-size:9px;color:#999;margin-top:4px">偏差&lt;±10=准 ✓ | ±10-20=可接受 ⚠ | &gt;±20=需校准 ✗</div></div></div>
+</div>
+</div><!-- /two-col -->
 
 <div class="section"><div class="sec-title">📋 数据来源</div><div class="sec-body" style="font-size:10px;color:#666;line-height:1.6">
 <b>Elo</b>: eloratings.net · <b>场地</b>: FIFA + Sports Medicine(2026) · <b>回测</b>: WC 2018+2022(128) Euro 2020+2024(102) Copa 2021+2024(60)=290场<br>
-<b>权重</b>: 2024 35% · 2022 30% · 2021 20% · 2018 15% · <b>赔率参考</b>: 中国竞彩网 · <b>计果</b>: 90分钟+补时
+<b>权重</b>: 2024 35% · 2022 30% · 2021 20% · 2018 15% · <b>赔率参考</b>: 中国竞彩网
 </div></div>
 
 <div class="disclaimer">

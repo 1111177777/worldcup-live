@@ -117,15 +117,25 @@ def gen_combos(analyses):
     upcoming = [a for a in analyses if a["status"]!="FT"]
     completed = [a for a in analyses if a["status"]=="FT"]
 
-    # 只推今天+未来比赛（昨天及以前无结果的跳过）
+    # 只推今天+未来比赛，且串关按同一天分组
     today_str = max([a["date"] for a in upcoming]) if upcoming else "6/26"
     upcoming_today = [a for a in upcoming if a["date"] >= today_str]
+    # 按日期分组，串关只取同一天
+    by_date = {}
+    for a in upcoming_today:
+        d = a["date"]
+        if d not in by_date: by_date[d] = []
+        by_date[d].append(a)
 
     anchors = [a for a in upcoming_today if a["anchor"]]
     non_a = [a for a in upcoming_today if not a["anchor"]]
+    # 串关用今天比赛的锚定场（同一天）
+    today_matches = by_date.get(today_str, upcoming_today)
+    anchors_today = [a for a in today_matches if a["anchor"]]
+    non_a_today = [a for a in today_matches if not a["anchor"]]
 
-    # ═══ 每场必推：胜平负 + 总进球 + 比分 ═══
-    for a in upcoming_today:
+    # ═══ 每场必推：胜平负 + 总进球 + 比分（仅今天） ═══
+    for a in today_matches:
         hn = a["home"][:2]
         wp = a["win_prob"]
         # 胜平负方向
@@ -166,7 +176,7 @@ def gen_combos(analyses):
             "note":f'{stag}局 进球{g}球 1:0(13.5%) 2:1(11.3%)'})
 
     # ═══ 锚定单场（高置信） ═══
-    for i, a in enumerate(anchors[:8]):
+    for i, a in enumerate(anchors_today[:8]):
         side = a.get("strong_side","home")
         pick = "「胜」(主)" if side=="home" else "「胜」(客)"
         od = safe_float(a["odds_h"] if side=="home" else a["odds_a"], 1.30)
@@ -178,7 +188,7 @@ def gen_combos(analyses):
     # ═══ 2串1 ═══
     def _a_odds(a): side = a.get("strong_side","home"); return safe_float(a["odds_h"] if side=="home" else a["odds_a"], 1.4)
     def _a_pick(a): return "「胜」(主)" if a.get("strong_side","home")=="home" else "「胜」(客)"
-    for i in range(min(4, len(anchors))):
+    for i in range(min(4, len(anchors_today))):
         for j in range(i+1, min(6, len(anchors))):
             a,b = anchors[i], anchors[j]
             od = round(_a_odds(a)*_a_odds(b),2)
@@ -198,7 +208,7 @@ def gen_combos(analyses):
                 "rate":"42-52%","odds":od,"cat":"2串1","note":"锚定+探索交叉"})
 
     # 按Elo差距绝对值排序
-    all_sorted = sorted(upcoming_today, key=lambda x: -abs(x["elo_diff"]))
+    all_sorted = sorted(today_matches, key=lambda x: -abs(x["elo_diff"]))
 
     # ═══ 总进球串关（2串1/3串1） ═══
     goals_picks = [a for a in upcoming_today]
@@ -258,7 +268,7 @@ def gen_combos(analyses):
                 "legs":legs_mx,"rate":"25-38%","odds":od_mx,"cat":"混合串","note":f'胜平负+总进球混搭 赔率{od_mx}'})
 
     # 3串2: 选3场拆3个2串1，容错1场
-    pool32 = anchors[:] if len(anchors) >= 3 else all_sorted[:max(3, len(all_sorted))]
+    pool32 = anchors_today[:] if len(anchors_today) >= 3 else all_sorted[:max(3, len(all_sorted))]
     if len(pool32) >= 3:
         for ci in range(2):
             import random; random.seed(ci*77+32)
@@ -278,7 +288,7 @@ def gen_combos(analyses):
                 "rate":"中2场保本(40-52%)","odds":avg_od,"cat":"3串2","note":f'3场拆3注2串1 容错1场 均赔{avg_od}'})
 
     # 4串2: 选4场拆6个2串1，容错2场
-    pool42 = anchors[:] if len(anchors) >= 4 else all_sorted[:max(4, len(all_sorted))]
+    pool42 = anchors_today[:] if len(anchors_today) >= 4 else all_sorted[:max(4, len(all_sorted))]
     if len(pool42) >= 4:
         for ci in range(2):
             random.seed(ci*88+42)
@@ -300,7 +310,7 @@ def gen_combos(analyses):
     # ═══ 3/4/5/6串1 ═══
     for num, cfg in [(3,("3串1","稳健",3,"22-35%")),(4,("4串1","探索",2,"12-22%")),
                       (5,("5串1","探索",2,"6-14%")),(6,("6串1","推演",1,"3-8%"))]:
-        pool = anchors[:] if len(anchors) >= num else all_sorted[:max(num, len(all_sorted))]
+        pool = anchors_today[:] if len(anchors_today) >= num else all_sorted[:max(num, len(all_sorted))]
         if len(pool) >= num:
             n_groups = 3 if num<=4 else 2
             for combo_idx in range(n_groups):

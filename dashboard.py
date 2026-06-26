@@ -167,9 +167,9 @@ def gen_dashboard():
     <div class="dash-body"><div class="agent-review">
       <p>已完成 {len(ft_matches)} 场复盘。方向准确率 <b>{acc_rate}%</b>，场均进球偏差 {round(avg_score_err,1)} 球。</p>
       <p>主要盲区：<br>
-      · 强队翻车 {len(wrong_upsets)} 场（西班牙、葡萄牙等控球型对大巴失效）<br>
-      · 进球系统性低估 {len(goal_surprises)} 场（扩军后弱队防线更脆弱）<br>
-      · ELO接近却大比分 {len(elo_blowouts)} 场（美国4-1、澳大利亚2-0）</p>
+      · 强队翻车 {wrong_upsets} 场（西班牙、葡萄牙等控球型对大巴失效）<br>
+      · 进球系统性低估 {goal_surprises} 场（扩军后弱队防线更脆弱）<br>
+      · ELO接近却大比分 {elo_blowouts} 场（美国4-1、澳大利亚2-0）</p>
       <p style=\"font-size:10px;color:#999\">每场赛后自动复盘→点击卡片底部「赛后AI复盘」查看详情</p>
     </div></div>
   </div>

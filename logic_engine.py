@@ -115,12 +115,17 @@ def gen_combos(analyses):
     """为每场未赛比赛生成：胜平负/总进球/比分 + 3串1~6串1"""
     combos = []
     upcoming = [a for a in analyses if a["status"]!="FT"]
-    anchors = [a for a in upcoming if a["anchor"]]
-    non_a = [a for a in upcoming if not a["anchor"]]
     completed = [a for a in analyses if a["status"]=="FT"]
 
+    # 只推今天+未来比赛（昨天及以前无结果的跳过）
+    today_str = max([a["date"] for a in upcoming]) if upcoming else "6/26"
+    upcoming_today = [a for a in upcoming if a["date"] >= today_str]
+
+    anchors = [a for a in upcoming_today if a["anchor"]]
+    non_a = [a for a in upcoming_today if not a["anchor"]]
+
     # ═══ 每场必推：胜平负 + 总进球 + 比分 ═══
-    for a in upcoming:
+    for a in upcoming_today:
         hn = a["home"][:2]
         wp = a["win_prob"]
         # 胜平负方向
@@ -236,9 +241,9 @@ def gen_combos(analyses):
                 "legs":legs_lotto,"rate":"3-8%","odds":tot_od,"cat":"推演","note":"多维度×多场次 纯方法论展示"})
 
     # 统计
-    close_m = [a for a in upcoming if abs(a["elo_diff"])<80]
-    low_g = [a for a in upcoming if a["adj_goals"]<2.35]
-    high_g = [a for a in upcoming if a["adj_goals"]>2.9]
+    close_m = [a for a in upcoming_today if abs(a["elo_diff"])<80]
+    low_g = [a for a in upcoming_today if a["adj_goals"]<2.35]
+    high_g = [a for a in upcoming_today if a["adj_goals"]>2.9]
 
     cal=[a for a in completed[-8:]]
     scores=[]  # scores now handled per-match
@@ -539,11 +544,14 @@ FLAGS.update(LIVE_FLAGS)
 
 # ====== 生成每场比赛预测卡片 ======
 def gen_match_predictions(matches):
-    """为每场比赛生成胜平负+总进球+比分预测"""
+    """为每场比赛生成胜平负+总进球+比分预测（仅今天+未来）"""
     cards = []
+    today = max([m["date"] for m in matches if m.get("date")]) if matches else "6/26"
     for m in matches:
         if m.get('status') == 'FT':
             continue  # 跳过已完赛
+        if m.get('date','') < today and not m.get('live_score'):
+            continue  # 昨天无结果=数据未更新，跳过
         try:
             p = predict(m['home'], m['away'], match_info=m)
         except Exception as e:

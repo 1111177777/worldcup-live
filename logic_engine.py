@@ -768,8 +768,10 @@ def gen_dashboard_data(matches):
         if g not in groups: groups[g] = {}
         for t in [m['home'], m['away']]:
             if t not in groups[g]: groups[g][t] = {'pts':0,'gd':0,'gs':0,'gc':0,'p':0}
-        if m.get('result'):
-            hg, ag = map(int, m['result'].split(':'))
+        if m.get('result') and ':' in m['result'] and m['result'] != '0:0':
+            try:
+                hg, ag = map(int, m['result'].split(':'))
+            except: continue
             groups[g][m['home']]['p'] += 1; groups[g][m['away']]['p'] += 1
             groups[g][m['home']]['gs'] += hg; groups[g][m['home']]['gc'] += ag
             groups[g][m['away']]['gs'] += ag; groups[g][m['away']]['gc'] += hg
@@ -784,7 +786,9 @@ def gen_dashboard_data(matches):
     correct = 0
     for m in ft_matches:
         h, a, r = m['home'], m['away'], m['result']
-        hg, ag = map(int, r.split(':'))
+        if ':' not in r or r == '0:0': continue
+        try: hg, ag = map(int, r.split(':'))
+        except: continue
         p = lpredict(h, a)
         pred = 'win' if p['win'] > max(p['draw'], p['loss']) else ('draw' if p['draw'] > max(p['win'], p['loss']) else 'loss')
         actual = 'win' if hg > ag else ('draw' if hg == ag else 'loss')
@@ -849,7 +853,9 @@ def gen_dashboard_data(matches):
     wrong_upsets = 0; goal_surprises = 0; elo_blowouts = 0; score_errs = []
     for m in ft_matches:
         h, a, r = m['home'], m['away'], m['result']
-        hg, ag = map(int, r.split(':'))
+        if ':' not in r or r == '0:0': continue
+        try: hg, ag = map(int, r.split(':'))
+        except: continue
         p = lpredict(h, a, match_info=m)
         exp_total = p['xh'] + p['xa']
         act_total = hg + ag

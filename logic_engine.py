@@ -119,16 +119,16 @@ def gen_combos(analyses):
 
     # 只推今天比赛（取最早未赛日期=今天），串关严格同一天
     today_str = min([a["date"] for a in upcoming]) if upcoming else "6/26"
-    upcoming_today = [a for a in upcoming if a["date"] >= today_str]
+    today_matches = [a for a in upcoming if a["date"] >= today_str]
     # 按日期分组
     by_date = {}
-    for a in upcoming_today:
+    for a in today_matches:
         d = a["date"]
         if d not in by_date: by_date[d] = []
         by_date[d].append(a)
 
     # 只取今天（最早未赛日）的比赛
-    today_matches = by_date.get(today_str, upcoming_today)
+    today_matches = by_date.get(today_str, today_matches)
     anchors = [a for a in today_matches if a["anchor"]]
     non_a = [a for a in today_matches if not a["anchor"]]
     anchors_today = anchors  # alias for clarity
@@ -211,9 +211,9 @@ def gen_combos(analyses):
     all_sorted = sorted(today_matches, key=lambda x: -abs(x["elo_diff"]))
 
     # ═══ 总进球串关（2串1/3串1） ═══
-    goals_picks = [a for a in upcoming_today]
+    goals_picks = [a for a in today_matches]
     # 小球2串1
-    low_g2 = [a for a in upcoming_today if a["adj_goals"] < 2.5]
+    low_g2 = [a for a in today_matches if a["adj_goals"] < 2.5]
     if len(low_g2) >= 2:
         for ci in range(min(2, len(low_g2)-1)):
             a, b = low_g2[ci], low_g2[ci+1]
@@ -222,7 +222,7 @@ def gen_combos(analyses):
                     {"match":f'{b["home"]} vs {b["away"]}',"pick":"总进球<2.5","odds":1.80}],
                 "rate":"45-55%","odds":3.24,"cat":"总进球串","note":f'双小球 进球{a["adj_goals"]}/{b["adj_goals"]}球'})
     # 大球2串1
-    high_g2 = [a for a in upcoming_today if a["adj_goals"] > 2.7]
+    high_g2 = [a for a in today_matches if a["adj_goals"] > 2.7]
     if len(high_g2) >= 2:
         for ci in range(min(2, len(high_g2)-1)):
             a, b = high_g2[ci], high_g2[ci+1]
@@ -246,10 +246,10 @@ def gen_combos(analyses):
                 "legs":legs_g,"rate":"18-30%","odds":od,"cat":"总进球串","note":f'总进球3场组合 赔率{od}'})
 
     # ═══ 混合玩法串关 ═══
-    if len(upcoming_today) >= 3:
+    if len(today_matches) >= 3:
         for ci in range(3):
             random.seed(ci*66+8)
-            picks = random.sample(upcoming_today, min(3, len(upcoming_today)))
+            picks = random.sample(today_matches, min(3, len(today_matches)))
             legs_mx = []; od_mx = 1.0
             for i, a in enumerate(picks[:3]):
                 if i == 0:
@@ -352,9 +352,9 @@ def gen_combos(analyses):
                 "legs":legs_lotto,"rate":"3-8%","odds":tot_od,"cat":"推演","note":"多维度×多场次 纯方法论展示"})
 
     # 统计
-    close_m = [a for a in upcoming_today if abs(a["elo_diff"])<80]
-    low_g = [a for a in upcoming_today if a["adj_goals"]<2.35]
-    high_g = [a for a in upcoming_today if a["adj_goals"]>2.9]
+    close_m = [a for a in today_matches if abs(a["elo_diff"])<80]
+    low_g = [a for a in today_matches if a["adj_goals"]<2.35]
+    high_g = [a for a in today_matches if a["adj_goals"]>2.9]
 
     cal=[a for a in completed[-8:]]
     scores=[]  # scores now handled per-match

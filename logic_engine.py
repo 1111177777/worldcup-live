@@ -307,6 +307,34 @@ def gen_combos(analyses):
                     {"match":f'{picks[3]["home"]} vs {picks[3]["away"]}',"pick":"胜","odds":safe_float(picks[3]["odds_h"] if picks[3].get("strong_side","home")=="home" else picks[3]["odds_a"],1.5)}],
                 "rate":"中2场保本(35-48%)","odds":avg_od,"cat":"4串2","note":f'4场拆6注2串1 容错2场 均赔{avg_od}'})
 
+    # ═══ 比分3串2/4串2/5串2/6串2 ═══
+    # 每场推2个比分方向
+    def _score_picks(a):
+        ed = abs(a["elo_diff"]); g = a["adj_goals"]
+        if ed >= 150: return ["2:0","2:1"], [8.0, 7.5]
+        elif ed >= 50: return ["2:1","1:1"], [7.5, 6.5]
+        elif g < 2.3: return ["1:0","0:0"], [6.5, 7.0]
+        else: return ["1:1","0:0"], [6.5, 7.0]
+
+    for num in [3,4,5,6]:
+        pool = all_sorted[:max(num, len(all_sorted))]
+        if len(pool) >= num:
+            for ci in range(2):
+                random.seed(ci*200+num*10)
+                picks = random.sample(pool, min(num, len(pool)))
+                legs_cs = []; od_cs = 1.0
+                for a in picks:
+                    sc_list, od_list = _score_picks(a)
+                    pick_str = f'比分 {sc_list[0]} / {sc_list[1]}'
+                    avg_od = round((od_list[0]+od_list[1])/2, 1)
+                    legs_cs.append({"match":f'{a["home"]} vs {a["away"]}',"pick":pick_str,"odds":avg_od})
+                    od_cs *= avg_od
+                od_cs = round(od_cs, 1)
+                name = f'比分{num}串2'
+                combos.append({"id":f"CS{num}_{ci}","name":f'{name}·方案{ci+1}',"level":"推演","stars":1,
+                    "legs":legs_cs,"rate":"极低(<5%)","odds":od_cs,"cat":"比分串",
+                    "note":f'{num}场比分双选 赔率{od_cs} 纯娱乐博冷'})
+
     # ═══ 3/4/5/6串1 ═══
     for num, cfg in [(3,("3串1","稳健",3,"22-35%")),(4,("4串1","探索",2,"12-22%")),
                       (5,("5串1","探索",2,"6-14%")),(6,("6串1","推演",1,"3-8%"))]:

@@ -285,6 +285,18 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .support-legend{display:flex;gap:8px;font-size:9px;color:#999;flex-wrap:wrap}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media(max-width:700px){.two-col{grid-template-columns:1fr}}
+.moti-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.moti-card{border:1px solid #eee;border-radius:4px;padding:8px;background:#fafafa;font-size:10px}
+.moti-card .mh{display:flex;align-items:center;gap:4px;margin-bottom:3px}
+.ml-fight{background:#ffebee;color:#c62828}.ml-push{background:#e3f2fd;color:#1565c0}
+.ml-hold{background:#fff8e1;color:#f57f17}.ml-rest{background:#e8f5e9;color:#2e7d32}
+.ml-normal{background:#f5f5f5;color:#666}
+.moti-card .ml{font-size:9px;padding:1px 6px;border-radius:3px;font-weight:600}
+.moti-card .mt{font-weight:600;color:#111;font-size:10px}
+.moti-card .mm{display:flex;gap:8px;margin:4px 0;font-size:9px;color:#666}
+.moti-card .mr{font-size:8px;color:#999;line-height:1.4}
+.moti-card .mc{font-size:8px;color:#999;margin-top:2px}
+@media(max-width:700px){.moti-grid{grid-template-columns:1fr}}
 .dim-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:3px}
 .dim-card{text-align:center;padding:6px 3px;border:1px solid #eee;background:#fafafa;font-size:8px}
 .dim-card .di{font-size:14px;margin-bottom:1px}
@@ -295,7 +307,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .disclaimer .dw{color:#e65100;font-weight:700}
 '''
 
-def gen_html(analyses, combo_result, dash_data, match_cards, match_date="6/26"):
+def gen_html(analyses, combo_result, dash_data, match_cards, moti_html, match_date="6/26"):
     """生成完整HTML，包含小组积分+出线概率+逻辑分析"""
     # 概览
     n_anchors = combo_result["n_anchors"]
@@ -390,6 +402,12 @@ def gen_html(analyses, combo_result, dash_data, match_cards, match_date="6/26"):
 <div class="section"><div class="sec-title" style="background:#555">🔍 模型复盘 <span class="badge">盲区检测</span></div>
 <div class="sec-body" style="font-size:10px;color:#666">{dash_data['review_html']}</div></div>
 
+<!-- ====== 战意推演 ====== -->
+{'''<div class="section"><div class="sec-title" style="background:#c62828">🧠 球队战意推演 <span class="badge">静态规则+蒙特卡洛</span></div>
+<div class="sec-body"><div class="moti-grid">''' + moti_html + '''</div>
+<div style="font-size:9px;color:#999;margin-top:6px">标签说明：🔴死拼=绝无放水可能 | 🔵冲第一=头名驱动力强 | 🟡稳第二=目标明确 | 🟢可轮换=存在轮换空间但不故意输球<br>指标：安全=出线安全度 | 头名=争头名驱动力 | 轮换=轮换可能性（越高越可能轮换）| MC=蒙特卡洛1000次模拟概率</div></div></div>
+''' if moti_html else ''}
+
 <!-- ====== 两栏布局 ====== -->
 <div class="two-col">
 
@@ -458,6 +476,13 @@ def gen_html(analyses, combo_result, dash_data, match_cards, match_date="6/26"):
 
 # ====== 导入 live_data 预测函数 ======
 from live_data import predict, ELO as LIVE_ELO, FLAGS as LIVE_FLAGS, STYLE
+
+# ====== 导入战意推演引擎 ======
+try:
+    from motivation_engine import analyze_all_teams as moti_analyze, gen_motivation_html
+    HAS_MOTIVATION = True
+except ImportError:
+    HAS_MOTIVATION = False
 
 # 同步 ELO
 ELO.update(LIVE_ELO)
@@ -649,8 +674,16 @@ def main():
     completed = [a for a in analyses if a["status"]=="FT"]
     display = upcoming + completed[-6:]
 
+    # 战意推演
+    moti_html = ""
+    if HAS_MOTIVATION:
+        print("🧠 战意推演分析...")
+        moti_results = moti_analyze()
+        moti_html = gen_motivation_html(moti_results, top_n=24)
+        print(f"   战意卡片 {len(moti_results)}队")
+
     today = max([m["date"] for m in matches]) if matches else "6/26"
-    html = gen_html(display, combo_result, dash_data, match_cards, today)
+    html = gen_html(display, combo_result, dash_data, match_cards, moti_html, today)
 
     out = os.path.join(DIR, "logic_analysis.html")
     with open(out,"w",encoding="utf-8") as f:

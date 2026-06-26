@@ -317,10 +317,12 @@ def gen_combos(analyses):
     # ═══ 比分3串2/4串2/5串2/6串2 ═══
     # 每场推2个比分方向
     def _score_picks(a):
-        ed = a["elo_diff"]; g = a["adj_goals"]
-        sh = ed >= 50; sa = ed <= -50
-        if sh: return ["2:0","2:1"], [8.0, 7.5]
-        elif sa: return ["0:2","1:2"], [8.0, 7.5]
+        ed = a["elo_diff"]  # home elo - away elo
+        g = a["adj_goals"]
+        if ed >= 100: return ["2:0","2:1"], [7.5, 7.0]        # 主队碾压
+        elif ed <= -100: return ["0:2","1:2"], [7.5, 7.0]      # 客队碾压
+        elif ed >= 30: return ["2:1","1:1"], [7.0, 6.5]         # 主队略优
+        elif ed <= -30: return ["1:2","1:1"], [7.0, 6.5]        # 客队略优
         elif g < 2.3: return ["1:0","0:0"], [6.5, 7.0]
         else: return ["1:1","0:0"], [6.5, 7.0]
 

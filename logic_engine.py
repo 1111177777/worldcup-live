@@ -117,22 +117,22 @@ def gen_combos(analyses):
     upcoming = [a for a in analyses if a["status"]!="FT"]
     completed = [a for a in analyses if a["status"]=="FT"]
 
-    # 只推今天+未来比赛，且串关按同一天分组
-    today_str = max([a["date"] for a in upcoming]) if upcoming else "6/26"
+    # 只推今天比赛（取最早未赛日期=今天），串关严格同一天
+    today_str = min([a["date"] for a in upcoming]) if upcoming else "6/26"
     upcoming_today = [a for a in upcoming if a["date"] >= today_str]
-    # 按日期分组，串关只取同一天
+    # 按日期分组
     by_date = {}
     for a in upcoming_today:
         d = a["date"]
         if d not in by_date: by_date[d] = []
         by_date[d].append(a)
 
-    anchors = [a for a in upcoming_today if a["anchor"]]
-    non_a = [a for a in upcoming_today if not a["anchor"]]
-    # 串关用今天比赛的锚定场（同一天）
+    # 只取今天（最早未赛日）的比赛
     today_matches = by_date.get(today_str, upcoming_today)
-    anchors_today = [a for a in today_matches if a["anchor"]]
-    non_a_today = [a for a in today_matches if not a["anchor"]]
+    anchors = [a for a in today_matches if a["anchor"]]
+    non_a = [a for a in today_matches if not a["anchor"]]
+    anchors_today = anchors  # alias for clarity
+    non_a_today = non_a
 
     # ═══ 每场必推：胜平负 + 总进球 + 比分（仅今天） ═══
     for a in today_matches:
@@ -657,7 +657,9 @@ FLAGS.update(LIVE_FLAGS)
 def gen_match_predictions(matches):
     """为每场比赛生成胜平负+总进球+比分预测（仅今天+未来）"""
     cards = []
-    today = max([m["date"] for m in matches if m.get("date")]) if matches else "6/26"
+    # 取最早未赛日期 = 真正的今天
+    upcoming_dates = [m["date"] for m in matches if m.get("status") != "FT" and m.get("date")]
+    today = min(upcoming_dates) if upcoming_dates else "6/26"
     for m in matches:
         if m.get('status') == 'FT':
             continue  # 跳过已完赛
@@ -850,7 +852,8 @@ def main():
         moti_html = gen_motivation_html(moti_results, top_n=24)
         print(f"   战意卡片 {len(moti_results)}队")
 
-    today = max([m["date"] for m in matches]) if matches else "6/26"
+    upcoming_dates = [m["date"] for m in matches if m.get("status") != "FT" and m.get("date")]
+    today = min(upcoming_dates) if upcoming_dates else "6/26"
     html = gen_html(display, combo_result, dash_data, match_cards, moti_html, today)
 
     out = os.path.join(DIR, "logic_analysis.html")

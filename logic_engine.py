@@ -699,8 +699,8 @@ def gen_match_predictions(matches):
     for m in matches:
         if m.get('status') == 'FT':
             continue  # 跳过已完赛
-        if m.get('date','') != today:
-            continue  # 只显示今天比赛
+        if m.get('date','') < today:
+            continue  # 跳过昨天及以前
         try:
             p = predict(m['home'], m['away'], match_info=m)
         except Exception as e:

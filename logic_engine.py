@@ -351,7 +351,7 @@ def gen_html(analyses, combo_result, dash_data, match_cards, moti_html, match_da
 
     # 组合
     ch=""
-    for c in combo_result["combos"][:8]:
+    for c in combo_result["combos"][:25]:
         cls="h" if c["level"]=="高置信" else ("m" if c["level"]=="稳健" else ("s" if c["level"]=="探索" else "x"))
         stars="★"*c["stars"]
         legs=""

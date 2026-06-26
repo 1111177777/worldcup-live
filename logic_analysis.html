@@ -2,14 +2,14 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 <title>世界杯逻辑分析引擎</title><style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:12px;max-width:1060px;margin:0 auto;color:#333}
-h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
-.sub{text-align:center;font-size:11px;color:#999;margin-bottom:4px}
-.upd{text-align:center;font-size:10px;color:#bbb;margin:4px 0 14px}
-.section{margin-bottom:14px;border:1px solid #e8e8e8;border-radius:4px;overflow:hidden}
-.sec-title{background:#111;color:#fff;padding:5px 10px;font-size:11px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
-.sec-title .badge{font-size:9px;color:#8f8;font-weight:400}
-.sec-body{padding:8px}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:16px;max-width:1100px;margin:0 auto;color:#333;font-size:14px}
+h1{font-size:22px;font-weight:700;text-align:center;margin:10px 0}
+.sub{text-align:center;font-size:13px;color:#999;margin-bottom:4px}
+.upd{text-align:center;font-size:12px;color:#bbb;margin:4px 0 16px}
+.section{margin-bottom:16px;border:1px solid #ddd;border-radius:4px;overflow:hidden}
+.sec-title{background:#111;color:#fff;padding:7px 12px;font-size:13px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.sec-title .badge{font-size:11px;color:#8f8;font-weight:400}
+.sec-body{padding:10px}
 .groups-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px}
 .group-card{border:1px solid #f0f0f0;font-size:8px;padding:3px;background:#fafafa}
 .gn{font-weight:700;font-size:8px;margin-bottom:1px}
@@ -29,45 +29,45 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .match-info{font-size:10px;color:#666;margin:4px 0;line-height:1.5}
 .match-info b{color:#111}
 .summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;margin-bottom:8px}
-.summary-card{text-align:center;padding:8px 4px;border:1px solid #eee;font-size:9px;background:#fafafa}
-.summary-card .sv{font-size:16px;font-weight:700;color:#111}
-.summary-card .sl{font-size:8px;color:#999}
+.summary-card{text-align:center;padding:10px 6px;border:1px solid #ddd;font-size:11px;background:#fafafa}
+.summary-card .sv{font-size:20px;font-weight:700;color:#111}
+.summary-card .sl{font-size:10px;color:#999}
 .venue-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
-.venue-card{background:#fafafa;border:1px solid #f0f0f0;padding:5px 7px;font-size:10px}
-.venue-card .vt{font-weight:700;font-size:10px;color:#111}
-.venue-card .vs{font-size:8px;color:#999}
-.venue-card .vn{display:flex;gap:4px;margin-top:2px;font-size:9px;flex-wrap:wrap}
-.venue-card .vn span{padding:1px 4px;font-size:8px;border-radius:2px}
+.venue-card{background:#fafafa;border:1px solid #e8e8e8;padding:7px 10px;font-size:12px}
+.venue-card .vt{font-weight:700;font-size:12px;color:#111}
+.venue-card .vs{font-size:10px;color:#999}
+.venue-card .vn{display:flex;gap:4px;margin-top:3px;font-size:10px;flex-wrap:wrap}
+.venue-card .vn span{padding:1px 5px;font-size:9px;border-radius:2px}
 .venue-card .ok{background:#e8f5e9;color:#2e7d32}
 .venue-card .warn{background:#fff3e0;color:#e65100}
 .venue-card .danger{background:#ffebee;color:#c62828}
-.elo-row{display:flex;align-items:center;padding:3px 0;border-bottom:1px solid #f8f8f8;font-size:10px;gap:5px}
-.elo-row .er-teams{font-weight:600;color:#111;min-width:100px;font-size:9px}
-.elo-row .er-diff{font-weight:700;min-width:38px;font-size:10px}
+.elo-row{display:flex;align-items:center;padding:4px 0;border-bottom:1px solid #f0f0f0;font-size:11px;gap:6px}
+.elo-row .er-teams{font-weight:600;color:#111;min-width:105px;font-size:11px}
+.elo-row .er-diff{font-weight:700;min-width:40px;font-size:11px}
 .er-diff.dom{color:#2e7d32}.er-diff.clr{color:#558b2f}.er-diff.cls{color:#f57f17}
-.elo-row .er-gap{font-size:7px;padding:1px 4px;border-radius:3px}
+.elo-row .er-gap{font-size:8px;padding:1px 5px;border-radius:3px}
 .er-gap.dom{background:#e8f5e9;color:#2e7d32}.er-gap.clr{background:#f1f8e9;color:#558b2f}.er-gap.cls{background:#fff8e1;color:#f57f17}
-.elo-row .er-rate{font-size:8px;color:#666;min-width:40px;text-align:right}
-.elo-row .er-ok{font-size:9px;min-width:18px;text-align:center}
+.elo-row .er-rate{font-size:10px;color:#666;min-width:42px;text-align:right}
+.elo-row .er-ok{font-size:10px;min-width:20px;text-align:center}
 .elo-row .er-chips{display:flex;gap:2px;flex-wrap:wrap;flex:1}
-.elo-row .er-chips span{font-size:7px;padding:1px 3px;border-radius:2px;background:#e3f2fd;color:#1565c0}
-.combo-item{border-bottom:1px solid #f0f0f0;padding:7px 0}
+.elo-row .er-chips span{font-size:8px;padding:1px 4px;border-radius:2px;background:#e3f2fd;color:#1565c0}
+.combo-item{border-bottom:1px solid #eee;padding:8px 0}
 .combo-item:last-child{border-bottom:none}
-.combo-head{display:flex;align-items:center;gap:5px;margin-bottom:3px}
-.clvl{font-size:7px;padding:2px 5px;border-radius:3px;font-weight:600}
+.combo-head{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.clvl{font-size:9px;padding:2px 6px;border-radius:3px;font-weight:600}
 .clvl.h{background:#e8f5e9;color:#2e7d32}.clvl.m{background:#fff8e1;color:#f57f17}
 .clvl.s{background:#fff3e0;color:#e65100}.clvl.x{background:#ffebee;color:#c62828}
-.combo-head .cname{font-size:10px;font-weight:600;color:#111;flex:1}
-.combo-head .cstars{font-size:8px}
-.combo-leg{display:flex;align-items:center;gap:4px;padding:2px 0;font-size:9px}
-.ltag{font-size:7px;padding:1px 4px;border-radius:3px;font-weight:600}
+.combo-head .cname{font-size:12px;font-weight:600;color:#111;flex:1}
+.combo-head .cstars{font-size:10px}
+.combo-leg{display:flex;align-items:center;gap:5px;padding:3px 0;font-size:11px}
+.ltag{font-size:8px;padding:2px 5px;border-radius:3px;font-weight:600}
 .ltag.a{background:#e3f2fd;color:#1565c0}.ltag.b{background:#fff3e0;color:#e65100}
 .ltag.g{background:#f3e5f5;color:#7b1fa2}.ltag.x{background:#ffebee;color:#c62828}
-.combo-leg .lmatch{font-weight:600;color:#111;font-size:9px;min-width:80px}
-.combo-leg .lpick{font-size:8px;color:#999;margin-left:auto}
-.combo-leg .lodds{font-size:10px;font-weight:700;color:#1976d2;min-width:32px;text-align:right}
-.combo-reason{font-size:8px;color:#999;margin:1px 0;line-height:1.3}
-.combo-stats{display:flex;gap:10px;margin-top:3px;font-size:9px;color:#666}
+.combo-leg .lmatch{font-weight:600;color:#111;font-size:11px;min-width:85px}
+.combo-leg .lpick{font-size:10px;color:#888;margin-left:auto}
+.combo-leg .lodds{font-size:12px;font-weight:700;color:#1976d2;min-width:36px;text-align:right}
+.combo-reason{font-size:10px;color:#888;margin:2px 0;line-height:1.4}
+.combo-stats{display:flex;gap:12px;margin-top:4px;font-size:10px;color:#666}
 .combo-stats b{color:#111}
 .score-cards{display:flex;gap:4px}
 .score-card{flex:1;text-align:center;background:#fafafa;border:1px solid #eee;padding:5px 3px;font-size:9px}
@@ -118,7 +118,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 
 <!-- ====== 全宽：出线概率 ====== -->
 <div class="section"><div class="sec-title">🎲 出线概率 <span class="badge">MC3000次</span></div>
-<div class="sec-body"><div class="mc-tags"><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇲🇽墨西哥 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇦加拿大 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇭瑞士 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇺🇸美国 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇩🇪德国 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇳🇱荷兰 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇫🇷法国 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇳🇴挪威 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇦🇷阿根廷 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇲🇦摩洛哥 99.9%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🏴英格兰 99.9%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇵🇹葡萄牙 97.5%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇪🇸西班牙 97.4%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇴哥伦比亚 95.7%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇮科特迪瓦 90.8%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇧🇪比利时 90.5%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇧🇷巴西 88.2%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇪🇬埃及 87.7%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇰🇷韩国 83.2%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇯🇵日本 75.6%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇩🇿阿尔及利亚 74.6%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇦🇺澳大利亚 71.2%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇭🇷克罗地亚 49.9%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇬🇭加纳 49.5%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇸🇦沙特阿拉伯 48.8%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇺🇾乌拉圭 29.2%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇵🇾巴拉圭 28.8%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇦🇹奥地利 25.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇻佛得角 24.6%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇸🇪瑞典 24.4%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇮🇷伊朗 16.4%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇿🇦南非 12.8%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🏴苏格兰 11.9%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇼库拉索 7.8%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇩刚果民主共和国 6.9%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇳🇿新西兰 5.4%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇿捷克 4.1%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇪🇨厄瓜多尔 1.4%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇵🇦巴拿马 0.6%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇯🇴约旦 0.4%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇧🇦波黑 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇶🇦卡塔尔 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇹🇷土耳其 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇭🇹海地 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇹🇳突尼斯 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇸🇳塞内加尔 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇮🇶伊拉克 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇺🇿乌兹别克斯坦 0.0%</span></div></div></div>
+<div class="sec-body"><div class="mc-tags"><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇲🇽墨西哥 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇦加拿大 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇭瑞士 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇺🇸美国 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇲🇦摩洛哥 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇩🇪德国 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇳🇱荷兰 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇫🇷法国 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇳🇴挪威 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇦🇷阿根廷 100.0%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🏴英格兰 99.9%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇪🇸西班牙 97.9%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇵🇹葡萄牙 97.1%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇴哥伦比亚 95.8%</span><span class='mc-tag' style='background:#e8f5e9;color:#390'>🇨🇮科特迪瓦 91.5%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇧🇪比利时 89.4%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇪🇬埃及 88.8%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇧🇷巴西 88.2%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇰🇷韩国 85.0%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇯🇵日本 76.7%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇩🇿阿尔及利亚 75.3%</span><span class='mc-tag' style='background:#fff8e1;color:#f80'>🇦🇺澳大利亚 69.6%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇭🇷克罗地亚 50.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇬🇭加纳 49.7%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇸🇦沙特阿拉伯 49.6%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇺🇾乌拉圭 31.1%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇵🇾巴拉圭 30.4%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇦🇹奥地利 24.1%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇸🇪瑞典 23.3%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇻佛得角 21.5%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇮🇷伊朗 15.8%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🏴苏格兰 11.8%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇿🇦南非 11.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇩刚果民主共和国 7.1%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇼库拉索 7.1%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇳🇿新西兰 6.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇨🇿捷克 4.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇪🇨厄瓜多尔 1.4%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇯🇴约旦 0.6%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇵🇦巴拿马 0.4%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇧🇦波黑 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇶🇦卡塔尔 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇹🇷土耳其 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇭🇹海地 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇹🇳突尼斯 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇸🇳塞内加尔 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇮🇶伊拉克 0.0%</span><span class='mc-tag' style='background:#f5f5f5;color:#999'>🇺🇿乌兹别克斯坦 0.0%</span></div></div></div>
 
 <!-- ====== 全宽：模型复盘 ====== -->
 <div class="section"><div class="sec-title" style="background:#555">🔍 模型复盘 <span class="badge">盲区检测</span></div>
@@ -127,6 +127,15 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <!-- ====== 战意推演 ====== -->
 <div class="section"><div class="sec-title" style="background:#c62828">🧠 球队战意推演 <span class="badge">静态规则+蒙特卡洛</span></div>
 <div class="sec-body"><div class="moti-grid"><div class="moti-card">
+<div class="mh"><span class="ml ml-fight">🔴 生死死拼</span>
+<span class="mt">沙特阿拉伯</span><span style="font-size:8px;color:#999">H组</span></div>
+<div class="mm">
+<span>安全20</span><span>头名5</span>
+<span>轮换5</span>
+</div>
+<div class="mr">出线形势严峻（安全分20），必须全力争胜；需连胜且看他人脸色；生死战，绝无轮换可能...</div>
+<div class="mc">MC: 头名0% 第二35% 晋级35% | ✅ 此队绝无放水可能，战意100%</div>
+</div><div class="moti-card">
 <div class="mh"><span class="ml ml-fight">🔴 生死死拼</span>
 <span class="mt">克罗地亚</span><span style="font-size:8px;color:#999">L组</span></div>
 <div class="mm">
@@ -137,22 +146,13 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <div class="mc">MC: 头名11% 第二20% 晋级31% | ✅ 此队绝无放水可能，战意100%</div>
 </div><div class="moti-card">
 <div class="mh"><span class="ml ml-fight">🔴 生死死拼</span>
-<span class="mt">沙特阿拉伯</span><span style="font-size:8px;color:#999">H组</span></div>
-<div class="mm">
-<span>安全20</span><span>头名5</span>
-<span>轮换5</span>
-</div>
-<div class="mr">出线形势严峻（安全分20），必须全力争胜；需连胜且看他人脸色；生死战，绝无轮换可能...</div>
-<div class="mc">MC: 头名0% 第二30% 晋级30% | ✅ 此队绝无放水可能，战意100%</div>
-</div><div class="moti-card">
-<div class="mh"><span class="ml ml-fight">🔴 生死死拼</span>
 <span class="mt">南非</span><span style="font-size:8px;color:#999">A组</span></div>
 <div class="mm">
 <span>安全20</span><span>头名5</span>
 <span>轮换5</span>
 </div>
 <div class="mr">出线形势严峻（安全分20），必须全力争胜；需连胜且看他人脸色；生死战，绝无轮换可能...</div>
-<div class="mc">MC: 头名0% 第二18% 晋级18% | ✅ 此队绝无放水可能，战意100%</div>
+<div class="mc">MC: 头名0% 第二19% 晋级19% | ✅ 此队绝无放水可能，战意100%</div>
 </div><div class="moti-card">
 <div class="mh"><span class="ml ml-fight">🔴 生死死拼</span>
 <span class="mt">库拉索</span><span style="font-size:8px;color:#999">E组</span></div>
@@ -161,7 +161,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <span>轮换5</span>
 </div>
 <div class="mr">出线形势严峻（安全分20），必须全力争胜；需连胜且看他人脸色；生死战，绝无轮换可能...</div>
-<div class="mc">MC: 头名0% 第二17% 晋级17% | ✅ 此队绝无放水可能，战意100%</div>
+<div class="mc">MC: 头名0% 第二18% 晋级18% | ✅ 此队绝无放水可能，战意100%</div>
 </div><div class="moti-card">
 <div class="mh"><span class="ml ml-fight">🔴 生死死拼</span>
 <span class="mt">捷克</span><span style="font-size:8px;color:#999">A组</span></div>
@@ -170,7 +170,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <span>轮换5</span>
 </div>
 <div class="mr">出线形势严峻（安全分25），必须全力争胜；第三名位置不稳，需全力抢分；生死战，绝无轮换可能；同分情况下净胜球可能决定出线或名次...</div>
-<div class="mc">MC: 头名0% 第二14% 晋级14% | ✅ 此队绝无放水可能，战意100%</div>
+<div class="mc">MC: 头名0% 第二15% 晋级15% | ✅ 此队绝无放水可能，战意100%</div>
 </div><div class="moti-card">
 <div class="mh"><span class="ml ml-fight">🔴 生死死拼</span>
 <span class="mt">新西兰</span><span style="font-size:8px;color:#999">G组</span></div>
@@ -179,7 +179,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <span>轮换5</span>
 </div>
 <div class="mr">出线形势严峻（安全分20），必须全力争胜；需连胜且看他人脸色；生死战，绝无轮换可能...</div>
-<div class="mc">MC: 头名0% 第二8% 晋级8% | ✅ 此队绝无放水可能，战意100%</div>
+<div class="mc">MC: 头名0% 第二10% 晋级10% | ✅ 此队绝无放水可能，战意100%</div>
 </div><div class="moti-card">
 <div class="mh"><span class="ml ml-fight">🔴 生死死拼</span>
 <span class="mt">厄瓜多尔</span><span style="font-size:8px;color:#999">E组</span></div>
@@ -305,7 +305,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <span>轮换5</span>
 </div>
 <div class="mr">出线形势胶着（安全分40），每分必争；积分胶着，需全力抢分；与第二名积分相同，必须争胜保第一；生死战，绝无轮换可能；同分情况下净胜球可能决定出线或名次...</div>
-<div class="mc">MC: 头名67% 第二19% 晋级85% | ✅ 正常应战，无放水迹象</div>
+<div class="mc">MC: 头名71% 第二17% 晋级88% | ✅ 正常应战，无放水迹象</div>
 </div><div class="moti-card">
 <div class="mh"><span class="ml ml-normal">🟠 全力抢分</span>
 <span class="mt">埃及</span><span style="font-size:8px;color:#999">G组</span></div>
@@ -314,7 +314,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <span>轮换5</span>
 </div>
 <div class="mr">出线形势胶着（安全分40），每分必争；积分胶着，需全力抢分；仅领先1-3分，需力保第一；生死战，绝无轮换可能；同分情况下净胜球可能决定出线或名次...</div>
-<div class="mc">MC: 头名61% 第二16% 晋级77% | ✅ 正常应战，无放水迹象</div>
+<div class="mc">MC: 头名60% 第二17% 晋级76% | ✅ 正常应战，无放水迹象</div>
 </div><div class="moti-card">
 <div class="mh"><span class="ml ml-normal">🟠 全力抢分</span>
 <span class="mt">比利时</span><span style="font-size:8px;color:#999">G组</span></div>
@@ -323,7 +323,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <span>轮换5</span>
 </div>
 <div class="mr">出线形势胶着（安全分40），每分必争；小组第三，领先第四1分；生死战，绝无轮换可能；同分情况下净胜球可能决定出线或名次...</div>
-<div class="mc">MC: 头名7% 第二64% 晋级72% | ✅ 正常应战，无放水迹象</div>
+<div class="mc">MC: 头名8% 第二60% 晋级68% | ✅ 正常应战，无放水迹象</div>
 </div><div class="moti-card">
 <div class="mh"><span class="ml ml-normal">🟠 全力抢分</span>
 <span class="mt">澳大利亚</span><span style="font-size:8px;color:#999">D组</span></div>
@@ -332,7 +332,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <span>轮换5</span>
 </div>
 <div class="mr">出线形势胶着（安全分45），每分必争；落后第一仅3分，仍有争头名可能；生死战，绝无轮换可能；同分情况下净胜球可能决定出线或名次...</div>
-<div class="mc">MC: 头名0% 第二63% 晋级63% | ✅ 正常应战，无放水迹象</div>
+<div class="mc">MC: 头名0% 第二62% 晋级62% | ✅ 正常应战，无放水迹象</div>
 </div><div class="moti-card">
 <div class="mh"><span class="ml ml-normal">🟠 全力抢分</span>
 <span class="mt">奥地利</span><span style="font-size:8px;color:#999">J组</span></div>
@@ -341,7 +341,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <span>轮换5</span>
 </div>
 <div class="mr">出线形势胶着（安全分45），每分必争；落后第一仅3分，仍有争头名可能；生死战，绝无轮换可能；同分情况下净胜球可能决定出线或名次...</div>
-<div class="mc">MC: 头名0% 第二46% 晋级46% | ✅ 正常应战，无放水迹象</div>
+<div class="mc">MC: 头名0% 第二47% 晋级47% | ✅ 正常应战，无放水迹象</div>
 </div></div>
 <div style="font-size:9px;color:#999;margin-top:6px">标签说明：🔴死拼=绝无放水可能 | 🔵冲第一=头名驱动力强 | 🟡稳第二=目标明确 | 🟢可轮换=存在轮换空间但不故意输球<br>指标：安全=出线安全度 | 头名=争头名驱动力 | 轮换=轮换可能性（越高越可能轮换）| MC=蒙特卡洛1000次模拟概率</div></div></div>
 

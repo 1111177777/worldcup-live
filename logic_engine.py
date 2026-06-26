@@ -201,14 +201,14 @@ def gen_combos(analyses):
 # ====== HTML 生成 ======
 CSS='''
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:12px;max-width:1060px;margin:0 auto;color:#333}
-h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
-.sub{text-align:center;font-size:11px;color:#999;margin-bottom:4px}
-.upd{text-align:center;font-size:10px;color:#bbb;margin:4px 0 14px}
-.section{margin-bottom:14px;border:1px solid #e8e8e8;border-radius:4px;overflow:hidden}
-.sec-title{background:#111;color:#fff;padding:5px 10px;font-size:11px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
-.sec-title .badge{font-size:9px;color:#8f8;font-weight:400}
-.sec-body{padding:8px}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:16px;max-width:1100px;margin:0 auto;color:#333;font-size:14px}
+h1{font-size:22px;font-weight:700;text-align:center;margin:10px 0}
+.sub{text-align:center;font-size:13px;color:#999;margin-bottom:4px}
+.upd{text-align:center;font-size:12px;color:#bbb;margin:4px 0 16px}
+.section{margin-bottom:16px;border:1px solid #ddd;border-radius:4px;overflow:hidden}
+.sec-title{background:#111;color:#fff;padding:7px 12px;font-size:13px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.sec-title .badge{font-size:11px;color:#8f8;font-weight:400}
+.sec-body{padding:10px}
 .groups-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px}
 .group-card{border:1px solid #f0f0f0;font-size:8px;padding:3px;background:#fafafa}
 .gn{font-weight:700;font-size:8px;margin-bottom:1px}
@@ -228,45 +228,45 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 .match-info{font-size:10px;color:#666;margin:4px 0;line-height:1.5}
 .match-info b{color:#111}
 .summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;margin-bottom:8px}
-.summary-card{text-align:center;padding:8px 4px;border:1px solid #eee;font-size:9px;background:#fafafa}
-.summary-card .sv{font-size:16px;font-weight:700;color:#111}
-.summary-card .sl{font-size:8px;color:#999}
+.summary-card{text-align:center;padding:10px 6px;border:1px solid #ddd;font-size:11px;background:#fafafa}
+.summary-card .sv{font-size:20px;font-weight:700;color:#111}
+.summary-card .sl{font-size:10px;color:#999}
 .venue-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
-.venue-card{background:#fafafa;border:1px solid #f0f0f0;padding:5px 7px;font-size:10px}
-.venue-card .vt{font-weight:700;font-size:10px;color:#111}
-.venue-card .vs{font-size:8px;color:#999}
-.venue-card .vn{display:flex;gap:4px;margin-top:2px;font-size:9px;flex-wrap:wrap}
-.venue-card .vn span{padding:1px 4px;font-size:8px;border-radius:2px}
+.venue-card{background:#fafafa;border:1px solid #e8e8e8;padding:7px 10px;font-size:12px}
+.venue-card .vt{font-weight:700;font-size:12px;color:#111}
+.venue-card .vs{font-size:10px;color:#999}
+.venue-card .vn{display:flex;gap:4px;margin-top:3px;font-size:10px;flex-wrap:wrap}
+.venue-card .vn span{padding:1px 5px;font-size:9px;border-radius:2px}
 .venue-card .ok{background:#e8f5e9;color:#2e7d32}
 .venue-card .warn{background:#fff3e0;color:#e65100}
 .venue-card .danger{background:#ffebee;color:#c62828}
-.elo-row{display:flex;align-items:center;padding:3px 0;border-bottom:1px solid #f8f8f8;font-size:10px;gap:5px}
-.elo-row .er-teams{font-weight:600;color:#111;min-width:100px;font-size:9px}
-.elo-row .er-diff{font-weight:700;min-width:38px;font-size:10px}
+.elo-row{display:flex;align-items:center;padding:4px 0;border-bottom:1px solid #f0f0f0;font-size:11px;gap:6px}
+.elo-row .er-teams{font-weight:600;color:#111;min-width:105px;font-size:11px}
+.elo-row .er-diff{font-weight:700;min-width:40px;font-size:11px}
 .er-diff.dom{color:#2e7d32}.er-diff.clr{color:#558b2f}.er-diff.cls{color:#f57f17}
-.elo-row .er-gap{font-size:7px;padding:1px 4px;border-radius:3px}
+.elo-row .er-gap{font-size:8px;padding:1px 5px;border-radius:3px}
 .er-gap.dom{background:#e8f5e9;color:#2e7d32}.er-gap.clr{background:#f1f8e9;color:#558b2f}.er-gap.cls{background:#fff8e1;color:#f57f17}
-.elo-row .er-rate{font-size:8px;color:#666;min-width:40px;text-align:right}
-.elo-row .er-ok{font-size:9px;min-width:18px;text-align:center}
+.elo-row .er-rate{font-size:10px;color:#666;min-width:42px;text-align:right}
+.elo-row .er-ok{font-size:10px;min-width:20px;text-align:center}
 .elo-row .er-chips{display:flex;gap:2px;flex-wrap:wrap;flex:1}
-.elo-row .er-chips span{font-size:7px;padding:1px 3px;border-radius:2px;background:#e3f2fd;color:#1565c0}
-.combo-item{border-bottom:1px solid #f0f0f0;padding:7px 0}
+.elo-row .er-chips span{font-size:8px;padding:1px 4px;border-radius:2px;background:#e3f2fd;color:#1565c0}
+.combo-item{border-bottom:1px solid #eee;padding:8px 0}
 .combo-item:last-child{border-bottom:none}
-.combo-head{display:flex;align-items:center;gap:5px;margin-bottom:3px}
-.clvl{font-size:7px;padding:2px 5px;border-radius:3px;font-weight:600}
+.combo-head{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.clvl{font-size:9px;padding:2px 6px;border-radius:3px;font-weight:600}
 .clvl.h{background:#e8f5e9;color:#2e7d32}.clvl.m{background:#fff8e1;color:#f57f17}
 .clvl.s{background:#fff3e0;color:#e65100}.clvl.x{background:#ffebee;color:#c62828}
-.combo-head .cname{font-size:10px;font-weight:600;color:#111;flex:1}
-.combo-head .cstars{font-size:8px}
-.combo-leg{display:flex;align-items:center;gap:4px;padding:2px 0;font-size:9px}
-.ltag{font-size:7px;padding:1px 4px;border-radius:3px;font-weight:600}
+.combo-head .cname{font-size:12px;font-weight:600;color:#111;flex:1}
+.combo-head .cstars{font-size:10px}
+.combo-leg{display:flex;align-items:center;gap:5px;padding:3px 0;font-size:11px}
+.ltag{font-size:8px;padding:2px 5px;border-radius:3px;font-weight:600}
 .ltag.a{background:#e3f2fd;color:#1565c0}.ltag.b{background:#fff3e0;color:#e65100}
 .ltag.g{background:#f3e5f5;color:#7b1fa2}.ltag.x{background:#ffebee;color:#c62828}
-.combo-leg .lmatch{font-weight:600;color:#111;font-size:9px;min-width:80px}
-.combo-leg .lpick{font-size:8px;color:#999;margin-left:auto}
-.combo-leg .lodds{font-size:10px;font-weight:700;color:#1976d2;min-width:32px;text-align:right}
-.combo-reason{font-size:8px;color:#999;margin:1px 0;line-height:1.3}
-.combo-stats{display:flex;gap:10px;margin-top:3px;font-size:9px;color:#666}
+.combo-leg .lmatch{font-weight:600;color:#111;font-size:11px;min-width:85px}
+.combo-leg .lpick{font-size:10px;color:#888;margin-left:auto}
+.combo-leg .lodds{font-size:12px;font-weight:700;color:#1976d2;min-width:36px;text-align:right}
+.combo-reason{font-size:10px;color:#888;margin:2px 0;line-height:1.4}
+.combo-stats{display:flex;gap:12px;margin-top:4px;font-size:10px;color:#666}
 .combo-stats b{color:#111}
 .score-cards{display:flex;gap:4px}
 .score-card{flex:1;text-align:center;background:#fafafa;border:1px solid #eee;padding:5px 3px;font-size:9px}

@@ -116,55 +116,62 @@ def gen_combos(analyses):
     close_m = [a for a in analyses if abs(a["elo_diff"])<80 and a["status"]!="FT"]
     completed = [a for a in analyses if a["status"]=="FT"]
 
-    # α: 最高匹配
-    if anchors:
-        best = max(anchors, key=lambda x: x["elo_diff"])
-        od = float(best["odds_h"]) if best["odds_h"] else 1.30
-        combos.append({"id":"α","name":"单场高匹配","level":"高置信","stars":5,
-            "legs":[{"match":f'{best["home"]} vs {best["away"]}',"pick":"「胜」方向","odds":od,
-                "reason":f'Elo差{best["elo_diff"]:+d}'}],
-            "rate":"72-82%","odds":od,"note":f'Elo>250场次四届大赛胜率80-86%'})
+    # α: 每个锚定场单独推荐
+    for i, a in enumerate(anchors[:6]):
+        od = safe_float(a["odds_h"],1.30)
+        combos.append({"id":f"α{i}","name":f'锚定·{a["home"]}vs{a["away"]}',"level":"高置信","stars":5,
+            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」方向","odds":od,
+                "reason":f'Elo差{a["elo_diff"]:+d} | 进球{a["adj_goals"]}球'}],
+            "rate":"68-82%","odds":od,"note":f'Elo碾压级，四届大赛胜率80-86%'})
 
-    # β: 双场交叉
-    if anchors and non_a:
-        a,b = anchors[0], non_a[0]
-        od = round((safe_float(a["odds_h"],1.5))*(safe_float(b["odds_h"],2.0)),2)
-        combos.append({"id":"β","name":"双场交叉验证","level":"稳健","stars":3,
-            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」","odds":safe_float(a["odds_h"],1.5)},
-                {"match":f'{b["home"]} vs {b["away"]}',"pick":"「胜」","odds":safe_float(b["odds_h"],2.0)}],
-            "rate":"44-52%","odds":od,"note":"双场组合效应降低支持率"})
+    # β: 每锚定配2个博胆
+    for i, a in enumerate(anchors[:3]):
+        for j, b in enumerate(non_a[:4]):
+            if a["home"]==b["home"]: continue
+            od = round(safe_float(a["odds_h"],1.5)*safe_float(b["odds_h"],2.0),2)
+            if od<2.2 or od>5.5: continue
+            combos.append({"id":f"β{i}{j}","name":f'交叉·{a["home"]}+{b["home"]}',"level":"稳健","stars":3,
+                "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」锚定","odds":safe_float(a["odds_h"],1.5)},
+                    {"match":f'{b["home"]} vs {b["away"]}',"pick":"「胜」探索","odds":safe_float(b["odds_h"],2.0)}],
+                "rate":"44-52%","odds":od,"note":"锚定+探索双维度交叉验证"})
 
-    # γ: 三场
+    # γ: 三场锚定
     if len(anchors)>=3:
         a3=anchors[:3]
         od=round(safe_float(a3[0]["odds_h"],1.5)*safe_float(a3[1]["odds_h"],1.4)*safe_float(a3[2]["odds_h"],1.3),2)
-        combos.append({"id":"γ","name":"三场联合验证","level":"稳健","stars":3,
+        if od<=6.0: combos.append({"id":"γ","name":"三场联合验证","level":"稳健","stars":3,
             "legs":[{"match":f'{x["home"]} vs {x["away"]}',"pick":"「胜」","odds":safe_float(x["odds_h"],1.5)} for x in a3],
-            "rate":"28-38%","odds":od,"note":"三场组合需全中"})
+            "rate":"28-38%","odds":od,"note":"三场Elo锚定联合验证"})
 
-    # δ: 小球
-    if len(low_g)>=2:
-        a,b=low_g[0],low_g[1]
-        combos.append({"id":"δ","name":"小球双场匹配","level":"稳健","stars":4,
-            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"总进球<2.5","odds":1.80},
-                {"match":f'{b["home"]} vs {b["away"]}',"pick":"总进球<2.5","odds":1.80}],
-            "rate":"45-55%","odds":3.24,"note":f'预期进球{a["adj_goals"]}/{b["adj_goals"]}球'})
+    # δ/ε: 每场高低进球各推
+    for a in analyses[:15]:
+        if a["status"]=="FT": continue
+        if a["adj_goals"]<2.35:
+            combos.append({"id":f"δ{a['home'][:2]}","name":f'小球·{a["home"]}vs{a["away"]}',"level":"稳健","stars":4,
+                "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"总进球<2.5","odds":1.80}],
+                "rate":"45-55%","odds":1.80,"note":f'预期进球仅{a["adj_goals"]}球'})
+        if a["adj_goals"]>2.9:
+            combos.append({"id":f"ε{a['home'][:2]}","name":f'大球·{a["home"]}vs{a["away"]}',"level":"稳健","stars":3,
+                "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"总进球>2.5","odds":1.80}],
+                "rate":"38-48%","odds":1.80,"note":f'预期进球{a["adj_goals"]}球'})
 
-    # ε: 大球
-    if len(high_g)>=2:
-        a,b=high_g[0],high_g[1]
-        combos.append({"id":"ε","name":"大球同向分析","level":"稳健","stars":3,
-            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"总进球>2.5","odds":1.80},
-                {"match":f'{b["home"]} vs {b["away"]}',"pick":"总进球>2.5","odds":1.80}],
-            "rate":"38-48%","odds":3.24,"note":f'预期进球{a["adj_goals"]}/{b["adj_goals"]}球'})
+    # ζ: 每对均势各推
+    for i, a in enumerate(close_m[:6]):
+        combos.append({"id":f"ζ{i}","name":f'均势·{a["home"]}vs{a["away"]}',"level":"探索","stars":2,
+            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"平局/受让不败","odds":3.20}],
+            "rate":"35-44%","odds":3.20,"note":f'Elo仅差{abs(a["elo_diff"])} 平局率{a["draw_prob"]:.0%}'})
 
-    # ζ: 均势
-    if len(close_m)>=2:
-        a,b=close_m[0],close_m[1]
-        combos.append({"id":"ζ","name":"均势方向分析","level":"探索","stars":2,
-            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"平局/受让不败","odds":3.20},
-                {"match":f'{b["home"]} vs {b["away"]}',"pick":"平局/受让不败","odds":3.20}],
-            "rate":"35-44%","odds":10.24,"note":f'平局率{a["draw_prob"]:.0%}/{b["draw_prob"]:.0%}'})
+    # η: 每场胜平负方向
+    for a in analyses[:12]:
+        if a["status"]=="FT": continue
+        wp=a["win_prob"]
+        pick="「胜」方向" if wp>=0.55 else ("「平局」方向" if wp>=0.40 else "「客胜/受让」方向")
+        lv="稳健" if wp>=0.55 else "探索"; star=3 if wp>=0.55 else 2
+        combos.append({"id":f"η{a['home'][:2]}","name":f'方向·{a["home"]}vs{a["away"]}',"level":lv,"stars":star,
+            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":pick,"odds":safe_float(a["odds_h"] if wp>=0.55 else a["odds_d"],2.0)}],
+            "rate":"58-72%" if wp>=0.55 else ("30-42%" if wp>=0.40 else "28-40%"),
+            "odds":safe_float(a["odds_h"] if wp>=0.55 else a["odds_d"],2.0),
+            "note":f'Elo+场地→胜率{a["win_prob"]:.0%} 平局{a["draw_prob"]:.0%}'})
 
     # 比分推演
     scores=[]
@@ -181,7 +188,7 @@ def gen_combos(analyses):
         legs_lotto=[]
         tot_od=1.0
         if anchors:
-            a=anchors[0]; legs_lotto.append({"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」","odds":float(a["odds_h"])or 1.3}); tot_od*=float(a["odds_h"])or 1.3
+            a=anchors[0]; legs_lotto.append({"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」","odds":safe_float(a["odds_h"],1.3)}); tot_od*=safe_float(a["odds_h"],1.3)
         if close_m:
             c=close_m[0]; legs_lotto.append({"match":f'{c["home"]} vs {c["away"]}',"pick":"平局方向","odds":3.20}); tot_od*=3.20
         if high_g:
@@ -201,14 +208,14 @@ def gen_combos(analyses):
 # ====== HTML 生成 ======
 CSS='''
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:16px;max-width:1100px;margin:0 auto;color:#333;font-size:14px}
-h1{font-size:22px;font-weight:700;text-align:center;margin:10px 0}
-.sub{text-align:center;font-size:13px;color:#999;margin-bottom:4px}
-.upd{text-align:center;font-size:12px;color:#bbb;margin:4px 0 16px}
-.section{margin-bottom:16px;border:1px solid #ddd;border-radius:4px;overflow:hidden}
-.sec-title{background:#111;color:#fff;padding:7px 12px;font-size:13px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
-.sec-title .badge{font-size:11px;color:#8f8;font-weight:400}
-.sec-body{padding:10px}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:20px;max-width:1100px;margin:0 auto;color:#333;font-size:15px}
+h1{font-size:24px;font-weight:700;text-align:center;margin:12px 0}
+.sub{text-align:center;font-size:14px;color:#999;margin-bottom:6px}
+.upd{text-align:center;font-size:13px;color:#bbb;margin:6px 0 18px}
+.section{margin-bottom:18px;border:1px solid #ccc;border-radius:5px;overflow:hidden}
+.sec-title{background:#111;color:#fff;padding:8px 14px;font-size:14px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.sec-title .badge{font-size:12px;color:#8f8;font-weight:400}
+.sec-body{padding:12px}
 .groups-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px}
 .group-card{border:1px solid #f0f0f0;font-size:8px;padding:3px;background:#fafafa}
 .gn{font-weight:700;font-size:8px;margin-bottom:1px}

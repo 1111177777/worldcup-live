@@ -117,21 +117,19 @@ def gen_combos(analyses):
     upcoming = [a for a in analyses if a["status"]!="FT"]
     completed = [a for a in analyses if a["status"]=="FT"]
 
-    # 只推今天比赛（取最早未赛日期=今天），串关严格同一天
-    today_str = min([a["date"] for a in upcoming]) if upcoming else "6/26"
-    today_matches = [a for a in upcoming if a["date"] >= today_str]
-    # 按日期分组
+    # 推全部12场未赛（6/26+6/27），串关按同一天分组
+    today_matches = upcoming  # 全部未赛
+    # 按日期分组（串关内部取同一天）
     by_date = {}
-    for a in today_matches:
+    for a in upcoming:
         d = a["date"]
         if d not in by_date: by_date[d] = []
         by_date[d].append(a)
+    today_str = min(by_date.keys()) if by_date else "6/26"
 
-    # 只取今天（最早未赛日）的比赛
-    today_matches = by_date.get(today_str, today_matches)
     anchors = [a for a in today_matches if a["anchor"]]
     non_a = [a for a in today_matches if not a["anchor"]]
-    anchors_today = anchors  # alias for clarity
+    anchors_today = anchors
     non_a_today = non_a
 
     # ═══ 每场必推：胜平负 + 总进球 + 比分（仅今天） ═══

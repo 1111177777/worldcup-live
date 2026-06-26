@@ -197,9 +197,51 @@ def gen_combos(analyses):
                     {"match":f'{b["home"]} vs {b["away"]}',"pick":"「胜」探","odds":safe_float(b["odds_h"],2.0)}],
                 "rate":"42-52%","odds":od,"cat":"2串1","note":"锚定+探索交叉"})
 
-    # ═══ 3/4/5/6串1：锚定不足时扩大到全部未赛 ═══
-    # 按Elo差距绝对值排序，取前N场（或全部锚定+Top非锚定）
+    # 按Elo差距绝对值排序
     all_sorted = sorted(upcoming_today, key=lambda x: -abs(x["elo_diff"]))
+
+    # ═══ 3串2 / 4串2 容错串 ═══
+    # 3串2: 选3场拆3个2串1，容错1场
+    pool32 = anchors[:] if len(anchors) >= 3 else all_sorted[:max(3, len(all_sorted))]
+    if len(pool32) >= 3:
+        for ci in range(2):
+            import random; random.seed(ci*77+32)
+            picks = random.sample(pool32, 3)
+            # 3个2串1组合: AB, AC, BC
+            pairs = [(0,1),(0,2),(1,2)]
+            sub_odds = []
+            for i,j in pairs:
+                x, y = picks[i], picks[j]
+                sx = x.get("strong_side","home"); sy = y.get("strong_side","home")
+                sub_odds.append(round(safe_float(x["odds_h"] if sx=="home" else x["odds_a"],1.5) * safe_float(y["odds_h"] if sy=="home" else y["odds_a"],1.5), 2))
+            avg_od = round(sum(sub_odds)/3, 2)
+            combos.append({"id":f"32_{ci}","name":f'3串2容错·方案{ci+1}',"level":"稳健","stars":3,
+                "legs":[{"match":f'{picks[0]["home"]} vs {picks[0]["away"]}',"pick":"胜","odds":safe_float(picks[0]["odds_h"] if picks[0].get("strong_side","home")=="home" else picks[0]["odds_a"],1.5)},
+                    {"match":f'{picks[1]["home"]} vs {picks[1]["away"]}',"pick":"胜","odds":safe_float(picks[1]["odds_h"] if picks[1].get("strong_side","home")=="home" else picks[1]["odds_a"],1.5)},
+                    {"match":f'{picks[2]["home"]} vs {picks[2]["away"]}',"pick":"胜","odds":safe_float(picks[2]["odds_h"] if picks[2].get("strong_side","home")=="home" else picks[2]["odds_a"],1.5)}],
+                "rate":"中2场保本(40-52%)","odds":avg_od,"cat":"3串2","note":f'3场拆3注2串1 容错1场 均赔{avg_od}'})
+
+    # 4串2: 选4场拆6个2串1，容错2场
+    pool42 = anchors[:] if len(anchors) >= 4 else all_sorted[:max(4, len(all_sorted))]
+    if len(pool42) >= 4:
+        for ci in range(2):
+            random.seed(ci*88+42)
+            picks = random.sample(pool42, 4)
+            pairs = [(0,1),(0,2),(0,3),(1,2),(1,3),(2,3)]
+            sub_odds = []
+            for i,j in pairs:
+                x, y = picks[i], picks[j]
+                sx = x.get("strong_side","home"); sy = y.get("strong_side","home")
+                sub_odds.append(round(safe_float(x["odds_h"] if sx=="home" else x["odds_a"],1.5) * safe_float(y["odds_h"] if sy=="home" else y["odds_a"],1.5), 2))
+            avg_od = round(sum(sub_odds)/6, 2)
+            combos.append({"id":f"42_{ci}","name":f'4串2容错·方案{ci+1}',"level":"稳健","stars":3,
+                "legs":[{"match":f'{picks[0]["home"]} vs {picks[0]["away"]}',"pick":"胜","odds":safe_float(picks[0]["odds_h"] if picks[0].get("strong_side","home")=="home" else picks[0]["odds_a"],1.5)},
+                    {"match":f'{picks[1]["home"]} vs {picks[1]["away"]}',"pick":"胜","odds":safe_float(picks[1]["odds_h"] if picks[1].get("strong_side","home")=="home" else picks[1]["odds_a"],1.5)},
+                    {"match":f'{picks[2]["home"]} vs {picks[2]["away"]}',"pick":"胜","odds":safe_float(picks[2]["odds_h"] if picks[2].get("strong_side","home")=="home" else picks[2]["odds_a"],1.5)},
+                    {"match":f'{picks[3]["home"]} vs {picks[3]["away"]}',"pick":"胜","odds":safe_float(picks[3]["odds_h"] if picks[3].get("strong_side","home")=="home" else picks[3]["odds_a"],1.5)}],
+                "rate":"中2场保本(35-48%)","odds":avg_od,"cat":"4串2","note":f'4场拆6注2串1 容错2场 均赔{avg_od}'})
+
+    # ═══ 3/4/5/6串1 ═══
     for num, cfg in [(3,("3串1","稳健",3,"22-35%")),(4,("4串1","探索",2,"12-22%")),
                       (5,("5串1","探索",2,"6-14%")),(6,("6串1","推演",1,"3-8%"))]:
         pool = anchors[:] if len(anchors) >= num else all_sorted[:max(num, len(all_sorted))]

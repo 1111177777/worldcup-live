@@ -197,23 +197,26 @@ def gen_combos(analyses):
                     {"match":f'{b["home"]} vs {b["away"]}',"pick":"「胜」探","odds":safe_float(b["odds_h"],2.0)}],
                 "rate":"42-52%","odds":od,"cat":"2串1","note":"锚定+探索交叉"})
 
-    # ═══ 3/4/5/6串1 ═══
+    # ═══ 3/4/5/6串1：锚定不足时扩大到全部未赛 ═══
+    # 按Elo差距绝对值排序，取前N场（或全部锚定+Top非锚定）
+    all_sorted = sorted(upcoming_today, key=lambda x: -abs(x["elo_diff"]))
     for num, cfg in [(3,("3串1","稳健",3,"22-35%")),(4,("4串1","探索",2,"12-22%")),
                       (5,("5串1","探索",2,"6-14%")),(6,("6串1","推演",1,"3-8%"))]:
-        if len(anchors) >= num:
+        pool = anchors[:] if len(anchors) >= num else all_sorted[:max(num, len(all_sorted))]
+        if len(pool) >= num:
             n_groups = 3 if num<=4 else 2
             for combo_idx in range(n_groups):
                 import random; random.seed(combo_idx*100*num+num)
-                picks = random.sample(anchors, min(num, len(anchors)))
+                picks = random.sample(pool, min(num, len(pool)))
                 od = 1.0
-                for x in picks: od *= _a_odds(x)
+                for x in picks:
+                    side = x.get("strong_side","home")
+                    od *= safe_float(x["odds_h"] if side=="home" else x["odds_a"], 1.5)
                 od = round(od, 2)
-                lo, hi = 2.0, 50.0  # accept all
-                if lo <= od <= hi:
-                    name, lv, star, rng = cfg
-                    combos.append({"id":f"{num}_{combo_idx}","name":f'{name}·方案{combo_idx+1}',"level":lv,"stars":star,
-                        "legs":[{"match":f'{x["home"]} vs {x["away"]}',"pick":_a_pick(x),"odds":_a_odds(x)} for x in picks],
-                        "rate":rng,"odds":od,"cat":name,"note":f'{num}场锚定 赔率{od}'})
+                name, lv, star, rng = cfg
+                combos.append({"id":f"{num}_{combo_idx}","name":f'{name}·方案{combo_idx+1}',"level":lv,"stars":star,
+                    "legs":[{"match":f'{x["home"]} vs {x["away"]}',"pick":_a_pick(x) if x in anchors else ("「胜」(主)" if x.get("strong_side","home")=="home" else "「胜」(客)"),"odds":safe_float(x["odds_h"] if x.get("strong_side","home")=="home" else x["odds_a"], 1.5)} for x in picks],
+                    "rate":rng,"odds":od,"cat":name,"note":f'{num}场组合 赔率{od}'})
 
     # 比分推演
     scores=[]
@@ -254,14 +257,14 @@ def gen_combos(analyses):
 # ====== HTML 生成 ======
 CSS='''
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:20px;max-width:1100px;margin:0 auto;color:#333;font-size:15px}
-h1{font-size:24px;font-weight:700;text-align:center;margin:12px 0}
-.sub{text-align:center;font-size:14px;color:#999;margin-bottom:6px}
-.upd{text-align:center;font-size:13px;color:#bbb;margin:6px 0 18px}
-.section{margin-bottom:18px;border:1px solid #ccc;border-radius:5px;overflow:hidden}
-.sec-title{background:#111;color:#fff;padding:8px 14px;font-size:14px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
-.sec-title .badge{font-size:12px;color:#8f8;font-weight:400}
-.sec-body{padding:12px}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:24px;max-width:1100px;margin:0 auto;color:#333;font-size:16px}
+h1{font-size:26px;font-weight:700;text-align:center;margin:14px 0}
+.sub{text-align:center;font-size:15px;color:#999;margin-bottom:6px}
+.upd{text-align:center;font-size:14px;color:#bbb;margin:6px 0 20px}
+.section{margin-bottom:20px;border:1px solid #ccc;border-radius:5px;overflow:hidden}
+.sec-title{background:#111;color:#fff;padding:9px 16px;font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.sec-title .badge{font-size:13px;color:#8f8;font-weight:400}
+.sec-body{padding:14px}
 .groups-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px}
 .group-card{border:1px solid #f0f0f0;font-size:8px;padding:3px;background:#fafafa}
 .gn{font-weight:700;font-size:8px;margin-bottom:1px}

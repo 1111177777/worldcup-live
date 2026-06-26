@@ -393,8 +393,17 @@ def gen_combos(analyses):
     high_g = [a for a in today_matches if a["adj_goals"]>2.9]
 
     cal=[a for a in completed[-8:]]
-    scores=[]  # scores now handled per-match
-    return {"combos":combos,"scores":scores,"cal":cal,
+    # 比分推演卡片：为每场未赛生成
+    scores=[]
+    for a in today_matches:
+        ed=a["elo_diff"]
+        if ed>=100: sc,od,tag="2:0/2:1/3:1",7.5,"强弱"
+        elif ed<=-100: sc,od,tag="0:2/1:2/1:3",7.5,"强弱"
+        elif ed>=30: sc,od,tag="2:1/1:1/1:0",7.0,"中距"
+        elif ed<=-30: sc,od,tag="1:2/1:1/0:1",7.0,"中距"
+        else: sc,od,tag="1:1/0:0/1:0",6.0,"均势"
+        scores.append({"match":f'{a["home"]} vs {a["away"]}',"scores":sc,"odds":od,"tag":tag})
+    return {"combos":combos,"scores":scores[:8],"cal":cal,
         "n_anchors":len(anchors),"n_close":len(close_m),
         "n_low":len(low_g),"n_high":len(high_g)}
 

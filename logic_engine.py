@@ -203,7 +203,7 @@ def gen_combos(analyses):
                 od = 1.0
                 for x in picks: od *= _a_odds(x)
                 od = round(od, 2)
-                lo, hi = 2.0 + num*0.5, 5.0 + num*1.5  # wider range
+                lo, hi = 2.0, 50.0  # accept all
                 if lo <= od <= hi:
                     name, lv, star, rng = cfg
                     combos.append({"id":f"{num}_{combo_idx}","name":f'{name}·方案{combo_idx+1}',"level":lv,"stars":star,

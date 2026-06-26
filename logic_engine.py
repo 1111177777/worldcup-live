@@ -200,7 +200,63 @@ def gen_combos(analyses):
     # 按Elo差距绝对值排序
     all_sorted = sorted(upcoming_today, key=lambda x: -abs(x["elo_diff"]))
 
-    # ═══ 3串2 / 4串2 容错串 ═══
+    # ═══ 总进球串关（2串1/3串1） ═══
+    goals_picks = [a for a in upcoming_today]
+    # 小球2串1
+    low_g2 = [a for a in upcoming_today if a["adj_goals"] < 2.5]
+    if len(low_g2) >= 2:
+        for ci in range(min(2, len(low_g2)-1)):
+            a, b = low_g2[ci], low_g2[ci+1]
+            combos.append({"id":f"G2L{ci}","name":f'总进球2串1·小球组合{ci+1}',"level":"稳健","stars":4,
+                "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"总进球<2.5","odds":1.80},
+                    {"match":f'{b["home"]} vs {b["away"]}',"pick":"总进球<2.5","odds":1.80}],
+                "rate":"45-55%","odds":3.24,"cat":"总进球串","note":f'双小球 进球{a["adj_goals"]}/{b["adj_goals"]}球'})
+    # 大球2串1
+    high_g2 = [a for a in upcoming_today if a["adj_goals"] > 2.7]
+    if len(high_g2) >= 2:
+        for ci in range(min(2, len(high_g2)-1)):
+            a, b = high_g2[ci], high_g2[ci+1]
+            combos.append({"id":f"G2H{ci}","name":f'总进球2串1·大球组合{ci+1}',"level":"稳健","stars":3,
+                "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"总进球>2.5","odds":1.80},
+                    {"match":f'{b["home"]} vs {b["away"]}',"pick":"总进球>2.5","odds":1.80}],
+                "rate":"38-48%","odds":3.24,"cat":"总进球串","note":f'双大球 进球{a["adj_goals"]}/{b["adj_goals"]}球'})
+    # 总进球3串1
+    if len(goals_picks) >= 3:
+        for ci in range(2):
+            import random; random.seed(ci*55+7)
+            picks = random.sample(goals_picks, 3)
+            od = 1; legs_g = []
+            for a in picks:
+                if a["adj_goals"] < 2.3: gp, go = "总进球<2.5", 1.80
+                elif a["adj_goals"] > 2.8: gp, go = "总进球>2.5", 1.80
+                else: gp, go = "总进球2-3球", 1.70
+                od *= go; legs_g.append({"match":f'{a["home"]} vs {a["away"]}',"pick":gp,"odds":go})
+            od = round(od, 2)
+            combos.append({"id":f"G3_{ci}","name":f'总进球3串1·方案{ci+1}',"level":"探索","stars":2,
+                "legs":legs_g,"rate":"18-30%","odds":od,"cat":"总进球串","note":f'总进球3场组合 赔率{od}'})
+
+    # ═══ 混合玩法串关 ═══
+    if len(upcoming_today) >= 3:
+        for ci in range(3):
+            random.seed(ci*66+8)
+            picks = random.sample(upcoming_today, min(3, len(upcoming_today)))
+            legs_mx = []; od_mx = 1.0
+            for i, a in enumerate(picks[:3]):
+                if i == 0:
+                    side = a.get("strong_side","home")
+                    o = safe_float(a["odds_h"] if side=="home" else a["odds_a"], 1.5)
+                    legs_mx.append({"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」","odds":o})
+                elif i == 1:
+                    o = 1.80
+                    legs_mx.append({"match":f'{a["home"]} vs {a["away"]}',"pick":"总进球>2.5" if a["adj_goals"]>2.5 else "总进球<2.5","odds":o})
+                else:
+                    o = 2.20
+                    legs_mx.append({"match":f'{a["home"]} vs {a["away"]}',"pick":"半全场「胜胜」" if a.get("anchor") else "平局方向","odds":o})
+                od_mx *= o
+            od_mx = round(od_mx, 2)
+            combos.append({"id":f"MX{ci}","name":f'混合玩法·方案{ci+1}',"level":"探索","stars":2,
+                "legs":legs_mx,"rate":"25-38%","odds":od_mx,"cat":"混合串","note":f'胜平负+总进球混搭 赔率{od_mx}'})
+
     # 3串2: 选3场拆3个2串1，容错1场
     pool32 = anchors[:] if len(anchors) >= 3 else all_sorted[:max(3, len(all_sorted))]
     if len(pool32) >= 3:

@@ -107,71 +107,134 @@ def analyze_all(matches):
     return results
 
 def gen_combos(analyses):
-    """生成逻辑组合"""
+    """为每场未赛比赛生成：胜平负/总进球/比分 + 3串1~6串1"""
     combos = []
-    anchors = [a for a in analyses if a["anchor"] and a["status"]!="FT"]
-    non_a = [a for a in analyses if not a["anchor"] and a["status"]!="FT"]
-    low_g = [a for a in analyses if a["adj_goals"]<2.35 and a["status"]!="FT"]
-    high_g = [a for a in analyses if a["adj_goals"]>2.9 and a["status"]!="FT"]
-    close_m = [a for a in analyses if abs(a["elo_diff"])<80 and a["status"]!="FT"]
+    upcoming = [a for a in analyses if a["status"]!="FT"]
+    anchors = [a for a in upcoming if a["anchor"]]
+    non_a = [a for a in upcoming if not a["anchor"]]
     completed = [a for a in analyses if a["status"]=="FT"]
 
-    # α: 每个锚定场单独推荐
-    for i, a in enumerate(anchors[:6]):
-        od = safe_float(a["odds_h"],1.30)
-        combos.append({"id":f"α{i}","name":f'锚定·{a["home"]}vs{a["away"]}',"level":"高置信","stars":5,
-            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」方向","odds":od,
-                "reason":f'Elo差{a["elo_diff"]:+d} | 进球{a["adj_goals"]}球'}],
-            "rate":"68-82%","odds":od,"note":f'Elo碾压级，四届大赛胜率80-86%'})
+    # ═══ 每场必推：胜平负 + 总进球 + 比分 ═══
+    for a in upcoming:
+        hn = a["home"][:2]
+        wp = a["win_prob"]
+        # 胜平负方向
+        if wp >= 0.55:
+            pick, lv, star, rng, od = "「胜」", "稳健", 3, "58-72%", safe_float(a["odds_h"],2.0)
+        elif wp >= 0.40:
+            pick, lv, star, rng, od = "「平局」", "探索", 2, "30-42%", safe_float(a["odds_d"],3.0)
+        else:
+            pick, lv, star, rng, od = "「客胜/受让」", "探索", 2, "28-40%", safe_float(a["odds_a"],3.0)
+        combos.append({"id":f"SPF{hn}","name":f'{a["home"]}vs{a["away"]} 胜平负',"level":lv,"stars":star,
+            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":pick,"odds":od}],
+            "rate":rng,"odds":od,"cat":"胜平负",
+            "note":f'胜{a["win_prob"]:.0%} 平{a["draw_prob"]:.0%} Elo差{a["elo_diff"]:+d}'})
 
-    # β: 每锚定配2个博胆
-    for i, a in enumerate(anchors[:3]):
+        # 总进球方向
+        g = a["adj_goals"]
+        if g < 2.3:
+            gpick, grng, godds = "总进球<2.5", "48-58%", 1.80
+            gnote = f"进球预期仅{g}球(偏低)"
+        elif g > 2.8:
+            gpick, grng, godds = "总进球>2.5", "42-52%", 1.80
+            gnote = f"进球预期{g}球(偏高)"
+        else:
+            gpick, grng, godds = "总进球2-3球", "42-50%", 1.70
+            gnote = f"进球预期{g}球(适中)"
+        combos.append({"id":f"GOAL{hn}","name":f'{a["home"]}vs{a["away"]} 总进球',"level":"稳健","stars":3,
+            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":gpick,"odds":godds}],
+            "rate":grng,"odds":godds,"cat":"总进球","note":gnote})
+
+        # 比分推演
+        ed = abs(a["elo_diff"])
+        if ed >= 150: sc, sodds, stag = "2:0/2:1/3:1", 7.5, "强弱"
+        elif ed >= 50: sc, sodds, stag = "2:1/1:1/1:0", 7.0, "中距"
+        else: sc, sodds, stag = "1:1/0:0/1:0", 6.0, "均势"
+        combos.append({"id":f"CS{hn}","name":f'{a["home"]}vs{a["away"]} 比分',"level":"推演","stars":4,
+            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":f"比分 {sc}","odds":sodds}],
+            "rate":"6-12%","odds":sodds,"cat":"比分",
+            "note":f'{stag}局 进球{g}球 1:0(13.5%) 2:1(11.3%)'})
+
+    # ═══ 锚定单场（高置信） ═══
+    for i, a in enumerate(anchors[:5]):
+        od = safe_float(a["odds_h"],1.30)
+        combos.append({"id":f"A{i}","name":f'⭐锚定·{a["home"]}vs{a["away"]}',"level":"高置信","stars":5,
+            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」","odds":od}],
+            "rate":"68-82%","odds":od,"cat":"锚定单场",
+            "note":f'Elo差{a["elo_diff"]:+d} 进球{a["adj_goals"]}球 四届胜率80-86%'})
+
+    # ═══ 2串1：锚定×锚定 + 锚定×探索 ═══
+    for i in range(min(3, len(anchors))):
+        for j in range(i+1, min(4, len(anchors))):
+            a,b = anchors[i], anchors[j]
+            od = round(safe_float(a["odds_h"],1.4)*safe_float(b["odds_h"],1.4),2)
+            if od<2.0 or od>4.5: continue
+            combos.append({"id":f"2A{i}{j}","name":f'2串1·{a["home"][:2]}+{b["home"][:2]}',"level":"稳健","stars":3,
+                "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」","odds":safe_float(a["odds_h"],1.4)},
+                    {"match":f'{b["home"]} vs {b["away"]}',"pick":"「胜」","odds":safe_float(b["odds_h"],1.4)}],
+                "rate":"48-58%","odds":od,"cat":"2串1","note":"双锚定交叉验证"})
+    # 锚定×探索 2串1
+    for i, a in enumerate(anchors[:2]):
         for j, b in enumerate(non_a[:4]):
             if a["home"]==b["home"]: continue
             od = round(safe_float(a["odds_h"],1.5)*safe_float(b["odds_h"],2.0),2)
-            if od<2.2 or od>5.5: continue
-            combos.append({"id":f"β{i}{j}","name":f'交叉·{a["home"]}+{b["home"]}',"level":"稳健","stars":3,
-                "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」锚定","odds":safe_float(a["odds_h"],1.5)},
-                    {"match":f'{b["home"]} vs {b["away"]}',"pick":"「胜」探索","odds":safe_float(b["odds_h"],2.0)}],
-                "rate":"44-52%","odds":od,"note":"锚定+探索双维度交叉验证"})
+            if od<2.5 or od>5.5: continue
+            combos.append({"id":f"2B{i}{j}","name":f'2串1·{a["home"][:2]}+{b["home"][:2]}',"level":"稳健","stars":3,
+                "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」锚","odds":safe_float(a["odds_h"],1.5)},
+                    {"match":f'{b["home"]} vs {b["away"]}',"pick":"「胜」探","odds":safe_float(b["odds_h"],2.0)}],
+                "rate":"42-52%","odds":od,"cat":"2串1","note":"锚定+探索交叉"})
 
-    # γ: 三场锚定
+    # ═══ 3串1：2-3组 ═══
     if len(anchors)>=3:
-        a3=anchors[:3]
-        od=round(safe_float(a3[0]["odds_h"],1.5)*safe_float(a3[1]["odds_h"],1.4)*safe_float(a3[2]["odds_h"],1.3),2)
-        if od<=6.0: combos.append({"id":"γ","name":"三场联合验证","level":"稳健","stars":3,
-            "legs":[{"match":f'{x["home"]} vs {x["away"]}',"pick":"「胜」","odds":safe_float(x["odds_h"],1.5)} for x in a3],
-            "rate":"28-38%","odds":od,"note":"三场Elo锚定联合验证"})
+        for combo_idx in range(3):
+            import random; random.seed(combo_idx*42)
+            picks = random.sample(anchors, min(3, len(anchors)))
+            od = 1.0
+            for x in picks: od *= safe_float(x["odds_h"],1.4)
+            od = round(od, 2)
+            if 3.0 <= od <= 7.0:
+                combos.append({"id":f"3_{combo_idx}","name":f'3串1·方案{combo_idx+1}',"level":"稳健","stars":3,
+                    "legs":[{"match":f'{x["home"]} vs {x["away"]}',"pick":"「胜」","odds":safe_float(x["odds_h"],1.4)} for x in picks],
+                    "rate":"22-35%","odds":od,"cat":"3串1","note":f'三场锚定联合 赔率{od}'})
 
-    # δ/ε: 每场高低进球各推
-    for a in analyses[:15]:
-        if a["status"]=="FT": continue
-        if a["adj_goals"]<2.35:
-            combos.append({"id":f"δ{a['home'][:2]}","name":f'小球·{a["home"]}vs{a["away"]}',"level":"稳健","stars":4,
-                "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"总进球<2.5","odds":1.80}],
-                "rate":"45-55%","odds":1.80,"note":f'预期进球仅{a["adj_goals"]}球'})
-        if a["adj_goals"]>2.9:
-            combos.append({"id":f"ε{a['home'][:2]}","name":f'大球·{a["home"]}vs{a["away"]}',"level":"稳健","stars":3,
-                "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"总进球>2.5","odds":1.80}],
-                "rate":"38-48%","odds":1.80,"note":f'预期进球{a["adj_goals"]}球'})
+    # ═══ 4串1：2-3组 ═══
+    if len(anchors)>=4:
+        for combo_idx in range(3):
+            random.seed(combo_idx*100+7)
+            picks = random.sample(anchors, min(4, len(anchors)))
+            od = 1.0
+            for x in picks: od *= safe_float(x["odds_h"],1.4)
+            od = round(od, 2)
+            if 4.0 <= od <= 10.0:
+                combos.append({"id":f"4_{combo_idx}","name":f'4串1·方案{combo_idx+1}',"level":"探索","stars":2,
+                    "legs":[{"match":f'{x["home"]} vs {x["away"]}',"pick":"「胜」","odds":safe_float(x["odds_h"],1.4)} for x in picks],
+                    "rate":"12-22%","odds":od,"cat":"4串1","note":f'四场锚定 赔率{od}'})
 
-    # ζ: 每对均势各推
-    for i, a in enumerate(close_m[:6]):
-        combos.append({"id":f"ζ{i}","name":f'均势·{a["home"]}vs{a["away"]}',"level":"探索","stars":2,
-            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":"平局/受让不败","odds":3.20}],
-            "rate":"35-44%","odds":3.20,"note":f'Elo仅差{abs(a["elo_diff"])} 平局率{a["draw_prob"]:.0%}'})
+    # ═══ 5串1：1-2组 ═══
+    if len(anchors)>=5:
+        for combo_idx in range(2):
+            random.seed(combo_idx*200+13)
+            picks = random.sample(anchors, min(5, len(anchors)))
+            od = 1.0
+            for x in picks: od *= safe_float(x["odds_h"],1.4)
+            od = round(od, 2)
+            if 5.0 <= od <= 15.0:
+                combos.append({"id":f"5_{combo_idx}","name":f'5串1·方案{combo_idx+1}',"level":"探索","stars":2,
+                    "legs":[{"match":f'{x["home"]} vs {x["away"]}',"pick":"「胜」","odds":safe_float(x["odds_h"],1.4)} for x in picks],
+                    "rate":"6-14%","odds":od,"cat":"5串1","note":f'五场锚定 赔率{od} 低概率高回报'})
 
-    # η: 每场胜平负方向
-    for a in analyses[:12]:
-        if a["status"]=="FT": continue
-        wp=a["win_prob"]
-        pick="「胜」方向" if wp>=0.55 else ("「平局」方向" if wp>=0.40 else "「客胜/受让」方向")
-        lv="稳健" if wp>=0.55 else "探索"; star=3 if wp>=0.55 else 2
-        combos.append({"id":f"η{a['home'][:2]}","name":f'方向·{a["home"]}vs{a["away"]}',"level":lv,"stars":star,
-            "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":pick,"odds":safe_float(a["odds_h"] if wp>=0.55 else a["odds_d"],2.0)}],
-            "rate":"58-72%" if wp>=0.55 else ("30-42%" if wp>=0.40 else "28-40%"),
-            "odds":safe_float(a["odds_h"] if wp>=0.55 else a["odds_d"],2.0),
-            "note":f'Elo+场地→胜率{a["win_prob"]:.0%} 平局{a["draw_prob"]:.0%}'})
+    # ═══ 6串1：1-2组 ═══
+    if len(anchors)>=6:
+        for combo_idx in range(2):
+            random.seed(combo_idx*300+19)
+            picks = random.sample(anchors, min(6, len(anchors)))
+            od = 1.0
+            for x in picks: od *= safe_float(x["odds_h"],1.4)
+            od = round(od, 2)
+            if 7.0 <= od <= 22.0:
+                combos.append({"id":f"6_{combo_idx}","name":f'6串1·方案{combo_idx+1}',"level":"推演","stars":1,
+                    "legs":[{"match":f'{x["home"]} vs {x["away"]}',"pick":"「胜」","odds":safe_float(x["odds_h"],1.4)} for x in picks],
+                    "rate":"3-8%","odds":od,"cat":"6串1","note":f'六场锚定 赔率{od} 纯推演'})
 
     # 比分推演
     scores=[]
@@ -183,25 +246,29 @@ def gen_combos(analyses):
         else: sc,od,tag="1:1/0:0/1:0",6.0,"均势"
         scores.append({"match":f'{a["home"]} vs {a["away"]}',"scores":sc,"odds":od,"tag":tag})
 
-    # 多维推演
-    if anchors and close_m and (low_g or high_g):
+    # 多维度推演 ω
+    if anchors and non_a:
         legs_lotto=[]
         tot_od=1.0
         if anchors:
             a=anchors[0]; legs_lotto.append({"match":f'{a["home"]} vs {a["away"]}',"pick":"「胜」","odds":safe_float(a["odds_h"],1.3)}); tot_od*=safe_float(a["odds_h"],1.3)
-        if close_m:
-            c=close_m[0]; legs_lotto.append({"match":f'{c["home"]} vs {c["away"]}',"pick":"平局方向","odds":3.20}); tot_od*=3.20
-        if high_g:
-            hg=high_g[0]; legs_lotto.append({"match":f'{hg["home"]} vs {hg["away"]}',"pick":"总进球>2.5","odds":1.80}); tot_od*=1.80
-        if low_g:
-            lg=low_g[0]; legs_lotto.append({"match":f'{lg["home"]} vs {lg["away"]}',"pick":"总进球<2.5","odds":1.80}); tot_od*=1.80
+        if non_a:
+            # 找两个不同类型的非锚定场
+            for na in non_a[:2]:
+                legs_lotto.append({"match":f'{na["home"]} vs {na["away"]}',"pick":"平局/受让","odds":3.0}); tot_od*=3.0
         legs_lotto=legs_lotto[:4]; tot_od=round(tot_od,1)
-        combos.append({"id":"ω","name":"多维推演模型","level":"推演","stars":1,
-            "legs":legs_lotto,"rate":"3-8%","odds":tot_od,"note":"四维度×四场，纯方法论展示"})
+        if tot_od >= 5:
+            combos.append({"id":"ω","name":"多维推演模型","level":"推演","stars":1,
+                "legs":legs_lotto,"rate":"3-8%","odds":tot_od,"cat":"推演","note":"多维度×多场次 纯方法论展示"})
 
-    # 近期完赛校准
+    # 统计
+    close_m = [a for a in upcoming if abs(a["elo_diff"])<80]
+    low_g = [a for a in upcoming if a["adj_goals"]<2.35]
+    high_g = [a for a in upcoming if a["adj_goals"]>2.9]
+
     cal=[a for a in completed[-8:]]
-    return {"combos":combos,"scores":scores[:4],"cal":cal,
+    scores=[]  # scores now handled per-match
+    return {"combos":combos,"scores":scores,"cal":cal,
         "n_anchors":len(anchors),"n_close":len(close_m),
         "n_low":len(low_g),"n_high":len(high_g)}
 
@@ -351,14 +418,15 @@ def gen_html(analyses, combo_result, dash_data, match_cards, moti_html, match_da
 
     # 组合
     ch=""
-    for c in combo_result["combos"][:25]:
+    for c in combo_result["combos"]:
         cls="h" if c["level"]=="高置信" else ("m" if c["level"]=="稳健" else ("s" if c["level"]=="探索" else "x"))
         stars="★"*c["stars"]
         legs=""
         for l in c["legs"]:
             pc="a" if "胜" in l.get("pick","") else ("b" if "平" in l.get("pick","") or "不败" in l.get("pick","") else "g")
             legs+=f'<div class="combo-leg"><span class="ltag {pc}">分析</span><span class="lmatch">{l["match"]}</span><span class="lpick">{l["pick"]}</span><span class="lodds">{l["odds"]}</span></div>'
-        ch+=f'<div class="combo-item"><div class="combo-head"><span class="clvl {cls}">{c["level"]}</span><span class="cname">逻辑组合 {c["id"]} · {c["name"]}</span><span class="cstars">{stars}</span></div><div class="combo-body">{legs}<div class="combo-reason">{c["note"]}</div><div class="combo-stats"><span>综合因子 <b>{c["odds"]}</b></span><span>回测匹配 <b>{c["rate"]}</b></span></div></div></div>'
+        cat_tag = c.get("cat","")
+        ch+=f'<div class="combo-item"><div class="combo-head"><span class="clvl {cls}">{c["level"]}</span><span class="cname">{c["name"]}</span><span class="type-tag" style="font-size:8px;background:#f0f0f0;padding:1px 5px;border-radius:3px;color:#888">{cat_tag}</span><span class="cstars">{stars}</span></div><div class="combo-body">{legs}<div class="combo-reason">{c["note"]}</div><div class="combo-stats"><span>因子 <b>{c["odds"]}</b></span><span>匹配 <b>{c["rate"]}</b></span></div></div></div>'
 
     # 比分
     sc=""

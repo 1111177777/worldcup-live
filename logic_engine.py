@@ -165,11 +165,18 @@ def gen_combos(analyses):
             "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":gpick,"odds":godds}],
             "rate":grng,"odds":godds,"cat":"总进球","note":gnote})
 
-        # 比分推演
-        ed = abs(a["elo_diff"])
-        if ed >= 150: sc, sodds, stag = "2:0/2:1/3:1", 7.5, "强弱"
-        elif ed >= 50: sc, sodds, stag = "2:1/1:1/1:0", 7.0, "中距"
-        else: sc, sodds, stag = "1:1/0:0/1:0", 6.0, "均势"
+        # 比分推演——根据谁强谁弱确定比分方向
+        ed = a["elo_diff"]
+        strong_home = ed >= 50  # 主队明显更强
+        strong_away = ed <= -50  # 客队明显更强
+        if abs(ed) >= 150:
+            if strong_home: sc, sodds, stag = "2:0/2:1/3:1", 7.5, "强弱"
+            else: sc, sodds, stag = "0:2/1:2/1:3", 7.5, "强弱"
+        elif abs(ed) >= 50:
+            if strong_home: sc, sodds, stag = "2:1/1:1/1:0", 7.0, "中距"
+            else: sc, sodds, stag = "1:2/1:1/0:1", 7.0, "中距"
+        else:
+            sc, sodds, stag = "1:1/0:0/1:0", 6.0, "均势"
         combos.append({"id":f"CS{hn}","name":f'{a["home"]}vs{a["away"]} 比分',"level":"推演","stars":4,
             "legs":[{"match":f'{a["home"]} vs {a["away"]}',"pick":f"比分 {sc}","odds":sodds}],
             "rate":"6-12%","odds":sodds,"cat":"比分",
@@ -310,9 +317,10 @@ def gen_combos(analyses):
     # ═══ 比分3串2/4串2/5串2/6串2 ═══
     # 每场推2个比分方向
     def _score_picks(a):
-        ed = abs(a["elo_diff"]); g = a["adj_goals"]
-        if ed >= 150: return ["2:0","2:1"], [8.0, 7.5]
-        elif ed >= 50: return ["2:1","1:1"], [7.5, 6.5]
+        ed = a["elo_diff"]; g = a["adj_goals"]
+        sh = ed >= 50; sa = ed <= -50
+        if sh: return ["2:0","2:1"], [8.0, 7.5]
+        elif sa: return ["0:2","1:2"], [8.0, 7.5]
         elif g < 2.3: return ["1:0","0:0"], [6.5, 7.0]
         else: return ["1:1","0:0"], [6.5, 7.0]
 

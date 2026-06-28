@@ -194,6 +194,40 @@ h1{font-size:20px;text-align:center;margin:10px 0}
         legs=' · '.join(leg_parts)
         html+=f'<div class="combo"><span class="cl">{c['name']}</span> · {c['level']}<br><span class="clg">{legs}</span><br><span style="font-size:10px;color:#999">赔率{c['odds']} · 匹配度{c['rate']} · {c['note']}</span></div>'
 
+    # === 32强球队逐个分析 ===
+    html+='<div class="round-title">⚽ 32强球队逐个分析</div>'
+    all_teams = []
+    for _,t1,t2 in d['R32']:
+        all_teams.append((t1,t2))
+    # Sort by Elo
+    teams_flat = []
+    for t1,t2 in all_teams:
+        teams_flat.append(t1); teams_flat.append(t2)
+    teams_flat = sorted(set(teams_flat), key=lambda t: -ELO.get(t,1600))
+
+    for team in teams_flat[:32]:
+        e = ELO.get(team,1600)
+        # Find this team's R32 opponent
+        opp = None; match_num = 0
+        for num,t1,t2 in d['R32']:
+            if t1==team: opp,match_num = t2,num; break
+            if t2==team: opp,match_num = t1,num; break
+        if not opp: continue
+        eo = ELO.get(opp,1600); diff = e-eo
+        p_win = wp(e,eo)*100
+        p_rounds = p_win/100
+        # Rough estimates for deeper rounds
+        p_r16 = round(p_win*0.7,1)
+        p_qf = round(p_win*0.45,1)
+        p_sf = round(p_win*0.25,1)
+        p_final = round(p_win*0.12,1)
+        tier_txt = '🟢碾压' if abs(diff)>=200 else ('🟡优势' if abs(diff)>=100 else ('🟠接近' if abs(diff)>=30 else '⚪均势'))
+        fav_side = '占优' if diff>30 else ('劣势' if diff<-30 else '均势')
+        html+=f'<div class="match"><div class="teams">{FLAGS.get(team,"")} {team} <span style="font-size:11px;color:#999">vs</span> {FLAGS.get(opp,"")} {opp}</div>'
+        html+=f'<div class="info"><b>Elo</b> {e} vs {eo} (差{diff:+d}) · {tier_txt} · R32胜率<b>{p_win:.0f}%</b><br>'
+        html+=f'<b>晋级概率</b> 16强{p_r16:.0f}% → 8强{p_qf:.0f}% → 半决赛{p_sf:.0f}% → 决赛{p_final:.0f}%<br>'
+        html+=f'<b>一句话</b>：{team}首轮#{match_num}面对{opp}，Elo{("碾压" if diff>200 else ("占优" if diff>30 else ("胶着" if diff>-30 else "处于下风")))}，{fav_side}。</div></div>'
+
     html+='<div class="disclaimer">⚠️ 纯数据分析工具 · 不构成预测结论 · <span class="dw">🚫 不涉及资金往来</span><br>淘汰赛含加时/点球，以上分析仅限90分钟常规时间</div></body></html>'
     return html
 

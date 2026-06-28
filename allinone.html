@@ -44,7 +44,7 @@ const V={73:{c:"洛杉矶",vn:"SoFi体育场",alt:38,heat:"理想",note:"地中�
 function poisson(l,k){let p=1;for(let i=1;i<=k;i++)p*=l/i;return Math.exp(-l)*p}
 function wp(e1,e2){return 1/(1+Math.pow(10,-(e1-e2)/400))}
 
-function analyze(t1,t2,num){
+function anl(t1,t2,num){
     let e1=E[t1]||1600,e2=E[t2]||1600,diff=e1-e2;
     let v=V[num]||V[73],adjG=v.gadj;
     // Poisson
@@ -82,7 +82,7 @@ function analyze(t1,t2,num){
 }
 
 function card(num,t1,t2,date){
-    let a=analyze(t1,t2,num),altW=a.alt>=2000?'⚠️高原':(a.heat.includes('极端')?'⚠️极端':(a.heat.includes('高温')?'⚠️高温':''));
+    let a=anl(t1,t2,num),altW=a.alt>=2000?'⚠️高原':(a.heat.includes('极端')?'⚠️极端':(a.heat.includes('高温')?'⚠️高温':''));
     let gdHTML=a.gdist.map(([k,v])=>'<div class="gd"><div class="gnum">'+k+'球</div><div class="gpct">'+Math.round(v*100)+'%</div></div>').join('');
     let scHTML=a.tops.map(([s,p])=>'<span>'+s+'('+Math.round(p*100)+'%)</span>').join(' · ');
     return '<div class="card"><div class="ch"><span class="chn">#'+num+'</span><span class="chd">32强 · '+date+'</span></div>'+

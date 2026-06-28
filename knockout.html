@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>世界杯32强淘汰赛</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:16px;max-width:600px;margin:0 auto;color:#333;font-size:15px}
+h1{font-size:22px;text-align:center;margin:10px 0}
+.sub{text-align:center;font-size:13px;color:#999;margin-bottom:16px}
+.match{border:1px solid #ddd;border-radius:6px;padding:12px;margin-bottom:8px;background:#fafafa}
+.mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mnum{font-size:10px;background:#111;color:#fff;padding:2px 7px;border-radius:3px}
+.mlabel{font-size:11px;color:#999}
+.teams{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;margin:6px 0}
+.teams .vs{color:#999;font-size:12px}
+.tier{font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600}
+.tier.t0{background:#e8f5e9;color:#2e7d32}.tier.t1{background:#fff8e1;color:#f57f17}
+.tier.t2{background:#fff3e0;color:#e65100}.tier.t3{background:#f5f5f5;color:#999}
+.pred{font-size:12px;color:#666;margin-top:4px}
+.bar{display:flex;align-items:center;gap:6px;margin:3px 0}
+.bar .lbl{width:30px;font-size:11px;color:#888}
+.bar .track{flex:1;height:4px;background:#eee;border-radius:2px}
+.bar .fill{height:4px;border-radius:2px}
+.bar .pct{width:36px;font-size:11px;text-align:right;font-weight:600}
+.disclaimer{margin-top:20px;padding:14px;border:2px solid #ddd;border-radius:6px;text-align:center;font-size:12px;color:#999;line-height:1.8}
+</style></head><body>
+<h1>🏆 2026世界杯 · 32强淘汰赛</h1>
+<div class="sub">小组赛72场全结束 · 16场对阵分析 · 纯数据工具</div>
+<div id="matches"></div>
+<div class="disclaimer">
+⚠️ 本页面为纯数据分析工具，仅供赛事逻辑研究。<br>
+🚫 不提供购彩渠道链接，不参与任何资金往来。
+</div>
+<script>
+const ELO = {"阿根廷":1950,"法国":1930,"巴西":1920,"英格兰":1900,"西班牙":1890,"葡萄牙":1870,"德国":1860,"荷兰":1820,"乌拉圭":1820,"克罗地亚":1810,"哥伦比亚":1800,"摩洛哥":1790,"美国":1780,"墨西哥":1770,"塞内加尔":1760,"日本":1870,"韩国":1740,"埃及":1720,"比利时":1830,"瑞典":1790,"挪威":1780,"瑞士":1830,"奥地利":1760,"科特迪瓦":1700,"南非":1640,"加拿大":1730,"波黑":1690,"阿尔及利亚":1660,"厄瓜多尔":1740,"加纳":1680,"澳大利亚":1710,"刚果民主共和国":1650};
+const FLAGS={"阿根廷":"🇦🇷","法国":"🇫🇷","巴西":"🇧🇷","英格兰":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","西班牙":"🇪🇸","葡萄牙":"🇵🇹","德国":"🇩🇪","荷兰":"🇳🇱","乌拉圭":"🇺🇾","克罗地亚":"🇭🇷","哥伦比亚":"🇨🇴","摩洛哥":"🇲🇦","美国":"🇺🇸","墨西哥":"🇲🇽","塞内加尔":"🇸🇳","日本":"🇯🇵","韩国":"🇰🇷","埃及":"🇪🇬","比利时":"🇧🇪","瑞典":"🇸🇪","挪威":"🇳🇴","瑞士":"🇨🇭","奥地利":"🇦🇹","科特迪瓦":"🇨🇮","南非":"🇿🇦","加拿大":"🇨🇦","波黑":"🇧🇦","阿尔及利亚":"🇩🇿","厄瓜多尔":"🇪🇨","加纳":"🇬🇭","澳大利亚":"🇦🇺","刚果民主共和国":"🇨🇩"};
+
+function winProb(e1,e2){return 1/(1+Math.pow(10,-(e1-e2)/400))}
+
+const bracket=[
+[73,"南非","加拿大","A2 vs B2"],[74,"德国","刚果民主共和国","E1 vs 3rd"],[75,"荷兰","摩洛哥","F1 vs C2"],
+[76,"巴西","日本","C1 vs F2"],[77,"法国","瑞典","I1 vs 3rd"],[78,"科特迪瓦","挪威","E2 vs I2"],
+[79,"墨西哥","波黑","A1 vs 3rd"],[80,"英格兰","阿尔及利亚","L1 vs 3rd"],[81,"美国","塞内加尔","D1 vs 3rd"],
+[82,"埃及","厄瓜多尔","G1 vs 3rd"],[83,"葡萄牙","克罗地亚","K2 vs L2"],[84,"西班牙","奥地利","H1 vs J2"],
+[85,"瑞士","加纳","B1 vs 3rd"],[86,"阿根廷","乌拉圭","J1 vs H2"],[87,"哥伦比亚","韩国","K1 vs 3rd"],
+[88,"澳大利亚","比利时","D2 vs G2"]
+];
+
+let html='';
+bracket.forEach(([num,t1,t2,label])=>{
+    let e1=ELO[t1]||1600,e2=ELO[t2]||1600,diff=e1-e2;
+    let wp=winProb(e1,e2)*100, dp=25;
+    let tier='t3', tierText='均势';
+    if(Math.abs(diff)>=200){tier='t0';tierText='碾压'}
+    else if(Math.abs(diff)>=100){tier='t1';tierText='优势'}
+    else if(Math.abs(diff)>=30){tier='t2';tierText='接近'}
+    let f1=FLAGS[t1]||'', f2=FLAGS[t2]||'';
+    html+=`<div class="match"><div class="mh"><span class="mnum">#${num}</span><span class="mlabel">${label}</span><span class="tier ${tier}">${tierText}</span></div>
+<div class="teams"><span>${f1} ${t1}</span><span class="vs">vs</span><span>${f2} ${t2}</span></div>
+<div class="bar"><span class="lbl">${t1}</span><div class="track"><div class="fill" style="width:${wp.toFixed(0)}%;background:#4caf50"></div></div><span class="pct">${wp.toFixed(0)}%</span></div>
+<div class="bar"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:${dp}%;background:#ffc107"></div></div><span class="pct">${dp}%</span></div>
+<div class="bar"><span class="lbl">${t2}</span><div class="track"><div class="fill" style="width:${(100-wp-dp).toFixed(0)}%;background:#f44336"></div></div><span class="pct">${(100-wp-dp).toFixed(0)}%</span></div>
+<div class="pred">📊 Elo差${diff>0?'+'+diff:diff} · 90分钟内${wp>60?t1+'胜面大':(wp>45?'接近均势':t2+'略优')} · 淘汰赛加时/点球另计</div></div>`;
+});
+document.getElementById('matches').innerHTML=html;
+</script>
+</body></html>

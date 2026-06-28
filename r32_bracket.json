@@ -1,0 +1,114 @@
+[
+  {
+    "match": 73,
+    "team1": "南非",
+    "team2": "加拿大",
+    "label": "A2 vs B2",
+    "elo_diff": -90
+  },
+  {
+    "match": 74,
+    "team1": "德国",
+    "team2": "刚果民主共和国",
+    "label": "E1 vs 3rd",
+    "elo_diff": 210
+  },
+  {
+    "match": 75,
+    "team1": "荷兰",
+    "team2": "摩洛哥",
+    "label": "F1 vs C2",
+    "elo_diff": 30
+  },
+  {
+    "match": 76,
+    "team1": "巴西",
+    "team2": "日本",
+    "label": "C1 vs F2",
+    "elo_diff": 50
+  },
+  {
+    "match": 77,
+    "team1": "法国",
+    "team2": "瑞典",
+    "label": "I1 vs 3rd",
+    "elo_diff": 140
+  },
+  {
+    "match": 78,
+    "team1": "科特迪瓦",
+    "team2": "挪威",
+    "label": "E2 vs I2",
+    "elo_diff": -80
+  },
+  {
+    "match": 79,
+    "team1": "墨西哥",
+    "team2": "波黑",
+    "label": "A1 vs 3rd",
+    "elo_diff": 80
+  },
+  {
+    "match": 80,
+    "team1": "英格兰",
+    "team2": "阿尔及利亚",
+    "label": "L1 vs 3rd",
+    "elo_diff": 240
+  },
+  {
+    "match": 81,
+    "team1": "美国",
+    "team2": "塞内加尔",
+    "label": "D1 vs 3rd",
+    "elo_diff": 20
+  },
+  {
+    "match": 82,
+    "team1": "埃及",
+    "team2": "厄瓜多尔",
+    "label": "G1 vs 3rd",
+    "elo_diff": -20
+  },
+  {
+    "match": 83,
+    "team1": "葡萄牙",
+    "team2": "克罗地亚",
+    "label": "K2 vs L2",
+    "elo_diff": 60
+  },
+  {
+    "match": 84,
+    "team1": "西班牙",
+    "team2": "奥地利",
+    "label": "H1 vs J2",
+    "elo_diff": 130
+  },
+  {
+    "match": 85,
+    "team1": "瑞士",
+    "team2": "加纳",
+    "label": "B1 vs 3rd",
+    "elo_diff": 150
+  },
+  {
+    "match": 86,
+    "team1": "阿根廷",
+    "team2": "乌拉圭",
+    "label": "J1 vs H2",
+    "elo_diff": 130
+  },
+  {
+    "match": 87,
+    "team1": "哥伦比亚",
+    "team2": "韩国",
+    "label": "K1 vs 3rd",
+    "elo_diff": 60
+  },
+  {
+    "match": 88,
+    "team1": "澳大利亚",
+    "team2": "比利时",
+    "label": "D2 vs G2",
+    "elo_diff": -120
+  }
+]

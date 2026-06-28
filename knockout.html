@@ -1,65 +1,148 @@
 <!DOCTYPE html><html lang="zh-CN"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-<title>世界杯32强淘汰赛</title><style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:16px;max-width:600px;margin:0 auto;color:#333;font-size:15px}
-h1{font-size:22px;text-align:center;margin:10px 0}
-.sub{text-align:center;font-size:13px;color:#999;margin-bottom:16px}
-.match{border:1px solid #ddd;border-radius:6px;padding:12px;margin-bottom:8px;background:#fafafa}
-.mh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+<title>世界杯32强淘汰赛</title><style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:20px;max-width:1100px;margin:0 auto;color:#333;font-size:16px}
+h1{font-size:24px;text-align:center;margin:12px 0}
+.sub{text-align:center;font-size:14px;color:#999;margin-bottom:18px}
+.section{margin-bottom:18px;border:1px solid #ccc;border-radius:5px;overflow:hidden}
+.sec-title{background:#111;color:#fff;padding:9px 16px;font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.sec-title .badge{font-size:12px;color:#8f8}
+.sec-body{padding:14px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.two-col{grid-template-columns:1fr}}
+.match-card{border:1px solid #ddd;padding:14px;background:#fafafa;margin-bottom:8px;border-radius:4px}
+.mh{display:flex;align-items:center;gap:8px;margin-bottom:4px}
 .mnum{font-size:10px;background:#111;color:#fff;padding:2px 7px;border-radius:3px}
-.mlabel{font-size:11px;color:#999}
-.teams{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;margin:6px 0}
-.teams .vs{color:#999;font-size:12px}
-.tier{font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600}
+.mlabel{font-size:12px;color:#999}
+.tier{font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600}
 .tier.t0{background:#e8f5e9;color:#2e7d32}.tier.t1{background:#fff8e1;color:#f57f17}
 .tier.t2{background:#fff3e0;color:#e65100}.tier.t3{background:#f5f5f5;color:#999}
-.pred{font-size:12px;color:#666;margin-top:4px}
-.bar{display:flex;align-items:center;gap:6px;margin:3px 0}
-.bar .lbl{width:30px;font-size:11px;color:#888}
-.bar .track{flex:1;height:4px;background:#eee;border-radius:2px}
-.bar .fill{height:4px;border-radius:2px}
-.bar .pct{width:36px;font-size:11px;text-align:right;font-weight:600}
-.disclaimer{margin-top:20px;padding:14px;border:2px solid #ddd;border-radius:6px;text-align:center;font-size:12px;color:#999;line-height:1.8}
-</style></head><body>
-<h1>🏆 2026世界杯 · 32强淘汰赛</h1>
-<div class="sub">小组赛72场全结束 · 16场对阵分析 · 纯数据工具</div>
-<div id="matches"></div>
+.teams{font-weight:700;font-size:16px;margin:6px 0}
+.teams .vs{color:#bbb;font-size:12px;margin:0 8px}
+.bar-row{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:12px}
+.bar-row .lbl{width:40px;text-align:right;color:#888}
+.bar-row .track{flex:1;height:5px;background:#eee;border-radius:2px}
+.bar-row .fill{height:5px;border-radius:2px}
+.bar-row .pct{width:42px;text-align:right;font-weight:600;font-size:12px}
+.info{font-size:12px;color:#666;margin-top:6px;line-height:1.6}
+.info b{color:#111}
+.combo-item{border-bottom:1px solid #eee;padding:8px 0}
+.combo-item:last-child{border-bottom:none}
+.combo-head{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.clvl{font-size:9px;padding:2px 6px;border-radius:3px;font-weight:600}
+.clvl.h{background:#e8f5e9;color:#2e7d32}.clvl.m{background:#fff8e1;color:#f57f17}
+.clvl.s{background:#fff3e0;color:#e65100}.clvl.x{background:#ffebee;color:#c62828}
+.cname{font-size:12px;font-weight:600;color:#111;flex:1}
+.cleg{display:flex;align-items:center;gap:5px;padding:2px 0;font-size:11px}
+.cleg .lm{font-weight:600;color:#111;font-size:11px;min-width:100px}
+.cleg .lp{font-size:10px;color:#888;margin-left:auto}
+.cleg .lo{font-size:11px;font-weight:700;color:#1976d2;min-width:36px;text-align:right}
+.cnote{font-size:10px;color:#999;margin:2px 0}
+.cstats{display:flex;gap:12px;font-size:10px;color:#666}
+.score-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px}
+.sc-card{text-align:center;padding:8px;border:1px solid #ddd;background:#fafafa;border-radius:4px;font-size:11px}
+.sc-card .sct{font-size:9px;padding:2px 6px;border-radius:3px;display:inline-block;margin-bottom:3px}
+.sct.hi{background:#e8f5e9;color:#2e7d32}.sct.md{background:#fff8e1;color:#f57f17}.sct.lo{background:#ffebee;color:#c62828}
+.sc-card .scm{font-weight:600;color:#111;font-size:11px}
+.sc-card .scs{font-weight:700;font-size:14px;color:#111;margin:3px 0}
+.sc-card .sco{font-size:11px;color:#1976d2;font-weight:600}
+.disclaimer{margin-top:20px;padding:16px;border:2px solid #ddd;border-radius:6px;text-align:center;font-size:13px;color:#888;line-height:1.8}
+.disclaimer .dw{color:#e65100;font-weight:700}</style></head><body>
+<h1>🏆 2026世界杯 · 32强淘汰赛分析</h1>
+<div class="sub">小组赛72场全结束 · 16场对阵 · 胜平负+总进球+比分 · 纯数据工具</div>
+
+<div class="section"><div class="sec-title">⚽ 16场对阵预测 <span class="badge">胜平负·总进球·比分</span></div>
+<div class="sec-body"><div class="two-col"><div class="match-card"><div class="mh"><span class="mnum">#73</span><span class="mlabel">A2 vs B2</span><span class="tier t2">接近</span></div>
+<div class="teams">🇿🇦 南非<span class="vs">vs</span>🇨🇦 加拿大</div>
+<div class="bar-row"><span class="lbl">南非</span><div class="track"><div class="fill" style="width:36%;background:#4caf50"></div></div><span class="pct">36%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">36%</span></div>
+<div class="bar-row"><span class="lbl">加拿大</span><div class="track"><div class="fill" style="width:28%;background:#f44336"></div></div><span class="pct">28%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.6% | <b>Elo差</b> -90<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 1:2 / 1:1 / 0:1 (赔率7.0) · 中距</div></div><div class="match-card"><div class="mh"><span class="mnum">#74</span><span class="mlabel">E1 vs 3rd</span><span class="tier t0">碾压</span></div>
+<div class="teams">🇩🇪 德国<span class="vs">vs</span>🇨🇩 刚果民主共和国</div>
+<div class="bar-row"><span class="lbl">德国</span><div class="track"><div class="fill" style="width:47%;background:#4caf50"></div></div><span class="pct">47%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">34%</span></div>
+<div class="bar-row"><span class="lbl">刚果民主共和国</span><div class="track"><div class="fill" style="width:19%;background:#f44336"></div></div><span class="pct">19%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 11.9% | <b>Elo差</b> +210<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 2:0 / 2:1 / 3:1 (赔率7.5) · 强弱</div></div><div class="match-card"><div class="mh"><span class="mnum">#75</span><span class="mlabel">F1 vs C2</span><span class="tier t2">接近</span></div>
+<div class="teams">🇳🇱 荷兰<span class="vs">vs</span>🇲🇦 摩洛哥</div>
+<div class="bar-row"><span class="lbl">荷兰</span><div class="track"><div class="fill" style="width:40%;background:#4caf50"></div></div><span class="pct">40%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">35%</span></div>
+<div class="bar-row"><span class="lbl">摩洛哥</span><div class="track"><div class="fill" style="width:24%;background:#f44336"></div></div><span class="pct">24%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.4% | <b>Elo差</b> +30<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 1:1 / 0:0 / 1:0 (赔率6.0) · 均势</div></div><div class="match-card"><div class="mh"><span class="mnum">#76</span><span class="mlabel">C1 vs F2</span><span class="tier t2">接近</span></div>
+<div class="teams">🇧🇷 巴西<span class="vs">vs</span>🇯🇵 日本</div>
+<div class="bar-row"><span class="lbl">巴西</span><div class="track"><div class="fill" style="width:41%;background:#4caf50"></div></div><span class="pct">41%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">35%</span></div>
+<div class="bar-row"><span class="lbl">日本</span><div class="track"><div class="fill" style="width:24%;background:#f44336"></div></div><span class="pct">24%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.4% | <b>Elo差</b> +50<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 2:1 / 1:1 / 1:0 (赔率7.0) · 中距</div></div><div class="match-card"><div class="mh"><span class="mnum">#77</span><span class="mlabel">I1 vs 3rd</span><span class="tier t1">优势</span></div>
+<div class="teams">🇫🇷 法国<span class="vs">vs</span>🇸🇪 瑞典</div>
+<div class="bar-row"><span class="lbl">法国</span><div class="track"><div class="fill" style="width:44%;background:#4caf50"></div></div><span class="pct">44%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">35%</span></div>
+<div class="bar-row"><span class="lbl">瑞典</span><div class="track"><div class="fill" style="width:21%;background:#f44336"></div></div><span class="pct">21%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.1% | <b>Elo差</b> +140<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 2:1 / 1:1 / 1:0 (赔率7.0) · 中距</div></div><div class="match-card"><div class="mh"><span class="mnum">#78</span><span class="mlabel">E2 vs I2</span><span class="tier t2">接近</span></div>
+<div class="teams">🇨🇮 科特迪瓦<span class="vs">vs</span>🇳🇴 挪威</div>
+<div class="bar-row"><span class="lbl">科特迪瓦</span><div class="track"><div class="fill" style="width:37%;background:#4caf50"></div></div><span class="pct">37%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">36%</span></div>
+<div class="bar-row"><span class="lbl">挪威</span><div class="track"><div class="fill" style="width:27%;background:#f44336"></div></div><span class="pct">27%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.6% | <b>Elo差</b> -80<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 1:2 / 1:1 / 0:1 (赔率7.0) · 中距</div></div><div class="match-card"><div class="mh"><span class="mnum">#79</span><span class="mlabel">A1 vs 3rd</span><span class="tier t2">接近</span></div>
+<div class="teams">🇲🇽 墨西哥<span class="vs">vs</span>🇧🇦 波黑</div>
+<div class="bar-row"><span class="lbl">墨西哥</span><div class="track"><div class="fill" style="width:42%;background:#4caf50"></div></div><span class="pct">42%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">35%</span></div>
+<div class="bar-row"><span class="lbl">波黑</span><div class="track"><div class="fill" style="width:23%;background:#f44336"></div></div><span class="pct">23%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.3% | <b>Elo差</b> +80<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 2:1 / 1:1 / 1:0 (赔率7.0) · 中距</div></div><div class="match-card"><div class="mh"><span class="mnum">#80</span><span class="mlabel">L1 vs 3rd</span><span class="tier t0">碾压</span></div>
+<div class="teams">🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰<span class="vs">vs</span>🇩🇿 阿尔及利亚</div>
+<div class="bar-row"><span class="lbl">英格兰</span><div class="track"><div class="fill" style="width:48%;background:#4caf50"></div></div><span class="pct">48%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">34%</span></div>
+<div class="bar-row"><span class="lbl">阿尔及利亚</span><div class="track"><div class="fill" style="width:19%;background:#f44336"></div></div><span class="pct">19%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 11.8% | <b>Elo差</b> +240<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 2:0 / 2:1 / 3:1 (赔率7.5) · 强弱</div></div><div class="match-card"><div class="mh"><span class="mnum">#81</span><span class="mlabel">D1 vs 3rd</span><span class="tier t3">均势</span></div>
+<div class="teams">🇺🇸 美国<span class="vs">vs</span>🇸🇳 塞内加尔</div>
+<div class="bar-row"><span class="lbl">美国</span><div class="track"><div class="fill" style="width:40%;background:#4caf50"></div></div><span class="pct">40%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">36%</span></div>
+<div class="bar-row"><span class="lbl">塞内加尔</span><div class="track"><div class="fill" style="width:24%;background:#f44336"></div></div><span class="pct">24%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.4% | <b>Elo差</b> +20<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 1:1 / 0:0 / 1:0 (赔率6.0) · 均势</div></div><div class="match-card"><div class="mh"><span class="mnum">#82</span><span class="mlabel">G1 vs 3rd</span><span class="tier t3">均势</span></div>
+<div class="teams">🇪🇬 埃及<span class="vs">vs</span>🇪🇨 厄瓜多尔</div>
+<div class="bar-row"><span class="lbl">埃及</span><div class="track"><div class="fill" style="width:39%;background:#4caf50"></div></div><span class="pct">39%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">36%</span></div>
+<div class="bar-row"><span class="lbl">厄瓜多尔</span><div class="track"><div class="fill" style="width:26%;background:#f44336"></div></div><span class="pct">26%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.5% | <b>Elo差</b> -20<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 1:1 / 0:0 / 1:0 (赔率6.0) · 均势</div></div><div class="match-card"><div class="mh"><span class="mnum">#83</span><span class="mlabel">K2 vs L2</span><span class="tier t2">接近</span></div>
+<div class="teams">🇵🇹 葡萄牙<span class="vs">vs</span>🇭🇷 克罗地亚</div>
+<div class="bar-row"><span class="lbl">葡萄牙</span><div class="track"><div class="fill" style="width:41%;background:#4caf50"></div></div><span class="pct">41%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">35%</span></div>
+<div class="bar-row"><span class="lbl">克罗地亚</span><div class="track"><div class="fill" style="width:23%;background:#f44336"></div></div><span class="pct">23%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.3% | <b>Elo差</b> +60<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 2:1 / 1:1 / 1:0 (赔率7.0) · 中距</div></div><div class="match-card"><div class="mh"><span class="mnum">#84</span><span class="mlabel">H1 vs J2</span><span class="tier t1">优势</span></div>
+<div class="teams">🇪🇸 西班牙<span class="vs">vs</span>🇦🇹 奥地利</div>
+<div class="bar-row"><span class="lbl">西班牙</span><div class="track"><div class="fill" style="width:44%;background:#4caf50"></div></div><span class="pct">44%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">35%</span></div>
+<div class="bar-row"><span class="lbl">奥地利</span><div class="track"><div class="fill" style="width:22%;background:#f44336"></div></div><span class="pct">22%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.2% | <b>Elo差</b> +130<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 2:1 / 1:1 / 1:0 (赔率7.0) · 中距</div></div><div class="match-card"><div class="mh"><span class="mnum">#85</span><span class="mlabel">B1 vs 3rd</span><span class="tier t1">优势</span></div>
+<div class="teams">🇨🇭 瑞士<span class="vs">vs</span>🇬🇭 加纳</div>
+<div class="bar-row"><span class="lbl">瑞士</span><div class="track"><div class="fill" style="width:44%;background:#4caf50"></div></div><span class="pct">44%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">35%</span></div>
+<div class="bar-row"><span class="lbl">加纳</span><div class="track"><div class="fill" style="width:21%;background:#f44336"></div></div><span class="pct">21%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.1% | <b>Elo差</b> +150<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 2:0 / 2:1 / 3:1 (赔率7.5) · 强弱</div></div><div class="match-card"><div class="mh"><span class="mnum">#86</span><span class="mlabel">J1 vs H2</span><span class="tier t1">优势</span></div>
+<div class="teams">🇦🇷 阿根廷<span class="vs">vs</span>🇺🇾 乌拉圭</div>
+<div class="bar-row"><span class="lbl">阿根廷</span><div class="track"><div class="fill" style="width:44%;background:#4caf50"></div></div><span class="pct">44%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">35%</span></div>
+<div class="bar-row"><span class="lbl">乌拉圭</span><div class="track"><div class="fill" style="width:22%;background:#f44336"></div></div><span class="pct">22%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.2% | <b>Elo差</b> +130<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 2:1 / 1:1 / 1:0 (赔率7.0) · 中距</div></div><div class="match-card"><div class="mh"><span class="mnum">#87</span><span class="mlabel">K1 vs 3rd</span><span class="tier t2">接近</span></div>
+<div class="teams">🇨🇴 哥伦比亚<span class="vs">vs</span>🇰🇷 韩国</div>
+<div class="bar-row"><span class="lbl">哥伦比亚</span><div class="track"><div class="fill" style="width:41%;background:#4caf50"></div></div><span class="pct">41%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">35%</span></div>
+<div class="bar-row"><span class="lbl">韩国</span><div class="track"><div class="fill" style="width:23%;background:#f44336"></div></div><span class="pct">23%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.3% | <b>Elo差</b> +60<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 2:1 / 1:1 / 1:0 (赔率7.0) · 中距</div></div><div class="match-card"><div class="mh"><span class="mnum">#88</span><span class="mlabel">D2 vs G2</span><span class="tier t1">优势</span></div>
+<div class="teams">🇦🇺 澳大利亚<span class="vs">vs</span>🇧🇪 比利时</div>
+<div class="bar-row"><span class="lbl">澳大利亚</span><div class="track"><div class="fill" style="width:35%;background:#4caf50"></div></div><span class="pct">35%</span></div>
+<div class="bar-row"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:30%;background:#ffc107"></div></div><span class="pct">36%</span></div>
+<div class="bar-row"><span class="lbl">比利时</span><div class="track"><div class="fill" style="width:29%;background:#f44336"></div></div><span class="pct">29%</span></div>
+<div class="info"><b>预期进球</b> 2.5球 | <b>加时概率</b> 12.6% | <b>Elo差</b> -120<br><b>总进球分布</b> 2球:25.7% | 3球:21.4% | 1球:20.5% | 4球:13.4% | 0球:8.2%<br><b>比分推荐</b> 1:2 / 1:1 / 0:1 (赔率7.0) · 中距</div></div></div></div></div>
+
+<div class="section"><div class="sec-title" style="background:#555">🎯 比分推演 <span class="badge">每场最可能3比分</span></div>
+<div class="sec-body"><div class="score-grid"><div class="sc-card"><div class="sct md">中距</div><div class="scm">南非 vs 加拿大</div><div class="scs">1:2 / 1:1 / 0:1</div><div class="sco">7.0</div></div><div class="sc-card"><div class="sct hi">强弱</div><div class="scm">德国 vs 刚果民</div><div class="scs">2:0 / 2:1 / 3:1</div><div class="sco">7.5</div></div><div class="sc-card"><div class="sct lo">均势</div><div class="scm">荷兰 vs 摩洛哥</div><div class="scs">1:1 / 0:0 / 1:0</div><div class="sco">6.0</div></div><div class="sc-card"><div class="sct md">中距</div><div class="scm">巴西 vs 日本</div><div class="scs">2:1 / 1:1 / 1:0</div><div class="sco">7.0</div></div><div class="sc-card"><div class="sct md">中距</div><div class="scm">法国 vs 瑞典</div><div class="scs">2:1 / 1:1 / 1:0</div><div class="sco">7.0</div></div><div class="sc-card"><div class="sct md">中距</div><div class="scm">科特迪 vs 挪威</div><div class="scs">1:2 / 1:1 / 0:1</div><div class="sco">7.0</div></div><div class="sc-card"><div class="sct md">中距</div><div class="scm">墨西哥 vs 波黑</div><div class="scs">2:1 / 1:1 / 1:0</div><div class="sco">7.0</div></div><div class="sc-card"><div class="sct hi">强弱</div><div class="scm">英格兰 vs 阿尔及</div><div class="scs">2:0 / 2:1 / 3:1</div><div class="sco">7.5</div></div></div></div></div>
+
+<div class="section"><div class="sec-title">🔗 淘汰赛串关推荐 <span class="badge">11组</span></div>
+<div class="sec-body"><div class="combo-item"><div class="combo-head"><span class="clvl h">稳健</span><span class="cname">2串1·#80×#74</span></div><div class="cleg"><span class="lm">英格兰 vs 阿尔及利亚</span><span class="lp">「胜」英格兰</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">德国 vs 刚果民主共和国</span><span class="lp">「胜」德国</span><span class="lo">1.5</span></div><div class="cnote">淘汰赛深盘场次组合</div><div class="cstats"><span>赔率 <b>2.1</b></span><span>匹配度 <b>42-55%</b></span></div></div><div class="combo-item"><div class="combo-head"><span class="clvl h">稳健</span><span class="cname">2串1·#74×#85</span></div><div class="cleg"><span class="lm">德国 vs 刚果民主共和国</span><span class="lp">「胜」德国</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">瑞士 vs 加纳</span><span class="lp">「胜」瑞士</span><span class="lo">1.5</span></div><div class="cnote">淘汰赛深盘场次组合</div><div class="cstats"><span>赔率 <b>2.1</b></span><span>匹配度 <b>42-55%</b></span></div></div><div class="combo-item"><div class="combo-head"><span class="clvl h">稳健</span><span class="cname">2串1·#85×#77</span></div><div class="cleg"><span class="lm">瑞士 vs 加纳</span><span class="lp">「胜」瑞士</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">法国 vs 瑞典</span><span class="lp">「胜」法国</span><span class="lo">1.5</span></div><div class="cnote">淘汰赛深盘场次组合</div><div class="cstats"><span>赔率 <b>2.1</b></span><span>匹配度 <b>42-55%</b></span></div></div><div class="combo-item"><div class="combo-head"><span class="clvl h">稳健</span><span class="cname">2串1·#77×#84</span></div><div class="cleg"><span class="lm">法国 vs 瑞典</span><span class="lp">「胜」法国</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">西班牙 vs 奥地利</span><span class="lp">「胜」西班牙</span><span class="lo">1.5</span></div><div class="cnote">淘汰赛深盘场次组合</div><div class="cstats"><span>赔率 <b>2.1</b></span><span>匹配度 <b>42-55%</b></span></div></div><div class="combo-item"><div class="combo-head"><span class="clvl h">稳健</span><span class="cname">3串1·淘汰赛锚定</span></div><div class="cleg"><span class="lm">英格兰 vs 阿尔及利亚</span><span class="lp">「胜」方向</span><span class="lo">1.35</span></div><div class="cleg"><span class="lm">德国 vs 刚果民主共和国</span><span class="lp">「胜」方向</span><span class="lo">1.35</span></div><div class="cleg"><span class="lm">瑞士 vs 加纳</span><span class="lp">「胜」方向</span><span class="lo">1.35</span></div><div class="cnote">三场淘汰赛深盘组合</div><div class="cstats"><span>赔率 <b>2.46</b></span><span>匹配度 <b>25-38%</b></span></div></div><div class="combo-item"><div class="combo-head"><span class="clvl h">稳健</span><span class="cname">3串2容错·方案1</span></div><div class="cleg"><span class="lm">德国 vs 刚果民主共和国</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">阿根廷 vs 乌拉圭</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">英格兰 vs 阿尔及利亚</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cnote">3场拆3注2串1 容错1场</div><div class="cstats"><span>赔率 <b>1.96</b></span><span>匹配度 <b>40-52%(中2场)</b></span></div></div><div class="combo-item"><div class="combo-head"><span class="clvl h">稳健</span><span class="cname">3串2容错·方案2</span></div><div class="cleg"><span class="lm">英格兰 vs 阿尔及利亚</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">瑞士 vs 加纳</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">西班牙 vs 奥地利</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cnote">3场拆3注2串1 容错1场</div><div class="cstats"><span>赔率 <b>1.96</b></span><span>匹配度 <b>40-52%(中2场)</b></span></div></div><div class="combo-item"><div class="combo-head"><span class="clvl m">探索</span><span class="cname">4串2容错·方案1</span></div><div class="cleg"><span class="lm">澳大利亚 vs 比利时</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">英格兰 vs 阿尔及利亚</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">德国 vs 刚果民主共和国</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">阿根廷 vs 乌拉圭</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cnote">4场拆6注2串1 容错2场</div><div class="cstats"><span>赔率 <b>1.96</b></span><span>匹配度 <b>35-48%(中2场)</b></span></div></div><div class="combo-item"><div class="combo-head"><span class="clvl m">探索</span><span class="cname">4串2容错·方案2</span></div><div class="cleg"><span class="lm">澳大利亚 vs 比利时</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">阿根廷 vs 乌拉圭</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">德国 vs 刚果民主共和国</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cleg"><span class="lm">法国 vs 瑞典</span><span class="lp">「胜」方向</span><span class="lo">1.4</span></div><div class="cnote">4场拆6注2串1 容错2场</div><div class="cstats"><span>赔率 <b>1.96</b></span><span>匹配度 <b>35-48%(中2场)</b></span></div></div><div class="combo-item"><div class="combo-head"><span class="clvl x">推演</span><span class="cname">比分3串2·方案1</span></div><div class="cleg"><span class="lm">德国 vs 刚果民主共和国</span><span class="lp">比分 2:0 / 2:1 / 3:1</span><span class="lo">7.5</span></div><div class="cleg"><span class="lm">瑞士 vs 加纳</span><span class="lp">比分 2:0 / 2:1 / 3:1</span><span class="lo">7.5</span></div><div class="cleg"><span class="lm">阿根廷 vs 乌拉圭</span><span class="lp">比分 2:1 / 1:1 / 1:0</span><span class="lo">7.0</span></div><div class="cnote">淘汰赛比分博冷 3场双选</div><div class="cstats"><span>赔率 <b>393.8</b></span><span>匹配度 <b>极低(<5%)</b></span></div></div><div class="combo-item"><div class="combo-head"><span class="clvl x">推演</span><span class="cname">比分3串2·方案2</span></div><div class="cleg"><span class="lm">瑞士 vs 加纳</span><span class="lp">比分 2:0 / 2:1 / 3:1</span><span class="lo">7.5</span></div><div class="cleg"><span class="lm">西班牙 vs 奥地利</span><span class="lp">比分 2:1 / 1:1 / 1:0</span><span class="lo">7.0</span></div><div class="cleg"><span class="lm">英格兰 vs 阿尔及利亚</span><span class="lp">比分 2:0 / 2:1 / 3:1</span><span class="lo">7.5</span></div><div class="cnote">淘汰赛比分博冷 3场双选</div><div class="cstats"><span>赔率 <b>393.8</b></span><span>匹配度 <b>极低(<5%)</b></span></div></div></div></div>
+
 <div class="disclaimer">
-⚠️ 本页面为纯数据分析工具，仅供赛事逻辑研究。<br>
-🚫 不提供购彩渠道链接，不参与任何资金往来。
+⚠️ 本页面为<b>纯数据分析工具</b>，所有内容仅供赛事逻辑研究。<br>
+<span class="dw">🚫 不提供购彩渠道链接，不参与任何资金往来。</span><br>
+淘汰赛含加时/点球，以上分析仅限90分钟常规时间。
 </div>
-<script>
-const ELO = {"阿根廷":1950,"法国":1930,"巴西":1920,"英格兰":1900,"西班牙":1890,"葡萄牙":1870,"德国":1860,"荷兰":1820,"乌拉圭":1820,"克罗地亚":1810,"哥伦比亚":1800,"摩洛哥":1790,"美国":1780,"墨西哥":1770,"塞内加尔":1760,"日本":1870,"韩国":1740,"埃及":1720,"比利时":1830,"瑞典":1790,"挪威":1780,"瑞士":1830,"奥地利":1760,"科特迪瓦":1700,"南非":1640,"加拿大":1730,"波黑":1690,"阿尔及利亚":1660,"厄瓜多尔":1740,"加纳":1680,"澳大利亚":1710,"刚果民主共和国":1650};
-const FLAGS={"阿根廷":"🇦🇷","法国":"🇫🇷","巴西":"🇧🇷","英格兰":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","西班牙":"🇪🇸","葡萄牙":"🇵🇹","德国":"🇩🇪","荷兰":"🇳🇱","乌拉圭":"🇺🇾","克罗地亚":"🇭🇷","哥伦比亚":"🇨🇴","摩洛哥":"🇲🇦","美国":"🇺🇸","墨西哥":"🇲🇽","塞内加尔":"🇸🇳","日本":"🇯🇵","韩国":"🇰🇷","埃及":"🇪🇬","比利时":"🇧🇪","瑞典":"🇸🇪","挪威":"🇳🇴","瑞士":"🇨🇭","奥地利":"🇦🇹","科特迪瓦":"🇨🇮","南非":"🇿🇦","加拿大":"🇨🇦","波黑":"🇧🇦","阿尔及利亚":"🇩🇿","厄瓜多尔":"🇪🇨","加纳":"🇬🇭","澳大利亚":"🇦🇺","刚果民主共和国":"🇨🇩"};
-
-function winProb(e1,e2){return 1/(1+Math.pow(10,-(e1-e2)/400))}
-
-const bracket=[
-[73,"南非","加拿大","A2 vs B2"],[74,"德国","刚果民主共和国","E1 vs 3rd"],[75,"荷兰","摩洛哥","F1 vs C2"],
-[76,"巴西","日本","C1 vs F2"],[77,"法国","瑞典","I1 vs 3rd"],[78,"科特迪瓦","挪威","E2 vs I2"],
-[79,"墨西哥","波黑","A1 vs 3rd"],[80,"英格兰","阿尔及利亚","L1 vs 3rd"],[81,"美国","塞内加尔","D1 vs 3rd"],
-[82,"埃及","厄瓜多尔","G1 vs 3rd"],[83,"葡萄牙","克罗地亚","K2 vs L2"],[84,"西班牙","奥地利","H1 vs J2"],
-[85,"瑞士","加纳","B1 vs 3rd"],[86,"阿根廷","乌拉圭","J1 vs H2"],[87,"哥伦比亚","韩国","K1 vs 3rd"],
-[88,"澳大利亚","比利时","D2 vs G2"]
-];
-
-let html='';
-bracket.forEach(([num,t1,t2,label])=>{
-    let e1=ELO[t1]||1600,e2=ELO[t2]||1600,diff=e1-e2;
-    let wp=winProb(e1,e2)*100, dp=25;
-    let tier='t3', tierText='均势';
-    if(Math.abs(diff)>=200){tier='t0';tierText='碾压'}
-    else if(Math.abs(diff)>=100){tier='t1';tierText='优势'}
-    else if(Math.abs(diff)>=30){tier='t2';tierText='接近'}
-    let f1=FLAGS[t1]||'', f2=FLAGS[t2]||'';
-    html+=`<div class="match"><div class="mh"><span class="mnum">#${num}</span><span class="mlabel">${label}</span><span class="tier ${tier}">${tierText}</span></div>
-<div class="teams"><span>${f1} ${t1}</span><span class="vs">vs</span><span>${f2} ${t2}</span></div>
-<div class="bar"><span class="lbl">${t1}</span><div class="track"><div class="fill" style="width:${wp.toFixed(0)}%;background:#4caf50"></div></div><span class="pct">${wp.toFixed(0)}%</span></div>
-<div class="bar"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:${dp}%;background:#ffc107"></div></div><span class="pct">${dp}%</span></div>
-<div class="bar"><span class="lbl">${t2}</span><div class="track"><div class="fill" style="width:${(100-wp-dp).toFixed(0)}%;background:#f44336"></div></div><span class="pct">${(100-wp-dp).toFixed(0)}%</span></div>
-<div class="pred">📊 Elo差${diff>0?'+'+diff:diff} · 90分钟内${wp>60?t1+'胜面大':(wp>45?'接近均势':t2+'略优')} · 淘汰赛加时/点球另计</div></div>`;
-});
-document.getElementById('matches').innerHTML=html;
-</script>
 </body></html>

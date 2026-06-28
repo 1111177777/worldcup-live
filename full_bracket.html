@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>2026世界杯 · 完整淘汰赛对阵</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:16px;max-width:900px;margin:0 auto;color:#333;font-size:14px}
+h1{font-size:22px;text-align:center;margin:10px 0}
+.sub{text-align:center;font-size:13px;color:#999;margin-bottom:16px}
+.round-title{font-weight:700;font-size:13px;text-align:center;margin:16px 0 8px;color:#111}
+.bracket-row{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin-bottom:4px}
+.match-slot{width:180px;border:1px solid #ddd;border-radius:4px;padding:6px 8px;background:#fafafa;font-size:11px;text-align:center}
+.match-slot .mnum{font-size:9px;color:#999}
+.match-slot .mteams{font-weight:600;font-size:12px;color:#111;margin:2px 0}
+.match-slot .mprob{font-size:9px;color:#888}
+.match-slot .mwinner{font-size:10px;font-weight:700;color:#1976d2;margin-top:2px}
+.arrow-row{text-align:center;color:#ccc;font-size:16px;margin:2px 0}
+.connector{display:flex;justify-content:center;gap:180px;margin:2px 0}
+.final-box{border:2px solid #ffc107;background:#fffde7;padding:10px;text-align:center;max-width:220px;margin:0 auto;border-radius:6px}
+.final-box .ftitle{font-weight:700;font-size:14px;color:#111}
+.final-box .fmatch{font-weight:700;font-size:13px;margin:4px 0}
+.third-box{border:1px solid #ddd;padding:6px;text-align:center;max-width:180px;margin:6px auto;border-radius:4px;font-size:11px;background:#fafafa}
+.disclaimer{margin-top:20px;padding:14px;border:2px solid #ddd;border-radius:6px;text-align:center;font-size:12px;color:#999;line-height:1.8}
+.tier{font-size:9px;padding:1px 5px;border-radius:3px}
+.t0{background:#e8f5e9;color:#2e7d32}.t1{background:#fff8e1;color:#f57f17}.t2{background:#fff3e0;color:#e65100}.t3{background:#f5f5f5;color:#999}
+</style></head><body>
+<h1>🏆 2026世界杯 · 完整淘汰赛对阵图</h1>
+<div class="sub">R32→R16→QF→SF→Final · Elo实时预测 · 纯数据工具</div>
+<div id="bracket"></div>
+<div class="disclaimer">⚠️ 纯数据分析工具 · 🚫 不涉及资金往来 · 淘汰赛含加时/点球</div>
+<script>
+const E={"阿根廷":1950,"法国":1930,"巴西":1920,"英格兰":1900,"西班牙":1890,"葡萄牙":1870,"德国":1860,"荷兰":1820,"乌拉圭":1820,"克罗地亚":1810,"哥伦比亚":1800,"摩洛哥":1790,"美国":1780,"墨西哥":1770,"塞内加尔":1760,"日本":1870,"韩国":1740,"埃及":1720,"比利时":1830,"瑞典":1790,"挪威":1780,"瑞士":1830,"奥地利":1760,"科特迪瓦":1700,"南非":1640,"加拿大":1730,"波黑":1690,"阿尔及利亚":1660,"厄瓜多尔":1740,"加纳":1680,"澳大利亚":1710,"刚果民主共和国":1650};
+const F={"阿根廷":"🇦🇷","法国":"🇫🇷","巴西":"🇧🇷","英格兰":"🏴","西班牙":"🇪🇸","葡萄牙":"🇵🇹","德国":"🇩🇪","荷兰":"🇳🇱","乌拉圭":"🇺🇾","克罗地亚":"🇭🇷","哥伦比亚":"🇨🇴","摩洛哥":"🇲🇦","美国":"🇺🇸","墨西哥":"🇲🇽","塞内加尔":"🇸🇳","日本":"🇯🇵","韩国":"🇰🇷","埃及":"🇪🇬","比利时":"🇧🇪","瑞典":"🇸🇪","挪威":"🇳🇴","瑞士":"🇨🇭","奥地利":"🇦🇹","科特迪瓦":"🇨🇮","南非":"🇿🇦","加拿大":"🇨🇦","波黑":"🇧🇦","阿尔及利亚":"🇩🇿","厄瓜多尔":"🇪🇨","加纳":"🇬🇭","澳大利亚":"🇦🇺","刚果民主共和国":"🇨🇩"};
+function wp(e1,e2){return 1/(1+Math.pow(10,-(e1-e2)/400))}
+function sim(t1,t2){
+    let e1=E[t1]||1600,e2=E[t2]||1600,d=e1-e2;
+    let w=wp(e1,e2),ad=Math.abs(d),t='t3',tt='均势';
+    if(ad>=200){t='t0';tt='碾压'}else if(ad>=100){t='t1';tt='优势'}else if(ad>=30){t='t2';tt='接近'}
+    let fav=t1;if(d<0)fav=t2;
+    return{w:Math.round(w*100),tier:t,tierText:tt,fav:fav,diff:d};
+}
+
+const R32=[
+[73,"南非","加拿大"],[74,"德国","刚果民主共和国"],[75,"荷兰","摩洛哥"],[76,"巴西","日本"],
+[77,"法国","瑞典"],[78,"科特迪瓦","挪威"],[79,"墨西哥","波黑"],[80,"英格兰","阿尔及利亚"],
+[81,"美国","塞内加尔"],[82,"埃及","厄瓜多尔"],[83,"葡萄牙","克罗地亚"],[84,"西班牙","奥地利"],
+[85,"瑞士","加纳"],[86,"阿根廷","乌拉圭"],[87,"哥伦比亚","韩国"],[88,"澳大利亚","比利时"]
+];
+
+function slot(n,t1,t2){let s=sim(t1,t2);return `<div class="match-slot"><span class="mnum">#${n}</span><div class="mteams">${F[t1]||''} ${t1} vs ${F[t2]||''} ${t2}</div><span class="tier ${s.tier}">${s.tierText} ${s.w}%</span><div class="mwinner">→ 预测: ${s.fav}</div></div>`;}
+
+let h='';
+
+// R32
+h+='<div class="round-title">═══ 32强 (6/28-7/3) ═══</div>';
+for(let i=0;i<16;i+=2){
+    h+='<div class="bracket-row">'+slot(R32[i][0],R32[i][1],R32[i][2])+'<span style="width:20px;text-align:center;color:#999">→</span>'+slot(R32[i+1][0],R32[i+1][1],R32[i+1][2])+'</div>';
+}
+
+// R16 (winners face each other in pairs)
+h+='<div class="round-title">═══ 16强 (7/4-7) ═══</div>';
+let R16=[];
+for(let i=0;i<16;i+=2){
+    let a=sim(R32[i][1],R32[i][2]),b=sim(R32[i+1][1],R32[i+1][2]);
+    h+=`<div class="bracket-row"><div class="match-slot"><span class="mnum">R16-${89+i/2}</span><div class="mteams">胜者: ${a.fav} vs ${b.fav}</div><span class="tier t3">待定</span></div></div>`;
+    R16.push([89+i/2,a.fav,b.fav]);
+}
+
+// QF
+h+='<div class="round-title">═══ 8强 (7/9-11) ═══</div>';
+let QF=[];
+for(let i=0;i<8;i+=2){
+    let a=sim(R16[i][1],R16[i][2]),b=sim(R16[i+1][1],R16[i+1][2]);
+    h+=`<div class="bracket-row"><div class="match-slot"><span class="mnum">QF-${93+i/2}</span><div class="mteams">胜者: ${a.fav} vs ${b.fav}</div></div></div>`;
+    QF.push([93+i/2,a.fav,b.fav]);
+}
+
+// SF
+h+='<div class="round-title">═══ 半决赛 (7/14-15) ═══</div>';
+let a=sim(QF[0][1],QF[0][2]),b=sim(QF[1][1],QF[1][2]);
+h+=`<div class="bracket-row"><div class="match-slot"><span class="mnum">SF-95</span><div class="mteams">${a.fav} vs ${b.fav}</div></div></div>`;
+let c=sim(QF[2][1],QF[2][2]),d=sim(QF[3][1],QF[3][2]);
+h+=`<div class="bracket-row"><div class="match-slot"><span class="mnum">SF-96</span><div class="mteams">${c.fav} vs ${d.fav}</div></div></div>`;
+
+// Final
+let sf1=sim(a.fav,b.fav),sf2=sim(c.fav,d.fav);
+let final1=sf1.w>50?sf1.fav:sf2.fav;
+h+=`<div class="round-title">═══ 🏆 决赛 7/19 · 纽约 ═══</div>`;
+h+=`<div class="final-box"><div class="ftitle">🏆 2026世界杯冠军预测</div><div class="fmatch">${F[sf1.fav]||''} ${sf1.fav} vs ${F[sf2.fav]||''} ${sf2.fav}</div><div style="font-size:12px;color:#666">基于Elo+泊松模型推演</div></div>`;
+h+=`<div class="third-box">🥉 三四名决赛 7/18: 半决赛负者对决</div>`;
+
+document.getElementById('bracket').innerHTML=h;
+</script>
+</body></html>

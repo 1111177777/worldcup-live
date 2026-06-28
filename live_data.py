@@ -1099,6 +1099,22 @@ function filter(){{var q=document.getElementById('search').value.toLowerCase();v
     html = html.replace('__GIST_ID__', GIST_ID)
     html = html.replace("'__GH_TOKEN__'", f"'{t1}'+'{t2}'")
 
+    # 小组赛全部结束 → 注入32强淘汰赛预览
+    ft_count = sum(1 for m in matches if m.get('status') == 'FT')
+    if ft_count >= 72:
+        W = {'A':'墨西哥','B':'瑞士','C':'巴西','D':'美国','E':'德国','F':'荷兰','G':'埃及','H':'西班牙','I':'法国','J':'阿根廷','K':'哥伦比亚','L':'英格兰'}
+        R = {'A':'南非','B':'加拿大','C':'摩洛哥','D':'澳大利亚','E':'科特迪瓦','F':'日本','G':'比利时','H':'乌拉圭','I':'挪威','J':'奥地利','K':'葡萄牙','L':'克罗地亚'}
+        T = ['刚果民主共和国','瑞典','波黑','阿尔及利亚','塞内加尔','厄瓜多尔','加纳','韩国']
+        bracket = [(73,R['A'],R['B']),(74,W['E'],T[0]),(75,W['F'],R['C']),(76,W['C'],R['F']),(77,W['I'],T[1]),(78,R['E'],R['I']),(79,W['A'],T[2]),(80,W['L'],T[3]),(81,W['D'],T[4]),(82,W['G'],T[5]),(83,R['K'],R['L']),(84,W['H'],R['J']),(85,W['B'],T[6]),(86,W['J'],R['H']),(87,W['K'],T[7]),(88,R['D'],R['G'])]
+        ko = '<div style="background:#fafafa;padding:10px;margin-bottom:12px;border:1px solid #ccc;border-radius:4px"><div style="font-weight:700;font-size:14px;margin-bottom:8px">🏆 32强淘汰赛对阵</div>'
+        for num,t1,t2 in bracket:
+            e1=ELO.get(t1,1600);e2=ELO.get(t2,1600);d=e1-e2;wp=int(1/(1+10**(-d/400))*100)
+            tier='🟢' if abs(d)>=200 else ('🟡' if abs(d)>=100 else ('🟠' if abs(d)>=30 else '⚪'))
+            f1=FLAGS.get(t1,''); f2=FLAGS.get(t2,'')
+            ko+=f'<div style="display:flex;align-items:center;gap:6px;padding:3px 0;font-size:12px;border-bottom:1px solid #eee"><span style="font-size:9px;color:#999">#{num}</span><span style="font-weight:600">{f1} {t1}</span><span style="color:#999">vs</span><span style="font-weight:600">{f2} {t2}</span><span style="font-size:10px;color:#999">{tier} {wp}%</span></div>'
+        ko+='</div>'
+        html = html.replace('<div id="main"', ko+'<div id="main"')
+
     with open(OUTPUT,'w',encoding='utf-8') as f:f.write(html)
     print(f"✅ {len(matches)}场比赛已生成")
     print(f"   手机: http://172.20.10.2:8899/live.html")

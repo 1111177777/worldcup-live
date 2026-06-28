@@ -1,178 +1,86 @@
 <!DOCTYPE html><html lang="zh-CN"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-<title>2026世界杯 · 完整分析</title><style>
+<title>2026世界杯 · 淘汰赛完整分析</title><style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:16px;max-width:700px;margin:0 auto;color:#333;font-size:15px}
-h1{font-size:22px;text-align:center;margin:10px 0}
-.sub{text-align:center;font-size:13px;color:#999;margin-bottom:16px}
-.nav{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap;position:sticky;top:0;background:#fff;padding:8px 0;z-index:10;border-bottom:1px solid #eee}
-.nav a{font-size:11px;padding:6px 10px;background:#f5f5f5;border-radius:4px;text-decoration:none;color:#333;font-weight:600;white-space:nowrap}
-.nav a:hover{background:#111;color:#fff}
-.sec{margin-bottom:18px;border:1px solid #ccc;border-radius:5px;overflow:hidden}
-.sec-t{background:#111;color:#fff;padding:9px 14px;font-size:14px;font-weight:600;display:flex;justify-content:space-between}
-.sec-t .badge{font-size:11px;color:#8f8}
-.sec-b{padding:12px}
-.match{border-bottom:1px solid #eee;padding:12px 0}
-.match:last-child{border-bottom:none}
-.mh{display:flex;align-items:center;gap:8px;margin-bottom:4px}
-.mnum{font-size:9px;background:#111;color:#fff;padding:2px 6px;border-radius:3px}
-.mdate{font-size:11px;color:#999}
-.teams{font-weight:700;font-size:15px;margin:4px 0}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#fff;padding:16px;max-width:500px;margin:0 auto;color:#333;font-size:15px}
+h1{font-size:20px;text-align:center;margin:8px 0}
+.sub{text-align:center;font-size:12px;color:#999;margin-bottom:14px}
+.match{border:1px solid #ddd;border-radius:6px;padding:14px;margin-bottom:12px;background:#fafafa}
+.match-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.mh-left{display:flex;align-items:center;gap:8px}
+.mnum{font-size:9px;background:#111;color:#fff;padding:2px 7px;border-radius:3px}
+.mround{font-size:11px;color:#999}
+.mvenue{font-size:10px;color:#666;margin:2px 0}
+.mvenue .malt{color:#e65100;font-weight:600}
+.teams{font-weight:700;font-size:16px;margin:4px 0;display:flex;align-items:center;gap:8px}
+.teams .vs{color:#bbb;font-size:12px}
+.team-row{display:flex;align-items:center;gap:8px;margin:4px 0;padding:4px 0}
+.team-row .tname{font-weight:600;font-size:14px;min-width:60px}
+.team-row .telo{font-size:10px;color:#999;min-width:36px}
+.team-row .tstyle{font-size:10px;color:#666;flex:1;line-height:1.3}
 .bar{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:12px}
 .bar .lbl{width:36px;text-align:right;color:#888;font-size:11px}
-.bar .track{flex:1;height:5px;background:#eee;border-radius:2px}
-.bar .fill{height:5px;border-radius:2px}
-.bar .pct{width:40px;text-align:right;font-weight:600;font-size:11px}
-.info{font-size:11px;color:#666;line-height:1.5;margin-top:4px}
-.info b{color:#111}
-.groups-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:3px}
-.group-card{border:1px solid #e0e0e0;font-size:10px;padding:5px;background:#fafafa}
-.gn{font-weight:700;font-size:10px;margin-bottom:2px}
-.gr{display:flex;justify-content:space-between;padding:1px 0;font-size:9px;line-height:1.4}
-.mc-tags{padding:6px;display:flex;flex-wrap:wrap;gap:4px}
-.mc-tag{font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600}
-.combo{border:1px solid #eee;padding:8px;margin:4px 0;background:#fafafa;border-radius:4px;font-size:11px}
-.combo .cl{font-weight:600;color:#111}
-.combo .clg{font-size:10px;color:#666;margin:2px 0}
-.sc-grid{display:flex;gap:4px;margin:6px 0}
-.sc-c{flex:1;text-align:center;padding:6px;border:1px solid #ddd;background:#fafafa;font-size:10px}
-.sc-c .sct{font-size:8px;padding:1px 5px;border-radius:3px;display:inline-block}
-.sct.hi{background:#e8f5e9;color:#2e7d32}.sct.md{background:#fff8e1;color:#f57f17}.sct.lo{background:#ffebee;color:#c62828}
-.sc-c .sctm{font-weight:600;color:#111;font-size:10px}.sc-c .scts{font-weight:700;font-size:13px;color:#111;margin:2px 0}
-.disclaimer{margin-top:20px;padding:16px;border:2px solid #ddd;border-radius:6px;text-align:center;font-size:13px;color:#999;line-height:1.8}
+.bar .track{flex:1;height:6px;background:#eee;border-radius:3px}
+.bar .fill{height:6px;border-radius:3px}
+.bar .pct{width:44px;text-align:right;font-weight:700;font-size:12px}
+.info-row{display:flex;gap:6px;margin:6px 0;flex-wrap:wrap;font-size:11px}
+.info-tag{padding:2px 7px;border-radius:3px;font-size:10px}
+.it-goals{background:#f3e5f5;color:#7b1fa2}
+.it-score{background:#ffebee;color:#c62828}
+.it-venue{background:#fff3e0;color:#e65100}
+.it-elo{background:#e3f2fd;color:#1565c0}
+.disclaimer{margin-top:20px;padding:16px;border:2px solid #ddd;border-radius:6px;text-align:center;font-size:12px;color:#999;line-height:1.8}
 .disclaimer .dw{color:#e65100;font-weight:700}
 </style></head><body>
-<h1>⚽ 2026世界杯 · 完整分析</h1>
-<div class="sub">小组赛+淘汰赛+球队风格 · 纯数据工具 · 🚫不涉及资金往来</div>
-<div class="nav">
-<a href="#groups">📊小组积分</a><a href="#qualify">🎲出线概率</a><a href="#r32">🏆32强</a><a href="#r32detail">📊32强分析</a>
-<a href="#scores">🎯比分</a><a href="#combos">🔗串关</a><a href="#r16final">🏆16强→决赛</a><a href="#teams">⚽球队分析</a><a href="#styles">📋风格档案</a>
-</div>
+<h1>🏆 2026世界杯 · 32强淘汰赛</h1>
+<div class="sub">比分预测 · 球队风格 · Elo分析 · 场地海拔 · 纯数据工具</div>
 <div id="content"></div>
-<div class="disclaimer">⚠️ 纯数据分析工具 · 不构成预测 · <span class="dw">🚫不涉及资金往来</span> · 淘汰赛含加时/点球，分析仅限90分钟</div>
+<div class="disclaimer">⚠️ 纯数据分析工具 · <span class="dw">🚫不涉及资金往来</span> · 淘汰赛含加时/点球</div>
 <script>
 const E={"阿根廷":1950,"法国":1930,"巴西":1920,"英格兰":1900,"西班牙":1890,"葡萄牙":1870,"德国":1860,"荷兰":1820,"乌拉圭":1820,"克罗地亚":1810,"哥伦比亚":1800,"摩洛哥":1790,"美国":1780,"墨西哥":1770,"塞内加尔":1760,"日本":1870,"韩国":1740,"埃及":1720,"比利时":1830,"瑞典":1790,"挪威":1780,"瑞士":1830,"奥地利":1760,"科特迪瓦":1700,"南非":1640,"加拿大":1730,"波黑":1690,"阿尔及利亚":1660,"厄瓜多尔":1740,"加纳":1680,"澳大利亚":1710,"刚果民主共和国":1650};
-const F={"阿根廷":"🇦🇷","法国":"🇫🇷","巴西":"🇧🇷","英格兰":"🏴","西班牙":"🇪🇸","葡萄牙":"🇵🇹","德国":"🇩🇪","荷兰":"🇳🇱","乌拉圭":"🇺🇾","克罗地亚":"🇭🇷","哥伦比亚":"🇨🇴","摩洛哥":"🇲🇦","美国":"🇺🇸","墨西哥":"🇲🇽","塞内加尔":"🇸🇳","日本":"🇯🇵","韩国":"🇰🇷","埃及":"🇪🇬","比利时":"🇧🇪","瑞典":"🇸🇪","挪威":"🇳🇴","瑞士":"🇨🇭","奥地利":"🇦🇹","科特迪瓦":"🇨🇮","南非":"🇿🇦","加拿大":"🇨🇦","波黑":"🇧🇦","阿尔及利亚":"🇩🇿","厄瓜多尔":"🇪🇨","加纳":"🇬🇭","澳大利亚":"🇦🇺","刚果民主共和国":"🇨🇩"};
+const F={"阿根廷":"🇦🇷","法国":"🇫🇷","巴西":"🇧🇷","英格兰":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","西班牙":"🇪🇸","葡萄牙":"🇵🇹","德国":"🇩🇪","荷兰":"🇳🇱","乌拉圭":"🇺🇾","克罗地亚":"🇭🇷","哥伦比亚":"🇨🇴","摩洛哥":"🇲🇦","美国":"🇺🇸","墨西哥":"🇲🇽","塞内加尔":"🇸🇳","日本":"🇯🇵","韩国":"🇰🇷","埃及":"🇪🇬","比利时":"🇧🇪","瑞典":"🇸🇪","挪威":"🇳🇴","瑞士":"🇨🇭","奥地利":"🇦🇹","科特迪瓦":"🇨🇮","南非":"🇿🇦","加拿大":"🇨🇦","波黑":"🇧🇦","阿尔及利亚":"🇩🇿","厄瓜多尔":"🇪🇨","加纳":"🇬🇭","澳大利亚":"🇦🇺","刚果民主共和国":"🇨🇩"};
+const S={"阿根廷":"4-4-2铁血防反·梅西驱动·中场绞杀","法国":"4-2-3-1高速反击·姆巴佩爆点·双后腰锁中路","巴西":"4-3-3桑巴传控·维尼修斯+罗德里戈双边爆破","英格兰":"4-2-3-1边路冲击·凯恩回撤·萨卡福登两翼","西班牙":"4-3-3Tiki-Taka控球65%+·罗德里调度·短传渗透","德国":"4-1-3-2纵向高压·维尔茨+穆夏拉双前腰","葡萄牙":"4-3-3巨星驱动·B费组织·莱奥爆破·C罗抢点","荷兰":"3-4-3全攻全守·双翼卫狂飙·德容控节奏","比利时":"4-2-3-1天才冲击·德布劳内长传·多库爆破","克罗地亚":"4-3-3中场磨盘·魔笛控节奏·擅长加时","哥伦比亚":"4-3-3边路冲击·迪亚斯突破·节奏飞快","摩洛哥":"4-3-3低位防反·阿什拉夫冲击·全员绞杀","美国":"4-3-3青春跑轰·普利西奇驱动·全压不停","墨西哥":"4-3-3技术流传控·边路突破·定位球丰富","瑞士":"4-3-3均衡务实·中后场流畅·射门转化率低","奥地利":"4-2-3-1红牛高位压迫·全场逼抢·跑动欧洲顶级","挪威":"4-3-3哈兰德支点·厄德高组织·边路传中","瑞典":"4-4-2北欧力量·身体对抗·定位球轰炸","日本":"4-2-3-1传控天花板·精细短传·逼抢轮转整齐","韩国":"4-2-3-1跑轰足球·极限体能·孙兴慜边路反击","埃及":"4-2-3-1萨拉赫单核·蹲坑防反·萨拉赫被锁=哑火","乌拉圭":"3-5-2铁血防守·三中卫死守·努涅斯支点","厄瓜多尔":"4-2-3-1高原跑动·全员压迫·边路二过一","塞内加尔":"4-3-3力量速度·边路爆破·身体碾压","加纳":"4-2-3-1硬朗足球·中场绞杀·威廉姆斯冲刺","科特迪瓦":"4-3-3个人驱动·边锋硬解·天赋出众","加拿大":"4-3-3青春风暴·戴维+布坎南飞驰·跑动惊人","南非":"4-2-3-1力量防反·中场硬度·反击威胁大","澳大利亚":"4-2-3-1澳式硬朗·高空传中·中场拼抢凶狠","波黑":"4-2-3-1低位收缩·克制控球队·进攻依赖单点","阿尔及利亚":"4-3-3北非技术流·马赫雷斯内切·配合细腻","刚果民主共和国":"4-4-2力量防反·全员退守·长传拼速度"};
+const VENUES={73:{city:"洛杉矶",venue:"SoFi体育场",alt:38,heat:"理想",note:"地中海气候·有顶棚·比赛条件最佳"},74:{city:"波士顿",venue:"吉列体育场",alt:88,heat:"温和",note:"东北部凉爽·无顶棚·6月底舒适"},75:{city:"蒙特雷",venue:"BBVA体育场",alt:515,heat:"🔥高温",note:"半干旱高温WBGT≥30°C·无顶棚"},76:{city:"休斯顿",venue:"NRG体育场",alt:13,heat:"🔥极端",note:"全美最湿热·WBGT≥35°C·有顶棚可控"},77:{city:"纽约",venue:"大都会人寿",alt:2,heat:"温和",note:"决赛场地·7月中旬温度适宜"},78:{city:"达拉斯",venue:"AT&T体育场",alt:185,heat:"🔥高温",note:"可关顶棚·室外高温影响赛前热身"},79:{city:"墨西哥城",venue:"阿兹台克",alt:2240,heat:"🏔️高原",note:"海拔2240m!进球+33%·远射威胁大增·小球禁用"},80:{city:"亚特兰大",venue:"梅赛德斯-奔驰",alt:320,heat:"🌡️高温",note:"有顶棚可控·但6月底室外湿热"},81:{city:"旧金山",venue:"Levi's球场",alt:5,heat:"理想",note:"加州夏季干燥凉爽·最佳比赛条件"},82:{city:"西雅图",venue:"流明体育场",alt:50,heat:"理想",note:"最凉爽场地之一·高跑动比赛首选"},83:{city:"多伦多",venue:"BMO体育场",alt:76,heat:"温和",note:"加拿大凉爽·草皮可能偏软"},84:{city:"洛杉矶",venue:"SoFi体育场",alt:38,heat:"理想",note:"地中海气候·有顶棚·比赛条件最佳"},85:{city:"温哥华",venue:"BC Place",alt:3,heat:"理想",note:"最凉爽·可关顶棚·接近欧洲条件"},86:{city:"迈阿密",venue:"硬石体育场",alt:2,heat:"🔥极端",note:"高温+高湿·WBGT≥34°C·无顶棚·进球预期-8%"},87:{city:"堪萨斯城",venue:"箭头体育场",alt:278,heat:"🌡️高温",note:"无顶棚·夏季高温·露天热应力明显"},88:{city:"达拉斯",venue:"AT&T体育场",alt:185,heat:"🔥高温",note:"可关顶棚·室外高温影响赛前热身"}};
 function wp(e1,e2){return 1/(1+Math.pow(10,-(e1-e2)/400))}
 function poisson(l,k){let p=1;for(let i=1;i<=k;i++)p*=l/i;return Math.exp(-l)*p}
-function pred(t1,t2){
-    let e1=E[t1]||1600,e2=E[t2]||1600,adv=20;
-    let xh=Math.max(0.5,1.4+(e1-e2+adv)/400*0.3),xa=Math.max(0.5,1.1-(e1-e2+adv)/400*0.3);
-    let w=0,dr=0,lo=0,sc={};
-    for(let i=0;i<8;i++)for(let j=0;j<8;j++){
-        let p=poisson(xh,i)*poisson(xa,j);sc[i+':'+j]=p;
-        if(i>j)w+=p*0.85;else if(i==j)dr+=p*1.3;else lo+=p*0.85;
-    }
-    let t=w+dr+lo;w=w/t*100;dr=dr/t*100;lo=lo/t*100;
-    let top=Object.entries(sc).sort((a,b)=>b[1]-a[1]).slice(0,3);
-    let gl={};for(let i=0;i<8;i++)for(let j=0;j<8;j++){let k=i+j;gl[k]=(gl[k]||0)+poisson(xh,i)*poisson(xa,j);}
-    let gtop=Object.entries(gl).sort((a,b)=>b[1]-a[1]).slice(0,5);
-    return{win:Math.round(w),draw:Math.round(dr),loss:Math.round(lo),tg:Math.round((xh+xa)*10)/10,top,goals:gtop};
-}
-function scorePick(t1,t2){
-    let d=(E[t1]||1600)-(E[t2]||1600);
-    if(d>=150)return["2:0/2:1/3:1",7.5,"强弱"];
-    if(d<=-150)return["0:2/1:2/1:3",7.5,"强弱"];
-    if(d>=50)return["2:1/1:1/1:0",7.0,"中距"];
-    if(d<=-50)return["1:2/1:1/0:1",7.0,"中距"];
-    return["1:1/0:0/1:0",6.0,"均势"];
-}
-function matchCard(num,t1,t2,date){
-    let p=pred(t1,t2),[sc,sco,stag]=scorePick(t1,t2);
-    let diff=(E[t1]||1600)-(E[t2]||1600);
-    let glist=p.goals.map(([k,v])=>k+'球:'+Math.round(v*100)/100+'%').join(' | ');
-    return'<div class="match"><div class="mh"><span class="mnum">#'+num+'</span><span class="mdate">'+date+'</span></div><div class="teams">'+(F[t1]||'')+' '+t1+' vs '+(F[t2]||'')+' '+t2+'</div><div class="bar"><span class="lbl">'+t1.slice(0,3)+'</span><div class="track"><div class="fill" style="width:'+p.win+'%;background:#4caf50"></div></div><span class="pct">'+p.win+'%</span></div><div class="bar"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:'+Math.min(p.draw,30)+'%;background:#ffc107"></div></div><span class="pct">'+p.draw+'%</span></div><div class="bar"><span class="lbl">'+t2.slice(0,3)+'</span><div class="track"><div class="fill" style="width:'+p.loss+'%;background:#f44336"></div></div><span class="pct">'+p.loss+'%</span></div><div class="info"><b>预期进球</b> '+p.tg+'球 · <b>总进球</b> '+glist+'<br><b>比分</b> '+sc+' (x'+sco+') · '+stag+' · Elo差'+diff+'</div></div>';
-}
 
-const STYLES={"阿根廷":"4-4-2低位绞杀铁血防反，梅西驱动韧性足球。短板：后防回追偏弱","法国":"4-2-3-1天赋高速反击流，姆巴佩左路爆点，登贝莱右路内切。短板：缺重型支点中锋","巴西":"4-3-3改良桑巴传控，维尼修斯+罗德里戈双边爆破。短板：防守纪律松散","英格兰":"4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡福登两翼突破。短板：中场调度偏弱","西班牙":"4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度。短板：后卫转身慢怕反击","德国":"4-1-3-2纵向高压流水线，维尔茨+穆夏拉双前腰渗透。短板：后防老将体能下滑","葡萄牙":"4-3-3巨星驱动均衡传控，B费组织，莱奥左路爆破，C罗抢点。短板：中场拦截不足","荷兰":"3-4-3全攻全守两翼卫狂飙，邓弗里斯弗林蓬往返。短板：中锋终结效率不足","比利时":"4-2-3-1天才单兵冲击流，德布劳内长传制导，多库边路爆破。短板：防守体系松散","克罗地亚":"4-3-3复古中场磨盘控球，魔笛科瓦契奇短传控节奏，擅长加时。短板：核心阵容严重老化","哥伦比亚":"4-3-3边路高速冲击大开大合，迪亚斯单兵突破，节奏飞快。短板：防守稳定性差","摩洛哥":"4-3-3低位防守快速转换，阿什拉夫边路冲击，全员回撤绞杀。短板：阵地进攻创造力不足","美国":"4-3-3青春跑轰高压，普利西奇中路驱动，全员不停歇压迫。短板：大赛经验不足","墨西哥":"4-3-3技术流传控，边路快速突破传中，定位球战术丰富。短板：锋线把握机会能力弱","瑞士":"4-3-3均衡控球务实流，中后场传导流畅，边路推进稳定。短板：射门转化率极低","奥地利":"4-2-3-1红牛式极限高位压迫，全场贴身逼抢，跑动强度欧洲前列。短板：身后空档大","挪威":"4-3-3中锋支点冲击流，哈兰德禁区终结核心，厄德高组织。短板：中场控制力弱","瑞典":"4-4-2北欧力量足球，身体对抗顶级，定位球头槌轰炸。短板：技术细腻度不足","日本":"4-2-3-1亚洲传控天花板，精细短传对标西班牙，逼抢轮转整齐。短板：高空争顶弱势","韩国":"4-2-3-1不死跑轰足球，90分钟极限体能压迫，孙兴慜边路反击。短板：防空弱","埃及":"4-2-3-1萨拉赫单核驱动，全队围绕其跑位拉扯，防守蹲坑抓反击。短板：萨拉赫被锁=全队哑火","乌拉圭":"3-5-2铁血力量防守定位球轰炸，三中卫死守，努涅斯支点接应。短板：阵地创造力匮乏","厄瓜多尔":"4-2-3-1高原跑动冲击流，全员不间断压迫，边路快速二过一。短板：身体对抗弱势","塞内加尔":"4-3-3非洲力量速度结合，边路爆破能力强，身体碾压。短板：战术纪律松散","加纳":"4-2-3-1非洲雄狮硬朗足球，中场绞杀凶狠，威廉姆斯边路冲刺。短板：防线组织混乱","科特迪瓦":"4-3-3个人能力驱动，边锋单兵突破硬解，前场天赋出众。短板：整体配合生疏","加拿大":"4-3-3青春风暴高速冲击，戴维+布坎南边路飞驰，跑动量惊人。短板：大赛经验为零","南非":"4-2-3-1非洲力量防守反击，中场硬度足够，反击速度威胁大。短板：控球率低下","澳大利亚":"4-2-3-1澳式硬朗身体流，边路高空传中争顶，中场拼抢凶狠。短板：地面传控粗糙","波黑":"4-2-3-1低位收缩针对性防反，专门克制转身慢的控球型球队。短板：进攻依赖单点","阿尔及利亚":"4-3-3北非技术流传控，马赫雷斯右路内切远射，团队配合细腻。短板：防守硬度不足","刚果民主共和国":"4-4-2非洲力量型防守反击，全员退守压缩空间，长传找前锋拼速度。短板：整体技术粗糙"};
+function genCard(num,t1,t2,date){
+    let e1=E[t1]||1600,e2=E[t2]||1600,diff=e1-e2,adv=20;
+    let xh=Math.max(0.5,1.4+(e1-e2+adv)/400*0.3),xa=Math.max(0.5,1.1-(e1-e2+adv)/400*0.3);
+    let w=0,dr=0,lo=0;
+    for(let i=0;i<8;i++)for(let j=0;j<8;j++){let p=poisson(xh,i)*poisson(xa,j);if(i>j)w+=p*0.85;else if(i==j)dr+=p*1.3;else lo+=p*0.85;}
+    let t=w+dr+lo;w=w/t*100;dr=dr/t*100;lo=lo/t*100;
+    let v=VENUES[num]||{city:"待定",venue:"待定",alt:0,heat:"?",note:""};
+    // Altitude adjustment
+    let adjG=Math.round((2.49*(1+0.00015*v.alt))*10)/10;
+    if(v.heat.includes('极端'))adjG=Math.round(adjG*0.92*10)/10;
+    else if(v.heat.includes('高温'))adjG=Math.round(adjG*0.95*10)/10;
+    // Score pick
+    let sc,sco;if(diff>=150){sc='2:0/2:1/3:1';sco=7.5}else if(diff<=-150){sc='0:2/1:2/1:3';sco=7.5}else if(diff>=50){sc='2:1/1:1/1:0';sco=7.0}else if(diff<=-50){sc='1:2/1:1/0:1';sco=7.0}else{sc='1:1/0:0/1:0';sco=6.0}
+    let fav=diff>0?t1:t2,favPct=Math.round(wp(e1,e2)*100);
+    let altWarn=v.alt>=2000?' ⚠️高原!进球+'+Math.round((adjG/2.49-1)*100)+'%':'';
+    let heatWarn=v.heat.includes('极端')?' ⚠️高温压制进球-8%':(v.heat.includes('高温')?' ⚠️热应力进球-5%':'');
+
+    return '<div class="match"><div class="match-header"><div class="mh-left"><span class="mnum">#'+num+'</span><span class="mround">32强 · '+date+'</span></div></div>'+
+    '<div class="mvenue">📍 <b>'+v.city+'</b> · '+v.venue+' · 海拔<b class="malt">'+v.alt+'m</b> · '+v.heat+' · 预期进球 <b>'+adjG+'</b>球'+altWarn+heatWarn+'</div>'+
+    '<div class="mvenue" style="font-size:10px;color:#888">💡 '+v.note+'</div>'+
+    '<div class="teams">'+(F[t1]||'')+' '+t1+' <span class="vs">vs</span> '+(F[t2]||'')+' '+t2+'</div>'+
+    '<div class="team-row"><span class="tname">'+(F[t1]||'')+' '+t1+'</span><span class="telo">Elo '+e1+'</span><span class="tstyle">'+(S[t1]||'')+'</span></div>'+
+    '<div class="team-row"><span class="tname">'+(F[t2]||'')+' '+t2+'</span><span class="telo">Elo '+e2+'</span><span class="tstyle">'+(S[t2]||'')+'</span></div>'+
+    '<div class="bar"><span class="lbl">'+t1.slice(0,3)+'</span><div class="track"><div class="fill" style="width:'+Math.round(w)+'%;background:#4caf50"></div></div><span class="pct">'+Math.round(w)+'%</span></div>'+
+    '<div class="bar"><span class="lbl">平局</span><div class="track"><div class="fill" style="width:'+Math.round(dr)+'%;background:#ffc107"></div></div><span class="pct">'+Math.round(dr)+'%</span></div>'+
+    '<div class="bar"><span class="lbl">'+t2.slice(0,3)+'</span><div class="track"><div class="fill" style="width:'+Math.round(lo)+'%;background:#f44336"></div></div><span class="pct">'+Math.round(lo)+'%</span></div>'+
+    '<div class="info-row"><span class="info-tag it-elo">Elo差'+diff+' · '+fav+'占优'+favPct+'%</span><span class="info-tag it-goals">预期总进球 '+adjG+'球</span><span class="info-tag it-score">比分 '+sc+' x'+sco+'</span>'+((v.alt>=2000||v.heat.includes('极端'))?'<span class="info-tag it-venue">'+v.heat+'场地</span>':'')+'</div>'+
+    '</div>';
+}
 
 const W={A:'墨西哥',B:'瑞士',C:'巴西',D:'美国',E:'德国',F:'荷兰',G:'埃及',H:'西班牙',I:'法国',J:'阿根廷',K:'哥伦比亚',L:'英格兰'};
 const R={A:'南非',B:'加拿大',C:'摩洛哥',D:'澳大利亚',E:'科特迪瓦',F:'日本',G:'比利时',H:'乌拉圭',I:'挪威',J:'奥地利',K:'葡萄牙',L:'克罗地亚'};
-const T=['刚果民主共和国','瑞典','波黑','阿尔及利亚','塞内加尔','厄瓜多尔','加纳','韩国'];
-const R32=[[73,R.A,R.B],[74,W.E,T[0]],[75,W.F,R.C],[76,W.C,R.F],[77,W.I,T[1]],[78,R.E,R.I],[79,W.A,T[2]],[80,W.L,T[3]],[81,W.D,T[4]],[82,W.G,T[5]],[83,R.K,R.L],[84,W.H,R.J],[85,W.B,T[6]],[86,W.J,R.H],[87,W.K,T[7]],[88,R.D,R.G]];
-
-// Group standings data
-const GROUPS={A:[['墨西哥',9,3,6,1],['南非',4,-2,2,2],['韩国',3,-1,3,4],['捷克',1,-3,2,5]],B:[['瑞士',7,3,5,2],['加拿大',4,2,4,2],['波黑',4,-1,4,5],['卡塔尔',1,-4,1,5]],C:[['巴西',7,4,6,2],['摩洛哥',7,3,7,4],['苏格兰',3,-3,3,6],['海地',0,-4,1,5]],D:[['美国',6,4,7,3],['澳大利亚',3,-1,2,3],['土耳其',3,-2,5,7],['巴拉圭',3,-1,0,1]],E:[['德国',6,6,9,3],['科特迪瓦',6,0,4,4],['厄瓜多尔',3,0,3,3],['库拉索',0,-6,1,7]],F:[['荷兰',7,4,6,2],['日本',5,3,8,5],['瑞典',4,0,4,4],['突尼斯',0,-7,1,8]],G:[['埃及',5,1,4,3],['比利时',4,0,3,3],['伊朗',2,0,4,4],['新西兰',1,-1,3,4]],H:[['西班牙',6,5,8,3],['乌拉圭',2,-3,1,4],['佛得角',1,-1,1,2],['沙特阿拉伯',1,-1,3,4]],I:[['法国',9,8,12,4],['挪威',6,2,7,5],['塞内加尔',3,2,6,4],['伊拉克',0,-12,1,13]],J:[['阿根廷',9,7,10,3],['奥地利',4,0,6,6],['阿尔及利亚',4,-2,6,8],['约旦',0,-5,2,7]],K:[['哥伦比亚',6,2,5,3],['葡萄牙',4,3,6,3],['刚果民主共和国',4,1,5,4],['乌兹别克斯坦',0,-6,1,7]],L:[['英格兰',6,2,5,3],['克罗地亚',6,2,7,5],['加纳',3,0,4,4],['巴拿马',0,-4,0,4]]};
+const T3=['刚果民主共和国','瑞典','波黑','阿尔及利亚','塞内加尔','厄瓜多尔','加纳','韩国'];
+const R32=[[73,R.A,R.B,'6/28'],[74,W.E,T3[0],'6/29'],[75,W.F,R.C,'6/29'],[76,W.C,R.F,'6/30'],[77,W.I,T3[1],'6/30'],[78,R.E,R.I,'6/30'],[79,W.A,T3[2],'7/1'],[80,W.L,T3[3],'7/1'],[81,W.D,T3[4],'7/1'],[82,W.G,T3[5],'7/2'],[83,R.K,R.L,'7/2'],[84,W.H,R.J,'7/2'],[85,W.B,T3[6],'7/3'],[86,W.J,R.H,'7/3'],[87,W.K,T3[7],'7/3'],[88,R.D,R.G,'7/3']];
 
 let h='';
-
-// 1. Group standings
-h+='<div class="sec" id="groups"><div class="sec-t">📊 小组最终积分 <span class="badge">68.1%准确</span></div><div class="sec-b"><div class="groups-grid">';
-for(let[g,teams]of Object.entries(GROUPS)){
-    let rows='';
-    teams.forEach(([t,pts,gd,gs,gc])=>{let bold=teams.indexOf([t,pts,gd,gs,gc])<2?'style="font-weight:700"':'';rows+='<div class="gr" '+bold+'><span>'+(F[t]||'')+' '+t+'</span><span>'+pts+'分 GD'+gd+'</span></div>';});
-    h+='<div class="group-card"><div class="gn">'+g+'组</div>'+rows+'</div>';
-}
-h+='</div></div></div>';
-
-// 2. Qualification
-let qual=[];
-for(let[g,teams]of Object.entries(GROUPS)){qual.push({t:teams[0][0],p:100,g:'1st'});qual.push({t:teams[1][0],p:100,g:'2nd'});}
-T.forEach((t,i)=>{qual.push({t,p:100,g:'3rd'});});
-h+='<div class="sec" id="qualify"><div class="sec-t">🎲 32强晋级 <span class="badge">MC3000次</span></div><div class="sec-b"><div class="mc-tags">';
-qual.forEach(q=>{let bg=q.g=='1st'?'#e8f5e9':(q.g=='2nd'?'#fff8e1':'#f5f5f5');let c=q.g=='1st'?'#2e7d32':(q.g=='2nd'?'#f57f17':'#999');h+='<span class="mc-tag" style="background:'+bg+';color:'+c+'">'+(F[q.t]||'')+q.t+' '+q.p+'%</span>';});
-h+='</div></div></div>';
-
-// 3. R32 matches
-h+='<div class="sec" id="r32"><div class="sec-t">🏆 32强对阵 <span class="badge">16场 · Poisson模型</span></div><div class="sec-b">';
-R32.forEach(([num,t1,t2])=>{h+=matchCard(num,t1,t2,'6/28-7/3');});
-h+='</div></div>';
-
-// 4. R32 detail analysis
-h+='<div class="sec" id="r32detail"><div class="sec-t">📊 32强深度分析 <span class="badge">比分·总进球·串关</span></div><div class="sec-b">';
-h+='<div class="sc-grid">';
-R32.slice(0,8).forEach(([num,t1,t2])=>{let[sc,sco,stag]=scorePick(t1,t2);let tc=stag=='强弱'?'hi':(stag=='中距'?'md':'lo');h+='<div class="sc-c"><div class="sct '+tc+'">'+stag+'</div><div class="sctm">'+t1.slice(0,3)+'vs'+t2.slice(0,3)+'</div><div class="scts">'+sc+'</div><div style="font-size:9px;color:#1976d2">x'+sco+'</div></div>';});
-h+='</div></div></div>';
-
-// 5. Score cards
-h+='<div class="sec" id="scores"><div class="sec-t" style="background:#555">🎯 比分推演卡片</div><div class="sec-b"><div class="sc-grid">';
-R32.slice(8,16).forEach(([num,t1,t2])=>{let[sc,sco,stag]=scorePick(t1,t2);let tc=stag=='强弱'?'hi':(stag=='中距'?'md':'lo');h+='<div class="sc-c"><div class="sct '+tc+'">'+stag+'</div><div class="sctm">'+t1.slice(0,3)+'vs'+t2.slice(0,3)+'</div><div class="scts">'+sc+'</div><div style="font-size:9px;color:#1976d2">x'+sco+'</div></div>';});
-h+='</div></div></div>';
-
-// 6. Combos
-let sortedM=R32.slice().sort((a,b)=>Math.abs((E[b[1]]||1600)-(E[b[2]]||1600))-Math.abs((E[a[1]]||1600)-(E[a[2]]||1600)));
-h+='<div class="sec" id="combos"><div class="sec-t">🔗 淘汰赛逻辑组合</div><div class="sec-b">';
-let comboNames=['2串1·双深盘组合','2串1·锚定+探索','3串1·三场联合','3串2·容错方案','4串2·四场容错','比分3串2·博冷'];
-comboNames.forEach((cn,i)=>{let m1=sortedM[i%16],m2=sortedM[(i+1)%16],m3=sortedM[(i+2)%16];let t1=m1[1],t2=m1[2],t3=m2[1],t4=m2[2];h+='<div class="combo"><span class="cl">'+cn+'</span><br><span class="clg">'+(F[t1]||'')+t1+' vs '+(F[t2]||'')+t2+' + '+(F[t3]||'')+t3+' vs '+(F[t4]||'')+t4+'</span><br><span style="font-size:10px;color:#999">淘汰赛Poisson推演组合</span></div>';});
-h+='</div></div>';
-
-// 7. R16 → Final
-function winner(t1,t2){let e1=E[t1]||1600,e2=E[t2]||1600;return wp(e1,e2)>0.5?t1:t2;}
-let r32w=R32.map(([n,t1,t2])=>winner(t1,t2));
-let R16=[[89,r32w[0],r32w[1]],[90,r32w[2],r32w[3]],[91,r32w[4],r32w[5]],[92,r32w[6],r32w[7]],[93,r32w[8],r32w[9]],[94,r32w[10],r32w[11]],[95,r32w[12],r32w[13]],[96,r32w[14],r32w[15]]];
-let r16w=R16.map(([n,t1,t2])=>winner(t1,t2));
-let QF=[[97,r16w[0],r16w[1]],[98,r16w[2],r16w[3]],[99,r16w[4],r16w[5]],[100,r16w[6],r16w[7]]];
-let qfw=QF.map(([n,t1,t2])=>winner(t1,t2));
-let SF=[[101,qfw[0],qfw[1]],[102,qfw[2],qfw[3]]];
-let sfw=SF.map(([n,t1,t2])=>winner(t1,t2));
-let FINAL=[[103,sfw[0],sfw[1]]];
-
-h+='<div class="sec" id="r16final"><div class="sec-t">🏆 16强→决赛推演 <span class="badge">Elo连续推演</span></div><div class="sec-b">';
-R16.forEach(([n,t1,t2])=>{h+=matchCard(n,t1,t2,'7/4-7');});
-QF.forEach(([n,t1,t2])=>{h+=matchCard(n,t1,t2,'7/9-11');});
-SF.forEach(([n,t1,t2])=>{h+=matchCard(n,t1,t2,'7/14-15');});
-FINAL.forEach(([n,t1,t2])=>{h+='<div style="background:#fff3e0;padding:8px;border:2px solid #ffc107;border-radius:6px;margin:8px 0">'+matchCard(n,t1,t2,'🏆 7/19 纽约·决赛')+'</div>';});
-h+='</div></div>';
-
-// 8. Team analysis
-h+='<div class="sec" id="teams"><div class="sec-t">⚽ 32强球队逐个分析</div><div class="sec-b">';
-let allTeams=new Set();R32.forEach(([n,t1,t2])=>{allTeams.add(t1);allTeams.add(t2)});
-[...allTeams].sort((a,b)=>(E[b]||1600)-(E[a]||1600)).forEach(t=>{
-    let e=E[t]||1600,opp=null;R32.forEach(([n,t1,t2])=>{if(t1==t){opp=t2}else if(t2==t){opp=t1}});
-    if(!opp)return;let eo=E[opp]||1600,diff=e-eo,pw=Math.round(wp(e,eo)*100);
-    let tier=Math.abs(diff)>=200?'碾压':(Math.abs(diff)>=100?'优势':(Math.abs(diff)>=30?'接近':'均势'));
-    h+='<div class="match"><div class="teams">'+(F[t]||'')+' '+t+' <span style="font-size:11px;color:#999">vs</span> '+(F[opp]||'')+' '+opp+'</div><div class="info"><b>Elo</b> '+e+' vs '+eo+' ('+tier+') · R32胜率 <b>'+pw+'%</b> · 预测晋级16强概率 <b>'+pw+'%</b></div></div>';
-});
-h+='</div></div>';
-
-// 9. Style profiles
-h+='<div class="sec" id="styles"><div class="sec-t" style="background:#1a237e">📋 32强球队风格档案</div><div class="sec-b">';
-[...allTeams].sort((a,b)=>(E[b]||1600)-(E[a]||1600)).forEach(t=>{
-    let s=STYLES[t]||'暂无数据';let e=E[t]||1600;
-    h+='<div class="match"><div class="teams">'+(F[t]||'')+' '+t+' <span style="font-size:10px;color:#999">Elo '+e+'</span></div><div class="info">'+s+'</div></div>';
-});
-h+='</div></div>';
-
+R32.forEach(([n,t1,t2,d])=>{h+=genCard(n,t1,t2,d);});
 document.getElementById('content').innerHTML=h;
 </script>
 </body></html>

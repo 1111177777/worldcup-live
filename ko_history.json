@@ -1,0 +1,134 @@
+{
+  "阿根廷": {
+    "stage": "冠军",
+    "goals": 15,
+    "ko_goals": 10,
+    "matches": 7
+  },
+  "法国": {
+    "stage": "亚军",
+    "goals": 16,
+    "ko_goals": 10,
+    "matches": 7
+  },
+  "英格兰": {
+    "stage": "八强",
+    "goals": 13,
+    "ko_goals": 4,
+    "matches": 5
+  },
+  "荷兰": {
+    "stage": "八强",
+    "goals": 10,
+    "ko_goals": 5,
+    "matches": 5
+  },
+  "巴西": {
+    "stage": "八强",
+    "goals": 8,
+    "ko_goals": 5,
+    "matches": 5
+  },
+  "葡萄牙": {
+    "stage": "八强",
+    "goals": 12,
+    "ko_goals": 6,
+    "matches": 5
+  },
+  "西班牙": {
+    "stage": "十六强",
+    "goals": 9,
+    "ko_goals": 0,
+    "matches": 4
+  },
+  "德国": {
+    "stage": "小组赛",
+    "goals": 6,
+    "ko_goals": 0,
+    "matches": 3
+  },
+  "摩洛哥": {
+    "stage": "四强",
+    "goals": 6,
+    "ko_goals": 3,
+    "matches": 7
+  },
+  "克罗地亚": {
+    "stage": "季军",
+    "goals": 8,
+    "ko_goals": 5,
+    "matches": 7
+  },
+  "日本": {
+    "stage": "十六强",
+    "goals": 5,
+    "ko_goals": 1,
+    "matches": 4
+  },
+  "美国": {
+    "stage": "十六强",
+    "goals": 3,
+    "ko_goals": 0,
+    "matches": 4
+  },
+  "澳大利亚": {
+    "stage": "十六强",
+    "goals": 4,
+    "ko_goals": 1,
+    "matches": 4
+  },
+  "塞内加尔": {
+    "stage": "十六强",
+    "goals": 5,
+    "ko_goals": 0,
+    "matches": 4
+  },
+  "瑞士": {
+    "stage": "十六强",
+    "goals": 5,
+    "ko_goals": 1,
+    "matches": 4
+  },
+  "韩国": {
+    "stage": "十六强",
+    "goals": 5,
+    "ko_goals": 0,
+    "matches": 4
+  },
+  "墨西哥": {
+    "stage": "小组赛",
+    "goals": 2,
+    "ko_goals": 0,
+    "matches": 3
+  },
+  "比利时": {
+    "stage": "小组赛",
+    "goals": 1,
+    "ko_goals": 0,
+    "matches": 3
+  },
+  "哥伦比亚": {
+    "stage": "未参赛",
+    "goals": 0,
+    "ko_goals": 0,
+    "matches": 0
+  },
+  "瑞典": {
+    "stage": "未参赛",
+    "goals": 0,
+    "ko_goals": 0,
+    "matches": 0
+  },
+  "挪威": {
+    "stage": "未参赛",
+    "goals": 0,
+    "ko_goals": 0,
+    "matches": 0
+  },
+  "奥地利": {
+    "stage": "未参赛",
+    "goals": 0,
+    "ko_goals": 0,
+    "matches": 0
+  }
+}

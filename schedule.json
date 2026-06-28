@@ -1258,11 +1258,11 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": "",
+    "result": "0:0",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "刚果民主共和国",
@@ -1292,11 +1292,11 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": "",
+    "result": "3:1",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "奥地利",
@@ -1309,11 +1309,11 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": "",
+    "result": "2:2",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "巴拿马",
@@ -1326,11 +1326,11 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": "",
+    "result": "0:2",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   },
   {
     "home": "克罗地亚",
@@ -1343,10 +1343,10 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": "",
+    "result": "2:1",
     "injury": "",
     "risk": [],
     "value": "",
-    "status": ""
+    "status": "FT"
   }
 ]

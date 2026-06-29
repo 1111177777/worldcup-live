@@ -3,377 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>6/22 蒙特卡洛500次模拟 · 世界杯深度分析</title>
+<title>7/1 R32淘汰赛 · 蒙特卡洛500次模拟</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#0f172a;color:#e2e8f0;padding:20px;max-width:800px;margin:0 auto}
-h1{font-size:1.6em;font-weight:600;text-align:center;margin:16px 0;background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.subtitle{text-align:center;font-size:12px;color:#64748b;margin-bottom:20px}
-.disclaimer{text-align:center;color:#475569;font-size:11px;padding:20px;line-height:1.6}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:12px 0}
-.stat-card{background:#0f172a;padding:10px;border-radius:8px;text-align:center}
-.stat-label{font-size:10px;color:#64748b}
-.stat-value{font-size:1.1em;font-weight:bold;color:#e2e8f0;margin-top:2px}
-@media(max-width:500px){body{padding:10px}h1{font-size:1.3em}}
-</style>
-</head>
+h1{font-size:1.5em;text-align:center;margin:16px 0;background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.sub{text-align:center;font-size:11px;color:#64748b;margin-bottom:20px}
+.note{text-align:center;color:#475569;font-size:11px;padding:20px;line-height:1.6}
+</style></head>
 <body>
 <h1>🎲 蒙特卡洛 500次模拟</h1>
-<div class="subtitle">2026世界杯 · 6月22日四场比赛 · 整合ELO+风格+阵容+出线压力+漏洞分析<br>
-生成时间: 2026-06-22 02:56:44 · 每场独立模拟500次 · 泊松分布采样</div>
-
+<div class="sub">2026世界杯 · 7月1日 R32淘汰赛 3场<br>整合: ELO+攻防风格+小组赛表现+淘汰赛战意+情报分析<br>生成: 2026-06-30 04:55:32</div>
 <div style="background:#1e3a5f;border:1px solid #2563eb;border-radius:12px;padding:16px;margin-bottom:20px;font-size:12px;color:#93c5fd;line-height:1.8;">
-<b>🔬 模拟方法说明：</b><br>
-① <b>ELO基础</b>：每队ELO评分决定基础实力差 → 转期望进球<br>
-② <b>攻防系数</b>：攻击力/防守力系数修正（如法国攻击1.25×伊拉克防守0.6）<br>
-③ <b>出线压力</b>：🔴生死战队×1.15战意加成，🟢出线在望队×0.95留力折扣<br>
-④ <b>战术漏洞</b>：防守方特定漏洞（如转身慢、身后空档）→ 攻击方额外5-15%加成<br>
-⑤ <b>随机扰动</b>：每场±15%随机波动 + 3%概率红牌/点球事件<br>
-⑥ <b>泊松采样</b>：从期望进球通过泊松分布随机抽取实际进球数
+<b>🔬 模拟方法：</b>ELO基础实力 → 攻防系数修正 → 淘汰赛战意 → 战术漏洞 → ±15%随机波动 → 泊松采样进球 → 3%概率点球/红牌事件
 </div>
 
-
     <div style="background:#1e293b;border-radius:16px;padding:24px;margin-bottom:20px;border:1px solid #334155;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-        <span style="font-size:1.4em;font-weight:bold;color:#e2e8f0;">法国 vs 伊拉克</span>
-        <span style="font-size:0.85em;padding:4px 10px;border-radius:12px;background:#334155;color:#94a3b8;">🟢 高置信</span>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <span style="font-size:1.4em;font-weight:bold;color:#e2e8f0;">科特迪瓦 vs 挪威</span>
+        <span style="font-size:0.85em;padding:4px 10px;border-radius:12px;background:#334155;">🔴 不确定</span>
+        <span style="font-size:0.8em;color:#94a3b8;">@ 波士顿</span>
       </div>
-
-      <!-- 出线状态 -->
-      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
-        <span style="font-size:11px;padding:3px 8px;background:#064e3b;color:#34d399;border-radius:4px;">🏠 🟢从容·6分在望</span>
-        <span style="font-size:11px;padding:3px 8px;background:#7f1d1d;color:#fca5a5;border-radius:4px;">🚶 🔴生死战·必须拿分</span>
+      <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;line-height:1.5;">
+        ⭐ 科特迪瓦: 速度反击 + 身体对抗<br>
+        ⭐ 挪威: 哈兰德(3场4球) + 厄德高(组织核心)
       </div>
-
-      <!-- 关键球员 -->
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;line-height:1.6;">
-        <div>⭐ 法国: </div>
-        <div>⭐ 伊拉克: 阿尔阿马里(中场枢纽)·阿尔哈马迪(反击速度)·侯赛因(支点中锋)</div>
+      <div style="font-size:10px;color:#64748b;margin-bottom:12px;">
+        🔻 科特迪瓦: 中场控制力弱，面对强压迫易丢球<br>
+        🔻 挪威: 防线转身慢，被反击时身后空档大。小组赛场均失2.3球。
       </div>
-
-      <!-- 漏洞 -->
-      <div style="font-size:10px;color:#94a3b8;margin-bottom:12px;line-height:1.5;">
-        <div>🔻 法国漏洞: </div>
-        <div>🔻 伊拉克漏洞: 后防4人转身慢被挪威反复打穿·门将位置不稳·中场绞杀覆盖不足·首轮丢4球心理阴影</div>
-      </div>
-
-      <!-- 胜平负概率条 -->
-      <div style="margin-bottom:16px;">
+      <div style="margin-bottom:12px;">
         <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
-          <span style="width:40px;font-size:12px;color:#94a3b8;">法国胜</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:99.0%;background:#22c55e;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#0f172a;">99.0%</span>
-            </div>
+          <span style="width:40px;font-size:12px;color:#94a3b8;">科特迪瓦胜</span>
+          <div style="flex:1;height:24px;background:#1e293b;border-radius:12px;overflow:hidden;">
+            <div style="height:100%;width:40.4%;background:#f59e0b;border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;"><span style="font-size:11px;font-weight:bold;color:#0f172a;">40.4%</span></div>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
           <span style="width:40px;font-size:12px;color:#94a3b8;">平局</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:0.6%;background:#888;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#fff;">0.6%</span>
-            </div>
+          <div style="flex:1;height:24px;background:#1e293b;border-radius:12px;overflow:hidden;">
+            <div style="height:100%;width:20.2%;background:#888;border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;"><span style="font-size:11px;font-weight:bold;color:#fff;">20.2%</span></div>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
-          <span style="width:40px;font-size:12px;color:#94a3b8;">伊拉克胜</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:0.4%;background:#ef4444;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#fff;">0.4%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 关键指标 -->
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
-        <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
-          <div style="font-size:10px;color:#64748b;">平均进球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#e2e8f0;">5.72 - 0.53</div>
-        </div>
-        <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
-          <div style="font-size:10px;color:#64748b;">期望进球(xG)</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#e2e8f0;">5.69 - 0.5</div>
-        </div>
-        <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
-          <div style="font-size:10px;color:#64748b;">大2.5球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#34d399;">95.2%</div>
-        </div>
-        <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
-          <div style="font-size:10px;color:#64748b;">双方进球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#fbbf24;">44.2%</div>
-        </div>
-      </div>
-
-      <!-- 比分分布 -->
-      <div style="margin-bottom:12px;">
-        <div style="font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;">🎯 模拟500次比分TOP5</div>
-        <table style="width:100%;border-collapse:collapse;"><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>5:0</td><td>50/500</td><td>10.0%</td><td><div style='width:30.0px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>6:0</td><td>48/500</td><td>9.6%</td><td><div style='width:28.799999999999997px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>7:0</td><td>42/500</td><td>8.4%</td><td><div style='width:25.200000000000003px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>6:1</td><td>39/500</td><td>7.8%</td><td><div style='width:23.4px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>5:1</td><td>37/500</td><td>7.4%</td><td><div style='width:22.200000000000003px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr></table>
-      </div>
-
-      <!-- 总进球分布 -->
-      <div>
-        <div style="font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;">📊 总进球分布</div>
-        <table style="width:100%;border-collapse:collapse;"><tr><td>1球</td><td>1.8%</td><td><div style='width:5.4px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>2球</td><td>3.0%</td><td><div style='width:9.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>3球</td><td>6.6%</td><td><div style='width:19.799999999999997px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>4球</td><td>10.8%</td><td><div style='width:32.400000000000006px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>5球</td><td>17.0%</td><td><div style='width:51.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>6球</td><td>17.4%</td><td><div style='width:52.199999999999996px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>7球</td><td>18.0%</td><td><div style='width:54.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>8球</td><td>7.2%</td><td><div style='width:21.6px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>9球</td><td>8.2%</td><td><div style='width:24.599999999999998px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>10球</td><td>5.6%</td><td><div style='width:16.799999999999997px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>11球</td><td>2.8%</td><td><div style='width:8.399999999999999px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>12球</td><td>0.6%</td><td><div style='width:1.7999999999999998px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>13球</td><td>0.6%</td><td><div style='width:1.7999999999999998px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>14球</td><td>0.4%</td><td><div style='width:1.2000000000000002px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr></table>
-      </div>
-    </div>
-    <div style="background:#1e293b;border-radius:16px;padding:24px;margin-bottom:20px;border:1px solid #334155;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-        <span style="font-size:1.4em;font-weight:bold;color:#e2e8f0;">挪威 vs 塞内加尔</span>
-        <span style="font-size:0.85em;padding:4px 10px;border-radius:12px;background:#334155;color:#94a3b8;">🟡 中等置信</span>
-      </div>
-
-      <!-- 出线状态 -->
-      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
-        <span style="font-size:11px;padding:3px 8px;background:#064e3b;color:#34d399;border-radius:4px;">🏠 🟢从容·赢球锁定出线</span>
-        <span style="font-size:11px;padding:3px 8px;background:#7f1d1d;color:#fca5a5;border-radius:4px;">🚶 🔴生死战·必须抢分</span>
-      </div>
-
-      <!-- 关键球员 -->
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;line-height:1.6;">
-        <div>⭐ 挪威: </div>
-        <div>⭐ 塞内加尔: 马内(进攻核心·首轮多次造威胁)·杰克逊(速度冲击·首轮进球被吹)·库利巴利(102场经验·哈兰德直接对手)·盖耶(中场绞杀)</div>
-      </div>
-
-      <!-- 漏洞 -->
-      <div style="font-size:10px;color:#94a3b8;margin-bottom:12px;line-height:1.5;">
-        <div>🔻 挪威漏洞: </div>
-        <div>🔻 塞内加尔漏洞: 防线压上留身后空档恰好是哈兰德猎场·首轮xG转化率低·防守纪律不稳定·定位球防守偶有走神</div>
-      </div>
-
-      <!-- 胜平负概率条 -->
-      <div style="margin-bottom:16px;">
         <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
           <span style="width:40px;font-size:12px;color:#94a3b8;">挪威胜</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:62.4%;background:#22c55e;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#0f172a;">62.4%</span>
-            </div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
-          <span style="width:40px;font-size:12px;color:#94a3b8;">平局</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:17.6%;background:#888;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#fff;">17.6%</span>
-            </div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
-          <span style="width:40px;font-size:12px;color:#94a3b8;">塞内加尔胜</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:20.0%;background:#ef4444;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#fff;">20.0%</span>
-            </div>
+          <div style="flex:1;height:24px;background:#1e293b;border-radius:12px;overflow:hidden;">
+            <div style="height:100%;width:39.4%;background:#ef4444;border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;"><span style="font-size:11px;font-weight:bold;color:#fff;">39.4%</span></div>
           </div>
         </div>
       </div>
-
-      <!-- 关键指标 -->
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
         <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
           <div style="font-size:10px;color:#64748b;">平均进球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#e2e8f0;">2.67 - 1.54</div>
-        </div>
-        <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
-          <div style="font-size:10px;color:#64748b;">期望进球(xG)</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#e2e8f0;">2.61 - 1.57</div>
+          <div style="font-size:1.1em;font-weight:bold;color:#e2e8f0;">2.19 - 2.24</div>
         </div>
         <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
           <div style="font-size:10px;color:#64748b;">大2.5球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#34d399;">78.4%</div>
+          <div style="font-size:1.1em;font-weight:bold;color:#34d399;">82.8%</div>
         </div>
         <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
           <div style="font-size:10px;color:#64748b;">双方进球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#fbbf24;">70.0%</div>
+          <div style="font-size:1.1em;font-weight:bold;color:#fbbf24;">80.0%</div>
         </div>
       </div>
-
-      <!-- 比分分布 -->
-      <div style="margin-bottom:12px;">
-        <div style="font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;">🎯 模拟500次比分TOP5</div>
-        <table style="width:100%;border-collapse:collapse;"><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>2:2</td><td>36/500</td><td>7.2%</td><td><div style='width:21.6px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>2:1</td><td>34/500</td><td>6.8%</td><td><div style='width:20.4px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>3:0</td><td>34/500</td><td>6.8%</td><td><div style='width:20.4px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>2:0</td><td>33/500</td><td>6.6%</td><td><div style='width:19.799999999999997px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>3:2</td><td>31/500</td><td>6.2%</td><td><div style='width:18.6px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr></table>
-      </div>
-
-      <!-- 总进球分布 -->
-      <div>
-        <div style="font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;">📊 总进球分布</div>
-        <table style="width:100%;border-collapse:collapse;"><tr><td>0球</td><td>1.2%</td><td><div style='width:3.5999999999999996px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>1球</td><td>6.0%</td><td><div style='width:18.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>2球</td><td>14.4%</td><td><div style='width:43.2px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>3球</td><td>19.0%</td><td><div style='width:57.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>4球</td><td>18.8%</td><td><div style='width:56.400000000000006px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>5球</td><td>15.4%</td><td><div style='width:46.2px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>6球</td><td>11.2%</td><td><div style='width:33.599999999999994px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>7球</td><td>6.0%</td><td><div style='width:18.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>8球</td><td>5.2%</td><td><div style='width:15.600000000000001px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>9球</td><td>2.0%</td><td><div style='width:6.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>10球</td><td>0.6%</td><td><div style='width:1.7999999999999998px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>11球</td><td>0.2%</td><td><div style='width:0.6000000000000001px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr></table>
-      </div>
+      <div style="font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;">🎯 模拟500次 比分TOP5</div>
+      <table style="width:100%;border-collapse:collapse;"><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">2:1</td><td>42/500</td><td>8.4%</td><td><div style="width:25.200000000000003px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">2:2</td><td>42/500</td><td>8.4%</td><td><div style="width:25.200000000000003px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">1:2</td><td>40/500</td><td>8.0%</td><td><div style="width:24.0px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">3:2</td><td>26/500</td><td>5.2%</td><td><div style="width:15.600000000000001px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">1:1</td><td>26/500</td><td>5.2%</td><td><div style="width:15.600000000000001px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr></table>
     </div>
     <div style="background:#1e293b;border-radius:16px;padding:24px;margin-bottom:20px;border:1px solid #334155;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-        <span style="font-size:1.4em;font-weight:bold;color:#e2e8f0;">阿根廷 vs 奥地利</span>
-        <span style="font-size:0.85em;padding:4px 10px;border-radius:12px;background:#334155;color:#94a3b8;">🟢 高置信</span>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <span style="font-size:1.4em;font-weight:bold;color:#e2e8f0;">法国 vs 瑞典</span>
+        <span style="font-size:0.85em;padding:4px 10px;border-radius:12px;background:#334155;">🟡 中等</span>
+        <span style="font-size:0.8em;color:#94a3b8;">@ 达拉斯</span>
       </div>
-
-      <!-- 出线状态 -->
-      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
-        <span style="font-size:11px;padding:3px 8px;background:#064e3b;color:#34d399;border-radius:4px;">🏠 🟢从容·赢球基本锁定头名</span>
-        <span style="font-size:11px;padding:3px 8px;background:#7f1d1d;color:#fca5a5;border-radius:4px;">🚶 🟡抢分·赢球可争头名</span>
+      <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;line-height:1.5;">
+        ⭐ 法国: 姆巴佩(3场6球) + 登贝莱 + 奥利塞，攻击线世界顶级<br>
+        ⭐ 瑞典: 无伊布时代团队足球，小组赛曾5-1屠杀突尼斯
       </div>
-
-      <!-- 关键球员 -->
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;line-height:1.6;">
-        <div>⭐ 阿根廷: </div>
-        <div>⭐ 奥地利: 阿拉巴(防线领袖)·阿瑙托维奇(支点中锋)·萨比策+施密德(双前腰创造力)·施拉格(中场绞杀)</div>
+      <div style="font-size:10px;color:#64748b;margin-bottom:12px;">
+        🔻 法国: 偶尔防守松懈（小组赛只丢2球），高位防线有被打身后风险<br>
+        🔻 瑞典: 遇强队心理脆弱（1-5荷兰惨败），中场创造力不足
       </div>
-
-      <!-- 漏洞 -->
-      <div style="font-size:10px;color:#94a3b8;margin-bottom:12px;line-height:1.5;">
-        <div>🔻 阿根廷漏洞: </div>
-        <div>🔻 奥地利漏洞: 高位防线身后空档是梅西的天堂·右后卫波施缺阵莱默尔客串防守不稳·高强度逼抢后半程体能下滑·首次世界杯淘汰赛经验不足</div>
-      </div>
-
-      <!-- 胜平负概率条 -->
-      <div style="margin-bottom:16px;">
+      <div style="margin-bottom:12px;">
         <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
-          <span style="width:40px;font-size:12px;color:#94a3b8;">阿根廷胜</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:79.8%;background:#22c55e;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#0f172a;">79.8%</span>
-            </div>
+          <span style="width:40px;font-size:12px;color:#94a3b8;">法国胜</span>
+          <div style="flex:1;height:24px;background:#1e293b;border-radius:12px;overflow:hidden;">
+            <div style="height:100%;width:70.6%;background:#22c55e;border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;"><span style="font-size:11px;font-weight:bold;color:#0f172a;">70.6%</span></div>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
           <span style="width:40px;font-size:12px;color:#94a3b8;">平局</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:12.4%;background:#888;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#fff;">12.4%</span>
-            </div>
+          <div style="flex:1;height:24px;background:#1e293b;border-radius:12px;overflow:hidden;">
+            <div style="height:100%;width:17.4%;background:#888;border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;"><span style="font-size:11px;font-weight:bold;color:#fff;">17.4%</span></div>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
-          <span style="width:40px;font-size:12px;color:#94a3b8;">奥地利胜</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:7.8%;background:#ef4444;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#fff;">7.8%</span>
-            </div>
+          <span style="width:40px;font-size:12px;color:#94a3b8;">瑞典胜</span>
+          <div style="flex:1;height:24px;background:#1e293b;border-radius:12px;overflow:hidden;">
+            <div style="height:100%;width:12.0%;background:#ef4444;border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;"><span style="font-size:11px;font-weight:bold;color:#fff;">12.0%</span></div>
           </div>
         </div>
       </div>
-
-      <!-- 关键指标 -->
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
         <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
           <div style="font-size:10px;color:#64748b;">平均进球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#e2e8f0;">3.13 - 0.88</div>
-        </div>
-        <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
-          <div style="font-size:10px;color:#64748b;">期望进球(xG)</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#e2e8f0;">3.2 - 0.86</div>
+          <div style="font-size:1.1em;font-weight:bold;color:#e2e8f0;">2.73 - 1.06</div>
         </div>
         <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
           <div style="font-size:10px;color:#64748b;">大2.5球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#34d399;">73.4%</div>
+          <div style="font-size:1.1em;font-weight:bold;color:#34d399;">72.4%</div>
         </div>
         <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
           <div style="font-size:10px;color:#64748b;">双方进球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#fbbf24;">56.2%</div>
+          <div style="font-size:1.1em;font-weight:bold;color:#fbbf24;">61.6%</div>
         </div>
       </div>
-
-      <!-- 比分分布 -->
-      <div style="margin-bottom:12px;">
-        <div style="font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;">🎯 模拟500次比分TOP5</div>
-        <table style="width:100%;border-collapse:collapse;"><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>2:0</td><td>52/500</td><td>10.4%</td><td><div style='width:31.200000000000003px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>4:0</td><td>37/500</td><td>7.4%</td><td><div style='width:22.200000000000003px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>3:1</td><td>37/500</td><td>7.4%</td><td><div style='width:22.200000000000003px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>1:0</td><td>34/500</td><td>6.8%</td><td><div style='width:20.4px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>2:1</td><td>32/500</td><td>6.4%</td><td><div style='width:19.200000000000003px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr></table>
-      </div>
-
-      <!-- 总进球分布 -->
-      <div>
-        <div style="font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;">📊 总进球分布</div>
-        <table style="width:100%;border-collapse:collapse;"><tr><td>0球</td><td>2.8%</td><td><div style='width:8.399999999999999px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>1球</td><td>8.2%</td><td><div style='width:24.599999999999998px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>2球</td><td>15.6%</td><td><div style='width:46.8px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>3球</td><td>16.2%</td><td><div style='width:48.599999999999994px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>4球</td><td>19.0%</td><td><div style='width:57.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>5球</td><td>14.0%</td><td><div style='width:42.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>6球</td><td>11.8%</td><td><div style='width:35.400000000000006px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>7球</td><td>6.6%</td><td><div style='width:19.799999999999997px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>8球</td><td>3.0%</td><td><div style='width:9.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>9球</td><td>2.0%</td><td><div style='width:6.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>10球</td><td>0.4%</td><td><div style='width:1.2000000000000002px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>12球</td><td>0.4%</td><td><div style='width:1.2000000000000002px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr></table>
-      </div>
+      <div style="font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;">🎯 模拟500次 比分TOP5</div>
+      <table style="width:100%;border-collapse:collapse;"><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">2:1</td><td>44/500</td><td>8.8%</td><td><div style="width:26.400000000000002px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">3:1</td><td>43/500</td><td>8.6%</td><td><div style="width:25.799999999999997px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">1:1</td><td>40/500</td><td>8.0%</td><td><div style="width:24.0px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">2:0</td><td>37/500</td><td>7.4%</td><td><div style="width:22.200000000000003px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">3:0</td><td>36/500</td><td>7.2%</td><td><div style="width:21.6px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr></table>
     </div>
     <div style="background:#1e293b;border-radius:16px;padding:24px;margin-bottom:20px;border:1px solid #334155;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-        <span style="font-size:1.4em;font-weight:bold;color:#e2e8f0;">约旦 vs 阿尔及利亚</span>
-        <span style="font-size:0.85em;padding:4px 10px;border-radius:12px;background:#334155;color:#94a3b8;">🔴 不确定性高</span>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <span style="font-size:1.4em;font-weight:bold;color:#e2e8f0;">墨西哥 vs 厄瓜多尔</span>
+        <span style="font-size:0.85em;padding:4px 10px;border-radius:12px;background:#334155;">🟡 中等</span>
+        <span style="font-size:0.8em;color:#94a3b8;">@ 墨西哥城(阿兹台克高原2200m)</span>
       </div>
-
-      <!-- 出线状态 -->
-      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
-        <span style="font-size:11px;padding:3px 8px;background:#064e3b;color:#34d399;border-radius:4px;">🏠 🔴生死战·输球即基本淘汰</span>
-        <span style="font-size:11px;padding:3px 8px;background:#7f1d1d;color:#fca5a5;border-radius:4px;">🚶 🔴生死战·输球即基本淘汰</span>
+      <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;line-height:1.5;">
+        ⭐ 墨西哥: 高原主场（2200m）+ 防守体系完美（小组赛0失球）<br>
+        ⭐ 厄瓜多尔: 高原适应强（本来就是高原国家），防守反击专家
       </div>
-
-      <!-- 关键球员 -->
-      <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;line-height:1.6;">
-        <div>⭐ 约旦: </div>
-        <div>⭐ 阿尔及利亚: 马赫雷斯(队长·首轮替补本场回归首发)·阿穆拉(世预10球·首轮被雪藏本场回归)·阿伊特努里(狼队左后卫·进攻宽度)·本塔莱布(中场组织)</div>
+      <div style="font-size:10px;color:#64748b;margin-bottom:12px;">
+        🔻 墨西哥: 进攻创造力有限（场均2球），破密集防守能力存疑<br>
+        🔻 厄瓜多尔: 客场高原（虽然本国也高），进攻火力不足（小组赛仅2球）
       </div>
-
-      <!-- 漏洞 -->
-      <div style="font-size:10px;color:#94a3b8;margin-bottom:12px;line-height:1.5;">
-        <div>🔻 约旦漏洞: </div>
-        <div>🔻 阿尔及利亚漏洞: 首轮对阿根廷0创造力·门将齐达内失误倾向·锋线进球转化率低·对密集大巴缺乏破局手段</div>
-      </div>
-
-      <!-- 胜平负概率条 -->
-      <div style="margin-bottom:16px;">
+      <div style="margin-bottom:12px;">
         <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
-          <span style="width:40px;font-size:12px;color:#94a3b8;">约旦胜</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:28.8%;background:#ef4444;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#0f172a;">28.8%</span>
-            </div>
+          <span style="width:40px;font-size:12px;color:#94a3b8;">墨西哥胜</span>
+          <div style="flex:1;height:24px;background:#1e293b;border-radius:12px;overflow:hidden;">
+            <div style="height:100%;width:71.0%;background:#22c55e;border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;"><span style="font-size:11px;font-weight:bold;color:#0f172a;">71.0%</span></div>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
           <span style="width:40px;font-size:12px;color:#94a3b8;">平局</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:22.2%;background:#888;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#fff;">22.2%</span>
-            </div>
+          <div style="flex:1;height:24px;background:#1e293b;border-radius:12px;overflow:hidden;">
+            <div style="height:100%;width:15.8%;background:#888;border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;"><span style="font-size:11px;font-weight:bold;color:#fff;">15.8%</span></div>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px;margin:4px 0;">
-          <span style="width:40px;font-size:12px;color:#94a3b8;">阿尔及利亚胜</span>
-          <div style="flex:1;height:22px;background:#1e293b;border-radius:11px;overflow:hidden;border:1px solid #334155;">
-            <div style="height:100%;width:49.0%;background:#f59e0b;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
-              <span style="font-size:11px;font-weight:bold;color:#fff;">49.0%</span>
-            </div>
+          <span style="width:40px;font-size:12px;color:#94a3b8;">厄瓜多尔胜</span>
+          <div style="flex:1;height:24px;background:#1e293b;border-radius:12px;overflow:hidden;">
+            <div style="height:100%;width:13.2%;background:#ef4444;border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;"><span style="font-size:11px;font-weight:bold;color:#fff;">13.2%</span></div>
           </div>
         </div>
       </div>
-
-      <!-- 关键指标 -->
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
         <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
           <div style="font-size:10px;color:#64748b;">平均进球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#e2e8f0;">1.43 - 1.93</div>
-        </div>
-        <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
-          <div style="font-size:10px;color:#64748b;">期望进球(xG)</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#e2e8f0;">1.36 - 1.95</div>
+          <div style="font-size:1.1em;font-weight:bold;color:#e2e8f0;">2.66 - 1.11</div>
         </div>
         <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
           <div style="font-size:10px;color:#64748b;">大2.5球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#34d399;">63.6%</div>
+          <div style="font-size:1.1em;font-weight:bold;color:#34d399;">73.8%</div>
         </div>
         <div style="background:#0f172a;padding:8px 14px;border-radius:8px;text-align:center;">
           <div style="font-size:10px;color:#64748b;">双方进球</div>
-          <div style="font-size:1.1em;font-weight:bold;color:#fbbf24;">65.6%</div>
+          <div style="font-size:1.1em;font-weight:bold;color:#fbbf24;">62.2%</div>
         </div>
       </div>
-
-      <!-- 比分分布 -->
-      <div style="margin-bottom:12px;">
-        <div style="font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;">🎯 模拟500次比分TOP5</div>
-        <table style="width:100%;border-collapse:collapse;"><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>1:1</td><td>51/500</td><td>10.2%</td><td><div style='width:30.599999999999998px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>1:2</td><td>44/500</td><td>8.8%</td><td><div style='width:26.400000000000002px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>0:1</td><td>38/500</td><td>7.6%</td><td><div style='width:22.799999999999997px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>2:2</td><td>32/500</td><td>6.4%</td><td><div style='width:19.200000000000003px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr><tr><td style='font-weight:bold;font-family:monospace;font-size:1.1em;color:#fbbf24;'>1:3</td><td>31/500</td><td>6.2%</td><td><div style='width:18.6px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;'></div></td></tr></table>
-      </div>
-
-      <!-- 总进球分布 -->
-      <div>
-        <div style="font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;">📊 总进球分布</div>
-        <table style="width:100%;border-collapse:collapse;"><tr><td>0球</td><td>3.2%</td><td><div style='width:9.600000000000001px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>1球</td><td>13.2%</td><td><div style='width:39.599999999999994px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>2球</td><td>20.0%</td><td><div style='width:60.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>3球</td><td>18.4%</td><td><div style='width:55.199999999999996px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>4球</td><td>20.0%</td><td><div style='width:60.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>5球</td><td>12.0%</td><td><div style='width:36.0px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>6球</td><td>7.6%</td><td><div style='width:22.799999999999997px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>7球</td><td>3.6%</td><td><div style='width:10.8px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>8球</td><td>1.8%</td><td><div style='width:5.4px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr><tr><td>9球</td><td>0.2%</td><td><div style='width:0.6000000000000001px;height:12px;background:linear-gradient(90deg,#10b981,#34d399);border-radius:6px;'></div></td></tr></table>
-      </div>
+      <div style="font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;">🎯 模拟500次 比分TOP5</div>
+      <table style="width:100%;border-collapse:collapse;"><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">2:1</td><td>47/500</td><td>9.4%</td><td><div style="width:28.200000000000003px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">2:0</td><td>44/500</td><td>8.8%</td><td><div style="width:26.400000000000002px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">3:0</td><td>38/500</td><td>7.6%</td><td><div style="width:22.799999999999997px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">3:1</td><td>36/500</td><td>7.2%</td><td><div style="width:21.6px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr><tr><td style="font-weight:bold;font-family:monospace;color:#fbbf24;">1:0</td><td>33/500</td><td>6.6%</td><td><div style="width:19.799999999999997px;height:16px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:8px;"></div></td></tr></table>
     </div>
-
-<div class="disclaimer">
-⚠️ 所有数据为统计模型计算结果，仅供赛事数据研究参考，不构成任何建议。<br>
-蒙特卡洛模拟基于概率模型，无法预测真实比赛中的突发因素（红牌、伤病、天气等）。<br>
-理性观赛 ⚽
-</div>
-</body>
-</html>
+<div class="note">⚠️ 统计模型模拟，仅供参考。⚽ 理性观赛。</div>
+</body></html>

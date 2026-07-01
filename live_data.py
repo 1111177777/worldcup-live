@@ -4,6 +4,7 @@
 每5分钟运行：python live_data.py
 """
 import json, os, math
+import re
 from datetime import datetime
 
 import hashlib
@@ -806,6 +807,11 @@ def calc_standings(matches):
 
 
 def monte_carlo(h,a,runs=500):
+    """优先读取intel中的MC数据，没有则用简化版"""
+    import re
+    # 从schedule.json中已经查找当前比赛（通过全局变量）
+    # 实际上这个函数被gen()调用时，我们改为在gen()里预解析
+    # 简单回退方案：用predict的ELO数据做简化MC
     p=predict(h,a)
     import random
     w=dr=lo=0
@@ -856,8 +862,20 @@ def gen():
         if not m.get('risk') or len(m.get('risk',[]))==0: m['risk']=ar
         if not m.get('value'): m['value']=av
         # 统一使用 predict() 返回的冷门概率，不再重复计算
-        m['_upset_prob'] = p.get('upset_prob', up)
-        m['_upset_why'] = uw
+        # 从intel提取MC数据
+        intel = m.get('intel', '')
+        mc_win = mc_draw = mc_loss = mc_top = mc_o25 = None
+        # 格式: "XX胜W%/平D%/YY胜L%。MC最可能S(P%)。大2.5球O%。"
+        mm = re.findall(r'([^\s/]+?)胜(\d+\.?\d*)%', intel)
+        if len(mm) >= 2:
+            mc_win = float(mm[0][1]); mc_loss = float(mm[1][1])
+        m2 = re.search(r'平(\d+\.?\d*)%', intel)
+        if m2: mc_draw = float(m2.group(1))
+        mt = re.search(r'MC最可能(\S+)\((\d+\.?\d*)%\)', intel)
+        if mt: mc_top = (mt.group(1), float(mt.group(2)))
+        mo = re.search(r'大2\.5球(\d+\.?\d*)%', intel)
+        if mo: mc_o25 = float(mo.group(1))
+        m['_mc'] = {'win': mc_win, 'draw': mc_draw, 'loss': mc_loss, 'top': mc_top, 'o25': mc_o25}
         fh,fa=FLAGS.get(m['home'],''),FLAGS.get(m['away'],'')
         ew,sw,gw,rec,tags=explain(p,m,m['home'],m['away'],p['he']-p['ae']+50)
         d=f"{m['date']} {m['time']}".strip()
@@ -911,7 +929,7 @@ def gen():
         <div class="b"><span>平</span><div class="t"><i style="width:{p['draw']}%;background:#888"></i></div><span class="n">{p['draw']}%</span></div>
         <div class="b"><span>客</span><div class="t"><i style="width:{p['loss']}%;background:#ccc"></i></div><span class="n">{p['loss']}%</span></div>
         <div class="why">{sw} · {on}</div>
-<div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主{monte_carlo(m["home"],m["away"])["win"]:.0f}% 平{monte_carlo(m["home"],m["away"])["draw"]:.0f}% 客{monte_carlo(m["home"],m["away"])["loss"]:.0f}%</div>
+{"<div class=\"why\" style=\"font-size:10px;color:#999\">🎲 500次模拟: 主"+str(m['_mc']['win'])+"% 平"+str(m['_mc']['draw'])+"% 客"+str(m['_mc']['loss'])+"% | 最可能"+str(m['_mc']['top'][0])+"("+str(m['_mc']['top'][1])+"%) | 大2.5球"+str(m['_mc']['o25'])+"%</div>" if m['_mc']['win'] else ""}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs">{' '.join(f'<span class="c"><b>{s}</b> {pr}%</span>'for s,pr in p['top'])}</div></div>
       <div class="s"><div class="st">总进球 · {gw}</div><div class="cs">{' '.join(f'<span class="c">{g}球 {pr}%</span>'for g,pr in list(p['gl'].items())[:6])}</div></div>

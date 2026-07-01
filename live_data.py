@@ -862,10 +862,11 @@ def gen():
         if not m.get('risk') or len(m.get('risk',[]))==0: m['risk']=ar
         if not m.get('value'): m['value']=av
         # 统一使用 predict() 返回的冷门概率，不再重复计算
-        # 从intel提取MC数据
+        m['_upset_prob'] = p.get('upset_prob', up)
+        m['_upset_why'] = uw
+        # 从intel提取MC数据（R32比赛用专业MC代替简化版）
         intel = m.get('intel', '')
         mc_win = mc_draw = mc_loss = mc_top = mc_o25 = None
-        # 格式: "XX胜W%/平D%/YY胜L%。MC最可能S(P%)。大2.5球O%。"
         mm = re.findall(r'([^\s/]+?)胜(\d+\.?\d*)%', intel)
         if len(mm) >= 2:
             mc_win = float(mm[0][1]); mc_loss = float(mm[1][1])
@@ -1120,9 +1121,9 @@ function filter(){{var q=document.getElementById('search').value.toLowerCase();v
     # 小组赛全部结束 → 注入32强淘汰赛预览
     ft_count = sum(1 for m in matches if m.get('status') == 'FT')
     if ft_count >= 72:
-        W = {'A':'墨西哥','B':'瑞士','C':'巴西','D':'美国','E':'德国','F':'荷兰','G':'比利时','H':'西班牙','I':'法国','J':'阿根廷','K':'哥伦比亚','L':'英格兰'}
-        R = {'A':'南非','B':'加拿大','C':'摩洛哥','D':'澳大利亚','E':'科特迪瓦','F':'日本','G':'埃及','H':'佛得角','I':'挪威','J':'奥地利','K':'葡萄牙','L':'克罗地亚'}
-        T = ['刚果民主共和国','瑞典','厄瓜多尔','加纳','波黑','阿尔及利亚','巴拉圭','塞内加尔']
+        W = {'A':'墨西哥','B':'瑞士','C':'巴西','D':'美国','E':'德国','F':'荷兰','G':'埃及','H':'西班牙','I':'法国','J':'阿根廷','K':'哥伦比亚','L':'英格兰'}
+        R = {'A':'南非','B':'加拿大','C':'摩洛哥','D':'澳大利亚','E':'科特迪瓦','F':'日本','G':'比利时','H':'乌拉圭','I':'挪威','J':'奥地利','K':'葡萄牙','L':'克罗地亚'}
+        T = ['刚果民主共和国','瑞典','波黑','阿尔及利亚','塞内加尔','厄瓜多尔','加纳','韩国']
         bracket = [(73,R['A'],R['B']),(74,W['E'],T[0]),(75,W['F'],R['C']),(76,W['C'],R['F']),(77,W['I'],T[1]),(78,R['E'],R['I']),(79,W['A'],T[2]),(80,W['L'],T[3]),(81,W['D'],T[4]),(82,W['G'],T[5]),(83,R['K'],R['L']),(84,W['H'],R['J']),(85,W['B'],T[6]),(86,W['J'],R['H']),(87,W['K'],T[7]),(88,R['D'],R['G'])]
         ko = '<div style="background:#fafafa;padding:10px;margin-bottom:12px;border:1px solid #ccc;border-radius:4px"><div style="font-weight:700;font-size:14px;margin-bottom:8px">🏆 32强淘汰赛对阵</div>'
         for num,t1,t2 in bracket:

@@ -916,6 +916,12 @@ def gen():
             o=float(m['odds_home']);fair=round(1/max(p['win']/100,0.01),1)
             on=f"市场参考{o} · 模型公允{fair}"
 
+        # MC数据优先：进度条用MC的值（如果有）
+        _mc = m.get('_mc', {})
+        dp = {'win': p['win'], 'draw': p['draw'], 'loss': p['loss']}
+        if _mc.get('win') is not None:
+            dp = {'win': _mc['win'], 'draw': _mc['draw'], 'loss': _mc['loss']}
+
         cards+=f"""
     <div class="match">
       <div class="mh"><span class="g">G{m['group']}</span><span class="t">{fh} {m['home']} vs {m['away']} {fa}</span><span class="d">{d}</span></div>
@@ -926,9 +932,9 @@ def gen():
       {kelly_html}
       {tags}
       <div class="s"><div class="st">胜负 · {ew}</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:{p['win']}%"></i></div><span class="n">{p['win']}%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:{p['draw']}%;background:#888"></i></div><span class="n">{p['draw']}%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:{p['loss']}%;background:#ccc"></i></div><span class="n">{p['loss']}%</span></div>
+        <div class="b"><span>主</span><div class="t"><i style="width:{dp['win']}%"></i></div><span class="n">{dp['win']}%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:{dp['draw']}%;background:#888"></i></div><span class="n">{dp['draw']}%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:{dp['loss']}%;background:#ccc"></i></div><span class="n">{dp['loss']}%</span></div>
         <div class="why">{sw} · {on}</div>
 {"<div class=\"why\" style=\"font-size:10px;color:#999\">🎲 500次模拟: 主"+str(m['_mc']['win'])+"% 平"+str(m['_mc']['draw'])+"% 客"+str(m['_mc']['loss'])+"% | 最可能"+str(m['_mc']['top'][0])+"("+str(m['_mc']['top'][1])+"%) | 大2.5球"+str(m['_mc']['o25'])+"%</div>" if m['_mc']['win'] else ""}
       </div>

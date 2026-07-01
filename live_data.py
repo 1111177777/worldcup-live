@@ -1063,7 +1063,7 @@ h1{{font-size:18px;font-weight:600;text-align:center;margin:8px 0}}
 <div class="ft">ELO评分基于FIFA排名和历史战绩<br>泊松分布推演比分概率 · 参考值来源于公开市场<br>所有数据仅供赛事数据研究参考，不构成任何建议</div>
 <script>
 let t=60;setInterval(()=>{{t--;document.getElementById('cd').textContent=t;if(t<=0)location.reload()}},1000);
-function filter(){{var q=document.getElementById('search').value.toLowerCase();var ms=document.querySelectorAll('.match');ms.forEach(function(m){{var t=m.querySelector('.t').textContent.toLowerCase();m.style.display=t.indexOf(q)>=0?'':'none'}});}}
+function filter(){{var q=document.getElementById('search').value.toLowerCase();var ms=document.querySelectorAll('.match');if(!q){{ms.forEach(function(m){{m.style.display=''}});return;}}ms.forEach(function(m){{var txt=(m.textContent||'').toLowerCase();m.style.display=txt.indexOf(q)>=0?'':'none'}});}}
 	// 在线人数（GitHub Gist API）
 	var GIST_API='https://api.github.com/gists/__GIST_ID__';
 	var GH_TOKEN='__GH_TOKEN__';

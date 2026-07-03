@@ -1360,8 +1360,8 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": "",
-    "status": "",
+    "result": "0:1",
+    "status": "FT",
     "injury": "",
     "risk": [],
     "value": ""
@@ -1377,8 +1377,8 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": "",
-    "status": "",
+    "result": "2:1",
+    "status": "FT",
     "injury": "",
     "risk": [],
     "value": ""
@@ -1394,8 +1394,8 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": "",
-    "status": "",
+    "result": "1:1",
+    "status": "FT",
     "injury": "",
     "risk": [],
     "value": ""
@@ -1411,8 +1411,8 @@
     "odds_home": "",
     "odds_draw": "",
     "odds_away": "",
-    "result": "",
-    "status": "",
+    "result": "1:1",
+    "status": "FT",
     "injury": "",
     "risk": [],
     "value": ""

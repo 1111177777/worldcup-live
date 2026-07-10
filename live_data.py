@@ -837,8 +837,14 @@ def gen():
     calibrate(matches)
     now=datetime.now().strftime("%m/%d %H:%M:%S")
     cards,results="",""
-    # 按日期排序
-    matches.sort(key=lambda x: x['date'])
+    # 按日期排序（数字排序，避免"7/10"<"7/2"的字符串错误）
+    def _date_key(m):
+        try:
+            mo, dy = m['date'].split('/')
+            return (int(mo), int(dy))
+        except Exception:
+            return (99, 99)
+    matches.sort(key=_date_key)
 
     # 计算当前积分（用于出线压力分析）
     from collections import defaultdict

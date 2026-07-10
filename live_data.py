@@ -936,7 +936,7 @@ def gen():
         <div class="b"><span>平</span><div class="t"><i style="width:{dp['draw']}%;background:#888"></i></div><span class="n">{dp['draw']}%</span></div>
         <div class="b"><span>客</span><div class="t"><i style="width:{dp['loss']}%;background:#ccc"></i></div><span class="n">{dp['loss']}%</span></div>
         <div class="why">{sw} · {on}</div>
-{"<div class=\"why\" style=\"font-size:10px;color:#999\">🎲 500次模拟: 主"+str(m['_mc']['win'])+"% 平"+str(m['_mc']['draw'])+"% 客"+str(m['_mc']['loss'])+"% | 最可能"+str(m['_mc']['top'][0])+"("+str(m['_mc']['top'][1])+"%) | 大2.5球"+str(m['_mc']['o25'])+"%</div>" if m['_mc']['win'] else ""}
+{"<div class=\"why\" style=\"font-size:10px;color:#999\">🎲 500次模拟: 主"+str(m['_mc']['win'])+"% 平"+str(m['_mc']['draw'])+"% 客"+str(m['_mc']['loss'])+"% | 最可能"+str(m['_mc']['top'][0])+"("+str(m['_mc']['top'][1])+"%) | 大2.5球"+str(m['_mc']['o25'])+"%</div>" if (m['_mc']['win'] and m['_mc']['top']) else ("<div class=\"why\" style=\"font-size:10px;color:#999\">🎲 500次模拟: 主"+str(m['_mc']['win'])+"% 平"+str(m['_mc']['draw'])+"% 客"+str(m['_mc']['loss'])+"%</div>" if m['_mc']['win'] else "")}
       </div>
       <div class="s"><div class="st">比分 TOP5</div><div class="cs">{' '.join(f'<span class="c"><b>{s}</b> {pr}%</span>'for s,pr in p['top'])}</div></div>
       <div class="s"><div class="st">总进球 · {gw}</div><div class="cs">{' '.join(f'<span class="c">{g}球 {pr}%</span>'for g,pr in list(p['gl'].items())[:6])}</div></div>

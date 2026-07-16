@@ -71,7 +71,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <h1>世界杯 · 实时分析 <span style="color:#e44;font-size:12px">v06240623</span></h1>
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 数据参考</div>
-<div class="upd">更新 07/10 21:21:34 · 每5分钟自动刷新 · v689694 · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
+<div class="upd">更新 07/16 16:20:41 · 每5分钟自动刷新 · v190041 · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
 <div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
 <style>
 .guide{margin:6px 0;border:1px solid #e8e8e8;border-radius:5px;overflow:hidden}
@@ -127,27 +127,27 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <script>function toggleDash(e){e.classList.toggle('open');e.nextElementSibling.classList.toggle('open');}</script>
 <div class="dashboard">
   <div class="dash-section">
-    <div class="dash-title open" onclick="toggleDash(this)">📊 小组积分 <span>70.2%准确</span></div>
+    <div class="dash-title open" onclick="toggleDash(this)">📊 小组积分 <span>69.8%准确</span></div>
     <div class="dash-body open"><div class="groups-grid"><div class="group-card"><div class="gn">A组</div><div class="gr" style="font-weight:700"><span>🇲🇽 墨西哥</span><span>3场 9分 +6</span></div><div class="gr" style="font-weight:700"><span>🇿🇦 南非</span><span>3场 4分 -1</span></div><div class="gr" ><span>🇰🇷 韩国</span><span>3场 3分 -1</span></div><div class="gr" ><span>🇨🇿 捷克</span><span>3场 1分 -4</span></div></div><div class="group-card"><div class="gn">B组</div><div class="gr" style="font-weight:700"><span>🇨🇭 瑞士</span><span>3场 7分 +4</span></div><div class="gr" style="font-weight:700"><span>🇨🇦 加拿大</span><span>3场 4分 +5</span></div><div class="gr" ><span>🇧🇦 波黑</span><span>3场 4分 -1</span></div><div class="gr" ><span>🇶🇦 卡塔尔</span><span>3场 1分 -8</span></div></div><div class="group-card"><div class="gn">C组</div><div class="gr" style="font-weight:700"><span>🇧🇷 巴西</span><span>3场 7分 +6</span></div><div class="gr" style="font-weight:700"><span>🇲🇦 摩洛哥</span><span>3场 7分 +3</span></div><div class="gr" ><span>🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰</span><span>3场 3分 -3</span></div><div class="gr" ><span>🇭🇹 海地</span><span>3场 0分 -6</span></div></div><div class="group-card"><div class="gn">D组</div><div class="gr" style="font-weight:700"><span>🇺🇸 美国</span><span>3场 6分 +4</span></div><div class="gr" style="font-weight:700"><span>🇦🇺 澳大利亚</span><span>3场 4分 +0</span></div><div class="gr" ><span>🇵🇾 巴拉圭</span><span>3场 4分 -2</span></div><div class="gr" ><span>🇹🇷 土耳其</span><span>3场 3分 -2</span></div></div><div class="group-card"><div class="gn">E组</div><div class="gr" style="font-weight:700"><span>🇩🇪 德国</span><span>3场 6分 +6</span></div><div class="gr" style="font-weight:700"><span>🇨🇮 科特迪瓦</span><span>3场 6分 +2</span></div><div class="gr" ><span>🇪🇨 厄瓜多尔</span><span>3场 4分 +0</span></div><div class="gr" ><span>🇨🇼 库拉索</span><span>3场 1分 -8</span></div></div><div class="group-card"><div class="gn">F组</div><div class="gr" style="font-weight:700"><span>🇳🇱 荷兰</span><span>3场 7分 +6</span></div><div class="gr" style="font-weight:700"><span>🇯🇵 日本</span><span>3场 5分 +4</span></div><div class="gr" ><span>🇸🇪 瑞典</span><span>3场 4分 +0</span></div><div class="gr" ><span>🇹🇳 突尼斯</span><span>3场 0分 -10</span></div></div><div class="group-card"><div class="gn">G组</div><div class="gr" style="font-weight:700"><span>🇧🇪 比利时</span><span>3场 5分 +4</span></div><div class="gr" style="font-weight:700"><span>🇪🇬 埃及</span><span>3场 5分 +2</span></div><div class="gr" ><span>🇮🇷 伊朗</span><span>3场 3分 +0</span></div><div class="gr" ><span>🇳🇿 新西兰</span><span>3场 1分 -6</span></div></div><div class="group-card"><div class="gn">H组</div><div class="gr" style="font-weight:700"><span>🇪🇸 西班牙</span><span>3场 7分 +5</span></div><div class="gr" style="font-weight:700"><span>🇨🇻 佛得角</span><span>3场 3分 +0</span></div><div class="gr" ><span>🇺🇾 乌拉圭</span><span>3场 2分 -1</span></div><div class="gr" ><span>🇸🇦 沙特阿拉伯</span><span>3场 2分 -4</span></div></div><div class="group-card"><div class="gn">I组</div><div class="gr" style="font-weight:700"><span>🇫🇷 法国</span><span>3场 9分 +8</span></div><div class="gr" style="font-weight:700"><span>🇳🇴 挪威</span><span>3场 6分 +1</span></div><div class="gr" ><span>🇸🇳 塞内加尔</span><span>3场 3分 +2</span></div><div class="gr" ><span>🇮🇶 伊拉克</span><span>3场 0分 -11</span></div></div><div class="group-card"><div class="gn">J组</div><div class="gr" style="font-weight:700"><span>🇦🇷 阿根廷</span><span>3场 9分 +7</span></div><div class="gr" style="font-weight:700"><span>🇦🇹 奥地利</span><span>3场 4分 +0</span></div><div class="gr" ><span>🇩🇿 阿尔及利亚</span><span>3场 4分 -2</span></div><div class="gr" ><span>🇯🇴 约旦</span><span>3场 0分 -5</span></div></div><div class="group-card"><div class="gn">K组</div><div class="gr" style="font-weight:700"><span>🇨🇴 哥伦比亚</span><span>3场 7分 +3</span></div><div class="gr" style="font-weight:700"><span>🇵🇹 葡萄牙</span><span>3场 5分 +5</span></div><div class="gr" ><span>🇨🇩 刚果民主共和国</span><span>3场 4分 +1</span></div><div class="gr" ><span>🇺🇿 乌兹别克斯坦</span><span>3场 0分 -9</span></div></div><div class="group-card"><div class="gn">L组</div><div class="gr" style="font-weight:700"><span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰</span><span>3场 7分 +4</span></div><div class="gr" style="font-weight:700"><span>🇭🇷 克罗地亚</span><span>3场 6分 +0</span></div><div class="gr" ><span>🇬🇭 加纳</span><span>3场 4分 +0</span></div><div class="gr" ><span>🇵🇦 巴拿马</span><span>3场 0分 -4</span></div></div></div></div>
   </div>
   <div class="dash-section">
     <div class="dash-title open" onclick="toggleDash(this)">🎲 出线概率 <span>MC3000次</span></div>
-    <div class="dash-body open"><div class="mc-tags"><span class="mc-tag" style="background:#e8f5e9;color:#390">🇫🇷法国 474.8%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇦🇷阿根廷 365.2%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇪🇸西班牙 279.3%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🏴󠁧󠁢󠁥󠁮󠁧󠁿英格兰 262.4%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇧🇪比利时 210.4%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇲🇦摩洛哥 200.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇳🇴挪威 106.3%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇭瑞士 101.2%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇴哥伦比亚 100.5%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇲🇽墨西哥 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇿🇦南非 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇦加拿大 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇧🇷巴西 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇺🇸美国 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇦🇺澳大利亚 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇩🇪德国 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇮科特迪瓦 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇳🇱荷兰 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇯🇵日本 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇪🇬埃及 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇻佛得角 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇦🇹奥地利 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇵🇹葡萄牙 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇭🇷克罗地亚 100.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇯🇴约旦 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇩🇿阿尔及利亚 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇸🇦沙特阿拉伯 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇸🇳塞内加尔 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇹🇷土耳其 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇼库拉索 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇵🇾巴拉圭 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇪🇨厄瓜多尔 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇧🇦波黑 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇶🇦卡塔尔 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇬🇭加纳 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇺🇾乌拉圭 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇩刚果民主共和国 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🏴󠁧󠁢󠁳󠁣󠁴󠁿苏格兰 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇳🇿新西兰 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇰🇷韩国 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇸🇪瑞典 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇵🇦巴拿马 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇹🇳突尼斯 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇿捷克 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇮🇷伊朗 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇺🇿乌兹别克斯坦 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇭🇹海地 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇮🇶伊拉克 0.0%</span></div></div>
+    <div class="dash-body open"><div class="mc-tags"><span class="mc-tag" style="background:#e8f5e9;color:#390">🇦🇷阿根廷 426.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇫🇷法国 399.6%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇪🇸西班牙 348.3%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇧🇪比利时 211.1%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🏴󠁧󠁢󠁥󠁮󠁧󠁿英格兰 208.6%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇲🇦摩洛哥 200.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇳🇴挪威 105.1%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇭瑞士 101.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇴哥伦比亚 100.2%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇲🇽墨西哥 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇿🇦南非 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇦加拿大 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇧🇷巴西 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇺🇸美国 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇦🇺澳大利亚 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇩🇪德国 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇮科特迪瓦 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇳🇱荷兰 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇯🇵日本 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇪🇬埃及 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇨🇻佛得角 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇦🇹奥地利 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇵🇹葡萄牙 100.0%</span><span class="mc-tag" style="background:#e8f5e9;color:#390">🇭🇷克罗地亚 100.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇰🇷韩国 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇸🇪瑞典 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇪🇨厄瓜多尔 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇹🇳突尼斯 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇵🇦巴拿马 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇳🇿新西兰 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🏴󠁧󠁢󠁳󠁣󠁴󠁿苏格兰 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇺🇾乌拉圭 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇸🇳塞内加尔 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇵🇾巴拉圭 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇸🇦沙特阿拉伯 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇺🇿乌兹别克斯坦 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇬🇭加纳 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇩🇿阿尔及利亚 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇧🇦波黑 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇭🇹海地 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇿捷克 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇼库拉索 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇨🇩刚果民主共和国 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇶🇦卡塔尔 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇯🇴约旦 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇹🇷土耳其 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇮🇷伊朗 0.0%</span><span class="mc-tag" style="background:#f5f5f5;color:#999">🇮🇶伊拉克 0.0%</span></div></div>
   </div>
   <div class="dash-section">
-    <div class="dash-title" onclick="toggleDash(this)">🤖 AI复盘 <span>70.2%准确</span></div>
+    <div class="dash-title" onclick="toggleDash(this)">🤖 AI复盘 <span>69.8%准确</span></div>
     <div class="dash-body"><div class="agent-review">
-      <p>已完成 94 场复盘。方向准确率 <b>70.2%</b>，场均进球偏差 1.4 球。</p>
+      <p>已完成 96 场复盘。方向准确率 <b>69.8%</b>，场均进球偏差 1.4 球。</p>
       <p>主要盲区：<br>
       · 强队翻车 8 场（西班牙、葡萄牙等控球型对大巴失效）<br>
       · 进球系统性低估 18 场（扩军后弱队防线更脆弱）<br>
-      · ELO接近却大比分 4 场（美国4-1、澳大利亚2-0）</p>
+      · ELO接近却大比分 5 场（美国4-1、澳大利亚2-0）</p>
       <p style="font-size:10px;color:#999">每场赛后自动复盘→点击卡片底部「赛后AI复盘」查看详情</p>
     </div></div>
   </div>
 </div>
 
-<div class="results"><div class="rt">⚡ 最新赛果</div><div class="res"><span>🇲🇽 墨西哥 2:0 南非 🇿🇦</span><span class="d">6/11</span></div><div class="res"><span>🇰🇷 韩国 2:1 捷克 🇨🇿</span><span class="d">6/11</span></div><div class="res"><span>🇨🇦 加拿大 1:1 波黑 🇧🇦</span><span class="d">6/12</span></div><div class="res"><span>🇺🇸 美国 4:1 巴拉圭 🇵🇾</span><span class="d">6/12</span></div><div class="res"><span>🇶🇦 卡塔尔 1:1 瑞士 🇨🇭</span><span class="d">6/13</span></div><div class="res"><span>🇧🇷 巴西 1:1 摩洛哥 🇲🇦</span><span class="d">6/13</span></div><div class="res"><span>🇭🇹 海地 0:1 苏格兰 🏴</span><span class="d">6/13</span></div><div class="res"><span>🇦🇺 澳大利亚 2:0 土耳其 🇹🇷</span><span class="d">6/13</span></div><div class="res"><span>🇩🇪 德国 7:1 库拉索 🇨🇼</span><span class="d">6/14</span></div><div class="res"><span>🇨🇮 科特迪瓦 1:0 厄瓜多尔 🇪🇨</span><span class="d">6/14</span></div><div class="res"><span>🇳🇱 荷兰 2:2 日本 🇯🇵</span><span class="d">6/14</span></div><div class="res"><span>🇸🇪 瑞典 5:1 突尼斯 🇹🇳</span><span class="d">6/14</span></div><div class="res"><span>🇧🇪 比利时 1:1 埃及 🇪🇬</span><span class="d">6/15</span></div><div class="res"><span>🇮🇷 伊朗 2:2 新西兰 🇳🇿</span><span class="d">6/15</span></div><div class="res"><span>🇪🇸 西班牙 0:0 佛得角 🇨🇻</span><span class="d">6/15</span></div><div class="res"><span>🇸🇦 沙特阿拉伯 1:1 乌拉圭 🇺🇾</span><span class="d">6/15</span></div><div class="res"><span>🇫🇷 法国 3:1 塞内加尔 🇸🇳</span><span class="d">6/16</span></div><div class="res"><span>🇮🇶 伊拉克 1:4 挪威 🇳🇴</span><span class="d">6/16</span></div><div class="res"><span>🇦🇷 阿根廷 3:0 阿尔及利亚 🇩🇿</span><span class="d">6/16</span></div><div class="res"><span>🇦🇹 奥地利 3:1 约旦 🇯🇴</span><span class="d">6/16</span></div><div class="res"><span>🇵🇹 葡萄牙 1:1 刚果民主共和国 🇨🇩</span><span class="d">6/17</span></div><div class="res"><span>🇺🇿 乌兹别克斯坦 1:3 哥伦比亚 🇨🇴</span><span class="d">6/17</span></div><div class="res"><span>🏴 英格兰 4:2 克罗地亚 🇭🇷</span><span class="d">6/17</span></div><div class="res"><span>🇬🇭 加纳 1:0 巴拿马 🇵🇦</span><span class="d">6/17</span></div><div class="res"><span>🇨🇿 捷克 1:1 南非 🇿🇦</span><span class="d">6/18</span></div><div class="res"><span>🇲🇽 墨西哥 1:0 韩国 🇰🇷</span><span class="d">6/18</span></div><div class="res"><span>🇨🇭 瑞士 4:1 波黑 🇧🇦</span><span class="d">6/18</span></div><div class="res"><span>🇨🇦 加拿大 6:0 卡塔尔 🇶🇦</span><span class="d">6/18</span></div><div class="res"><span>🇧🇷 巴西 3:0 海地 🇭🇹</span><span class="d">6/19</span></div><div class="res"><span>🏴 苏格兰 0:1 摩洛哥 🇲🇦</span><span class="d">6/19</span></div><div class="res"><span>🇹🇷 土耳其 0:1 巴拉圭 🇵🇾</span><span class="d">6/19</span></div><div class="res"><span>🇺🇸 美国 2:0 澳大利亚 🇦🇺</span><span class="d">6/19</span></div><div class="res"><span>🇩🇪 德国 2:1 科特迪瓦 🇨🇮</span><span class="d">6/20</span></div><div class="res"><span>🇪🇨 厄瓜多尔 0:0 库拉索 🇨🇼</span><span class="d">6/20</span></div><div class="res"><span>🇳🇱 荷兰 5:1 瑞典 🇸🇪</span><span class="d">6/20</span></div><div class="res"><span>🇹🇳 突尼斯 0:4 日本 🇯🇵</span><span class="d">6/20</span></div><div class="res"><span>🇧🇪 比利时 0:0 伊朗 🇮🇷</span><span class="d">6/21</span></div><div class="res"><span>🇳🇿 新西兰 1:3 埃及 🇪🇬</span><span class="d">6/21</span></div><div class="res"><span>🇪🇸 西班牙 4:0 沙特阿拉伯 🇸🇦</span><span class="d">6/21</span></div><div class="res"><span>🇺🇾 乌拉圭 2:2 佛得角 🇨🇻</span><span class="d">6/21</span></div><div class="res"><span>🇫🇷 法国 3:0 伊拉克 🇮🇶</span><span class="d">6/22 05:00</span></div><div class="res"><span>🇳🇴 挪威 3:2 塞内加尔 🇸🇳</span><span class="d">6/22 08:00</span></div><div class="res"><span>🇦🇷 阿根廷 2:0 奥地利 🇦🇹</span><span class="d">6/22 01:00</span></div><div class="res"><span>🇯🇴 约旦 1:2 阿尔及利亚 🇩🇿</span><span class="d">6/22 11:00</span></div><div class="res"><span>🇵🇹 葡萄牙 5:0 乌兹别克斯坦 🇺🇿</span><span class="d">6/23</span></div><div class="res"><span>🇨🇴 哥伦比亚 1:0 刚果民主共和国 🇨🇩</span><span class="d">6/23</span></div><div class="res"><span>🏴 英格兰 0:0 加纳 🇬🇭</span><span class="d">6/23</span></div><div class="res"><span>🇵🇦 巴拿马 0:1 克罗地亚 🇭🇷</span><span class="d">6/23</span></div><div class="res"><span>🇨🇿 捷克 0:3 墨西哥 🇲🇽</span><span class="d">6/24</span></div><div class="res"><span>🇿🇦 南非 1:0 韩国 🇰🇷</span><span class="d">6/24</span></div><div class="res"><span>🇨🇭 瑞士 2:1 加拿大 🇨🇦</span><span class="d">6/24</span></div><div class="res"><span>🇧🇦 波黑 3:1 卡塔尔 🇶🇦</span><span class="d">6/24</span></div><div class="res"><span>🏴 苏格兰 0:3 巴西 🇧🇷</span><span class="d">6/24</span></div><div class="res"><span>🇲🇦 摩洛哥 4:2 海地 🇭🇹</span><span class="d">6/24</span></div><div class="res"><span>🇹🇷 土耳其 3:2 美国 🇺🇸</span><span class="d">6/25</span></div><div class="res"><span>🇵🇾 巴拉圭 0:0 澳大利亚 🇦🇺</span><span class="d">6/25</span></div><div class="res"><span>🇪🇨 厄瓜多尔 2:1 德国 🇩🇪</span><span class="d">6/25</span></div><div class="res"><span>🇨🇼 库拉索 0:2 科特迪瓦 🇨🇮</span><span class="d">6/25</span></div><div class="res"><span>🇳🇱 荷兰 3:1 突尼斯 🇹🇳</span><span class="d">6/25</span></div><div class="res"><span>🇸🇪 瑞典 1:1 日本 🇯🇵</span><span class="d">6/25</span></div><div class="res"><span>🇪🇬 埃及 1:1 伊朗 🇮🇷</span><span class="d">6/26</span></div><div class="res"><span>🇳🇿 新西兰 1:5 比利时 🇧🇪</span><span class="d">6/26</span></div><div class="res"><span>🇺🇾 乌拉圭 0:1 西班牙 🇪🇸</span><span class="d">6/26</span></div><div class="res"><span>🇨🇻 佛得角 0:0 沙特阿拉伯 🇸🇦</span><span class="d">6/26</span></div><div class="res"><span>🇳🇴 挪威 1:4 法国 🇫🇷</span><span class="d">6/26</span></div><div class="res"><span>🇸🇳 塞内加尔 5:0 伊拉克 🇮🇶</span><span class="d">6/26</span></div><div class="res"><span>🇦🇷 阿根廷 3:1 约旦 🇯🇴</span><span class="d">6/27</span></div><div class="res"><span>🇦🇹 奥地利 3:3 阿尔及利亚 🇩🇿</span><span class="d">6/27</span></div><div class="res"><span>🇨🇴 哥伦比亚 0:0 葡萄牙 🇵🇹</span><span class="d">6/27</span></div><div class="res"><span>🇨🇩 刚果民主共和国 3:1 乌兹别克斯坦 🇺🇿</span><span class="d">6/27</span></div><div class="res"><span>🇵🇦 巴拿马 0:2 英格兰 🏴</span><span class="d">6/27</span></div><div class="res"><span>🇭🇷 克罗地亚 2:1 加纳 🇬🇭</span><span class="d">6/27</span></div><div class="res"><span>🇿🇦 南非 0:1 加拿大 🇨🇦</span><span class="d">6/29</span></div><div class="res"><span>🇧🇷 巴西 2:1 日本 🇯🇵</span><span class="d">6/30</span></div><div class="res"><span>🇩🇪 德国 1:1 巴拉圭 🇵🇾</span><span class="d">6/30</span></div><div class="res"><span>🇳🇱 荷兰 1:1 摩洛哥 🇲🇦</span><span class="d">6/30</span></div><div class="res"><span>🇨🇮 科特迪瓦 1:2 挪威 🇳🇴</span><span class="d">7/1</span></div><div class="res"><span>🇫🇷 法国 3:0 瑞典 🇸🇪</span><span class="d">7/1</span></div><div class="res"><span>🇲🇽 墨西哥 2:0 厄瓜多尔 🇪🇨</span><span class="d">7/1</span></div><div class="res"><span>🏴 英格兰 2:1 刚果民主共和国 🇨🇩</span><span class="d">7/2</span></div><div class="res"><span>🇧🇪 比利时 3:2 塞内加尔 🇸🇳</span><span class="d">7/2</span></div><div class="res"><span>🇺🇸 美国 2:0 波黑 🇧🇦</span><span class="d">7/2</span></div><div class="res"><span>🇪🇸 西班牙 3:0 奥地利 🇦🇹</span><span class="d">7/3</span></div><div class="res"><span>🇵🇹 葡萄牙 2:1 克罗地亚 🇭🇷</span><span class="d">7/3</span></div><div class="res"><span>🇨🇭 瑞士 2:0 阿尔及利亚 🇩🇿</span><span class="d">7/3</span></div><div class="res"><span>🇨🇦 加拿大 0:3 摩洛哥 🇲🇦</span><span class="d">7/4</span></div><div class="res"><span>🇵🇾 巴拉圭 0:1 法国 🇫🇷</span><span class="d">7/5</span></div><div class="res"><span>🇳🇴 挪威 2:1 巴西 🇧🇷</span><span class="d">7/5</span></div><div class="res"><span>🏴 英格兰 3:2 墨西哥 🇲🇽</span><span class="d">7/5</span></div><div class="res"><span>🇵🇹 葡萄牙 0:1 西班牙 🇪🇸</span><span class="d">7/6</span></div><div class="res"><span>🇺🇸 美国 1:4 比利时 🇧🇪</span><span class="d">7/6</span></div><div class="res"><span>🇦🇷 阿根廷 3:2 埃及 🇪🇬</span><span class="d">7/7</span></div><div class="res"><span>🇨🇭 瑞士 0:0 哥伦比亚 🇨🇴</span><span class="d">7/7</span></div><div class="res"><span>🇫🇷 法国 2:0 摩洛哥 🇲🇦</span><span class="d">7/9</span></div></div>
+<div class="results"><div class="rt">⚡ 最新赛果</div><div class="res"><span>🇲🇽 墨西哥 2:0 南非 🇿🇦</span><span class="d">6/11</span></div><div class="res"><span>🇰🇷 韩国 2:1 捷克 🇨🇿</span><span class="d">6/11</span></div><div class="res"><span>🇨🇦 加拿大 1:1 波黑 🇧🇦</span><span class="d">6/12</span></div><div class="res"><span>🇺🇸 美国 4:1 巴拉圭 🇵🇾</span><span class="d">6/12</span></div><div class="res"><span>🇶🇦 卡塔尔 1:1 瑞士 🇨🇭</span><span class="d">6/13</span></div><div class="res"><span>🇧🇷 巴西 1:1 摩洛哥 🇲🇦</span><span class="d">6/13</span></div><div class="res"><span>🇭🇹 海地 0:1 苏格兰 🏴</span><span class="d">6/13</span></div><div class="res"><span>🇦🇺 澳大利亚 2:0 土耳其 🇹🇷</span><span class="d">6/13</span></div><div class="res"><span>🇩🇪 德国 7:1 库拉索 🇨🇼</span><span class="d">6/14</span></div><div class="res"><span>🇨🇮 科特迪瓦 1:0 厄瓜多尔 🇪🇨</span><span class="d">6/14</span></div><div class="res"><span>🇳🇱 荷兰 2:2 日本 🇯🇵</span><span class="d">6/14</span></div><div class="res"><span>🇸🇪 瑞典 5:1 突尼斯 🇹🇳</span><span class="d">6/14</span></div><div class="res"><span>🇧🇪 比利时 1:1 埃及 🇪🇬</span><span class="d">6/15</span></div><div class="res"><span>🇮🇷 伊朗 2:2 新西兰 🇳🇿</span><span class="d">6/15</span></div><div class="res"><span>🇪🇸 西班牙 0:0 佛得角 🇨🇻</span><span class="d">6/15</span></div><div class="res"><span>🇸🇦 沙特阿拉伯 1:1 乌拉圭 🇺🇾</span><span class="d">6/15</span></div><div class="res"><span>🇫🇷 法国 3:1 塞内加尔 🇸🇳</span><span class="d">6/16</span></div><div class="res"><span>🇮🇶 伊拉克 1:4 挪威 🇳🇴</span><span class="d">6/16</span></div><div class="res"><span>🇦🇷 阿根廷 3:0 阿尔及利亚 🇩🇿</span><span class="d">6/16</span></div><div class="res"><span>🇦🇹 奥地利 3:1 约旦 🇯🇴</span><span class="d">6/16</span></div><div class="res"><span>🇵🇹 葡萄牙 1:1 刚果民主共和国 🇨🇩</span><span class="d">6/17</span></div><div class="res"><span>🇺🇿 乌兹别克斯坦 1:3 哥伦比亚 🇨🇴</span><span class="d">6/17</span></div><div class="res"><span>🏴 英格兰 4:2 克罗地亚 🇭🇷</span><span class="d">6/17</span></div><div class="res"><span>🇬🇭 加纳 1:0 巴拿马 🇵🇦</span><span class="d">6/17</span></div><div class="res"><span>🇨🇿 捷克 1:1 南非 🇿🇦</span><span class="d">6/18</span></div><div class="res"><span>🇲🇽 墨西哥 1:0 韩国 🇰🇷</span><span class="d">6/18</span></div><div class="res"><span>🇨🇭 瑞士 4:1 波黑 🇧🇦</span><span class="d">6/18</span></div><div class="res"><span>🇨🇦 加拿大 6:0 卡塔尔 🇶🇦</span><span class="d">6/18</span></div><div class="res"><span>🇧🇷 巴西 3:0 海地 🇭🇹</span><span class="d">6/19</span></div><div class="res"><span>🏴 苏格兰 0:1 摩洛哥 🇲🇦</span><span class="d">6/19</span></div><div class="res"><span>🇹🇷 土耳其 0:1 巴拉圭 🇵🇾</span><span class="d">6/19</span></div><div class="res"><span>🇺🇸 美国 2:0 澳大利亚 🇦🇺</span><span class="d">6/19</span></div><div class="res"><span>🇩🇪 德国 2:1 科特迪瓦 🇨🇮</span><span class="d">6/20</span></div><div class="res"><span>🇪🇨 厄瓜多尔 0:0 库拉索 🇨🇼</span><span class="d">6/20</span></div><div class="res"><span>🇳🇱 荷兰 5:1 瑞典 🇸🇪</span><span class="d">6/20</span></div><div class="res"><span>🇹🇳 突尼斯 0:4 日本 🇯🇵</span><span class="d">6/20</span></div><div class="res"><span>🇧🇪 比利时 0:0 伊朗 🇮🇷</span><span class="d">6/21</span></div><div class="res"><span>🇳🇿 新西兰 1:3 埃及 🇪🇬</span><span class="d">6/21</span></div><div class="res"><span>🇪🇸 西班牙 4:0 沙特阿拉伯 🇸🇦</span><span class="d">6/21</span></div><div class="res"><span>🇺🇾 乌拉圭 2:2 佛得角 🇨🇻</span><span class="d">6/21</span></div><div class="res"><span>🇫🇷 法国 3:0 伊拉克 🇮🇶</span><span class="d">6/22 05:00</span></div><div class="res"><span>🇳🇴 挪威 3:2 塞内加尔 🇸🇳</span><span class="d">6/22 08:00</span></div><div class="res"><span>🇦🇷 阿根廷 2:0 奥地利 🇦🇹</span><span class="d">6/22 01:00</span></div><div class="res"><span>🇯🇴 约旦 1:2 阿尔及利亚 🇩🇿</span><span class="d">6/22 11:00</span></div><div class="res"><span>🇵🇹 葡萄牙 5:0 乌兹别克斯坦 🇺🇿</span><span class="d">6/23</span></div><div class="res"><span>🇨🇴 哥伦比亚 1:0 刚果民主共和国 🇨🇩</span><span class="d">6/23</span></div><div class="res"><span>🏴 英格兰 0:0 加纳 🇬🇭</span><span class="d">6/23</span></div><div class="res"><span>🇵🇦 巴拿马 0:1 克罗地亚 🇭🇷</span><span class="d">6/23</span></div><div class="res"><span>🇨🇿 捷克 0:3 墨西哥 🇲🇽</span><span class="d">6/24</span></div><div class="res"><span>🇿🇦 南非 1:0 韩国 🇰🇷</span><span class="d">6/24</span></div><div class="res"><span>🇨🇭 瑞士 2:1 加拿大 🇨🇦</span><span class="d">6/24</span></div><div class="res"><span>🇧🇦 波黑 3:1 卡塔尔 🇶🇦</span><span class="d">6/24</span></div><div class="res"><span>🏴 苏格兰 0:3 巴西 🇧🇷</span><span class="d">6/24</span></div><div class="res"><span>🇲🇦 摩洛哥 4:2 海地 🇭🇹</span><span class="d">6/24</span></div><div class="res"><span>🇹🇷 土耳其 3:2 美国 🇺🇸</span><span class="d">6/25</span></div><div class="res"><span>🇵🇾 巴拉圭 0:0 澳大利亚 🇦🇺</span><span class="d">6/25</span></div><div class="res"><span>🇪🇨 厄瓜多尔 2:1 德国 🇩🇪</span><span class="d">6/25</span></div><div class="res"><span>🇨🇼 库拉索 0:2 科特迪瓦 🇨🇮</span><span class="d">6/25</span></div><div class="res"><span>🇳🇱 荷兰 3:1 突尼斯 🇹🇳</span><span class="d">6/25</span></div><div class="res"><span>🇸🇪 瑞典 1:1 日本 🇯🇵</span><span class="d">6/25</span></div><div class="res"><span>🇪🇬 埃及 1:1 伊朗 🇮🇷</span><span class="d">6/26</span></div><div class="res"><span>🇳🇿 新西兰 1:5 比利时 🇧🇪</span><span class="d">6/26</span></div><div class="res"><span>🇺🇾 乌拉圭 0:1 西班牙 🇪🇸</span><span class="d">6/26</span></div><div class="res"><span>🇨🇻 佛得角 0:0 沙特阿拉伯 🇸🇦</span><span class="d">6/26</span></div><div class="res"><span>🇳🇴 挪威 1:4 法国 🇫🇷</span><span class="d">6/26</span></div><div class="res"><span>🇸🇳 塞内加尔 5:0 伊拉克 🇮🇶</span><span class="d">6/26</span></div><div class="res"><span>🇦🇷 阿根廷 3:1 约旦 🇯🇴</span><span class="d">6/27</span></div><div class="res"><span>🇦🇹 奥地利 3:3 阿尔及利亚 🇩🇿</span><span class="d">6/27</span></div><div class="res"><span>🇨🇴 哥伦比亚 0:0 葡萄牙 🇵🇹</span><span class="d">6/27</span></div><div class="res"><span>🇨🇩 刚果民主共和国 3:1 乌兹别克斯坦 🇺🇿</span><span class="d">6/27</span></div><div class="res"><span>🇵🇦 巴拿马 0:2 英格兰 🏴</span><span class="d">6/27</span></div><div class="res"><span>🇭🇷 克罗地亚 2:1 加纳 🇬🇭</span><span class="d">6/27</span></div><div class="res"><span>🇿🇦 南非 0:1 加拿大 🇨🇦</span><span class="d">6/29</span></div><div class="res"><span>🇧🇷 巴西 2:1 日本 🇯🇵</span><span class="d">6/30</span></div><div class="res"><span>🇩🇪 德国 1:1 巴拉圭 🇵🇾</span><span class="d">6/30</span></div><div class="res"><span>🇳🇱 荷兰 1:1 摩洛哥 🇲🇦</span><span class="d">6/30</span></div><div class="res"><span>🇨🇮 科特迪瓦 1:2 挪威 🇳🇴</span><span class="d">7/1</span></div><div class="res"><span>🇫🇷 法国 3:0 瑞典 🇸🇪</span><span class="d">7/1</span></div><div class="res"><span>🇲🇽 墨西哥 2:0 厄瓜多尔 🇪🇨</span><span class="d">7/1</span></div><div class="res"><span>🏴 英格兰 2:1 刚果民主共和国 🇨🇩</span><span class="d">7/2</span></div><div class="res"><span>🇧🇪 比利时 3:2 塞内加尔 🇸🇳</span><span class="d">7/2</span></div><div class="res"><span>🇺🇸 美国 2:0 波黑 🇧🇦</span><span class="d">7/2</span></div><div class="res"><span>🇪🇸 西班牙 3:0 奥地利 🇦🇹</span><span class="d">7/3</span></div><div class="res"><span>🇵🇹 葡萄牙 2:1 克罗地亚 🇭🇷</span><span class="d">7/3</span></div><div class="res"><span>🇨🇭 瑞士 2:0 阿尔及利亚 🇩🇿</span><span class="d">7/3</span></div><div class="res"><span>🇨🇦 加拿大 0:3 摩洛哥 🇲🇦</span><span class="d">7/4</span></div><div class="res"><span>🇵🇾 巴拉圭 0:1 法国 🇫🇷</span><span class="d">7/5</span></div><div class="res"><span>🇳🇴 挪威 2:1 巴西 🇧🇷</span><span class="d">7/5</span></div><div class="res"><span>🏴 英格兰 3:2 墨西哥 🇲🇽</span><span class="d">7/5</span></div><div class="res"><span>🇵🇹 葡萄牙 0:1 西班牙 🇪🇸</span><span class="d">7/6</span></div><div class="res"><span>🇺🇸 美国 1:4 比利时 🇧🇪</span><span class="d">7/6</span></div><div class="res"><span>🇦🇷 阿根廷 3:2 埃及 🇪🇬</span><span class="d">7/7</span></div><div class="res"><span>🇨🇭 瑞士 0:0 哥伦比亚 🇨🇴</span><span class="d">7/7</span></div><div class="res"><span>🇫🇷 法国 2:0 摩洛哥 🇲🇦</span><span class="d">7/9</span></div><div class="res"><span>🇫🇷 法国 0:2 西班牙 🇪🇸</span><span class="d">7/14</span></div><div class="res"><span>🏴 英格兰 1:2 阿根廷 🇦🇷</span><span class="d">7/15</span></div></div>
 
     <div class="match">
       <div class="mh"><span class="g">GA</span><span class="t">🇲🇽 墨西哥 vs 南非 🇿🇦</span><span class="d">6/11</span></div>
@@ -688,24 +688,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 0:0</div>
       <div class="int" style="opacity:0.5">📰 西班牙传控体系完整。佛得角世界杯首秀。</div>
       
-      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 5:0(10.6%)</span><span class="tag tag-risk">❄️ 低概率: 7:0(7.1%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:0 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 西班牙 ELO领先291分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:95.4%"></i></div><span class="n">95.4%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:3.8%;background:#888"></i></div><span class="n">3.8%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:0.8%;background:#ccc"></i></div><span class="n">0.8%</span></div>
-        <div class="why">倾向西班牙获胜——主场+ELO优势转化为95.4%胜率。 · 市场参考1.12 · 模型公允1.0</div>
+      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 5:0(10.8%)</span><span class="tag tag-risk">❄️ 低概率: 3:0(7.2%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:0 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 西班牙 ELO领先319分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:96.2%"></i></div><span class="n">96.2%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:3.2%;background:#888"></i></div><span class="n">3.2%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:0.6%;background:#ccc"></i></div><span class="n">0.6%</span></div>
+        <div class="why">倾向西班牙获胜——主场+ELO优势转化为96.2%胜率。 · 市场参考1.12 · 模型公允1.0</div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>5:0</b> 10.6%</span> <span class="c"><b>4:0</b> 10.0%</span> <span class="c"><b>6:0</b> 9.4%</span> <span class="c"><b>3:0</b> 7.5%</span> <span class="c"><b>7:0</b> 7.1%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球5.3球，大比分概率高——4球及以上占60%。</div><div class="cs"><span class="c">0球 0.3%</span> <span class="c">1球 1.7%</span> <span class="c">2球 5.1%</span> <span class="c">3球 9.8%</span> <span class="c">4球 14.2%</span> <span class="c">5球 16.5%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 西班牙 ELO领先291分，明显优势。 倾向西班牙获胜——主场+ELO优势转化为95.4%胜率。 风格：4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击 VS 4-3-3小型岛国反击流，边路快速转换，中场控制力薄弱。进攻火力强劲，期望进球5.3球，大比分概率高——4球及以上占60%。 综合判断：倾向：西班牙获胜。不确定性0.8%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>5:0</b> 10.8%</span> <span class="c"><b>6:0</b> 9.9%</span> <span class="c"><b>4:0</b> 9.8%</span> <span class="c"><b>7:0</b> 7.7%</span> <span class="c"><b>3:0</b> 7.2%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球5.5球，大比分概率高——4球及以上占60%。</div><div class="cs"><span class="c">0球 0.3%</span> <span class="c">1球 1.5%</span> <span class="c">2球 4.6%</span> <span class="c">3球 9.1%</span> <span class="c">4球 13.6%</span> <span class="c">5球 16.2%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 西班牙 ELO领先319分，明显优势。 倾向西班牙获胜——主场+ELO优势转化为96.2%胜率。 风格：4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击 VS 4-3-3小型岛国反击流，边路快速转换，中场控制力薄弱。进攻火力强劲，期望进球5.5球，大比分概率高——4球及以上占60%。 综合判断：倾向：西班牙获胜。不确定性0.6%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1890+状态55=1945 vs 1580+136=1704 | 修正: 佛得角超高连胜-12 | 主攻x1.1·揭幕x1.0·战术x1.00=5.3球 | 市场过热(1.12<公允2.0)，胜率打折<br>
-          📐 预期进球：主5.31球 × 客0.5球 → 泊松分布<br>
+          🧮 ELO基1890+状态95=1973 vs 1580+136=1704 | 修正: 西班牙超高连胜-12；佛得角超高连胜-12 | 主攻x1.1·揭幕x1.0·战术x1.00=5.5球 | 市场过热(1.12<公允2.0)，胜率打折<br>
+          📐 预期进球：主5.49球 × 客0.47球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础95%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础96%差额+伤病+红牌+高原修正<br>
           💰 市场过热(1.12<公允2.0)，胜率打折
         </div>
       </div>
@@ -713,7 +713,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
         <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
         <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
-          <b>白话解读：</b>西班牙 0:0 佛得角。 预期差+4.8球→实际差+0.0球，偏差4.8球 低比分(0球)：默契平局或双方锋线集体哑火。 模型预期西班牙大胜但实际接近→佛得角战术部署成功抵消实力差距。<br><br>
+          <b>白话解读：</b>西班牙 0:0 佛得角。 预期差+5.0球→实际差+0.0球，偏差5.0球 低比分(0球)：默契平局或双方锋线集体哑火。 模型预期西班牙大胜但实际接近→佛得角战术部署成功抵消实力差距。<br><br>
           <b>模型优化：</b><span style="color:#666"> 市场参考：市场1.12vs模型公允1.0。</span>
         </div>
       </div>
@@ -764,24 +764,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 3:1</div>
       <div class="int" style="opacity:0.5">📰 法国姆巴佩领衔，萨利巴复出。塞内加尔库利巴利伤缺🔴，马内+杰克逊双锋。2002揭幕战塞内加尔1-0法国复仇战。 欧预赛5胜1平不败出线。 非预赛7胜3平不败 马内5球。</div>
       
-      <div class="tag-row"><span class="tag tag-injury">🚑 法萨利巴康复✅，塞库利巴利伤缺🔴</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 库利巴利缺阵</span><span class="tag tag-risk">⚠️ 复仇战心理</span><span class="tag tag-risk">⚠️ 法国中场仅6人</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 3:0(9.2%)</span><span class="tag tag-risk">❄️ 低概率: 4:0(7.1%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:1 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 法国 ELO领先224分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:71.0%"></i></div><span class="n">71.0%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:20.5%;background:#888"></i></div><span class="n">20.5%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:8.4%;background:#ccc"></i></div><span class="n">8.4%</span></div>
-        <div class="why">倾向法国获胜——主场+ELO优势转化为71.0%胜率。 · 市场参考1.45 · 模型公允1.4</div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 法萨利巴康复✅，塞库利巴利伤缺🔴</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 库利巴利缺阵</span><span class="tag tag-risk">⚠️ 复仇战心理</span><span class="tag tag-risk">⚠️ 法国中场仅6人</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(8.8%)</span><span class="tag tag-risk">❄️ 低概率: 4:0(6.4%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:1 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 法国 ELO领先184分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:67.1%"></i></div><span class="n">67.1%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:22.7%;background:#888"></i></div><span class="n">22.7%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:10.2%;background:#ccc"></i></div><span class="n">10.2%</span></div>
+        <div class="why">倾向法国获胜——主场+ELO优势转化为67.1%胜率。 · 市场参考1.45 · 模型公允1.5</div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 9.2%</span> <span class="c"><b>2:0</b> 9.0%</span> <span class="c"><b>3:1</b> 8.2%</span> <span class="c"><b>2:1</b> 7.9%</span> <span class="c"><b>4:0</b> 7.1%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.1球，大比分概率高——4球及以上占51%。</div><div class="cs"><span class="c">0球 1.9%</span> <span class="c">1球 7.5%</span> <span class="c">2球 14.8%</span> <span class="c">3球 19.6%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.5%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 法国 ELO领先224分，明显优势。 倾向法国获胜——主场+ELO优势转化为71.0%胜率。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 4-3-3边路速度冲击，马内单兵爆破，高位逼抢强度高。短板：防守纪律不稳定。进攻火力强劲，期望进球3.1球，大比分概率高——4球及以上占51%。 综合判断：倾向：法国获胜。不确定性11.4%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 8.8%</span> <span class="c"><b>3:0</b> 8.7%</span> <span class="c"><b>2:1</b> 8.4%</span> <span class="c"><b>3:1</b> 8.2%</span> <span class="c"><b>4:0</b> 6.4%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占50%。</div><div class="cs"><span class="c">0球 2.0%</span> <span class="c">1球 8.0%</span> <span class="c">2球 15.5%</span> <span class="c">3球 20.1%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.2%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 法国 ELO领先184分，明显优势。 倾向法国获胜——主场+ELO优势转化为67.1%胜率。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 4-3-3边路速度冲击，马内单兵爆破，高位逼抢强度高。短板：防守纪律不稳定。进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占50%。 综合判断：倾向：法国获胜。不确定性13.2%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1930+状态44=1982 vs 1760+40=1808 | 修正: 法国复仇战意+8；塞内加尔复仇战意+8 | 主攻x1.2·揭幕x1.0·战术x1.00=3.1球 | 市场过热(1.45<公允2.0)，胜率打折<br>
-          📐 预期进球：主3.09球 × 客0.88球 → 泊松分布<br>
+          🧮 ELO基1930+状态4=1942 vs 1760+40=1808 | 修正: 法国复仇战意+8；塞内加尔复仇战意+8 | 主攻x1.2·揭幕x1.0·战术x1.00=2.9球 | 市场过热(1.45<公允2.0)，胜率打折<br>
+          📐 预期进球：主2.94球 × 客0.95球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础63%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础57%差额+伤病+红牌+高原修正<br>
           💰 市场过热(1.45<公允2.0)，胜率打折
         </div>
       </div>
@@ -790,7 +790,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
         <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
         <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
           <b>白话解读：</b>法国 3:1 塞内加尔。 伤病影响：法萨利巴康复✅，塞库利巴利伤缺🔴 速度型前锋对决→禁区一对一增多，点球概率上升。<br><br>
-          <b>模型优化：</b><span style="color:#666"> 市场参考：市场1.45vs模型公允1.4。</span>
+          <b>模型优化：</b><span style="color:#666"> 市场参考：市场1.45vs模型公允1.5。</span>
         </div>
       </div>
 
@@ -840,24 +840,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 3:0</div>
       <div class="int" style="opacity:0.5">📰 梅西最后一届⚡，阿根廷7连胜。阿尔及利亚本塞拜尼伤缺🔴，后防核心空缺。 南美预选赛第一 7连胜。</div>
       
-      <div class="tag-row"><span class="tag tag-injury">🚑 阿塔利亚菲科伤缺🔴，阿尔及利亚本塞拜尼缺阵🔴</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 梅西体能</span><span class="tag tag-risk">⚠️ 阿根廷连胜惯性</span><span class="tag tag-risk">⚠️ 阿尔及利亚后防漏洞</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 3:0(11.6%)</span><span class="tag tag-risk">❄️ 低概率: 5:0(6.7%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:0 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先285分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:80.5%"></i></div><span class="n">80.5%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:15.1%;background:#888"></i></div><span class="n">15.1%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:4.4%;background:#ccc"></i></div><span class="n">4.4%</span></div>
-        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为80.5%胜率。 · 市场参考1.4 · 模型公允1.2</div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 阿塔利亚菲科伤缺🔴，阿尔及利亚本塞拜尼缺阵🔴</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 梅西体能</span><span class="tag tag-risk">⚠️ 阿根廷连胜惯性</span><span class="tag tag-risk">⚠️ 阿尔及利亚后防漏洞</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 3:0(11.7%)</span><span class="tag tag-risk">❄️ 低概率: 5:0(6.9%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:0 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先295分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:81.2%"></i></div><span class="n">81.2%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:14.6%;background:#888"></i></div><span class="n">14.6%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:4.2%;background:#ccc"></i></div><span class="n">4.2%</span></div>
+        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为81.2%胜率。 · 市场参考1.4 · 模型公允1.2</div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 11.6%</span> <span class="c"><b>2:0</b> 10.3%</span> <span class="c"><b>4:0</b> 9.8%</span> <span class="c"><b>3:1</b> 7.4%</span> <span class="c"><b>5:0</b> 6.7%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.4球，大比分概率高——4球及以上占52%。</div><div class="cs"><span class="c">0球 1.8%</span> <span class="c">1球 7.2%</span> <span class="c">2球 14.5%</span> <span class="c">3球 19.4%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.7%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 阿根廷 ELO领先285分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为80.5%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 4-2-3-1北非地面传切，中场细腻短传，快慢节奏切换。短板：后防回追速度不足。进攻火力强劲，期望进球3.4球，大比分概率高——4球及以上占52%。 综合判断：倾向：阿根廷获胜。不确定性7.4%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 11.7%</span> <span class="c"><b>2:0</b> 10.3%</span> <span class="c"><b>4:0</b> 10.1%</span> <span class="c"><b>3:1</b> 7.3%</span> <span class="c"><b>5:0</b> 6.9%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.4球，大比分概率高——4球及以上占52%。</div><div class="cs"><span class="c">0球 1.8%</span> <span class="c">1球 7.1%</span> <span class="c">2球 14.3%</span> <span class="c">3球 19.3%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.8%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 阿根廷 ELO领先295分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为81.2%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 4-2-3-1北非地面传切，中场细腻短传，快慢节奏切换。短板：后防回追速度不足。进攻火力强劲，期望进球3.4球，大比分概率高——4球及以上占52%。 综合判断：倾向：阿根廷获胜。不确定性7.2%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1950+状态1=1951 vs 1660+56=1716 | 主攻x1.2·揭幕x1.0·战术x1.00=3.4球 | 市场过热(1.4<公允2.0)，胜率打折<br>
-          📐 预期进球：主3.39球 × 客0.63球 → 泊松分布<br>
+          🧮 ELO基1950+状态11=1961 vs 1660+56=1716 | 主攻x1.2·揭幕x1.0·战术x1.00=3.4球 | 市场过热(1.4<公允2.0)，胜率打折<br>
+          📐 预期进球：主3.42球 × 客0.62球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础76%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础77%差额+伤病+红牌+高原修正<br>
           💰 市场过热(1.4<公允2.0)，胜率打折
         </div>
       </div>
@@ -992,24 +992,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 4:2</div>
       <div class="int" style="opacity:0.5">📰 英Livramento退赛🔴，Saka带伤🟡。克Gvardiol复出✅，魔笛最后一届。2018半决赛复仇战。</div>
       
-      <div class="tag-row"><span class="tag tag-injury">🚑 英Livramento退赛🔴 Saka带伤🟡，克Gvardiol复出✅</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(11.3%)</span><span class="tag tag-risk">❄️ 低概率: 3:0(7.9%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 4:2 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 英格兰 ELO领先146分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:59.5%"></i></div><span class="n">59.5%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:27.4%;background:#888"></i></div><span class="n">27.4%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:13.1%;background:#ccc"></i></div><span class="n">13.1%</span></div>
-        <div class="why">倾向英格兰获胜——主场+ELO优势转化为59.5%胜率。 · 市场参考1.9 · 模型公允1.7</div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 英Livramento退赛🔴 Saka带伤🟡，克Gvardiol复出✅</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(11.2%)</span><span class="tag tag-risk">❄️ 低概率: 3:0(7.7%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 4:2 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 英格兰 ELO领先136分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:58.6%"></i></div><span class="n">58.6%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:27.8%;background:#888"></i></div><span class="n">27.8%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:13.6%;background:#ccc"></i></div><span class="n">13.6%</span></div>
+        <div class="why">倾向英格兰获胜——主场+ELO优势转化为58.6%胜率。 · 市场参考1.9 · 模型公允1.7</div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 11.3%</span> <span class="c"><b>1:0</b> 10.8%</span> <span class="c"><b>2:1</b> 9.8%</span> <span class="c"><b>1:1</b> 9.4%</span> <span class="c"><b>3:0</b> 7.9%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占34%。</div><div class="cs"><span class="c">0球 5.1%</span> <span class="c">1球 15.2%</span> <span class="c">2球 22.6%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.6%</span> <span class="c">5球 9.9%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 英格兰 ELO领先146分，明显优势。 倾向英格兰获胜——主场+ELO优势转化为59.5%胜率。 风格：4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱 VS 4-3-3复古中场磨盘控球，魔笛科瓦契奇短传控节奏，擅长加时拉锯。短板：核心阵容严重老化。进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占34%。 综合判断：倾向：英格兰获胜。不确定性16.1%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 11.2%</span> <span class="c"><b>1:0</b> 10.8%</span> <span class="c"><b>2:1</b> 9.9%</span> <span class="c"><b>1:1</b> 9.5%</span> <span class="c"><b>3:0</b> 7.7%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占33%。</div><div class="cs"><span class="c">0球 5.2%</span> <span class="c">1球 15.4%</span> <span class="c">2球 22.7%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.5%</span> <span class="c">5球 9.8%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 英格兰 ELO领先136分，明显优势。 倾向英格兰获胜——主场+ELO优势转化为58.6%胜率。 风格：4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱 VS 4-3-3复古中场磨盘控球，魔笛科瓦契奇短传控节奏，擅长加时拉锯。短板：核心阵容严重老化。进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占33%。 综合判断：倾向：英格兰获胜。不确定性16.6%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1900+状态-34=1866 vs 1810+-40=1770 | 主攻x1.1·揭幕x1.0·战术x1.00=2.1球<br>
-          📐 预期进球：主2.1球 × 客0.87球 → 泊松分布<br>
+          🧮 ELO基1900+状态-44=1856 vs 1810+-40=1770 | 主攻x1.1·揭幕x1.0·战术x1.00=2.1球<br>
+          📐 预期进球：主2.07球 × 客0.88球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础46%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础45%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -1017,8 +1017,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
         <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
         <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
-          <b>白话解读：</b>英格兰 4:2 克罗地亚。 总进球6远超预期3.0，攻防节奏超出模型预判 高比分(6球)：双方对攻或防守体系崩塌。<br><br>
-          <b>模型优化：</b><span style="color:#666">建议：上调双方攻击系数或下调防守系数(当前预期3.0球vs实际6球)。 市场参考：市场1.9vs模型公允1.7。</span>
+          <b>白话解读：</b>英格兰 4:2 克罗地亚。 总进球6远超预期2.9，攻防节奏超出模型预判 高比分(6球)：双方对攻或防守体系崩塌。<br><br>
+          <b>模型优化：</b><span style="color:#666">建议：上调双方攻击系数或下调防守系数(当前预期2.9球vs实际6球)。 市场参考：市场1.9vs模型公允1.7。</span>
         </div>
       </div>
 
@@ -1600,24 +1600,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 4:0</div>
       <div class="int" style="opacity:0.5">📰 西班牙传控碾压。沙特技术细腻。 亚预赛第四阶段突围。</div>
       
-      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(12.4%)</span><span class="tag tag-risk">❄️ 低概率: 2:1(7.9%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 4:0 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 西班牙 ELO领先359分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:73.3%"></i></div><span class="n">73.3%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:20.3%;background:#888"></i></div><span class="n">20.3%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:6.4%;background:#ccc"></i></div><span class="n">6.4%</span></div>
-        <div class="why">倾向西班牙获胜——主场+ELO优势转化为73.3%胜率。 · 市场参考1.2 · 模型公允1.4</div>
+      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(12.6%)</span><span class="tag tag-risk">❄️ 低概率: 2:1(7.4%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 4:0 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 西班牙 ELO领先387分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:75.7%"></i></div><span class="n">75.7%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:18.8%;background:#888"></i></div><span class="n">18.8%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:5.5%;background:#ccc"></i></div><span class="n">5.5%</span></div>
+        <div class="why">倾向西班牙获胜——主场+ELO优势转化为75.7%胜率。 · 市场参考1.2 · 模型公允1.3</div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 12.4%</span> <span class="c"><b>3:0</b> 11.9%</span> <span class="c"><b>1:0</b> 8.7%</span> <span class="c"><b>4:0</b> 8.5%</span> <span class="c"><b>2:1</b> 7.9%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占44%。</div><div class="cs"><span class="c">0球 3.0%</span> <span class="c">1球 10.6%</span> <span class="c">2球 18.5%</span> <span class="c">3球 21.6%</span> <span class="c">4球 18.9%</span> <span class="c">5球 13.2%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 西班牙 ELO领先359分，明显优势。 倾向西班牙获胜——主场+ELO优势转化为73.3%胜率。 风格：4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击 VS 4-2-3-1西亚地面传导，控节奏打不开就大脚转移边路反击。短板：高强度逼抢下易失误。进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占44%。 综合判断：倾向：西班牙获胜。不确定性6.4%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 12.6%</span> <span class="c"><b>3:0</b> 12.4%</span> <span class="c"><b>4:0</b> 9.2%</span> <span class="c"><b>1:0</b> 8.6%</span> <span class="c"><b>2:1</b> 7.4%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.0球，大比分概率高——4球及以上占44%。</div><div class="cs"><span class="c">0球 2.9%</span> <span class="c">1球 10.3%</span> <span class="c">2球 18.2%</span> <span class="c">3球 21.5%</span> <span class="c">4球 19.0%</span> <span class="c">5球 13.4%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 西班牙 ELO领先387分，明显优势。 倾向西班牙获胜——主场+ELO优势转化为75.7%胜率。 风格：4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击 VS 4-2-3-1西亚地面传导，控节奏打不开就大脚转移边路反击。短板：高强度逼抢下易失误。进攻火力强劲，期望进球3.0球，大比分概率高——4球及以上占44%。 综合判断：倾向：西班牙获胜。不确定性5.5%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1890+状态55=1945 vs 1670+-34=1636 | 主攻x1.1·揭幕x1.0·战术x1.00=2.9球 | 市场过热(1.2<公允2.0)，胜率打折<br>
-          📐 预期进球：主2.87球 × 客0.63球 → 泊松分布<br>
+          🧮 ELO基1890+状态95=1973 vs 1670+-34=1636 | 修正: 西班牙超高连胜-12 | 主攻x1.1·揭幕x1.0·战术x1.00=3.0球 | 市场过热(1.2<公允2.0)，胜率打折<br>
+          📐 预期进球：主2.95球 × 客0.59球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础67%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础70%差额+伤病+红牌+高原修正<br>
           💰 市场过热(1.2<公允2.0)，胜率打折
         </div>
       </div>
@@ -1625,8 +1625,8 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
         <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
         <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
-          <b>白话解读：</b>西班牙 4:0 沙特阿拉伯。 预期差+2.2球→实际差+4.0球，偏差1.8球。<br><br>
-          <b>模型优化：</b><span style="color:#666"> 市场参考：市场1.2vs模型公允1.4。</span>
+          <b>白话解读：</b>西班牙 4:0 沙特阿拉伯。 预期差+2.4球→实际差+4.0球，偏差1.6球。<br><br>
+          <b>模型优化：</b><span style="color:#666"> 市场参考：市场1.2vs模型公允1.3。</span>
         </div>
       </div>
 
@@ -1676,24 +1676,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 3:0</div>
       <div class="int" style="opacity:0.5">📰 【首轮回顾】法国3-1塞内加尔：姆巴佩2球，奥利塞助攻，登贝莱边路爆破。伊拉克1-4惨败挪威：后防形同虚设。I组积分：挪威3/法国3/塞内加尔0/伊拉克0。【交锋】历史首次对决。【出线形势】法国赢球=基本锁定R32；伊拉克必须拿分才能保留出线希望。【阵容关键】法国4-2-3-1：迈尼昂/孔德-萨利巴-于帕梅卡诺-特奥/楚阿梅尼-拉比奥/登贝莱-奥利塞-杜埃(或巴科拉)/姆巴佩。伊拉克4-4-2低位大巴：哈桑/侯赛因-塔辛-哈什姆-多斯基/巴耶什-阿尔阿马里-伊斯梅尔-贾西姆/阿尔哈马迪-侯赛因。【漏洞】伊拉克：防线转身慢，被挪威4次打穿身后；法国：萨利巴带伤作战，左路特奥压上后留空档。</div>
       
-      <div class="tag-row"><span class="tag tag-injury">🚑 法萨利巴带伤出战🟡，古斯托踝伤存疑🟡；伊贾西姆腹股沟赛前待定🔴，右后卫侯赛因颈伤存疑🟡，门将哈桑位置不稳</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊ELO差310分</span><span class="tag tag-risk">⚠️ 法国防线伤病隐患</span><span class="tag tag-risk">⚠️ 伊拉克门将可能轮换</span><span class="tag tag-risk">⚠️ 伊拉克首轮崩盘士气受挫</span></div><div class="tag-row"><span class="tag tag-value">💰 法国让球深盘-2，穿盘概率需结合姆巴佩出战时间</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 5:0(11.4%)</span><span class="tag tag-risk">❄️ 低概率: 3:0(7.0%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:0 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 法国 ELO领先407分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:97.2%"></i></div><span class="n">97.2%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:2.4%;background:#888"></i></div><span class="n">2.4%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:0.4%;background:#ccc"></i></div><span class="n">0.4%</span></div>
-        <div class="why">倾向法国获胜——主场+ELO优势转化为97.2%胜率。 · 市场参考1.25 · 模型公允1.0</div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 法萨利巴带伤出战🟡，古斯托踝伤存疑🟡；伊贾西姆腹股沟赛前待定🔴，右后卫侯赛因颈伤存疑🟡，门将哈桑位置不稳</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊ELO差310分</span><span class="tag tag-risk">⚠️ 法国防线伤病隐患</span><span class="tag tag-risk">⚠️ 伊拉克门将可能轮换</span><span class="tag tag-risk">⚠️ 伊拉克首轮崩盘士气受挫</span></div><div class="tag-row"><span class="tag tag-value">💰 法国让球深盘-2，穿盘概率需结合姆巴佩出战时间</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 5:0(11.2%)</span><span class="tag tag-risk">❄️ 低概率: 3:0(7.5%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:0 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 法国 ELO领先367分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:96.4%"></i></div><span class="n">96.4%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:3.0%;background:#888"></i></div><span class="n">3.0%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:0.5%;background:#ccc"></i></div><span class="n">0.5%</span></div>
+        <div class="why">倾向法国获胜——主场+ELO优势转化为96.4%胜率。 · 市场参考1.25 · 模型公允1.0</div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>5:0</b> 11.4%</span> <span class="c"><b>6:0</b> 10.9%</span> <span class="c"><b>4:0</b> 10.0%</span> <span class="c"><b>7:0</b> 8.9%</span> <span class="c"><b>3:0</b> 7.0%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球5.7球，大比分概率高——4球及以上占59%。</div><div class="cs"><span class="c">0球 0.2%</span> <span class="c">1球 1.4%</span> <span class="c">2球 4.2%</span> <span class="c">3球 8.5%</span> <span class="c">4球 13.0%</span> <span class="c">5球 15.8%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 法国 ELO领先407分，明显优势。 倾向法国获胜——主场+ELO优势转化为97.2%胜率。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 4-2-3-1中场缠斗流，拼抢积极但战术体系不成熟，面对强队易崩盘。进攻火力强劲，期望进球5.7球，大比分概率高——4球及以上占59%。 综合判断：倾向：法国获胜。不确定性3.4%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>5:0</b> 11.2%</span> <span class="c"><b>4:0</b> 10.2%</span> <span class="c"><b>6:0</b> 10.2%</span> <span class="c"><b>7:0</b> 8.0%</span> <span class="c"><b>3:0</b> 7.5%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球5.5球，大比分概率高——4球及以上占60%。</div><div class="cs"><span class="c">0球 0.3%</span> <span class="c">1球 1.6%</span> <span class="c">2球 4.8%</span> <span class="c">3球 9.4%</span> <span class="c">4球 13.8%</span> <span class="c">5球 16.3%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 法国 ELO领先367分，明显优势。 倾向法国获胜——主场+ELO优势转化为96.4%胜率。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 4-2-3-1中场缠斗流，拼抢积极但战术体系不成熟，面对强队易崩盘。进攻火力强劲，期望进球5.5球，大比分概率高——4球及以上占60%。 综合判断：倾向：法国获胜。不确定性3.5%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1930+状态44=1964 vs 1620+-13=1607 | 修正: 法国核心缺阵-10 | 主攻x1.2·揭幕x1.0·战术x1.00=5.7球 | 市场过热(1.25<公允2.0)，胜率打折<br>
-          📐 预期进球：主5.71球 × 客0.38球 → 泊松分布<br>
+          🧮 ELO基1930+状态4=1924 vs 1620+-13=1607 | 修正: 法国核心缺阵-10 | 主攻x1.2·揭幕x1.0·战术x1.00=5.5球 | 市场过热(1.25<公允2.0)，胜率打折<br>
+          📐 预期进球：主5.47球 × 客0.43球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础97%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础96%差额+伤病+红牌+高原修正<br>
           💰 市场过热(1.25<公允2.0)，胜率打折
         </div>
       </div>
@@ -1701,7 +1701,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
         <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
         <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
-          <b>白话解读：</b>法国 3:0 伊拉克。 预期差+5.3球→实际差+3.0球，偏差2.3球。<br><br>
+          <b>白话解读：</b>法国 3:0 伊拉克。 预期差+5.0球→实际差+3.0球，偏差2.0球。<br><br>
           <b>模型优化：</b><span style="color:#666"> 市场参考：市场1.25vs模型公允1.0。</span>
         </div>
       </div>
@@ -1752,24 +1752,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 2:0</div>
       <div class="int" style="opacity:0.5">📰 【首轮回顾】阿根廷3-0阿尔及利亚：梅西帽子戏法，统治级表现，连续8场上半场领先。奥地利3-1约旦：75分钟前1-1胶着，对手乌龙+点球才锁定。J组积分：阿根廷3/奥地利3/约旦0/阿尔及利亚0。【交锋】3次阿根廷全胜(均为友谊赛)，最近1990年1-1。【出线形势】胜者基本锁定小组头名R32。阿根廷赢球+约旦不胜=头名出线。奥地利赢球+阿尔及利亚不胜=头名出线。【阵容关键】阿根廷4-3-3：迪布·马丁内斯/莫利纳-罗梅罗-利桑德罗-梅迪纳(或塔利亚菲科)/德保罗-恩佐-麦卡利斯特/梅西-阿尔瓦雷斯(或劳塔罗)-阿尔马达。奥地利4-2-3-1朗尼克高压：施拉格/莱默尔-阿拉巴-林哈特-姆文内/施拉格-塞瓦尔德/施密德-格雷戈里奇-萨比策/阿瑙托维奇。【漏洞】阿根廷：右后卫蒙蒂尔伤缺莫利纳顶上·左路塔利亚菲科存疑；奥地利高位防线留巨大身后空档——梅西最擅长惩罚。奥地利：波施颌骨伤缺莱默尔客串右后卫·高位逼抢被打穿后回追速度不足。</div>
       
-      <div class="tag-row"><span class="tag tag-injury">🚑 阿蒙蒂尔肌肉伤缺🔴，塔利亚菲科小腿赛前待定🟡；奥波施颌骨伤缺🔴，莱默尔客串右后卫</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 阿根廷右后卫缺阵</span><span class="tag tag-risk">⚠️ 奥地利高位防线风险</span><span class="tag tag-risk">⚠️ 双方均3分·头名之争</span><span class="tag tag-risk">⚠️ 梅西状态红箭头</span></div><div class="tag-row"><span class="tag tag-value">💰 市场参考1.50略高估阿根廷，模型公允约1.60</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 3:0(10.1%)</span><span class="tag tag-risk">❄️ 低概率: 2:1(7.8%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 2:0 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先255分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:73.0%"></i></div><span class="n">73.0%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:19.7%;background:#888"></i></div><span class="n">19.7%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:7.3%;background:#ccc"></i></div><span class="n">7.3%</span></div>
-        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为73.0%胜率。 · 市场参考1.5 · 模型公允1.4</div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 阿蒙蒂尔肌肉伤缺🔴，塔利亚菲科小腿赛前待定🟡；奥波施颌骨伤缺🔴，莱默尔客串右后卫</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 阿根廷右后卫缺阵</span><span class="tag tag-risk">⚠️ 奥地利高位防线风险</span><span class="tag tag-risk">⚠️ 双方均3分·头名之争</span><span class="tag tag-risk">⚠️ 梅西状态红箭头</span></div><div class="tag-row"><span class="tag tag-value">💰 市场参考1.50略高估阿根廷，模型公允约1.60</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 3:0(10.3%)</span><span class="tag tag-risk">❄️ 低概率: 2:1(7.7%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 2:0 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先265分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:73.9%"></i></div><span class="n">73.9%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:19.2%;background:#888"></i></div><span class="n">19.2%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:7.0%;background:#ccc"></i></div><span class="n">7.0%</span></div>
+        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为73.9%胜率。 · 市场参考1.5 · 模型公允1.4</div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 10.1%</span> <span class="c"><b>2:0</b> 9.9%</span> <span class="c"><b>3:1</b> 8.0%</span> <span class="c"><b>4:0</b> 7.8%</span> <span class="c"><b>2:1</b> 7.8%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.1球，大比分概率高——4球及以上占50%。</div><div class="cs"><span class="c">0球 2.1%</span> <span class="c">1球 8.0%</span> <span class="c">2球 15.6%</span> <span class="c">3球 20.1%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.1%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 阿根廷 ELO领先255分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为73.0%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 4-2-3-1红牛式极限高位压迫，全场贴身逼抢，跑动强度欧洲前列。短板：防线前压留下大量身后空档。进攻火力强劲，期望进球3.1球，大比分概率高——4球及以上占50%。 综合判断：倾向：阿根廷获胜。不确定性10.3%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 10.3%</span> <span class="c"><b>2:0</b> 9.9%</span> <span class="c"><b>4:0</b> 8.0%</span> <span class="c"><b>3:1</b> 8.0%</span> <span class="c"><b>2:1</b> 7.7%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.1球，大比分概率高——4球及以上占50%。</div><div class="cs"><span class="c">0球 2.0%</span> <span class="c">1球 7.9%</span> <span class="c">2球 15.4%</span> <span class="c">3球 20.0%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.2%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 阿根廷 ELO领先265分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为73.9%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 4-2-3-1红牛式极限高位压迫，全场贴身逼抢，跑动强度欧洲前列。短板：防线前压留下大量身后空档。进攻火力强劲，期望进球3.1球，大比分概率高——4球及以上占50%。 综合判断：倾向：阿根廷获胜。不确定性10.0%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1950+状态1=1941 vs 1760+-24=1736 | 修正: 阿根廷核心缺阵-10 | 主攻x1.2·揭幕x1.0·战术x1.00=3.1球 | 市场过热(1.5<公允2.0)，胜率打折<br>
-          📐 预期进球：主3.09球 × 客0.79球 → 泊松分布<br>
+          🧮 ELO基1950+状态11=1951 vs 1760+-24=1736 | 修正: 阿根廷核心缺阵-10 | 主攻x1.2·揭幕x1.0·战术x1.00=3.1球 | 市场过热(1.5<公允2.0)，胜率打折<br>
+          📐 预期进球：主3.12球 × 客0.78球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础66%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础67%差额+伤病+红牌+高原修正<br>
           💰 市场过热(1.5<公允2.0)，胜率打折
         </div>
       </div>
@@ -1904,24 +1904,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 0:0</div>
       <div class="int" style="opacity:0.5">📰 英格兰实力碾压。加纳身体对抗。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(10.4%)</span><span class="tag tag-risk">❄️ 低概率: 4:0(7.6%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:0 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 英格兰 ELO领先211分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:71.5%"></i></div><span class="n">71.5%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:20.8%;background:#888"></i></div><span class="n">20.8%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:7.7%;background:#ccc"></i></div><span class="n">7.7%</span></div>
-        <div class="why">倾向英格兰获胜——主场+ELO优势转化为71.5%胜率。 · 市场参考1.55 · 模型公允1.4</div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(10.4%)</span><span class="tag tag-risk">❄️ 低概率: 4:0(7.4%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:0 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 英格兰 ELO领先201分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:70.6%"></i></div><span class="n">70.6%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:21.3%;background:#888"></i></div><span class="n">21.3%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:8.1%;background:#ccc"></i></div><span class="n">8.1%</span></div>
+        <div class="why">倾向英格兰获胜——主场+ELO优势转化为70.6%胜率。 · 市场参考1.55 · 模型公允1.4</div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 10.4%</span> <span class="c"><b>3:0</b> 10.3%</span> <span class="c"><b>2:1</b> 8.1%</span> <span class="c"><b>3:1</b> 8.0%</span> <span class="c"><b>4:0</b> 7.6%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.0球，大比分概率高——4球及以上占48%。</div><div class="cs"><span class="c">0球 2.4%</span> <span class="c">1球 8.9%</span> <span class="c">2球 16.6%</span> <span class="c">3球 20.7%</span> <span class="c">4球 19.4%</span> <span class="c">5球 14.5%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 英格兰 ELO领先211分，明显优势。 倾向英格兰获胜——主场+ELO优势转化为71.5%胜率。 风格：4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱 VS 4-2-3-1年轻体能逼抢流，全员前场压迫，边路往返冲刺。短板：门前终结效率低下。进攻火力强劲，期望进球3.0球，大比分概率高——4球及以上占48%。 综合判断：倾向：英格兰获胜。不确定性7.7%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 10.4%</span> <span class="c"><b>3:0</b> 10.2%</span> <span class="c"><b>2:1</b> 8.2%</span> <span class="c"><b>3:1</b> 8.0%</span> <span class="c"><b>4:0</b> 7.4%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占47%。</div><div class="cs"><span class="c">0球 2.4%</span> <span class="c">1球 9.0%</span> <span class="c">2球 16.8%</span> <span class="c">3球 20.8%</span> <span class="c">4球 19.3%</span> <span class="c">5球 14.4%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 英格兰 ELO领先201分，明显优势。 倾向英格兰获胜——主场+ELO优势转化为70.6%胜率。 风格：4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱 VS 4-2-3-1年轻体能逼抢流，全员前场压迫，边路往返冲刺。短板：门前终结效率低下。进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占47%。 综合判断：倾向：英格兰获胜。不确定性8.1%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1900+状态-34=1866 vs 1680+25=1705 | 主攻x1.1·揭幕x1.0·战术x1.00=3.0球 | 市场过热(1.55<公允2.0)，胜率打折<br>
-          📐 预期进球：主2.96球 × 客0.78球 → 泊松分布<br>
+          🧮 ELO基1900+状态-44=1856 vs 1680+25=1705 | 主攻x1.1·揭幕x1.0·战术x1.00=2.9球 | 市场过热(1.55<公允2.0)，胜率打折<br>
+          📐 预期进球：主2.93球 × 客0.79球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础64%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础62%差额+伤病+红牌+高原修正<br>
           💰 市场过热(1.55<公允2.0)，胜率打折
         </div>
       </div>
@@ -1929,7 +1929,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
         <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
         <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
-          <b>白话解读：</b>英格兰 0:0 加纳。 预期差+2.2球→实际差+0.0球，偏差2.2球 低比分(0球)：默契平局或双方锋线集体哑火。 模型预期英格兰大胜但实际接近→加纳战术部署成功抵消实力差距。<br><br>
+          <b>白话解读：</b>英格兰 0:0 加纳。 预期差+2.1球→实际差+0.0球，偏差2.1球 低比分(0球)：默契平局或双方锋线集体哑火。 模型预期英格兰大胜但实际接近→加纳战术部署成功抵消实力差距。<br><br>
           <b>模型优化：</b><span style="color:#666"> 市场参考：市场1.55vs模型公允1.4。</span>
         </div>
       </div>
@@ -2512,24 +2512,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 0:1</div>
       <div class="int" style="opacity:0.5">📰 小组头名之争。西乌强强对话。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:1(10.5%)</span><span class="tag tag-risk">❄️ 低概率: 2:1(6.2%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:1 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 两队仅差148分，实力非常接近。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:21.7%"></i></div><span class="n">21.7%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:31.0%;background:#888"></i></div><span class="n">31.0%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:47.3%;background:#ccc"></i></div><span class="n">47.3%</span></div>
-        <div class="why">三者接近——平局往往被市场低估。 · </div>
+      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 偏低但非零</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:1(10.3%)</span><span class="tag tag-risk">❄️ 低概率: 1:3(6.3%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:1 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 两队仅差176分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 乌拉圭低概率值19%</span></div>
+        <div class="b"><span>主</span><div class="t"><i style="width:19.4%"></i></div><span class="n">19.4%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:30.3%;background:#888"></i></div><span class="n">30.3%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:50.3%;background:#ccc"></i></div><span class="n">50.3%</span></div>
+        <div class="why">倾向西班牙——ELO差距在下半场可能体现。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.5%</span> <span class="c"><b>1:2</b> 9.8%</span> <span class="c"><b>0:1</b> 8.9%</span> <span class="c"><b>0:2</b> 8.2%</span> <span class="c"><b>2:1</b> 6.2%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占44%，但27%概率4球以上，19%概率低于2球。</div><div class="cs"><span class="c">0球 4.8%</span> <span class="c">1球 14.5%</span> <span class="c">2球 22.1%</span> <span class="c">3球 22.4%</span> <span class="c">4球 17.0%</span> <span class="c">5球 10.4%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差148分，实力非常接近。 三者接近——平局往往被市场低估。 风格：3-5-2铁血力量防守定位球轰炸，三中卫死守，高空争抢顶级。短板：阵地进攻创造力匮乏 VS 4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击。进球分布分散——2-3球占44%，但27%概率4球以上，19%概率低于2球。 综合判断：倾向：西班牙获胜 但平局概率31%偏高，保守可关注平。不确定性25%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.3%</span> <span class="c"><b>1:2</b> 9.9%</span> <span class="c"><b>0:1</b> 9.3%</span> <span class="c"><b>0:2</b> 8.9%</span> <span class="c"><b>1:3</b> 6.3%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进球分布分散——2-3球占45%，但27%概率4球以上，20%概率低于2球。</div><div class="cs"><span class="c">0球 4.9%</span> <span class="c">1球 14.7%</span> <span class="c">2球 22.3%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.9%</span> <span class="c">5球 10.2%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差176分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 乌拉圭低概率值19%</span> 倾向西班牙——ELO差距在下半场可能体现。 风格：3-5-2铁血力量防守定位球轰炸，三中卫死守，高空争抢顶级。短板：阵地进攻创造力匮乏 VS 4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击。进球分布分散——2-3球占45%，但27%概率4球以上，20%概率低于2球。 综合判断：倾向：西班牙获胜 但平局概率30%偏高，保守可关注平。不确定性19.4%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1820+状态-85=1735 vs 1890+55=1933 | 修正: 西班牙跨洲飞行-12 | 主攻x1.0·揭幕x1.0·战术x1.00=1.2球<br>
-          📐 预期进球：主1.19球 × 客1.86球 → 泊松分布<br>
+          🧮 ELO基1820+状态-85=1735 vs 1890+95=1961 | 修正: 西班牙跨洲飞行-12；西班牙超高连胜-12 | 主攻x1.0·揭幕x1.0·战术x1.00=1.1球<br>
+          📐 预期进球：主1.11球 × 客1.91球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础26%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础31%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -2588,24 +2588,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 1:4</div>
       <div class="int" style="opacity:0.5">📰 法国头名。挪威哈兰德拼出线。 欧预赛8战全胜进37失5 双杀意大利。 欧预赛5胜1平不败出线。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 偏低但非零</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:2(7.4%)</span><span class="tag tag-risk">❄️ 低概率: 1:1(5.2%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 1:4 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 两队仅差97分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 挪威低概率值19%</span></div>
-        <div class="b"><span>主</span><div class="t"><i style="width:19.0%"></i></div><span class="n">19.0%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:23.7%;background:#888"></i></div><span class="n">23.7%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:57.3%;background:#ccc"></i></div><span class="n">57.3%</span></div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 偏低但非零</span></div><div class="why">💡 挪威存在以下可能性：ELO差距仅57分，挪威若先取得进球，法国压力将骤增。</div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:2(7.2%)</span><span class="tag tag-risk">❄️ 低概率: 1:1(5.3%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 1:4 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 两队仅差57分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 挪威低概率值23%</span></div>
+        <div class="b"><span>主</span><div class="t"><i style="width:22.6%"></i></div><span class="n">22.6%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:24.9%;background:#888"></i></div><span class="n">24.9%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:52.5%;background:#ccc"></i></div><span class="n">52.5%</span></div>
         <div class="why">倾向法国——ELO差距在下半场可能体现。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:2</b> 7.4%</span> <span class="c"><b>1:3</b> 7.0%</span> <span class="c"><b>2:2</b> 6.1%</span> <span class="c"><b>2:3</b> 5.8%</span> <span class="c"><b>1:1</b> 5.2%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进球集中在2-3球（28%），典型世界杯节奏。但也有36%概率打出4球以上。</div><div class="cs"><span class="c">0球 1.1%</span> <span class="c">1球 4.9%</span> <span class="c">2球 11.1%</span> <span class="c">3球 16.8%</span> <span class="c">4球 18.9%</span> <span class="c">5球 17.1%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差97分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 挪威低概率值19%</span> 倾向法国——ELO差距在下半场可能体现。 风格：4-3-3中锋支点冲击流，哈兰德禁区终结核心，边路快速传中。短板：中场组织薄弱控球能力差 VS 4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋。进球集中在2-3球（28%），典型世界杯节奏。但也有36%概率打出4球以上。 综合判断：倾向：法国获胜。不确定性19.0%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:2</b> 7.2%</span> <span class="c"><b>1:3</b> 6.6%</span> <span class="c"><b>2:2</b> 6.5%</span> <span class="c"><b>2:3</b> 5.9%</span> <span class="c"><b>1:1</b> 5.3%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进球集中在2-3球（28%），典型世界杯节奏。但也有36%概率打出4球以上。</div><div class="cs"><span class="c">0球 1.1%</span> <span class="c">1球 4.9%</span> <span class="c">2球 11.1%</span> <span class="c">3球 16.7%</span> <span class="c">4球 18.9%</span> <span class="c">5球 17.1%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差57分，实力非常接近。 <span style="color:#e44;font-size:10px;">⚠️ 挪威低概率值23%</span> 倾向法国——ELO差距在下半场可能体现。 风格：4-3-3中锋支点冲击流，哈兰德禁区终结核心，边路快速传中。短板：中场组织薄弱控球能力差 VS 4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋。进球集中在2-3球（28%），典型世界杯节奏。但也有36%概率打出4球以上。 综合判断：倾向：法国获胜。不确定性22.6%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1780+状态47=1827 vs 1930+44=1974 | 主攻x1.2·揭幕x1.0·战术x1.00=1.7球<br>
-          📐 预期进球：主1.66球 × 客2.86球 → 泊松分布<br>
+          🧮 ELO基1780+状态47=1827 vs 1930+4=1934 | 主攻x1.2·揭幕x1.0·战术x1.00=1.8球<br>
+          📐 预期进球：主1.8球 × 客2.72球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础38%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础30%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -2613,7 +2613,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
         <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
         <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
-          <b>白话解读：</b>挪威 1:4 法国。 预期差-1.2球→实际差-3.0球，偏差1.8球 高比分(5球)：双方对攻或防守体系崩塌。<br><br>
+          <b>白话解读：</b>挪威 1:4 法国。 预期差-0.9球→实际差-3.0球，偏差2.1球 高比分(5球)：双方对攻或防守体系崩塌。<br><br>
           <b>模型优化：</b><span style="color:#666"></span>
         </div>
       </div>
@@ -2664,22 +2664,22 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 3:1</div>
       <div class="int" style="opacity:0.5">📰 阿根廷头名。奥地利拼出线。 欧预赛8轮22球仅失4球 朗尼克体系。 南美预选赛第一 7连胜。</div>
       
-      <div class="tag-row"><span class="tag tag-injury">🚑 阿根廷攻击线优势明显</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 4:0(13.2%)</span><span class="tag tag-risk">❄️ 低概率: 6:0(7.9%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:1 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先377分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:93.9%"></i></div><span class="n">93.9%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:5.2%;background:#888"></i></div><span class="n">5.2%</span></div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 阿根廷攻击线优势明显</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 4:0(13.3%)</span><span class="tag tag-risk">❄️ 低概率: 6:0(8.1%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:1 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先387分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:94.2%"></i></div><span class="n">94.2%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:5.0%;background:#888"></i></div><span class="n">5.0%</span></div>
         <div class="b"><span>客</span><div class="t"><i style="width:0.9%;background:#ccc"></i></div><span class="n">0.9%</span></div>
-        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为93.9%胜率。 · </div>
+        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为94.2%胜率。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>4:0</b> 13.2%</span> <span class="c"><b>3:0</b> 12.4%</span> <span class="c"><b>5:0</b> 11.2%</span> <span class="c"><b>2:0</b> 8.7%</span> <span class="c"><b>6:0</b> 7.9%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球4.2球，大比分概率高——4球及以上占58%。</div><div class="cs"><span class="c">0球 1.0%</span> <span class="c">1球 4.5%</span> <span class="c">2球 10.4%</span> <span class="c">3球 16.1%</span> <span class="c">4球 18.7%</span> <span class="c">5球 17.3%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 阿根廷 ELO领先377分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为93.9%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 5-4-1纯防守摆大巴，放弃中场争夺，仅靠定位球抢分。进攻火力强劲，期望进球4.2球，大比分概率高——4球及以上占58%。 综合判断：倾向：阿根廷获胜。不确定性0.9%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>4:0</b> 13.3%</span> <span class="c"><b>3:0</b> 12.3%</span> <span class="c"><b>5:0</b> 11.4%</span> <span class="c"><b>2:0</b> 8.6%</span> <span class="c"><b>6:0</b> 8.1%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球4.3球，大比分概率高——4球及以上占58%。</div><div class="cs"><span class="c">0球 0.9%</span> <span class="c">1球 4.4%</span> <span class="c">2球 10.2%</span> <span class="c">3球 15.9%</span> <span class="c">4球 18.6%</span> <span class="c">5球 17.3%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 阿根廷 ELO领先387分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为94.2%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 5-4-1纯防守摆大巴，放弃中场争夺，仅靠定位球抢分。进攻火力强劲，期望进球4.3球，大比分概率高——4球及以上占58%。 综合判断：倾向：阿根廷获胜。不确定性0.9%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1950+状态1=1951 vs 1590+46=1624 | 修正: 约旦跨洲飞行-12 | 主攻x1.2·揭幕x1.0·战术x0.80=4.2球<br>
-          📐 预期进球：主4.25球 × 客0.39球 → 泊松分布<br>
+          🧮 ELO基1950+状态11=1961 vs 1590+46=1624 | 修正: 约旦跨洲飞行-12 | 主攻x1.2·揭幕x1.0·战术x0.80=4.3球<br>
+          📐 预期进球：主4.29球 × 客0.38球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
           🎲 低概率=基础93%差额+伤病+红牌+高原修正<br>
           💰 
@@ -2816,24 +2816,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 0:2</div>
       <div class="int" style="opacity:0.5">📰 英格兰锁定头名。巴拿马告别。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 0:3(9.0%)</span><span class="tag tag-risk">❄️ 低概率: 0:4(7.1%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:2 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 两队仅差109分，实力非常接近。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:6.9%"></i></div><span class="n">6.9%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:16.6%;background:#888"></i></div><span class="n">16.6%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:76.4%;background:#ccc"></i></div><span class="n">76.4%</span></div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 0:3(8.9%)</span><span class="tag tag-risk">❄️ 低概率: 0:4(6.9%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:2 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 两队仅差99分，实力非常接近。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:7.3%"></i></div><span class="n">7.3%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:17.1%;background:#888"></i></div><span class="n">17.1%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:75.6%;background:#ccc"></i></div><span class="n">75.6%</span></div>
         <div class="why">倾向英格兰——ELO差距在下半场可能体现。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:3</b> 9.0%</span> <span class="c"><b>0:2</b> 8.6%</span> <span class="c"><b>1:3</b> 8.2%</span> <span class="c"><b>1:2</b> 7.8%</span> <span class="c"><b>0:4</b> 7.1%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻乏力，9%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 1.7%</span> <span class="c">1球 7.0%</span> <span class="c">2球 14.2%</span> <span class="c">3球 19.2%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.9%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差109分，实力非常接近。 倾向英格兰——ELO差距在下半场可能体现。 风格：5-4-1纯防守大巴，放弃中场争夺，仅靠零星反击 VS 4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱。进攻乏力，9%概率低于2球，小球倾向明显。 综合判断：倾向：英格兰获胜。不确定性6.9%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:3</b> 8.9%</span> <span class="c"><b>0:2</b> 8.5%</span> <span class="c"><b>1:3</b> 8.2%</span> <span class="c"><b>1:2</b> 7.9%</span> <span class="c"><b>0:4</b> 6.9%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻乏力，9%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 1.7%</span> <span class="c">1球 7.1%</span> <span class="c">2球 14.3%</span> <span class="c">3球 19.3%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.8%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差99分，实力非常接近。 倾向英格兰——ELO差距在下半场可能体现。 风格：5-4-1纯防守大巴，放弃中场争夺，仅靠零星反击 VS 4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱。进攻乏力，9%概率低于2球，小球倾向明显。 综合判断：倾向：英格兰获胜。不确定性7.3%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1640+状态55=1695 vs 1900+-34=1854 | 修正: 英格兰跨洲飞行-12 | 主攻x0.7·揭幕x1.0·战术x1.00=0.9球<br>
-          📐 预期进球：主0.91球 × 客3.16球 → 泊松分布<br>
+          🧮 ELO基1640+状态55=1695 vs 1900+-44=1844 | 修正: 英格兰跨洲飞行-12 | 主攻x0.7·揭幕x1.0·战术x1.00=0.9球<br>
+          📐 预期进球：主0.93球 × 客3.12球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础70%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础68%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3082,24 +3082,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 3:0</div>
       <div class="int" style="opacity:0.5">📰 淘汰赛R32。法国胜72.0%/平16.0%/瑞典胜12.0%。MC最可能3:1(9.0%)。大2.5球72.6%。</div>
       
-      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(10.5%)</span><span class="tag tag-risk">❄️ 低概率: 4:0(7.4%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:0 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 法国 ELO领先258分，明显优势。</div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(10.3%)</span><span class="tag tag-risk">❄️ 低概率: 1:0(7.4%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:0 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 法国 ELO领先218分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:72.0%"></i></div><span class="n">72.0%</span></div>
         <div class="b"><span>平</span><div class="t"><i style="width:16.0%;background:#888"></i></div><span class="n">16.0%</span></div>
         <div class="b"><span>客</span><div class="t"><i style="width:12.0%;background:#ccc"></i></div><span class="n">12.0%</span></div>
-        <div class="why">倾向法国获胜——主场+ELO优势转化为75.3%胜率。 · </div>
+        <div class="why">倾向法国获胜——主场+ELO优势转化为71.9%胜率。 · </div>
 <div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主72.0% 平16.0% 客12.0% | 最可能3:1(9.0%) | 大2.5球72.6%</div>
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 10.5%</span> <span class="c"><b>3:0</b> 10.2%</span> <span class="c"><b>2:1</b> 8.3%</span> <span class="c"><b>3:1</b> 8.0%</span> <span class="c"><b>4:0</b> 7.4%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占47%。</div><div class="cs"><span class="c">0球 2.5%</span> <span class="c">1球 9.2%</span> <span class="c">2球 17.0%</span> <span class="c">3球 20.9%</span> <span class="c">4球 19.3%</span> <span class="c">5球 14.2%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 法国 ELO领先258分，明显优势。 倾向法国获胜——主场+ELO优势转化为75.3%胜率。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 。进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占47%。 综合判断：倾向：法国获胜。不确定性6.8%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 10.3%</span> <span class="c"><b>3:0</b> 9.5%</span> <span class="c"><b>2:1</b> 8.8%</span> <span class="c"><b>3:1</b> 8.1%</span> <span class="c"><b>1:0</b> 7.4%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.8球，大比分概率高——4球及以上占46%。</div><div class="cs"><span class="c">0球 2.7%</span> <span class="c">1球 9.7%</span> <span class="c">2球 17.6%</span> <span class="c">3球 21.2%</span> <span class="c">4球 19.2%</span> <span class="c">5球 13.8%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 法国 ELO领先218分，明显优势。 倾向法国获胜——主场+ELO优势转化为71.9%胜率。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 。进攻火力强劲，期望进球2.8球，大比分概率高——4球及以上占46%。 综合判断：倾向：法国获胜。不确定性8.3%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1930+状态44=1974 vs 1790+-24=1766 | 主攻x1.2·揭幕x1.0·战术x1.00=2.9球<br>
-          📐 预期进球：主2.9球 × 客0.79球 → 泊松分布<br>
+          🧮 ELO基1930+状态4=1934 vs 1790+-24=1766 | 主攻x1.2·揭幕x1.0·战术x1.00=2.8球<br>
+          📐 预期进球：主2.76球 × 客0.85球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础68%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础64%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3159,23 +3159,23 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="int" style="opacity:0.5">📰 淘汰赛R32。英格兰胜94.6%/平4.4%/刚果民主共和国胜1.0%。MC最可能4:0(9.2%)。大2.5球89.0%。</div>
       
       <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 3:0(9.3%)</span><span class="tag tag-risk">❄️ 低概率: 4:1(7.0%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 2:1 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 英格兰 ELO领先135分，明显优势。</div>
+      <div class="s"><div class="st">胜负 · 英格兰 ELO领先125分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:94.6%"></i></div><span class="n">94.6%</span></div>
         <div class="b"><span>平</span><div class="t"><i style="width:4.4%;background:#888"></i></div><span class="n">4.4%</span></div>
         <div class="b"><span>客</span><div class="t"><i style="width:1.0%;background:#ccc"></i></div><span class="n">1.0%</span></div>
-        <div class="why">倾向英格兰获胜——主场+ELO优势转化为85.4%胜率。 · </div>
+        <div class="why">倾向英格兰获胜——主场+ELO优势转化为84.7%胜率。 · </div>
 <div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主94.6% 平4.4% 客1.0% | 最可能4:0(9.2%) | 大2.5球89.0%</div>
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 9.3%</span> <span class="c"><b>4:0</b> 8.8%</span> <span class="c"><b>2:0</b> 7.4%</span> <span class="c"><b>3:1</b> 7.3%</span> <span class="c"><b>4:1</b> 7.0%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.8球，大比分概率高——4球及以上占58%。</div><div class="cs"><span class="c">0球 1.0%</span> <span class="c">1球 4.7%</span> <span class="c">2球 10.8%</span> <span class="c">3球 16.4%</span> <span class="c">4球 18.8%</span> <span class="c">5球 17.2%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 英格兰 ELO领先135分，明显优势。 倾向英格兰获胜——主场+ELO优势转化为85.4%胜率。 风格：4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱 VS 4-3-3纯单兵冲击足球，完全依靠个人速度突破。短板：整体体系松散。进攻火力强劲，期望进球3.8球，大比分概率高——4球及以上占58%。 综合判断：倾向：英格兰获胜。不确定性3.7%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>3:0</b> 9.3%</span> <span class="c"><b>4:0</b> 8.7%</span> <span class="c"><b>2:0</b> 7.5%</span> <span class="c"><b>3:1</b> 7.4%</span> <span class="c"><b>4:1</b> 7.0%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球3.7球，大比分概率高——4球及以上占57%。</div><div class="cs"><span class="c">0球 1.1%</span> <span class="c">1球 4.9%</span> <span class="c">2球 11.0%</span> <span class="c">3球 16.7%</span> <span class="c">4球 18.9%</span> <span class="c">5球 17.2%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 英格兰 ELO领先125分，明显优势。 倾向英格兰获胜——主场+ELO优势转化为84.7%胜率。 风格：4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱 VS 4-3-3纯单兵冲击足球，完全依靠个人速度突破。短板：整体体系松散。进攻火力强劲，期望进球3.7球，大比分概率高——4球及以上占57%。 综合判断：倾向：英格兰获胜。不确定性3.9%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1900+状态-34=1866 vs 1650+143=1781 | 修正: 刚果民主共和国超高连胜-12 | 主攻x1.1·揭幕x1.0·战术x1.00=3.8球<br>
-          📐 预期进球：主3.79球 × 客0.79球 → 泊松分布<br>
+          🧮 ELO基1900+状态-44=1856 vs 1650+143=1781 | 修正: 刚果民主共和国超高连胜-12 | 主攻x1.1·揭幕x1.0·战术x1.00=3.7球<br>
+          📐 预期进球：主3.74球 × 客0.8球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础82%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础81%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3183,7 +3183,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
         <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
         <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
-          <b>白话解读：</b>英格兰 2:1 刚果民主共和国。 速度型前锋对决→禁区一对一增多，点球概率上升。 预期差+3.0球→实际差+1.0球，偏差2.0球。<br><br>
+          <b>白话解读：</b>英格兰 2:1 刚果民主共和国。 速度型前锋对决→禁区一对一增多，点球概率上升。 预期差+2.9球→实际差+1.0球，偏差1.9球。<br><br>
           <b>模型优化：</b><span style="color:#666"></span>
         </div>
       </div>
@@ -3272,24 +3272,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 3:0</div>
       <div class="int" style="opacity:0.5">📰 淘汰赛R32。西班牙胜69.6%/平18.2%/奥地利胜12.2%。MC最可能2:1(11.2%)。大2.5球73.0%。</div>
       
-      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(10.7%)</span><span class="tag tag-risk">❄️ 低概率: 1:0(7.6%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:0 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 西班牙 ELO领先259分，明显优势。</div>
+      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(10.9%)</span><span class="tag tag-risk">❄️ 低概率: 4:0(7.8%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:0 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 西班牙 ELO领先287分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:69.6%"></i></div><span class="n">69.6%</span></div>
         <div class="b"><span>平</span><div class="t"><i style="width:18.2%;background:#888"></i></div><span class="n">18.2%</span></div>
         <div class="b"><span>客</span><div class="t"><i style="width:12.2%;background:#ccc"></i></div><span class="n">12.2%</span></div>
-        <div class="why">倾向西班牙获胜——主场+ELO优势转化为74.5%胜率。 · </div>
+        <div class="why">倾向西班牙获胜——主场+ELO优势转化为76.8%胜率。 · </div>
 <div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主69.6% 平18.2% 客12.2% | 最可能2:1(11.2%) | 大2.5球73.0%</div>
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 10.7%</span> <span class="c"><b>3:0</b> 10.2%</span> <span class="c"><b>2:1</b> 8.4%</span> <span class="c"><b>3:1</b> 8.0%</span> <span class="c"><b>1:0</b> 7.6%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.8球，大比分概率高——4球及以上占46%。</div><div class="cs"><span class="c">0球 2.7%</span> <span class="c">1球 9.6%</span> <span class="c">2球 17.5%</span> <span class="c">3球 21.1%</span> <span class="c">4球 19.2%</span> <span class="c">5球 13.9%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 西班牙 ELO领先259分，明显优势。 倾向西班牙获胜——主场+ELO优势转化为74.5%胜率。 风格：4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击 VS 4-2-3-1红牛式极限高位压迫，全场贴身逼抢，跑动强度欧洲前列。短板：防线前压留下大量身后空档。进攻火力强劲，期望进球2.8球，大比分概率高——4球及以上占46%。 综合判断：倾向：西班牙获胜。不确定性7.1%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 10.9%</span> <span class="c"><b>3:0</b> 10.7%</span> <span class="c"><b>2:1</b> 8.1%</span> <span class="c"><b>3:1</b> 7.9%</span> <span class="c"><b>4:0</b> 7.8%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占47%。</div><div class="cs"><span class="c">0球 2.5%</span> <span class="c">1球 9.3%</span> <span class="c">2球 17.1%</span> <span class="c">3球 21.0%</span> <span class="c">4球 19.3%</span> <span class="c">5球 14.2%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 西班牙 ELO领先287分，明显优势。 倾向西班牙获胜——主场+ELO优势转化为76.8%胜率。 风格：4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击 VS 4-2-3-1红牛式极限高位压迫，全场贴身逼抢，跑动强度欧洲前列。短板：防线前压留下大量身后空档。进攻火力强劲，期望进球2.9球，大比分概率高——4球及以上占47%。 综合判断：倾向：西班牙获胜。不确定性6.1%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1890+状态55=1945 vs 1760+-24=1736 | 主攻x1.1·揭幕x1.0·战术x1.00=2.8球<br>
-          📐 预期进球：主2.84球 × 客0.79球 → 泊松分布<br>
+          🧮 ELO基1890+状态95=1973 vs 1760+-24=1736 | 修正: 西班牙超高连胜-12 | 主攻x1.1·揭幕x1.0·战术x1.00=2.9球<br>
+          📐 预期进球：主2.94球 × 客0.74球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础67%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础71%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3416,22 +3416,22 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       
       <div class="int" style="">📰 淘汰赛R32。阿根廷胜100.0%/平0.0%/佛得角胜0.0%。MC最可能10:0(9.6%)。大2.5球100.0%。</div>
       
-      <div class="tag-row"><span class="tag tag-injury">🚑 阿根廷攻击线优势明显</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 5:0(10.1%)</span><span class="tag tag-risk">❄️ 低概率: 8:0(6.0%)</span></div>
-      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先297分，明显优势。</div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 阿根廷攻击线优势明显</span></div><div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 5:0(10.1%)</span><span class="tag tag-risk">❄️ 低概率: 8:0(6.2%)</span></div>
+      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先307分，明显优势。</div>
         <div class="b"><span>主</span><div class="t"><i style="width:100.0%"></i></div><span class="n">100.0%</span></div>
         <div class="b"><span>平</span><div class="t"><i style="width:0.0%;background:#888"></i></div><span class="n">0.0%</span></div>
         <div class="b"><span>客</span><div class="t"><i style="width:0.0%;background:#ccc"></i></div><span class="n">0.0%</span></div>
-        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为97.5%胜率。 · </div>
+        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为97.7%胜率。 · </div>
 <div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主100.0% 平0.0% 客0.0% | 最可能10:0(9.6%) | 大2.5球100.0%</div>
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>5:0</b> 10.1%</span> <span class="c"><b>6:0</b> 9.8%</span> <span class="c"><b>4:0</b> 8.7%</span> <span class="c"><b>7:0</b> 8.2%</span> <span class="c"><b>8:0</b> 6.0%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球5.8球，大比分概率高——4球及以上占57%。</div><div class="cs"><span class="c">0球 0.2%</span> <span class="c">1球 1.1%</span> <span class="c">2球 3.6%</span> <span class="c">3球 7.6%</span> <span class="c">4球 11.9%</span> <span class="c">5球 15.1%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 阿根廷 ELO领先297分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为97.5%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 4-3-3小型岛国反击流，边路快速转换，中场控制力薄弱。进攻火力强劲，期望进球5.8球，大比分概率高——4球及以上占57%。 综合判断：倾向：阿根廷获胜。不确定性0.4%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>5:0</b> 10.1%</span> <span class="c"><b>6:0</b> 9.9%</span> <span class="c"><b>4:0</b> 8.6%</span> <span class="c"><b>7:0</b> 8.4%</span> <span class="c"><b>8:0</b> 6.2%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球5.9球，大比分概率高——4球及以上占57%。</div><div class="cs"><span class="c">0球 0.2%</span> <span class="c">1球 1.1%</span> <span class="c">2球 3.4%</span> <span class="c">3球 7.3%</span> <span class="c">4球 11.7%</span> <span class="c">5球 14.9%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟢 高确定性</b> 阿根廷 ELO领先307分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为97.7%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 4-3-3小型岛国反击流，边路快速转换，中场控制力薄弱。进攻火力强劲，期望进球5.9球，大比分概率高——4球及以上占57%。 综合判断：倾向：阿根廷获胜。不确定性0.4%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1950+状态1=1951 vs 1580+136=1704 | 修正: 佛得角超高连胜-12 | 主攻x1.2·揭幕x1.0·战术x1.00=5.8球<br>
-          📐 预期进球：主5.84球 × 客0.49球 → 泊松分布<br>
+          🧮 ELO基1950+状态11=1961 vs 1580+136=1704 | 修正: 佛得角超高连胜-12 | 主攻x1.2·揭幕x1.0·战术x1.00=5.9球<br>
+          📐 预期进球：主5.9球 × 客0.48球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
           🎲 低概率=基础97%差额+伤病+红牌+高原修正<br>
           💰 
@@ -3514,24 +3514,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 0:1</div>
       <div class="int" style="opacity:0.5">📰 R16。巴拉圭 0:1 法国。已完赛。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 0:2(13.4%)</span><span class="tag tag-risk">❄️ 低概率: 1:1(8.4%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:1 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 两队仅差150分，实力非常接近。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:9.3%"></i></div><span class="n">9.3%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:24.8%;background:#888"></i></div><span class="n">24.8%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:65.9%;background:#ccc"></i></div><span class="n">65.9%</span></div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 0:2(12.7%)</span><span class="tag tag-risk">❄️ 低概率: 0:3(8.9%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:1 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 两队仅差110分，实力非常接近。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:11.1%"></i></div><span class="n">11.1%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:26.5%;background:#888"></i></div><span class="n">26.5%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:62.4%;background:#ccc"></i></div><span class="n">62.4%</span></div>
         <div class="why">倾向法国——ELO差距在下半场可能体现。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:2</b> 13.4%</span> <span class="c"><b>0:1</b> 12.2%</span> <span class="c"><b>0:3</b> 9.9%</span> <span class="c"><b>1:2</b> 9.3%</span> <span class="c"><b>1:1</b> 8.4%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻乏力，22%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 5.5%</span> <span class="c">1球 16.0%</span> <span class="c">2球 23.1%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.2%</span> <span class="c">5球 9.4%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差150分，实力非常接近。 倾向法国——ELO差距在下半场可能体现。 风格：4-2-3-1复古大巴密集防守，全线收缩切断传球线路，仅靠零星反击。领先后死守不出 VS 4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋。进攻乏力，22%概率低于2球，小球倾向明显。 综合判断：倾向：法国获胜。不确定性9.3%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>0:2</b> 12.7%</span> <span class="c"><b>0:1</b> 12.0%</span> <span class="c"><b>1:2</b> 9.6%</span> <span class="c"><b>1:1</b> 9.1%</span> <span class="c"><b>0:3</b> 8.9%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻乏力，22%概率低于2球，小球倾向明显。</div><div class="cs"><span class="c">0球 5.7%</span> <span class="c">1球 16.3%</span> <span class="c">2球 23.4%</span> <span class="c">3球 22.3%</span> <span class="c">4球 16.0%</span> <span class="c">5球 9.2%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差110分，实力非常接近。 倾向法国——ELO差距在下半场可能体现。 风格：4-2-3-1复古大巴密集防守，全线收缩切断传球线路，仅靠零星反击。领先后死守不出 VS 4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋。进攻乏力，22%概率低于2球，小球倾向明显。 综合判断：倾向：法国获胜。不确定性11.1%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1720+状态54=1774 vs 1930+44=1974 | 主攻x0.8·揭幕x1.0·战术x0.78=0.7球<br>
-          📐 预期进球：主0.69球 × 客2.21球 → 泊松分布<br>
+          🧮 ELO基1720+状态54=1774 vs 1930+4=1934 | 主攻x0.8·揭幕x1.0·战术x0.78=0.8球<br>
+          📐 预期进球：主0.76球 × 客2.11球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础57%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础51%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3590,24 +3590,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 3:2</div>
       <div class="int" style="opacity:0.5">📰 R16。英格兰 3:2 墨西哥。已完赛。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(9.4%)</span><span class="tag tag-risk">❄️ 低概率: 3:0(7.0%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:2 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 英格兰 ELO领先121分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:61.6%"></i></div><span class="n">61.6%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:24.5%;background:#888"></i></div><span class="n">24.5%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:13.9%;background:#ccc"></i></div><span class="n">13.9%</span></div>
-        <div class="why">倾向英格兰获胜——主场+ELO优势转化为61.6%胜率。 · </div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(9.5%)</span><span class="tag tag-risk">❄️ 低概率: 1:0(6.9%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:2 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 英格兰 ELO领先111分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:60.5%"></i></div><span class="n">60.5%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:25.0%;background:#888"></i></div><span class="n">25.0%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:14.5%;background:#ccc"></i></div><span class="n">14.5%</span></div>
+        <div class="why">倾向英格兰获胜——主场+ELO优势转化为60.5%胜率。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 9.4%</span> <span class="c"><b>2:0</b> 8.5%</span> <span class="c"><b>3:1</b> 7.8%</span> <span class="c"><b>1:1</b> 7.6%</span> <span class="c"><b>3:0</b> 7.0%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占45%。</div><div class="cs"><span class="c">0球 2.8%</span> <span class="c">1球 9.9%</span> <span class="c">2球 17.8%</span> <span class="c">3球 21.3%</span> <span class="c">4球 19.1%</span> <span class="c">5球 13.7%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 英格兰 ELO领先121分，明显优势。 倾向英格兰获胜——主场+ELO优势转化为61.6%胜率。 风格：4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱 VS 4-1-4-1灵动快慢切换传切，中场前腰灵活调度，下半场效率高。短板：长时间逼抢后半程体能下滑。进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占45%。 综合判断：倾向：英格兰获胜。不确定性13.9%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 9.5%</span> <span class="c"><b>2:0</b> 8.4%</span> <span class="c"><b>1:1</b> 7.8%</span> <span class="c"><b>3:1</b> 7.7%</span> <span class="c"><b>1:0</b> 6.9%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.4球，大比分概率高——4球及以上占45%。</div><div class="cs"><span class="c">0球 2.8%</span> <span class="c">1球 10.1%</span> <span class="c">2球 18.0%</span> <span class="c">3球 21.4%</span> <span class="c">4球 19.0%</span> <span class="c">5球 13.6%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 英格兰 ELO领先111分，明显优势。 倾向英格兰获胜——主场+ELO优势转化为60.5%胜率。 风格：4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱 VS 4-1-4-1灵动快慢切换传切，中场前腰灵活调度，下半场效率高。短板：长时间逼抢后半程体能下滑。进攻火力强劲，期望进球2.4球，大比分概率高——4球及以上占45%。 综合判断：倾向：英格兰获胜。不确定性14.5%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1900+状态-34=1866 vs 1770+37=1795 | 修正: 墨西哥跨洲飞行-12 | 主攻x1.1·揭幕x1.0·战术x1.00=2.5球<br>
-          📐 预期进球：主2.48球 × 客1.11球 → 泊松分布<br>
+          🧮 ELO基1900+状态-44=1856 vs 1770+37=1795 | 修正: 墨西哥跨洲飞行-12 | 主攻x1.1·揭幕x1.0·战术x1.00=2.4球<br>
+          📐 预期进球：主2.44球 × 客1.12球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础48%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础46%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3628,24 +3628,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 0:1</div>
       <div class="int" style="opacity:0.5">📰 R16。葡萄牙 0:1 西班牙。已完赛。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="why">💡 葡萄牙存在以下可能性：ELO差距仅48分，葡萄牙若先取得进球，西班牙压力将骤增。</div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:1(8.2%)</span><span class="tag tag-risk">❄️ 低概率: 1:3(5.5%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:1 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 两队仅差48分，实力非常接近。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:31.1%"></i></div><span class="n">31.1%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:29.3%;background:#888"></i></div><span class="n">29.3%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:39.6%;background:#ccc"></i></div><span class="n">39.6%</span></div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:2(8.5%)</span><span class="tag tag-risk">❄️ 低概率: 1:3(5.9%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:1 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 两队仅差76分，实力非常接近。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:28.3%"></i></div><span class="n">28.3%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:29.1%;background:#888"></i></div><span class="n">29.1%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:42.6%;background:#ccc"></i></div><span class="n">42.6%</span></div>
         <div class="why">三者接近——平局往往被市场低估。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 8.2%</span> <span class="c"><b>1:2</b> 8.2%</span> <span class="c"><b>2:1</b> 7.2%</span> <span class="c"><b>2:2</b> 7.2%</span> <span class="c"><b>1:3</b> 5.5%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。</div><div class="cs"><span class="c">0球 2.3%</span> <span class="c">1球 8.8%</span> <span class="c">2球 16.5%</span> <span class="c">3球 20.7%</span> <span class="c">4球 19.4%</span> <span class="c">5球 14.6%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差48分，实力非常接近。 三者接近——平局往往被市场低估。 风格：4-3-3巨星驱动均衡传控，B费组织，莱奥左路爆破，C罗高空抢点。短板：中场拦截硬度不足 VS 4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击。进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。 综合判断：建议观望，平局概率偏高。不确定性25%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:2</b> 8.5%</span> <span class="c"><b>1:1</b> 8.2%</span> <span class="c"><b>2:2</b> 7.1%</span> <span class="c"><b>2:1</b> 6.9%</span> <span class="c"><b>1:3</b> 5.9%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。</div><div class="cs"><span class="c">0球 2.4%</span> <span class="c">1球 8.9%</span> <span class="c">2球 16.7%</span> <span class="c">3球 20.7%</span> <span class="c">4球 19.4%</span> <span class="c">5球 14.4%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差76分，实力非常接近。 三者接近——平局往往被市场低估。 风格：4-3-3巨星驱动均衡传控，B费组织，莱奥左路爆破，C罗高空抢点。短板：中场拦截硬度不足 VS 4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击。进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。 综合判断：建议观望，平局概率偏高。不确定性25%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1870+状态-23=1847 vs 1890+55=1945 | 主攻x1.2·揭幕x1.0·战术x1.00=1.8球<br>
-          📐 预期进球：主1.76球 × 客2.0球 → 泊松分布<br>
+          🧮 ELO基1870+状态-23=1847 vs 1890+95=1973 | 修正: 西班牙超高连胜-12 | 主攻x1.2·揭幕x1.0·战术x1.00=1.7球<br>
+          📐 预期进球：主1.66球 × 客2.07球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础8%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础14%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3704,24 +3704,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 3:2</div>
       <div class="int" style="opacity:0.5">📰 R16。阿根廷 3:2 埃及。已完赛。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(11.9%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(7.6%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:2 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先243分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:69.2%"></i></div><span class="n">69.2%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:22.1%;background:#888"></i></div><span class="n">22.1%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:8.8%;background:#ccc"></i></div><span class="n">8.8%</span></div>
-        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为69.2%胜率。 · </div>
+      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力悬殊</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#666;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 无明显偏差 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(12.0%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(7.6%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 3:2 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先253分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:70.0%"></i></div><span class="n">70.0%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:21.6%;background:#888"></i></div><span class="n">21.6%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:8.4%;background:#ccc"></i></div><span class="n">8.4%</span></div>
+        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为70.0%胜率。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 11.9%</span> <span class="c"><b>3:0</b> 9.9%</span> <span class="c"><b>1:0</b> 9.6%</span> <span class="c"><b>2:1</b> 9.2%</span> <span class="c"><b>3:1</b> 7.6%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占39%。</div><div class="cs"><span class="c">0球 3.8%</span> <span class="c">1球 12.5%</span> <span class="c">2球 20.4%</span> <span class="c">3球 22.2%</span> <span class="c">4球 18.1%</span> <span class="c">5球 11.8%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 阿根廷 ELO领先243分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为69.2%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 4-2-3-1中锋支点阵地流，萨拉赫边路核心，定位球稳定。短板：中场跑动覆盖不足。进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占39%。 综合判断：倾向：阿根廷获胜。不确定性8.8%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 12.0%</span> <span class="c"><b>3:0</b> 10.1%</span> <span class="c"><b>1:0</b> 9.5%</span> <span class="c"><b>2:1</b> 9.1%</span> <span class="c"><b>3:1</b> 7.6%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占40%。</div><div class="cs"><span class="c">0球 3.8%</span> <span class="c">1球 12.4%</span> <span class="c">2球 20.3%</span> <span class="c">3球 22.1%</span> <span class="c">4球 18.1%</span> <span class="c">5球 11.9%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 阿根廷 ELO领先253分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为70.0%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 4-2-3-1中锋支点阵地流，萨拉赫边路核心，定位球稳定。短板：中场跑动覆盖不足。进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占40%。 综合判断：倾向：阿根廷获胜。不确定性8.4%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1950+状态1=1951 vs 1720+38=1758 | 主攻x1.2·揭幕x1.0·战术x1.00=2.5球<br>
-          📐 预期进球：主2.49球 × 客0.77球 → 泊松分布<br>
+          🧮 ELO基1950+状态11=1961 vs 1720+38=1758 | 主攻x1.2·揭幕x1.0·战术x1.00=2.5球<br>
+          📐 预期进球：主2.52球 × 客0.76球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础60%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础62%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3780,24 +3780,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       <div class="ft-badge">⚡ 已结束 · 全场比分: 2:0</div>
       <div class="int" style="opacity:0.5">📰 8强QF。法国 2-0 摩洛哥。已完赛。姆巴佩+登贝莱进球,法国晋级半决赛。</div>
       
-      <div class="tag-row"><span class="tag tag-injury">🚑 摩洛哥防守韧性值得关注</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 偏低但非零</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:0(10.1%)</span><span class="tag tag-risk">❄️ 低概率: 3:0(6.8%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 2:0 | 模型预测偏差: 待复盘</span></div>
-      <div class="s"><div class="st">胜负 · 法国 ELO领先180分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 摩洛哥低概率值16%</span></div>
-        <div class="b"><span>主</span><div class="t"><i style="width:55.3%"></i></div><span class="n">55.3%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:28.8%;background:#888"></i></div><span class="n">28.8%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:15.9%;background:#ccc"></i></div><span class="n">15.9%</span></div>
-        <div class="why">倾向法国获胜——主场+ELO优势转化为55.3%胜率。 · </div>
+      <div class="tag-row"><span class="tag tag-injury">🚑 摩洛哥防守韧性值得关注</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 偏低但非零</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:1(10.4%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(6.3%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 2:0 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 法国 ELO领先140分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 摩洛哥低概率值18%</span></div>
+        <div class="b"><span>主</span><div class="t"><i style="width:51.4%"></i></div><span class="n">51.4%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:30.2%;background:#888"></i></div><span class="n">30.2%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:18.3%;background:#ccc"></i></div><span class="n">18.3%</span></div>
+        <div class="why">倾向法国获胜——主场+ELO优势转化为51.4%胜率。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:0</b> 10.1%</span> <span class="c"><b>1:0</b> 10.0%</span> <span class="c"><b>2:1</b> 10.0%</span> <span class="c"><b>1:1</b> 9.8%</span> <span class="c"><b>3:0</b> 6.8%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.0球，大比分概率高——4球及以上占34%。</div><div class="cs"><span class="c">0球 4.9%</span> <span class="c">1球 14.9%</span> <span class="c">2球 22.3%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.8%</span> <span class="c">5球 10.1%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 法国 ELO领先180分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 摩洛哥低概率值16%</span> 倾向法国获胜——主场+ELO优势转化为55.3%胜率。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 3-5-2北非务实防反，深度收缩三中卫防守，边翼卫前插，断球大脚转移边路。短板：中场控球组织偏弱。进攻火力强劲，期望进球2.0球，大比分概率高——4球及以上占34%。 综合判断：倾向：法国获胜。不确定性15.9%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 10.4%</span> <span class="c"><b>2:1</b> 9.9%</span> <span class="c"><b>1:0</b> 9.8%</span> <span class="c"><b>2:0</b> 9.4%</span> <span class="c"><b>3:1</b> 6.3%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进球集中在2-3球（45%），典型世界杯节奏。但也有26%概率打出4球以上。</div><div class="cs"><span class="c">0球 5.1%</span> <span class="c">1球 15.2%</span> <span class="c">2球 22.6%</span> <span class="c">3球 22.4%</span> <span class="c">4球 16.6%</span> <span class="c">5球 9.9%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 法国 ELO领先140分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 摩洛哥低概率值18%</span> 倾向法国获胜——主场+ELO优势转化为51.4%胜率。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 3-5-2北非务实防反，深度收缩三中卫防守，边翼卫前插，断球大脚转移边路。短板：中场控球组织偏弱。进球集中在2-3球（45%），典型世界杯节奏。但也有26%概率打出4球以上。 综合判断：倾向：法国获胜 但平局概率30%偏高，保守可关注平。不确定性18.3%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1930+状态44=1974 vs 1790+54=1844 | 主攻x1.2·揭幕x1.0·战术x1.00=2.0球<br>
-          📐 预期进球：主2.02球 × 客0.98球 → 泊松分布<br>
+          🧮 ELO基1930+状态4=1934 vs 1790+54=1844 | 主攻x1.2·揭幕x1.0·战术x1.00=1.9球<br>
+          📐 预期进球：主1.92球 × 客1.05球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础39%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础33%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3818,24 +3818,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       
       <div class="int" style="">📰 8强QF。西班牙45.8%/平29.0%/比利时25.2%。MC最可能1:0(14.2%)。大2.5球39.3%。(全维度:阵容+战术+角球)</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 偏低但非零</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(9.7%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(7.2%)</span></div>
-      <div class="s"><div class="st">胜负 · 西班牙 ELO略高82分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 比利时低概率值17%</span></div>
-        <div class="b"><span>主</span><div class="t"><i style="width:55.5%"></i></div><span class="n">55.5%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:27.2%;background:#888"></i></div><span class="n">27.2%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:17.3%;background:#ccc"></i></div><span class="n">17.3%</span></div>
-        <div class="why">倾向西班牙获胜——主场+ELO优势转化为55.5%胜率。 · </div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 偏低但非零</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(9.6%)</span><span class="tag tag-risk">❄️ 低概率: 1:0(7.3%)</span></div>
+      <div class="s"><div class="st">胜负 · 西班牙 ELO领先110分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 比利时低概率值16%</span></div>
+        <div class="b"><span>主</span><div class="t"><i style="width:58.4%"></i></div><span class="n">58.4%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:26.1%;background:#888"></i></div><span class="n">26.1%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:15.5%;background:#ccc"></i></div><span class="n">15.5%</span></div>
+        <div class="why">倾向西班牙获胜——主场+ELO优势转化为58.4%胜率。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 9.7%</span> <span class="c"><b>1:1</b> 8.7%</span> <span class="c"><b>2:0</b> 8.2%</span> <span class="c"><b>1:0</b> 7.4%</span> <span class="c"><b>3:1</b> 7.2%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.2球，大比分概率高——4球及以上占42%。</div><div class="cs"><span class="c">0球 3.3%</span> <span class="c">1球 11.3%</span> <span class="c">2球 19.2%</span> <span class="c">3球 21.8%</span> <span class="c">4球 18.6%</span> <span class="c">5球 12.7%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 西班牙 ELO略高82分，主场加权后有优势。 <span style="color:#e44;font-size:10px;">⚠️ 比利时低概率值17%</span> 倾向西班牙获胜——主场+ELO优势转化为55.5%胜率。 风格：4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击 VS 4-2-3-1天才单兵冲击流，德布劳内长传制导，卢卡库支点爆破。短板：防守体系松散后场协同差。进攻火力强劲，期望进球2.2球，大比分概率高——4球及以上占42%。 综合判断：倾向：西班牙获胜。不确定性17.3%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 9.6%</span> <span class="c"><b>2:0</b> 8.6%</span> <span class="c"><b>1:1</b> 8.3%</span> <span class="c"><b>3:1</b> 7.5%</span> <span class="c"><b>1:0</b> 7.3%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占43%。</div><div class="cs"><span class="c">0球 3.1%</span> <span class="c">1球 10.9%</span> <span class="c">2球 18.8%</span> <span class="c">3球 21.7%</span> <span class="c">4球 18.8%</span> <span class="c">5球 13.0%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 西班牙 ELO领先110分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 比利时低概率值16%</span> 倾向西班牙获胜——主场+ELO优势转化为58.4%胜率。 风格：4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击 VS 4-2-3-1天才单兵冲击流，德布劳内长传制导，卢卡库支点爆破。短板：防守体系松散后场协同差。进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占43%。 综合判断：倾向：西班牙获胜。不确定性15.5%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1890+状态55=1945 vs 1830+95=1913 | 修正: 比利时超高连胜-12 | 主攻x1.1·揭幕x1.0·战术x1.00=2.2球<br>
-          📐 预期进球：主2.24球 × 客1.18球 → 泊松分布<br>
+          🧮 ELO基1890+状态95=1973 vs 1830+95=1913 | 修正: 西班牙超高连胜-12；比利时超高连胜-12 | 主攻x1.1·揭幕x1.0·战术x1.00=2.3球<br>
+          📐 预期进球：主2.33球 × 客1.13球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础38%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础43%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3848,24 +3848,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       
       <div class="int" style="">📰 8强QF。挪威32.4%/平22.3%/英格兰45.3%。MC最可能1:2(10.0%)。大2.5球56.5%。(全维度:阵容+战术+角球)</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="why">💡 挪威存在以下可能性：ELO差距仅11分，实力非常接近，任何结果都不意外。</div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(8.4%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(5.7%)</span></div>
-      <div class="s"><div class="st">胜负 · 两队仅差11分，实力非常接近。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:41.4%"></i></div><span class="n">41.4%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:29.2%;background:#888"></i></div><span class="n">29.2%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:29.4%;background:#ccc"></i></div><span class="n">29.4%</span></div>
+      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力接近</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="why">💡 挪威存在以下可能性：ELO差距仅21分，实力非常接近，任何结果都不意外。</div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(8.5%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(5.9%)</span></div>
+      <div class="s"><div class="st">胜负 · 两队仅差21分，实力非常接近。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:42.6%"></i></div><span class="n">42.6%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:29.0%;background:#888"></i></div><span class="n">29.0%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:28.5%;background:#ccc"></i></div><span class="n">28.5%</span></div>
         <div class="why">三者接近——平局往往被市场低估。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 8.4%</span> <span class="c"><b>1:1</b> 8.2%</span> <span class="c"><b>2:2</b> 7.1%</span> <span class="c"><b>1:2</b> 7.0%</span> <span class="c"><b>3:1</b> 5.7%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.0球，大比分概率高——4球及以上占48%。</div><div class="cs"><span class="c">0球 2.4%</span> <span class="c">1球 8.9%</span> <span class="c">2球 16.6%</span> <span class="c">3球 20.7%</span> <span class="c">4球 19.4%</span> <span class="c">5球 14.5%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差11分，实力非常接近。 三者接近——平局往往被市场低估。 风格：4-3-3中锋支点冲击流，哈兰德禁区终结核心，边路快速传中。短板：中场组织薄弱控球能力差 VS 4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱。进攻火力强劲，期望进球2.0球，大比分概率高——4球及以上占48%。 综合判断：建议观望，平局概率偏高。不确定性25%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 8.5%</span> <span class="c"><b>1:1</b> 8.2%</span> <span class="c"><b>2:2</b> 7.1%</span> <span class="c"><b>1:2</b> 6.9%</span> <span class="c"><b>3:1</b> 5.9%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占48%。</div><div class="cs"><span class="c">0球 2.4%</span> <span class="c">1球 8.8%</span> <span class="c">2球 16.5%</span> <span class="c">3球 20.7%</span> <span class="c">4球 19.4%</span> <span class="c">5球 14.5%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差21分，实力非常接近。 三者接近——平局往往被市场低估。 风格：4-3-3中锋支点冲击流，哈兰德禁区终结核心，边路快速传中。短板：中场组织薄弱控球能力差 VS 4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱。进攻火力强劲，期望进球2.1球，大比分概率高——4球及以上占48%。 综合判断：建议观望，平局概率偏高。不确定性25%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1780+状态47=1827 vs 1900+-34=1866 | 主攻x1.2·揭幕x1.0·战术x1.00=2.0球<br>
-          📐 预期进球：主2.04球 × 客1.7球 → 泊松分布<br>
+          🧮 ELO基1780+状态47=1827 vs 1900+-44=1856 | 主攻x1.2·揭幕x1.0·战术x1.00=2.1球<br>
+          📐 预期进球：主2.07球 × 客1.68球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础12%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础14%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3878,24 +3878,24 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
       
       <div class="int" style="">📰 8强QF。阿根廷52.2%/平25.4%/瑞士22.4%。MC最可能1:0(11.6%)。大2.5球45.9%。(全维度:阵容+战术+角球)</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(9.8%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(7.4%)</span></div>
-      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先176分，明显优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:59.1%"></i></div><span class="n">59.1%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:26.2%;background:#888"></i></div><span class="n">26.2%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:14.7%;background:#ccc"></i></div><span class="n">14.7%</span></div>
-        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为59.1%胜率。 · </div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(9.7%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(7.5%)</span></div>
+      <div class="s"><div class="st">胜负 · 阿根廷 ELO领先186分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:60.0%"></i></div><span class="n">60.0%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:25.8%;background:#888"></i></div><span class="n">25.8%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:14.1%;background:#ccc"></i></div><span class="n">14.1%</span></div>
+        <div class="why">倾向阿根廷获胜——主场+ELO优势转化为60.0%胜率。 · </div>
 
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 9.8%</span> <span class="c"><b>2:0</b> 9.3%</span> <span class="c"><b>1:1</b> 8.6%</span> <span class="c"><b>1:0</b> 8.1%</span> <span class="c"><b>3:1</b> 7.4%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占41%。</div><div class="cs"><span class="c">0球 3.6%</span> <span class="c">1球 11.9%</span> <span class="c">2球 19.8%</span> <span class="c">3球 22.0%</span> <span class="c">4球 18.4%</span> <span class="c">5球 12.3%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 阿根廷 ELO领先176分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为59.1%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 4-3-3均衡控球务实流，中后场传导流畅，边路推进稳定。短板：射门转化率极低，回追慢怕反击。进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占41%。 综合判断：倾向：阿根廷获胜。不确定性14.7%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 9.7%</span> <span class="c"><b>2:0</b> 9.4%</span> <span class="c"><b>1:1</b> 8.4%</span> <span class="c"><b>1:0</b> 8.1%</span> <span class="c"><b>3:1</b> 7.5%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占41%。</div><div class="cs"><span class="c">0球 3.5%</span> <span class="c">1球 11.8%</span> <span class="c">2球 19.7%</span> <span class="c">3球 22.0%</span> <span class="c">4球 18.4%</span> <span class="c">5球 12.3%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 阿根廷 ELO领先186分，明显优势。 倾向阿根廷获胜——主场+ELO优势转化为60.0%胜率。 风格：4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱 VS 4-3-3均衡控球务实流，中后场传导流畅，边路推进稳定。短板：射门转化率极低，回追慢怕反击。进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占41%。 综合判断：倾向：阿根廷获胜。不确定性14.1%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1950+状态1=1951 vs 1830+-5=1825 | 主攻x1.2·揭幕x1.0·战术x1.00=2.3球<br>
-          📐 预期进球：主2.28球 × 客1.05球 → 泊松分布<br>
+          🧮 ELO基1950+状态11=1961 vs 1830+-5=1825 | 主攻x1.2·揭幕x1.0·战术x1.00=2.3球<br>
+          📐 预期进球：主2.31球 × 客1.04球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础44%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础46%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>
@@ -3903,119 +3903,135 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     </div>
     <div class="match">
       <div class="mh"><span class="g">GSF</span><span class="t">🇫🇷 法国 vs 西班牙 🇪🇸</span><span class="d">7/14</span></div>
-      <div class="v">纽约 · 4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋  VS  4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击</div>
+      <div class="v">纽约 · 4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋  VS  4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击</div><div class="live">⚡ 0:2</div>
       
+      <div class="ft-badge">⚡ 已结束 · 全场比分: 0:2</div>
+      <div class="int" style="opacity:0.5">📰 半决赛。法国 0:2 西班牙。西班牙晋级决赛。</div>
       
-      <div class="int" style="">📰 半决赛。法国胜61%/平19%/西班牙胜20%。MC最可能2:1。大2.5球7%。(预测对阵)</div>
-      
-      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力接近</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(8.6%)</span><span class="tag tag-risk">❄️ 低概率: 1:2(6.0%)</span></div>
-      <div class="s"><div class="st">胜负 · 法国 ELO略高79分，主场加权后有优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:61.0%"></i></div><span class="n">61.0%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:19.0%;background:#888"></i></div><span class="n">19.0%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:20.0%;background:#ccc"></i></div><span class="n">20.0%</span></div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="why">💡 法国存在以下可能性：ELO差距仅11分，实力非常接近，任何结果都不意外。</div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(8.2%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(5.6%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 0:2 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 两队仅差11分，实力非常接近。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:40.5%"></i></div><span class="n">40.5%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:29.1%;background:#888"></i></div><span class="n">29.1%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:30.5%;background:#ccc"></i></div><span class="n">30.5%</span></div>
         <div class="why">三者接近——平局往往被市场低估。 · </div>
-<div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主61.0% 平19.0% 客20.0%</div>
+
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 8.6%</span> <span class="c"><b>1:1</b> 7.6%</span> <span class="c"><b>2:2</b> 6.9%</span> <span class="c"><b>3:1</b> 6.5%</span> <span class="c"><b>1:2</b> 6.0%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占50%。</div><div class="cs"><span class="c">0球 2.1%</span> <span class="c">1球 8.1%</span> <span class="c">2球 15.6%</span> <span class="c">3球 20.1%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.1%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 法国 ELO略高79分，主场加权后有优势。 三者接近——平局往往被市场低估。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击。进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占50%。 综合判断：建议观望，平局概率偏高。不确定性25%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 8.2%</span> <span class="c"><b>1:1</b> 8.1%</span> <span class="c"><b>2:2</b> 7.2%</span> <span class="c"><b>1:2</b> 7.1%</span> <span class="c"><b>3:1</b> 5.6%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.0球，大比分概率高——4球及以上占48%。</div><div class="cs"><span class="c">0球 2.2%</span> <span class="c">1球 8.5%</span> <span class="c">2球 16.2%</span> <span class="c">3球 20.5%</span> <span class="c">4球 19.4%</span> <span class="c">5球 14.7%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差11分，实力非常接近。 三者接近——平局往往被市场低估。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击。进攻火力强劲，期望进球2.0球，大比分概率高——4球及以上占48%。 综合判断：建议观望，平局概率偏高。不确定性25%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1930+状态44=1974 vs 1890+55=1945 | 主攻x1.2·揭幕x1.0·战术x1.00=2.3球<br>
-          📐 预期进球：主2.28球 × 客1.59球 → 泊松分布<br>
+          🧮 ELO基1930+状态4=1934 vs 1890+95=1973 | 修正: 西班牙超高连胜-12 | 主攻x1.2·揭幕x1.0·战术x1.00=2.0球<br>
+          📐 预期进球：主2.04球 × 客1.76球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础24%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础10%差额+伤病+红牌+高原修正<br>
           💰 
+        </div>
+      </div>
+
+      <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
+        <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
+        <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
+          <b>白话解读：</b>法国 0:2 西班牙。 预期差+0.3球→实际差-2.0球，偏差2.3球。 ELO差距仅39分(实力接近)但比分差2球→模型低估了场上一方爆发力。<br><br>
+          <b>模型优化：</b><span style="color:#666">建议：ELO接近时增加战术对冲权重，避免低估单点爆发。</span>
         </div>
       </div>
 
     </div>
     <div class="match">
       <div class="mh"><span class="g">GSF</span><span class="t">🏴 英格兰 vs 阿根廷 🇦🇷</span><span class="d">7/15</span></div>
-      <div class="v">达拉斯 · 4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱  VS  4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱</div>
+      <div class="v">达拉斯 · 4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱  VS  4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱</div><div class="live">⚡ 1:2</div>
       
+      <div class="ft-badge">⚡ 已结束 · 全场比分: 1:2</div>
+      <div class="int" style="opacity:0.5">📰 半决赛。英格兰 1:2 阿根廷。阿根廷补时2-1逆转晋级。</div>
       
-      <div class="int" style="">📰 半决赛。英格兰胜42%/平25%/阿根廷胜33%。MC最可能1:1。大2.5球7%。(预测对阵)</div>
-      
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="why">💡 英格兰存在以下可能性：ELO差距仅35分，英格兰若先取得进球，阿根廷压力将骤增。</div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:2(8.3%)</span><span class="tag tag-risk">❄️ 低概率: 1:3(5.6%)</span></div>
-      <div class="s"><div class="st">胜负 · 两队仅差35分，实力非常接近。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:42.0%"></i></div><span class="n">42.0%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:25.0%;background:#888"></i></div><span class="n">25.0%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:33.0%;background:#ccc"></i></div><span class="n">33.0%</span></div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="why">💡 英格兰存在以下可能性：ELO差距仅55分，英格兰若先取得进球，阿根廷压力将骤增。</div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:2(8.5%)</span><span class="tag tag-risk">❄️ 低概率: 1:3(5.9%)</span></div><div class="tag-row"><span class="tag" style="background:#f0fff0;color:#390;border:1px solid #cfc">✅ 实际: 1:2 | 模型预测偏差: 待复盘</span></div>
+      <div class="s"><div class="st">胜负 · 两队仅差55分，实力非常接近。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:28.0%"></i></div><span class="n">28.0%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:28.9%;background:#888"></i></div><span class="n">28.9%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:43.1%;background:#ccc"></i></div><span class="n">43.1%</span></div>
         <div class="why">三者接近——平局往往被市场低估。 · </div>
-<div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主42.0% 平25.0% 客33.0%</div>
+
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:2</b> 8.3%</span> <span class="c"><b>1:1</b> 8.2%</span> <span class="c"><b>2:2</b> 7.2%</span> <span class="c"><b>2:1</b> 7.1%</span> <span class="c"><b>1:3</b> 5.6%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。</div><div class="cs"><span class="c">0球 2.3%</span> <span class="c">1球 8.7%</span> <span class="c">2球 16.4%</span> <span class="c">3球 20.6%</span> <span class="c">4球 19.4%</span> <span class="c">5球 14.6%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差35分，实力非常接近。 三者接近——平局往往被市场低估。 风格：4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱 VS 4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱。进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。 综合判断：建议观望，平局概率偏高。不确定性25%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:2</b> 8.5%</span> <span class="c"><b>1:1</b> 8.2%</span> <span class="c"><b>2:2</b> 7.1%</span> <span class="c"><b>2:1</b> 6.8%</span> <span class="c"><b>1:3</b> 5.9%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。</div><div class="cs"><span class="c">0球 2.4%</span> <span class="c">1球 8.8%</span> <span class="c">2球 16.5%</span> <span class="c">3球 20.7%</span> <span class="c">4球 19.4%</span> <span class="c">5球 14.5%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 两队仅差55分，实力非常接近。 三者接近——平局往往被市场低估。 风格：4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱 VS 4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱。进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。 综合判断：建议观望，平局概率偏高。不确定性25%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1900+状态-34=1866 vs 1950+1=1951 | 主攻x1.1·揭幕x1.0·战术x1.00=1.7球<br>
-          📐 预期进球：主1.73球 × 客2.03球 → 泊松分布<br>
+          🧮 ELO基1900+状态-44=1856 vs 1950+11=1961 | 主攻x1.1·揭幕x1.0·战术x1.00=1.7球<br>
+          📐 预期进球：主1.66球 × 客2.09球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础11%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础15%差额+伤病+红牌+高原修正<br>
           💰 
+        </div>
+      </div>
+
+      <div class="s" style="border-left:3px solid #e44;padding-left:12px;background:#fff5f5;margin-top:8px">
+        <div class="st" style="cursor:pointer;color:#e44" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 赛后AI复盘</div>
+        <div style="display:none;font-size:11px;line-height:1.6;padding-top:4px">
+          <b>白话解读：</b>英格兰 1:2 阿根廷。 速度型前锋对决→禁区一对一增多，点球概率上升。<br><br>
+          <b>模型优化：</b><span style="color:#666"></span>
         </div>
       </div>
 
     </div>
     <div class="match">
-      <div class="mh"><span class="g">G3RD</span><span class="t">🇪🇸 西班牙 vs 英格兰 🏴</span><span class="d">7/18</span></div>
-      <div class="v">迈阿密 · 4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击  VS  4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱</div>
+      <div class="mh"><span class="g">G3RD</span><span class="t">🇫🇷 法国 vs 英格兰 🏴</span><span class="d">7/18</span></div>
+      <div class="v">迈阿密 · 4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋  VS  4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱</div>
       
       
-      <div class="int" style="">📰 季军赛。西班牙胜46%/平20%/英格兰胜33%。MC最可能1:1。大2.5球6%。(预测对阵)</div>
+      <div class="int" style="">📰 法国vs英格兰季军战。法国胜58%/平19%/英格兰胜23%。MC最可能3:1。</div>
       
-      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 偏低但非零</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(9.8%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(7.1%)</span></div>
-      <div class="s"><div class="st">胜负 · 西班牙 ELO领先129分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 英格兰低概率值18%</span></div>
-        <div class="b"><span>主</span><div class="t"><i style="width:46.0%"></i></div><span class="n">46.0%</span></div>
-        <div class="b"><span>平</span><div class="t"><i style="width:20.0%;background:#888"></i></div><span class="n">20.0%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:33.0%;background:#ccc"></i></div><span class="n">33.0%</span></div>
-        <div class="why">倾向西班牙获胜——主场+ELO优势转化为54.6%胜率。 · </div>
-<div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主46.0% 平20.0% 客33.0%</div>
-      </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 9.8%</span> <span class="c"><b>1:1</b> 9.1%</span> <span class="c"><b>2:0</b> 8.6%</span> <span class="c"><b>1:0</b> 8.0%</span> <span class="c"><b>3:1</b> 7.1%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.2球，大比分概率高——4球及以上占40%。</div><div class="cs"><span class="c">0球 3.7%</span> <span class="c">1球 12.2%</span> <span class="c">2球 20.1%</span> <span class="c">3球 22.1%</span> <span class="c">4球 18.2%</span> <span class="c">5球 12.0%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟠 势均力敌</b> 西班牙 ELO领先129分，明显优势。 <span style="color:#e44;font-size:10px;">⚠️ 英格兰低概率值18%</span> 倾向西班牙获胜——主场+ELO优势转化为54.6%胜率。 风格：4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击 VS 4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱。进攻火力强劲，期望进球2.2球，大比分概率高——4球及以上占40%。 综合判断：倾向：西班牙获胜。不确定性17.5%</div></div>
-      <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
-        <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
-        <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1890+状态55=1945 vs 1900+-34=1866 | 主攻x1.1·揭幕x1.0·战术x1.00=2.2球<br>
-          📐 预期进球：主2.16球 × 客1.14球 → 泊松分布<br>
-          📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础37%差额+伤病+红牌+高原修正<br>
-          💰 
-        </div>
-      </div>
-
-    </div>
-    <div class="match">
-      <div class="mh"><span class="g">GFINAL</span><span class="t">🇫🇷 法国 vs 阿根廷 🇦🇷</span><span class="d">7/19</span></div>
-      <div class="v">纽约 · 4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋  VS  4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱</div>
-      
-      
-      <div class="int" style="">📰 决赛。法国胜48%/平19%/阿根廷胜33%。MC最可能1:1。大2.5球7%。(预测对阵)</div>
-      
-      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力接近</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(8.1%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(6.1%)</span></div>
-      <div class="s"><div class="st">胜负 · 法国 ELO略高73分，主场加权后有优势。</div>
-        <div class="b"><span>主</span><div class="t"><i style="width:48.0%"></i></div><span class="n">48.0%</span></div>
+      <div class="tag-row"><span class="tag" style="background:#fff5f5;color:#999;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟢 不确定性低 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 2:1(9.4%)</span><span class="tag tag-risk">❄️ 低概率: 1:0(6.7%)</span></div>
+      <div class="s"><div class="st">胜负 · 法国 ELO领先128分，明显优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:58.0%"></i></div><span class="n">58.0%</span></div>
         <div class="b"><span>平</span><div class="t"><i style="width:19.0%;background:#888"></i></div><span class="n">19.0%</span></div>
-        <div class="b"><span>客</span><div class="t"><i style="width:33.0%;background:#ccc"></i></div><span class="n">33.0%</span></div>
-        <div class="why">三者接近——平局往往被市场低估。 · </div>
-<div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主48.0% 平19.0% 客33.0%</div>
+        <div class="b"><span>客</span><div class="t"><i style="width:23.0%;background:#ccc"></i></div><span class="n">23.0%</span></div>
+        <div class="why">倾向法国获胜——主场+ELO优势转化为60.2%胜率。 · </div>
+<div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主58.0% 平19.0% 客23.0%</div>
       </div>
-      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 8.1%</span> <span class="c"><b>1:1</b> 7.2%</span> <span class="c"><b>2:2</b> 7.1%</span> <span class="c"><b>1:2</b> 6.3%</span> <span class="c"><b>3:1</b> 6.1%</span></div></div>
-      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占52%。</div><div class="cs"><span class="c">0球 1.8%</span> <span class="c">1球 7.3%</span> <span class="c">2球 14.6%</span> <span class="c">3球 19.5%</span> <span class="c">4球 19.5%</span> <span class="c">5球 15.7%</span></div></div>
-      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 法国 ELO略高73分，主场加权后有优势。 三者接近——平局往往被市场低估。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱。进攻火力强劲，期望进球2.3球，大比分概率高——4球及以上占52%。 综合判断：建议观望，平局概率偏高。不确定性25%</div></div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>2:1</b> 9.4%</span> <span class="c"><b>2:0</b> 8.2%</span> <span class="c"><b>1:1</b> 7.7%</span> <span class="c"><b>3:1</b> 7.7%</span> <span class="c"><b>1:0</b> 6.7%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占45%。</div><div class="cs"><span class="c">0球 2.8%</span> <span class="c">1球 9.9%</span> <span class="c">2球 17.8%</span> <span class="c">3球 21.3%</span> <span class="c">4球 19.1%</span> <span class="c">5球 13.7%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🟡 较高概率</b> 法国 ELO领先128分，明显优势。 倾向法国获胜——主场+ELO优势转化为60.2%胜率。 风格：4-2-3-1天赋高速反击流，双后腰锁中路，边路爆点内切+传中，定位球成熟。短板：缺重型支点中锋 VS 4-2-3-1边路冲击支点流，凯恩回撤串联，萨卡帕尔默两翼突破传中。短板：中场慢速调度偏弱。进攻火力强劲，期望进球2.5球，大比分概率高——4球及以上占45%。 综合判断：倾向：法国获胜。不确定性14.7%</div></div>
       <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
         <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
         <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
-          🧮 ELO基1930+状态44=1974 vs 1950+1=1951 | 主攻x1.2·揭幕x1.0·战术x1.00=2.3球<br>
-          📐 预期进球：主2.26球 × 客1.75球 → 泊松分布<br>
+          🧮 ELO基1930+状态4=1934 vs 1900+-44=1856 | 主攻x1.2·揭幕x1.0·战术x1.00=2.4球<br>
+          📐 预期进球：主2.45球 × 客1.14球 → 泊松分布<br>
           📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
-          🎲 低概率=基础17%差额+伤病+红牌+高原修正<br>
+          🎲 低概率=基础46%差额+伤病+红牌+高原修正<br>
+          💰 
+        </div>
+      </div>
+
+    </div>
+    <div class="match">
+      <div class="mh"><span class="g">GFINAL</span><span class="t">🇪🇸 西班牙 vs 阿根廷 🇦🇷</span><span class="d">7/19</span></div>
+      <div class="v">纽约 · 4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击  VS  4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱</div>
+      
+      
+      <div class="int" style="">📰 西班牙0:2法国晋级 阿根廷2:1英格兰逆转。西班牙胜42%/平22%/阿根廷胜36%。MC最可能1:1。</div>
+      
+      <div class="tag-row"><span class="tag tag-risk">⚠️ 实力接近</span></div><div class="tag-row"><span class="tag" style="background:#fff5f5;color:#f80;border:1px solid #fcc;font-size:11px;padding:3px 8px;">🎲 🟡 概率预警 · 低概率结果，除非重大意外</span></div><div class="tag-row"><span class="tag tag-value">🔥 高概率: 1:1(8.3%)</span><span class="tag tag-risk">❄️ 低概率: 3:1(5.3%)</span></div>
+      <div class="s"><div class="st">胜负 · 西班牙 ELO略高62分，主场加权后有优势。</div>
+        <div class="b"><span>主</span><div class="t"><i style="width:42.0%"></i></div><span class="n">42.0%</span></div>
+        <div class="b"><span>平</span><div class="t"><i style="width:22.0%;background:#888"></i></div><span class="n">22.0%</span></div>
+        <div class="b"><span>客</span><div class="t"><i style="width:36.0%;background:#ccc"></i></div><span class="n">36.0%</span></div>
+        <div class="why">三者接近——平局往往被市场低估。 · </div>
+<div class="why" style="font-size:10px;color:#999">🎲 500次模拟: 主42.0% 平22.0% 客36.0%</div>
+      </div>
+      <div class="s"><div class="st">比分 TOP5</div><div class="cs"><span class="c"><b>1:1</b> 8.3%</span> <span class="c"><b>2:1</b> 8.1%</span> <span class="c"><b>1:2</b> 7.4%</span> <span class="c"><b>2:2</b> 7.2%</span> <span class="c"><b>3:1</b> 5.3%</span></div></div>
+      <div class="s"><div class="st">总进球 · 进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。</div><div class="cs"><span class="c">0球 2.4%</span> <span class="c">1球 8.9%</span> <span class="c">2球 16.7%</span> <span class="c">3球 20.7%</span> <span class="c">4球 19.4%</span> <span class="c">5球 14.5%</span></div></div>
+      <div class="s"><div class="st">🧠 白话解读</div><div class="think"><b>🔴 概率较低</b> 西班牙 ELO略高62分，主场加权后有优势。 三者接近——平局往往被市场低估。 风格：4-3-3现代Tiki-Taka控球压制，场均控球65%+，罗德里调度，短传渗透。短板：后卫转身慢怕极速反击 VS 4-4-2低位绞杀铁血防反，梅西驱动韧性足球，全员中场疯狂逼抢。短板：后防回追速度偏弱。进球集中在2-3球（37%），典型世界杯节奏。但也有34%概率打出4球以上。 综合判断：建议观望，平局概率偏高。不确定性25%</div></div>
+      <div class="s" style="border-left:3px solid #ddd;padding-left:12px;background:#fafafa">
+        <div class="st" style="cursor:pointer" onclick="var d=this.nextElementSibling;d.style.display=d.style.display==='none'?'block':'none';this.textContent=this.textContent.replace('▶','▼').replace('▼','▶')">▶ 专业计算链</div>
+        <div style="display:none;font-size:10px;color:#666;line-height:1.6;padding-top:4px">
+          🧮 ELO基1890+状态95=1973 vs 1950+11=1961 | 修正: 西班牙超高连胜-12 | 主攻x1.1·揭幕x1.0·战术x1.00=2.0球<br>
+          📐 预期进球：主1.95球 × 客1.78球 → 泊松分布<br>
+          📊 胜率色标：&gt;75%🟢高确定性 &gt;60%🟡较高概率 &gt;45%🟠势均力敌 其余🔴低概率<br>
+          🎲 低概率=基础6%差额+伤病+红牌+高原修正<br>
           💰 
         </div>
       </div>

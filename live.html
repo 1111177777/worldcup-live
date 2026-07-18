@@ -72,7 +72,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
 <div style="padding:0 0 10px"><input id="search" type="text" placeholder="🔍 搜索球队..." oninput="filter()" style="width:100%;padding:10px;border:1px solid #ddd;font-size:14px"></div>
 <div class="sub">ELO模型 + 泊松分布 · 数据参考</div>
 <div class="upd">更新 07/16 16:20:41 · 每5分钟自动刷新 · v190041 · <span id="online_cnt" style="color:#4f4;font-weight:600">🟢 ...</span></div>
-<div class="rf">⏳ <span id="cd">60</span>秒后刷新</div>
+<div class="rf">⏳ <span id="cd">—</span>秒后刷新</div>
 <style>
 .guide{margin:6px 0;border:1px solid #e8e8e8;border-radius:5px;overflow:hidden}
 .guide-t{background:#f5f5f5;padding:8px 12px;font-size:12px;font-weight:600;cursor:pointer;user-select:none;color:#555}
@@ -4039,7 +4039,7 @@ h1{font-size:18px;font-weight:600;text-align:center;margin:8px 0}
     </div>
 <div class="ft">ELO评分基于FIFA排名和历史战绩<br>泊松分布推演比分概率 · 参考值来源于公开市场<br>所有数据仅供赛事数据研究参考，不构成任何建议</div>
 <script>
-let t=60;setInterval(()=>{t--;document.getElementById('cd').textContent=t;if(t<=0)location.reload()},1000);
+let t=99999;setInterval(()=>{t--;document.getElementById('cd').textContent=t;if(t<=0)location.reload()},1000);
 function filter(){var q=document.getElementById('search').value.toLowerCase();var ms=document.querySelectorAll('.match');if(!q){ms.forEach(function(m){m.style.display=''});return;}ms.forEach(function(m){var txt=(m.textContent||'').toLowerCase();m.style.display=txt.indexOf(q)>=0?'':'none'});}
 	// 在线人数（GitHub Gist API）
 	var GIST_API='https://api.github.com/gists/6a2918fe826c613081dbbbce38e2321a';
